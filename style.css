@@ -108,6 +108,10 @@ textarea {
   resize: vertical;
 }
 
+#lyricsInput {
+  min-height: 220px;
+}
+
 input[type="file"] {
   display: none;
 }
@@ -122,6 +126,15 @@ button {
   color: white;
   background: var(--primary);
   transition: 0.2s ease;
+}
+
+button:focus-visible,
+.file-label:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
 }
 
 button:hover,
@@ -374,4 +387,101 @@ kbd {
   border-radius: 6px;
   color: #e2e8f0;
   font-size: 0.8rem;
+}
+
+@media (max-width: 768px) {
+  .app {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .card {
+    padding: 12px;
+  }
+
+  .action-row {
+    gap: 8px;
+    margin: 8px 0;
+    align-items: stretch;
+  }
+
+  audio {
+    width: 100%;
+  }
+
+  .subtitle {
+    margin-bottom: 8px;
+  }
+
+  button,
+  .file-label {
+    padding: 7px 10px;
+    font-size: 0.86rem;
+    min-height: 44px;
+  }
+
+  .badge {
+    padding: 4px 8px;
+    font-size: 0.76rem;
+  }
+
+  input[type="number"],
+  input[type="text"],
+  select,
+  textarea {
+    padding: 8px;
+    font-size: 0.92rem;
+  }
+
+  input[type="number"],
+  input[type="text"],
+  select {
+    min-height: 44px;
+  }
+
+  .controls-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mode-row {
+    gap: 8px;
+  }
+
+  .mode-row button {
+    width: 100%;
+  }
+
+  .mode-row .badge {
+    order: 99;
+    width: 100%;
+    justify-content: center;
+    display: inline-flex;
+  }
+
+  .action-row button,
+  .action-row .file-label {
+    width: 100%;
+  }
+
+  .action-row .badge {
+    order: 99;
+    width: fit-content;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .karaoke-header {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  #progressIndicator {
+    order: 99;
+    width: 100%;
+    justify-content: center;
+  }
+
+  #lyricsInput {
+    min-height: 150px;
+  }
 }

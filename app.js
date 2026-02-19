@@ -86,6 +86,7 @@
   let currentAudioObjectUrl = null;
   let activeParagraphIndex = -1;
   let shouldPersistMigratedState = false;
+  let lastFocusedElementBeforeToolsModal = null;
 
   let db = null;
 
@@ -607,16 +608,45 @@
     return refs.toolsModal && !refs.toolsModal.hidden;
   }
 
+  function getToolsModalFocusableElements() {
+    if (!refs.toolsModal) return [];
+    const selector =
+      'button:not([disabled]), [href], input:not([disabled]):not([type="hidden"]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+    return Array.from(refs.toolsModal.querySelectorAll(selector)).filter((element) => {
+      if (!(element instanceof HTMLElement)) return false;
+      if (element.hidden) return false;
+      if (element.closest("[hidden]")) return false;
+      return true;
+    });
+  }
+
   function openToolsModal() {
     if (!refs.toolsModal || isToolsModalOpen()) return;
+    if (document.activeElement instanceof HTMLElement) {
+      lastFocusedElementBeforeToolsModal = document.activeElement;
+    }
     refs.toolsModal.hidden = false;
     document.body.style.overflow = "hidden";
+
+    const focusable = getToolsModalFocusableElements();
+    if (focusable.length) {
+      focusable[0].focus();
+      return;
+    }
+
+    refs.closeToolsModalBtn?.focus();
   }
 
   function closeToolsModal() {
     if (!refs.toolsModal || !isToolsModalOpen()) return;
     refs.toolsModal.hidden = true;
     document.body.style.overflow = "";
+
+    if (lastFocusedElementBeforeToolsModal && document.contains(lastFocusedElementBeforeToolsModal)) {
+      lastFocusedElementBeforeToolsModal.focus();
+    } else {
+      refs.openToolsModalBtn?.focus();
+    }
   }
 
   function isFullscreenKaraokeOpen() {
@@ -1237,7 +1267,31 @@
         return;
       }
 
-      if (isToolsModalOpen()) return;
+      if (isToolsModalOpen()) {
+        if (e.key === "Tab") {
+          const focusable = getToolsModalFocusableElements();
+          if (!focusable.length) {
+            e.preventDefault();
+            return;
+          }
+
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
+          const active = document.activeElement;
+          const isInsideModal = active instanceof Node && refs.toolsModal?.contains(active);
+
+          if (e.shiftKey) {
+            if (!isInsideModal || active === first) {
+              e.preventDefault();
+              last.focus();
+            }
+          } else if (!isInsideModal || active === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        }
+        return;
+      }
 
       if (isFullscreenKaraokeOpen()) {
         if (e.key === "Escape") {
