@@ -61,6 +61,28 @@ h2 {
   font-size: 1.05rem;
 }
 
+.block-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.block-order-controls {
+  display: flex;
+  gap: 6px;
+}
+
+.block-order-btn {
+  padding: 6px 9px;
+  font-size: 0.78rem;
+}
+
+.block-order-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
 .action-row {
   display: flex;
   flex-wrap: wrap;
@@ -191,6 +213,22 @@ button.danger:hover {
   max-width: 420px;
 }
 
+#playlistNameInput,
+#playlistSelect {
+  color: var(--text);
+  background: var(--card-2);
+}
+
+#playlistNameInput::placeholder {
+  color: #cbd5e1;
+  opacity: 1;
+}
+
+#playlistSelect option {
+  color: var(--text);
+  background: #111827;
+}
+
 .playlist-view {
   display: grid;
   gap: 10px;
@@ -215,6 +253,7 @@ button.danger:hover {
 
 .playlist-item-title {
   font-weight: 600;
+  color: #f8fafc;
 }
 
 .playlist-item-meta {
@@ -403,6 +442,20 @@ kbd {
     gap: 8px;
     margin: 8px 0;
     align-items: stretch;
+  }
+
+  .block-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .block-order-controls {
+    width: 100%;
+  }
+
+  .block-order-btn {
+    width: 100%;
   }
 
   audio {

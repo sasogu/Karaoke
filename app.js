@@ -8,6 +8,7 @@
   const PROJECT_VERSION = "1.0.0";
   const PROJECT_PACKAGE_VERSION = "zip-v1";
   const LS_LANG_KEY = "karaokeLanguageV1";
+  const LS_BLOCK_ORDER_KEY = "karaokeBlockOrderV1";
 
   const state = {
     lyricsOriginal: "",
@@ -51,6 +52,7 @@
     clearTimesBtn: $("clearTimesBtn"),
     nextPending: $("nextPending"),
     languageSelect: $("languageSelect"),
+    mainBlocks: $("mainBlocks"),
 
     exportBtn: $("exportBtn"),
     importFile: $("importFile"),
@@ -70,6 +72,8 @@
 
     playlistSelect: $("playlistSelect"),
     playlistTitleInput: $("playlistTitleInput"),
+    playlistNameInput: $("playlistNameInput"),
+    renamePlaylistBtn: $("renamePlaylistBtn"),
     addToPlaylistBtn: $("addToPlaylistBtn"),
     clearPlaylistBtn: $("clearPlaylistBtn"),
     playlistCount: $("playlistCount"),
@@ -110,7 +114,10 @@
       playlist_hint: "Guarda temas con su audio y sincronización para recargarlos después.",
       track_title_label: "Título del tema",
       track_title_placeholder: "Ej: Canción 1 (en vivo)",
+      playlist_name_label: "Nombre de la lista",
+      playlist_name_placeholder: "Ej: Lista karaoke",
       new_playlist: "Nueva playlist...",
+      rename_playlist: "Renombrar lista",
       add_to_playlist: "Añadir a playlist",
       clear_playlist: "Vaciar playlist",
       playlist_count: "{count} tema(s)",
@@ -135,6 +142,8 @@
       auto_sync: "Auto-sincronizar",
       undo_last_marker: "Deshacer último marcador",
       clear_times: "Limpiar tiempos",
+      move_up: "Subir",
+      move_down: "Bajar",
       calibration_help: "Calibración: pulsa <kbd>Espacio</kbd> durante reproducción para marcar el inicio del siguiente párrafo.",
       pending_none: "No hay párrafos para calibrar.",
       pending_done: "Calibración completa.",
@@ -168,6 +177,9 @@
       msg_track_deleted_playlist: "Tema eliminado de la playlist.",
       msg_playlist_empty_already: "La playlist ya está vacía.",
       msg_playlist_cleared: "Playlist vaciada.",
+      err_select_playlist_to_rename: "Selecciona una playlist para renombrar.",
+      err_playlist_name_required: "Escribe un nombre para la playlist.",
+      msg_playlist_renamed: "Playlist renombrada.",
       err_fullscreen_browser: "No se pudo activar fullscreen del navegador. Se abrió modo ampliado.",
       err_no_audio_file_selected: "No se seleccionó ningún archivo de audio.",
       msg_audio_saved_indexeddb: "Audio cargado y guardado en IndexedDB.",
@@ -242,7 +254,10 @@
       playlist_hint: "Guarda temes amb el seu àudio i sincronització per a recarregar-los després.",
       track_title_label: "Títol del tema",
       track_title_placeholder: "Ex: Cançó 1 (en directe)",
+      playlist_name_label: "Nom de la llista",
+      playlist_name_placeholder: "Ex: Llista karaoke",
       new_playlist: "Nova llista...",
+      rename_playlist: "Canviar nom de la llista",
       add_to_playlist: "Afegir a la llista",
       clear_playlist: "Buidar llista",
       playlist_count: "{count} tema(es)",
@@ -267,6 +282,8 @@
       auto_sync: "Auto-sincronitzar",
       undo_last_marker: "Desfer últim marcador",
       clear_times: "Netejar temps",
+      move_up: "Pujar",
+      move_down: "Baixar",
       calibration_help: "Calibració: prem <kbd>Espai</kbd> durant la reproducció per a marcar l'inici del següent paràgraf.",
       pending_none: "No hi ha paràgrafs per a calibrar.",
       pending_done: "Calibració completada.",
@@ -300,6 +317,9 @@
       msg_track_deleted_playlist: "Tema eliminat de la llista.",
       msg_playlist_empty_already: "La llista ja està buida.",
       msg_playlist_cleared: "Llista buidada.",
+      err_select_playlist_to_rename: "Selecciona una llista per a canviar-li el nom.",
+      err_playlist_name_required: "Escriu un nom per a la llista.",
+      msg_playlist_renamed: "Llista reanomenada.",
       err_fullscreen_browser: "No s'ha pogut activar la pantalla completa del navegador. S'ha obert el mode ampliat.",
       err_no_audio_file_selected: "No s'ha seleccionat cap arxiu d'àudio.",
       msg_audio_saved_indexeddb: "Àudio carregat i guardat en IndexedDB.",
@@ -374,7 +394,10 @@
       playlist_hint: "Save tracks with audio and sync data so you can reload them later.",
       track_title_label: "Track title",
       track_title_placeholder: "Ex: Song 1 (live)",
+      playlist_name_label: "Playlist name",
+      playlist_name_placeholder: "Ex: Karaoke list",
       new_playlist: "New playlist...",
+      rename_playlist: "Rename playlist",
       add_to_playlist: "Add to playlist",
       clear_playlist: "Clear playlist",
       playlist_count: "{count} track(s)",
@@ -399,6 +422,8 @@
       auto_sync: "Auto-sync",
       undo_last_marker: "Undo last marker",
       clear_times: "Clear timings",
+      move_up: "Move up",
+      move_down: "Move down",
       calibration_help: "Calibration: press <kbd>Space</kbd> during playback to mark the start of the next paragraph.",
       pending_none: "No paragraphs to calibrate.",
       pending_done: "Calibration complete.",
@@ -432,6 +457,9 @@
       msg_track_deleted_playlist: "Track removed from playlist.",
       msg_playlist_empty_already: "Playlist is already empty.",
       msg_playlist_cleared: "Playlist cleared.",
+      err_select_playlist_to_rename: "Select a playlist to rename.",
+      err_playlist_name_required: "Enter a playlist name.",
+      msg_playlist_renamed: "Playlist renamed.",
       err_fullscreen_browser: "Could not enable browser fullscreen. Expanded mode was opened.",
       err_no_audio_file_selected: "No audio file was selected.",
       msg_audio_saved_indexeddb: "Audio loaded and saved to IndexedDB.",
@@ -538,6 +566,10 @@
       refs.playlistTitleInput.placeholder = t("track_title_placeholder");
     }
 
+    if (refs.playlistNameInput) {
+      refs.playlistNameInput.placeholder = t("playlist_name_placeholder");
+    }
+
     if (refs.languageSelect) {
       refs.languageSelect.setAttribute("aria-label", t("language_label"));
     }
@@ -583,7 +615,108 @@
     renderPlaylist();
     renderMode();
     renderFullscreenToggleButton();
+    refreshBlockOrderControls();
     renderKaraoke(true);
+  }
+
+  function getReorderableBlocks() {
+    if (!refs.mainBlocks) return [];
+    return Array.from(refs.mainBlocks.querySelectorAll(".reorderable-block"));
+  }
+
+  function saveBlockOrder() {
+    const order = getReorderableBlocks()
+      .map((block) => block.dataset.blockId)
+      .filter(Boolean);
+    localStorage.setItem(LS_BLOCK_ORDER_KEY, JSON.stringify(order));
+  }
+
+  function refreshBlockOrderControls() {
+    const blocks = getReorderableBlocks();
+    blocks.forEach((block, index) => {
+      const upBtn = block.querySelector('[data-action="move-up"]');
+      const downBtn = block.querySelector('[data-action="move-down"]');
+      if (upBtn instanceof HTMLButtonElement) {
+        upBtn.disabled = index === 0;
+        upBtn.title = t("move_up");
+      }
+      if (downBtn instanceof HTMLButtonElement) {
+        downBtn.disabled = index === blocks.length - 1;
+        downBtn.title = t("move_down");
+      }
+    });
+  }
+
+  function applySavedBlockOrder() {
+    if (!refs.mainBlocks) return;
+    const raw = localStorage.getItem(LS_BLOCK_ORDER_KEY);
+    if (!raw) {
+      refreshBlockOrderControls();
+      return;
+    }
+
+    try {
+      const order = JSON.parse(raw);
+      if (!Array.isArray(order)) {
+        refreshBlockOrderControls();
+        return;
+      }
+
+      const existingById = new Map(
+        getReorderableBlocks()
+          .map((block) => [block.dataset.blockId, block])
+          .filter(([id]) => Boolean(id))
+      );
+
+      order.forEach((id) => {
+        const block = existingById.get(id);
+        if (!block) return;
+        refs.mainBlocks.appendChild(block);
+        existingById.delete(id);
+      });
+
+      existingById.forEach((block) => refs.mainBlocks.appendChild(block));
+      refreshBlockOrderControls();
+      saveBlockOrder();
+    } catch {
+      refreshBlockOrderControls();
+    }
+  }
+
+  function moveBlock(block, direction) {
+    if (!refs.mainBlocks || !block) return;
+    if (direction === "up") {
+      const prev = block.previousElementSibling;
+      if (!prev) return;
+      refs.mainBlocks.insertBefore(block, prev);
+    } else {
+      const next = block.nextElementSibling;
+      if (!next) return;
+      refs.mainBlocks.insertBefore(next, block);
+    }
+    refreshBlockOrderControls();
+    saveBlockOrder();
+  }
+
+  function attachBlockOrderEvents() {
+    if (!refs.mainBlocks) return;
+    refs.mainBlocks.addEventListener("click", (event) => {
+      const target = event.target;
+      if (!(target instanceof HTMLElement)) return;
+
+      const button = target.closest(".block-order-btn");
+      if (!(button instanceof HTMLButtonElement)) return;
+
+      const block = button.closest(".reorderable-block");
+      if (!(block instanceof HTMLElement)) return;
+
+      const action = button.dataset.action;
+      if (action === "move-up") {
+        moveBlock(block, "up");
+      } else if (action === "move-down") {
+        moveBlock(block, "down");
+      }
+    });
   }
 
   // ==================== IndexedDB ====================
@@ -998,8 +1131,20 @@
     return `${base} · ${stamp}`;
   }
 
+  function getPlaylistById(id) {
+    if (!id) return null;
+    return state.playlist.find((entry) => entry.id === id) || null;
+  }
+
+  function syncPlaylistNameInputFromSelection() {
+    if (!refs.playlistNameInput || !refs.playlistSelect) return;
+    const selected = getPlaylistById(refs.playlistSelect.value);
+    refs.playlistNameInput.value = selected ? selected.title : "";
+  }
+
   function renderPlaylist() {
     if (!refs.playlistView || !refs.playlistCount || !refs.playlistSelect) return;
+    const previousSelected = refs.playlistSelect.value;
 
     const totalTracks = state.playlist.reduce((count, playlist) => {
       return count + (Array.isArray(playlist.items) ? playlist.items.length : 0);
@@ -1010,6 +1155,7 @@
     if (!totalTracks) {
       refs.playlistView.innerHTML = `<p class="empty">${t("no_playlists_saved")}</p>`;
       refs.playlistSelect.innerHTML = `<option value="">${t("new_playlist")}</option>`;
+      syncPlaylistNameInputFromSelection();
       return;
     }
 
@@ -1049,6 +1195,14 @@
         refs.playlistView.appendChild(wrapper);
       });
     });
+
+      if (previousSelected && getPlaylistById(previousSelected)) {
+        refs.playlistSelect.value = previousSelected;
+      } else {
+        refs.playlistSelect.value = "";
+      }
+
+      syncPlaylistNameInputFromSelection();
   }
 
   function addCurrentToPlaylist() {
@@ -1067,11 +1221,12 @@
     const selectedPlaylist = refs.playlistSelect.value;
     let playlist = state.playlist.find((entry) => entry.id === selectedPlaylist);
     const trackTitle = refs.playlistTitleInput.value.trim() || buildDefaultPlaylistTitle();
+    const desiredPlaylistName = refs.playlistNameInput?.value.trim() || "";
 
     if (!playlist) {
       playlist = {
         id: generateId(),
-        title: t("playlist_name", { index: state.playlist.length + 1 }),
+        title: desiredPlaylistName || t("playlist_name", { index: state.playlist.length + 1 }),
         items: []
       };
       state.playlist.push(playlist);
@@ -1095,7 +1250,30 @@
     renderPlaylist();
     refs.playlistSelect.value = playlist.id;
     refs.playlistTitleInput.value = "";
+    syncPlaylistNameInputFromSelection();
     showMessage(t("msg_track_added_playlist"));
+  }
+
+  function renameSelectedPlaylist() {
+    if (!refs.playlistSelect || !refs.playlistNameInput) {
+      return showMessage(t("err_playlist_ui_unavailable"), true);
+    }
+
+    const selectedId = refs.playlistSelect.value;
+    if (!selectedId) return showMessage(t("err_select_playlist_to_rename"), true);
+
+    const newName = refs.playlistNameInput.value.trim();
+    if (!newName) return showMessage(t("err_playlist_name_required"), true);
+
+    const playlist = getPlaylistById(selectedId);
+    if (!playlist) return showMessage(t("err_select_playlist_to_rename"), true);
+
+    playlist.title = newName;
+    saveStateToLocalStorage();
+    renderPlaylist();
+    refs.playlistSelect.value = selectedId;
+    syncPlaylistNameInputFromSelection();
+    showMessage(t("msg_playlist_renamed"));
   }
 
   function findPlaylistItemById(id) {
@@ -1131,6 +1309,7 @@
     state.playlist = [];
     saveStateToLocalStorage();
     renderPlaylist();
+    if (refs.playlistNameInput) refs.playlistNameInput.value = "";
     showMessage(t("msg_playlist_cleared"));
   }
 
@@ -1762,6 +1941,8 @@
       setLanguage(value);
     });
 
+    attachBlockOrderEvents();
+
     refs.audioFile.addEventListener("change", async (e) => {
       const file = e.target.files?.[0];
       if (!file) return;
@@ -1877,6 +2058,14 @@
 
     if (refs.addToPlaylistBtn) {
       refs.addToPlaylistBtn.addEventListener("click", addCurrentToPlaylist);
+    }
+
+    if (refs.renamePlaylistBtn) {
+      refs.renamePlaylistBtn.addEventListener("click", renameSelectedPlaylist);
+    }
+
+    if (refs.playlistSelect) {
+      refs.playlistSelect.addEventListener("change", syncPlaylistNameInputFromSelection);
     }
 
     if (refs.clearPlaylistBtn) {
@@ -2043,6 +2232,7 @@
     renderKaraoke(true);
     renderPlaylist();
     renderFullscreenToggleButton();
+    applySavedBlockOrder();
     updateTimeDisplay();
     if (refs.pwaVersion) refs.pwaVersion.textContent = "PWA v—";
 

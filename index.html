@@ -36,9 +36,15 @@
         </div>
       </header>
 
-      <main class="row g-3">
-        <section class="card col-12">
-          <h2 data-i18n="player_title">Reproductor</h2>
+      <main id="mainBlocks" class="row g-3">
+        <section class="card col-12 reorderable-block" data-block-id="player">
+          <div class="block-header">
+            <h2 data-i18n="player_title">Reproductor</h2>
+            <div class="block-order-controls">
+              <button class="secondary block-order-btn" data-action="move-up" data-i18n="move_up">Subir</button>
+              <button class="secondary block-order-btn" data-action="move-down" data-i18n="move_down">Bajar</button>
+            </div>
+          </div>
 
           <div class="action-row">
             <label for="audioFile" class="file-label" data-i18n="select_audio">Seleccionar audio</label>
@@ -57,8 +63,14 @@
           <p id="audioRestoreHint" class="hint"></p>
         </section>
 
-        <section class="card col-12">
-          <h2 data-i18n="lyrics_title">Letra</h2>
+        <section class="card col-12 reorderable-block" data-block-id="lyrics">
+          <div class="block-header">
+            <h2 data-i18n="lyrics_title">Letra</h2>
+            <div class="block-order-controls">
+              <button class="secondary block-order-btn" data-action="move-up" data-i18n="move_up">Subir</button>
+              <button class="secondary block-order-btn" data-action="move-down" data-i18n="move_down">Bajar</button>
+            </div>
+          </div>
           <p class="hint" data-i18n="lyrics_hint">Separa párrafos dejando una línea en blanco entre bloques.</p>
 
           <textarea
@@ -74,16 +86,25 @@
           </div>
         </section>
 
-        <section class="card col-12">
-          <h2 data-i18n="playlist_title">Playlist</h2>
+        <section class="card col-12 reorderable-block" data-block-id="playlist">
+          <div class="block-header">
+            <h2 data-i18n="playlist_title">Playlist</h2>
+            <div class="block-order-controls">
+              <button class="secondary block-order-btn" data-action="move-up" data-i18n="move_up">Subir</button>
+              <button class="secondary block-order-btn" data-action="move-down" data-i18n="move_down">Bajar</button>
+            </div>
+          </div>
           <p class="hint" data-i18n="playlist_hint">Guarda temas con su audio y sincronización para recargarlos después.</p>
 
           <div class="action-row">
             <label for="playlistTitleInput" data-i18n="track_title_label">Título del tema</label>
             <input id="playlistTitleInput" type="text" placeholder="Ej: Canción 1 (en vivo)" />
+            <label for="playlistNameInput" data-i18n="playlist_name_label">Nombre de la lista</label>
+            <input id="playlistNameInput" type="text" placeholder="Ej: Lista karaoke" />
             <select id="playlistSelect">
               <option value="" data-i18n="new_playlist">Nueva playlist...</option>
             </select>
+            <button id="renamePlaylistBtn" class="secondary" data-i18n="rename_playlist">Renombrar lista</button>
             <button id="addToPlaylistBtn" data-i18n="add_to_playlist">Añadir a playlist</button>
             <button id="clearPlaylistBtn" class="secondary" data-i18n="clear_playlist">Vaciar playlist</button>
             <span id="playlistCount" class="badge">0 tema(s)</span>
@@ -94,8 +115,14 @@
           </div>
         </section>
 
-        <section class="card karaoke-card col-12">
-          <h2 data-i18n="karaoke_title">Karaoke</h2>
+        <section class="card karaoke-card col-12 reorderable-block" data-block-id="karaoke">
+          <div class="block-header">
+            <h2 data-i18n="karaoke_title">Karaoke</h2>
+            <div class="block-order-controls">
+              <button class="secondary block-order-btn" data-action="move-up" data-i18n="move_up">Subir</button>
+              <button class="secondary block-order-btn" data-action="move-down" data-i18n="move_down">Bajar</button>
+            </div>
+          </div>
           <div class="karaoke-header">
             <button id="openFullscreenBtn" class="secondary" data-i18n="fullscreen_open">Reproducir a pantalla completa</button>
             <span id="progressIndicator" class="badge">0/0</span>
