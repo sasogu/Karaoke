@@ -62,6 +62,7 @@
     fsPauseBtn: $("fsPauseBtn"),
     fsStopBtn: $("fsStopBtn"),
 
+    playlistSelect: $("playlistSelect"),
     playlistTitleInput: $("playlistTitleInput"),
     addToPlaylistBtn: $("addToPlaylistBtn"),
     clearPlaylistBtn: $("clearPlaylistBtn"),
@@ -363,36 +364,46 @@
   }
 
   function renderPlaylist() {
-    refs.playlistCount.textContent = `${state.playlist.length} tema(s)`;
+    refs.playlistCount.textContent = `${state.playlist.length} playlist(s)`;
 
     if (!state.playlist.length) {
-      refs.playlistView.innerHTML = `<p class="empty">Aún no hay temas guardados.</p>`;
+      refs.playlistView.innerHTML = `<p class="empty">Aún no hay playlists guardadas.</p>`;
+      refs.playlistSelect.innerHTML = `<option value="">Nueva playlist...</option>`;
       return;
     }
 
     refs.playlistView.innerHTML = "";
-    state.playlist.forEach((item) => {
-      const wrapper = document.createElement("article");
-      wrapper.className = "playlist-item";
+    refs.playlistSelect.innerHTML = `<option value="">Nueva playlist...</option>`;
 
-      const date = new Date(item.createdAt || Date.now());
-      const hasTimes = (item.calibratedTimes?.length || item.autoTimes?.length || 0) > 0;
-      wrapper.innerHTML = `
-        <div class="playlist-item-main">
-          <div>
-            <div class="playlist-item-title">${item.title}</div>
-            <div class="playlist-item-meta">${item.audioMeta?.name || "sin audio"} · ${item.paragraphs.length} párrafo(s) · ${hasTimes ? "sincronizado" : "sin sincronizar"}</div>
-            <div class="playlist-item-meta">${date.toLocaleString("es-ES")}</div>
-          </div>
-          <div class="playlist-item-actions">
-            <button class="secondary" data-action="load" data-id="${item.id}">Cargar</button>
-            <button data-action="play" data-id="${item.id}">Cargar y reproducir</button>
-            <button class="danger" data-action="delete" data-id="${item.id}">Eliminar</button>
-          </div>
-        </div>
-      `;
+    state.playlist.forEach((playlist) => {
+      const option = document.createElement("option");
+      option.value = playlist.id;
+      option.textContent = playlist.title;
+      refs.playlistSelect.appendChild(option);
 
-      refs.playlistView.appendChild(wrapper);
+      playlist.items.forEach((item) => {
+        const wrapper = document.createElement("article");
+        wrapper.className = "playlist-item";
+
+        const date = new Date(item.createdAt || Date.now());
+        const hasTimes = (item.calibratedTimes?.length || item.autoTimes?.length || 0) > 0;
+        wrapper.innerHTML = `
+          <div class="playlist-item-main">
+            <div>
+              <div class="playlist-item-title">${item.title}</div>
+              <div class="playlist-item-meta">${item.audioMeta?.name || "sin audio"} · ${item.paragraphs.length} párrafo(s) · ${hasTimes ? "sincronizado" : "sin sincronizar"}</div>
+              <div class="playlist-item-meta">${date.toLocaleString("es-ES")}</div>
+            </div>
+            <div class="playlist-item-actions">
+              <button class="secondary" data-action="load" data-id="${item.id}">Cargar</button>
+              <button data-action="play" data-id="${item.id}">Cargar y reproducir</button>
+              <button class="danger" data-action="delete" data-id="${item.id}">Eliminar</button>
+            </div>
+          </div>
+        `;
+
+        refs.playlistView.appendChild(wrapper);
+      });
     });
   }
 
@@ -405,14 +416,27 @@
       return showMessage("Primero sincroniza la letra (auto o calibración).", true);
     }
 
-    const customTitle = refs.playlistTitleInput.value.trim();
-    const id = (typeof crypto !== "undefined" && crypto.randomUUID)
-      ? crypto.randomUUID()
-      : `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+    const selectedPlaylist = refs.playlistSelect.value;
+    let playlist = state.playlist.find(p => p.id === selectedPlaylist);
+
+    if (!playlist) {
+      const customTitle = refs.playlistTitleInput.value.trim();
+      const id = (typeof crypto !== "undefined" && crypto.randomUUID)
+        ? crypto.randomUUID()
+        : `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+
+      playlist = {
+        id,
+        title: customTitle || buildDefaultPlaylistTitle(),
+        items: []
+      };
+      state.playlist.push(playlist);
+    }
 
     const snapshot = {
-      id,
-      title: customTitle || buildDefaultPlaylistTitle(),
+      id: (typeof crypto !== "undefined" && crypto.randomUUID)
+        ? crypto.randomUUID()
+        : `${Date.now()}-${Math.random().toString(16).slice(2)}`,
       createdAt: Date.now(),
       audioMeta: state.audioMeta ? { ...state.audioMeta } : null,
       lyricsOriginal: state.lyricsOriginal,
@@ -423,11 +447,11 @@
       offsetSeconds: state.offsetSeconds
     };
 
-    state.playlist.unshift(snapshot);
+    playlist.items.unshift(snapshot);
     saveStateToLocalStorage();
     renderPlaylist();
     refs.playlistTitleInput.value = "";
-    showMessage("Tema guardado en playlist.");
+    showMessage("Tema añadido a la playlist.");
   }
 
   function deletePlaylistItem(id) {

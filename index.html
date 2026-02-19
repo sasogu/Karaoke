@@ -119,7 +119,10 @@
           <div class="row">
             <label for="playlistTitleInput">Título del tema</label>
             <input id="playlistTitleInput" type="text" placeholder="Ej: Canción 1 (en vivo)" />
-            <button id="addToPlaylistBtn">Guardar tema en playlist</button>
+            <select id="playlistSelect">
+              <option value="">Nueva playlist...</option>
+            </select>
+            <button id="addToPlaylistBtn">Añadir a playlist</button>
             <button id="clearPlaylistBtn" class="secondary">Vaciar playlist</button>
             <span id="playlistCount" class="badge">0 tema(s)</span>
           </div>
