@@ -20,81 +20,88 @@
   <body>
     <div class="app container py-3">
       <header class="app-header">
-        <h1>EduKaraoke</h1>
-        <p class="subtitle">
+        <h1 data-i18n="app_title">EduKaraoke</h1>
+        <p class="subtitle" data-i18n="app_subtitle">
           Crea tu karaoke casero: carga un audio, pega la letra y sincroniza por párrafos. Guarda
           tus temas favoritos en la playlist y ¡a cantar!
         </p>
         <div class="action-row header-actions">
-          <button id="openToolsModalBtn" class="secondary">Sincronización y exportar</button>
+          <label for="languageSelect" data-i18n="language_label">Idioma</label>
+          <select id="languageSelect" aria-label="Selector de idioma">
+            <option value="es">Español</option>
+            <option value="val">Valencià</option>
+            <option value="en">English</option>
+          </select>
+          <button id="openToolsModalBtn" class="secondary" data-i18n="open_tools">Sincronización y exportar</button>
         </div>
       </header>
 
       <main class="row g-3">
         <section class="card col-12">
-          <h2>Reproductor</h2>
+          <h2 data-i18n="player_title">Reproductor</h2>
 
           <div class="action-row">
-            <label for="audioFile" class="file-label">Seleccionar audio</label>
+            <label for="audioFile" class="file-label" data-i18n="select_audio">Seleccionar audio</label>
             <input id="audioFile" type="file" accept="audio/*" />
-            <button id="deleteStoredAudioBtn" class="danger">Eliminar audio almacenado</button>
+            <button id="deleteStoredAudioBtn" class="danger" data-i18n="delete_stored_audio">Eliminar audio almacenado</button>
           </div>
 
           <audio id="audio" controls preload="metadata"></audio>
 
           <div class="meta">
-            <div><strong>Archivo:</strong> <span id="audioName">—</span></div>
-            <div><strong>Tipo:</strong> <span id="audioType">—</span></div>
-            <div><strong>Tiempo:</strong> <span id="timeDisplay">00:00 / 00:00</span></div>
+            <div><strong data-i18n="meta_file">Archivo:</strong> <span id="audioName">—</span></div>
+            <div><strong data-i18n="meta_type">Tipo:</strong> <span id="audioType">—</span></div>
+            <div><strong data-i18n="meta_time">Tiempo:</strong> <span id="timeDisplay">00:00 / 00:00</span></div>
           </div>
 
           <p id="audioRestoreHint" class="hint"></p>
         </section>
 
         <section class="card col-12">
-          <h2>Letra</h2>
-          <p class="hint">Separa párrafos dejando una línea en blanco entre bloques.</p>
+          <h2 data-i18n="lyrics_title">Letra</h2>
+          <p class="hint" data-i18n="lyrics_hint">Separa párrafos dejando una línea en blanco entre bloques.</p>
 
           <textarea
             id="lyricsInput"
             rows="10"
+            data-i18n-placeholder="lyrics_placeholder"
             placeholder="Pega aquí la letra...&#10;&#10;Párrafo 1&#10;&#10;Párrafo 2"
           ></textarea>
 
           <div class="action-row">
-            <button id="applyLyricsBtn">Aplicar letra</button>
+            <button id="applyLyricsBtn" data-i18n="apply_lyrics">Aplicar letra</button>
             <span id="paragraphCount" class="badge">0 párrafos</span>
           </div>
         </section>
 
         <section class="card col-12">
-          <h2>Playlist</h2>
-          <p class="hint">Guarda temas con su audio y sincronización para recargarlos después.</p>
+          <h2 data-i18n="playlist_title">Playlist</h2>
+          <p class="hint" data-i18n="playlist_hint">Guarda temas con su audio y sincronización para recargarlos después.</p>
 
           <div class="action-row">
-            <label for="playlistTitleInput">Título del tema</label>
+            <label for="playlistTitleInput" data-i18n="track_title_label">Título del tema</label>
             <input id="playlistTitleInput" type="text" placeholder="Ej: Canción 1 (en vivo)" />
             <select id="playlistSelect">
-              <option value="">Nueva playlist...</option>
+              <option value="" data-i18n="new_playlist">Nueva playlist...</option>
             </select>
-            <button id="addToPlaylistBtn">Añadir a playlist</button>
-            <button id="clearPlaylistBtn" class="secondary">Vaciar playlist</button>
+            <button id="addToPlaylistBtn" data-i18n="add_to_playlist">Añadir a playlist</button>
+            <button id="clearPlaylistBtn" class="secondary" data-i18n="clear_playlist">Vaciar playlist</button>
             <span id="playlistCount" class="badge">0 tema(s)</span>
           </div>
 
           <div id="playlistView" class="playlist-view">
-            <p class="empty">Aún no hay temas guardados.</p>
+            <p class="empty" data-i18n="no_tracks_saved">Aún no hay temas guardados.</p>
           </div>
         </section>
 
         <section class="card karaoke-card col-12">
-          <h2>Karaoke</h2>
+          <h2 data-i18n="karaoke_title">Karaoke</h2>
           <div class="karaoke-header">
-            <button id="openFullscreenBtn" class="secondary">Reproducir a pantalla completa</button>
+            <button id="openFullscreenBtn" class="secondary" data-i18n="fullscreen_open">Reproducir a pantalla completa</button>
             <span id="progressIndicator" class="badge">0/0</span>
           </div>
           <div id="karaokeView" class="karaoke-view">
-            <p class="empty">Aún no hay párrafos.</p>
+            <p class="empty" data-i18n="no_paragraphs">Aún no hay párrafos.</p>
           </div>
         </section>
       </main>
@@ -110,45 +117,45 @@
       <div id="toolsModalBackdrop" class="tools-modal-backdrop"></div>
       <div class="tools-modal-panel" role="dialog" aria-modal="true" aria-labelledby="toolsModalTitle">
         <div class="tools-modal-header">
-          <h2 id="toolsModalTitle">Sincronización y exportar</h2>
-          <button id="closeToolsModalBtn" class="secondary">Cerrar</button>
+          <h2 id="toolsModalTitle" data-i18n="tools_modal_title">Sincronización y exportar</h2>
+          <button id="closeToolsModalBtn" class="secondary" data-i18n="close">Cerrar</button>
         </div>
 
         <section class="card tools-modal-card">
-          <h2>Sincronización</h2>
+          <h2 data-i18n="sync_title">Sincronización</h2>
 
           <div class="mode-row">
-            <button id="modeAutoBtn" class="secondary">Modo Auto</button>
-            <button id="modeCalibBtn" class="secondary">Modo Calibración</button>
+            <button id="modeAutoBtn" class="secondary" data-i18n="mode_auto">Modo Auto</button>
+            <button id="modeCalibBtn" class="secondary" data-i18n="mode_calibration">Modo Calibración</button>
             <span id="modeStatus" class="badge">Estado: Calibración</span>
           </div>
 
           <div class="controls-grid">
             <label>
-              Umbral silencio (RMS)
+              <span data-i18n="threshold_label">Umbral silencio (RMS)</span>
               <input id="thresholdInput" type="number" min="0.001" max="1" step="0.001" />
             </label>
             <label>
-              Silencio mínimo (ms)
+              <span data-i18n="min_silence_label">Silencio mínimo (ms)</span>
               <input id="minSilenceInput" type="number" min="50" max="3000" step="10" />
             </label>
             <label>
-              Ventana análisis (ms)
+              <span data-i18n="analysis_window_label">Ventana análisis (ms)</span>
               <input id="windowMsInput" type="number" min="50" max="100" step="5" />
             </label>
             <label>
-              Offset global (s)
+              <span data-i18n="global_offset_label">Offset global (s)</span>
               <input id="offsetInput" type="number" min="-10" max="10" step="0.01" />
             </label>
           </div>
 
           <div class="action-row">
-            <button id="autoSyncBtn">Auto-sincronizar</button>
-            <button id="undoMarkerBtn" class="secondary">Deshacer último marcador</button>
-            <button id="clearTimesBtn" class="secondary">Limpiar tiempos</button>
+            <button id="autoSyncBtn" data-i18n="auto_sync">Auto-sincronizar</button>
+            <button id="undoMarkerBtn" class="secondary" data-i18n="undo_last_marker">Deshacer último marcador</button>
+            <button id="clearTimesBtn" class="secondary" data-i18n="clear_times">Limpiar tiempos</button>
           </div>
 
-          <p id="calibHelp" class="hint">
+          <p id="calibHelp" class="hint" data-i18n-html="calibration_help">
             Calibración: pulsa <kbd>Espacio</kbd> durante reproducción para marcar el inicio del
             siguiente párrafo.
           </p>
@@ -156,15 +163,15 @@
         </section>
 
         <section class="card tools-modal-card">
-          <h2>Exportar / Importar</h2>
+          <h2 data-i18n="export_import_title">Exportar / Importar</h2>
 
           <div class="action-row">
-            <button id="exportBtn">Exportar proyecto</button>
-            <label for="importFile" class="file-label">Importar proyecto</label>
+            <button id="exportBtn" data-i18n="export_project">Exportar proyecto</button>
+            <label for="importFile" class="file-label" data-i18n="import_project">Importar proyecto</label>
             <input id="importFile" type="file" accept=".zip,.json,application/zip,application/json" />
           </div>
 
-          <p class="hint">
+          <p class="hint" data-i18n="export_hint">
             Se exporta en ZIP con audio + sincronización. También puedes importar JSON legado.
           </p>
         </section>
@@ -172,12 +179,12 @@
     </div>
 
     <div id="fullscreenKaraoke" class="fullscreen-karaoke" hidden>
-      <button id="closeFullscreenBtn" class="secondary close-fullscreen-btn">Cerrar</button>
-      <div id="fullscreenParagraph" class="fullscreen-paragraph">Aún no hay párrafos.</div>
-      <div class="fullscreen-controls" aria-label="Controles de reproducción">
-        <button id="fsPlayBtn">Play</button>
-        <button id="fsPauseBtn" class="secondary">Pause</button>
-        <button id="fsStopBtn" class="danger">Stop</button>
+      <button id="closeFullscreenBtn" class="secondary close-fullscreen-btn" data-i18n="close">Cerrar</button>
+      <div id="fullscreenParagraph" class="fullscreen-paragraph" data-i18n="no_paragraphs">Aún no hay párrafos.</div>
+      <div class="fullscreen-controls" data-i18n-aria-label="playback_controls" aria-label="Controles de reproducción">
+        <button id="fsPlayBtn" data-i18n="play">Play</button>
+        <button id="fsPauseBtn" class="secondary" data-i18n="pause">Pause</button>
+        <button id="fsStopBtn" class="danger" data-i18n="stop">Stop</button>
       </div>
     </div>
 

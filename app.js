@@ -7,6 +7,7 @@
   const STORE_AUDIOS = "audios";
   const PROJECT_VERSION = "1.0.0";
   const PROJECT_PACKAGE_VERSION = "zip-v1";
+  const LS_LANG_KEY = "karaokeLanguageV1";
 
   const state = {
     lyricsOriginal: "",
@@ -49,6 +50,7 @@
     undoMarkerBtn: $("undoMarkerBtn"),
     clearTimesBtn: $("clearTimesBtn"),
     nextPending: $("nextPending"),
+    languageSelect: $("languageSelect"),
 
     exportBtn: $("exportBtn"),
     importFile: $("importFile"),
@@ -80,6 +82,411 @@
     message: $("message")
   };
 
+  const DATE_LOCALES = {
+    es: "es-ES",
+    val: "ca-ES",
+    en: "en-US"
+  };
+
+  const I18N = {
+    es: {
+      document_title: "EduKaraoke",
+      app_title: "EduKaraoke",
+      app_subtitle: "Crea tu karaoke casero: carga un audio, pega la letra y sincroniza por párrafos. Guarda tus temas favoritos en la playlist y ¡a cantar!",
+      language_label: "Idioma",
+      open_tools: "Sincronización y exportar",
+      player_title: "Reproductor",
+      select_audio: "Seleccionar audio",
+      delete_stored_audio: "Eliminar audio almacenado",
+      meta_file: "Archivo:",
+      meta_type: "Tipo:",
+      meta_time: "Tiempo:",
+      lyrics_title: "Letra",
+      lyrics_hint: "Separa párrafos dejando una línea en blanco entre bloques.",
+      lyrics_placeholder: "Pega aquí la letra...\n\nPárrafo 1\n\nPárrafo 2",
+      apply_lyrics: "Aplicar letra",
+      paragraph_count: "{count} párrafo(s)",
+      playlist_title: "Playlist",
+      playlist_hint: "Guarda temas con su audio y sincronización para recargarlos después.",
+      track_title_label: "Título del tema",
+      track_title_placeholder: "Ej: Canción 1 (en vivo)",
+      new_playlist: "Nueva playlist...",
+      add_to_playlist: "Añadir a playlist",
+      clear_playlist: "Vaciar playlist",
+      playlist_count: "{count} tema(s)",
+      no_tracks_saved: "Aún no hay temas guardados.",
+      no_playlists_saved: "Aún no hay playlists guardadas.",
+      karaoke_title: "Karaoke",
+      no_paragraphs: "Aún no hay párrafos.",
+      fullscreen_open: "Reproducir a pantalla completa",
+      fullscreen_close: "Salir de pantalla completa",
+      tools_modal_title: "Sincronización y exportar",
+      close: "Cerrar",
+      sync_title: "Sincronización",
+      mode_auto: "Modo Auto",
+      mode_calibration: "Modo Calibración",
+      mode_status: "Estado: {mode}",
+      mode_name_auto: "Auto",
+      mode_name_calibration: "Calibración",
+      threshold_label: "Umbral silencio (RMS)",
+      min_silence_label: "Silencio mínimo (ms)",
+      analysis_window_label: "Ventana análisis (ms)",
+      global_offset_label: "Offset global (s)",
+      auto_sync: "Auto-sincronizar",
+      undo_last_marker: "Deshacer último marcador",
+      clear_times: "Limpiar tiempos",
+      calibration_help: "Calibración: pulsa <kbd>Espacio</kbd> durante reproducción para marcar el inicio del siguiente párrafo.",
+      pending_none: "No hay párrafos para calibrar.",
+      pending_done: "Calibración completa.",
+      pending_next: "Próximo párrafo ({current}/{total}): {text}",
+      mode_auto_active: "Modo Auto activo. Puedes generar tiempos automáticamente.",
+      export_import_title: "Exportar / Importar",
+      export_project: "Exportar proyecto",
+      import_project: "Importar proyecto",
+      export_hint: "Se exporta en ZIP con audio + sincronización. También puedes importar JSON legado.",
+      playback_controls: "Controles de reproducción",
+      play: "Play",
+      pause: "Pause",
+      stop: "Stop",
+      track_default_name: "Tema",
+      playlist_name: "Playlist {index}",
+      playlist_no_audio: "sin audio",
+      playlist_sync_yes: "sincronizado",
+      playlist_sync_no: "sin sincronizar",
+      btn_load: "Cargar",
+      btn_load_play: "Cargar y reproducir",
+      btn_delete: "Eliminar",
+      msg_update_available: "Nueva versión disponible. Recarga para aplicar la actualización.",
+      msg_updated_cache: "Aplicación actualizada a la nueva versión de caché.",
+      err_pwa_register: "No se pudo registrar la PWA: {error}",
+      err_local_state_invalid: "Estado previo inválido en localStorage.",
+      err_playlist_ui_unavailable: "La interfaz de playlist no está disponible en esta versión cargada.",
+      err_select_audio_first: "Primero selecciona un audio.",
+      err_add_lyrics_first: "Primero agrega la letra por párrafos.",
+      err_sync_first: "Primero sincroniza la letra (auto o calibración).",
+      msg_track_added_playlist: "Tema añadido a la playlist.",
+      msg_track_deleted_playlist: "Tema eliminado de la playlist.",
+      msg_playlist_empty_already: "La playlist ya está vacía.",
+      msg_playlist_cleared: "Playlist vaciada.",
+      err_fullscreen_browser: "No se pudo activar fullscreen del navegador. Se abrió modo ampliado.",
+      err_no_audio_file_selected: "No se seleccionó ningún archivo de audio.",
+      msg_audio_saved_indexeddb: "Audio cargado y guardado en IndexedDB.",
+      err_process_audio: "No se pudo procesar el audio: {error}",
+      err_add_lyrics_first_short: "Primero agrega la letra.",
+      msg_auto_sync_done: "Auto-sync completado: {count} marcas.",
+      err_auto_sync: "Error en auto-sync: {error}",
+      msg_all_paragraphs_calibrated: "Todos los párrafos ya están calibrados.",
+      msg_no_markers_undo: "No hay marcadores para deshacer.",
+      msg_last_marker_removed: "Último marcador eliminado.",
+      msg_times_cleared: "Tiempos limpiados.",
+      warn_jszip_not_available_export: "JSZip no disponible. Se exportó solo JSON (sin audio).",
+      msg_export_zip_with_audio: "Proyecto exportado en ZIP con audio y sincronización.",
+      warn_export_zip_without_audio: "Proyecto exportado en ZIP sin audio (no se encontró en IndexedDB).",
+      err_export_zip: "No se pudo exportar ZIP: {error}",
+      msg_imported_restored: "Importado y audio restaurado.",
+      warn_imported_missing_audio: "Importado. Falta seleccionar audio.",
+      hint_imported_without_audio_meta: "Proyecto importado sin metadatos de audio.",
+      warn_imported_without_audio: "Proyecto importado (sin audio).",
+      err_import_zip_no_jszip: "No se puede importar ZIP: JSZip no está disponible.",
+      err_zip_no_project_json: "El ZIP no contiene project.json",
+      msg_zip_imported_audio_local: "ZIP importado y audio restaurado.",
+      warn_zip_imported_without_audio: "ZIP importado sin audio adjunto.",
+      hint_zip_without_audio_file: "ZIP importado sin archivo de audio.",
+      msg_zip_imported_full: "ZIP importado con audio y sincronización.",
+      warn_zip_imported_audio_restore_fail: "ZIP importado, pero no se pudo restaurar el audio.",
+      err_import_file: "Error al importar archivo: {error}",
+      hint_audio_restored: "Audio restaurado automáticamente desde IndexedDB.",
+      hint_audio_missing_select_manually: "Proyecto importado, pero el audio no está en IndexedDB. Selecciónalo manualmente.",
+      hint_zip_audio_restored_local: "ZIP importado. Audio restaurado desde IndexedDB local.",
+      hint_zip_audio_missing_attach: "ZIP importado sin audio adjunto. Selecciona el audio manualmente.",
+      hint_audio_imported_from_zip: "Audio importado desde ZIP y restaurado automáticamente.",
+      hint_audio_imported_zip_failed: "Se importó el ZIP, pero no se pudo restaurar el audio.",
+      err_audio_play_after_restore: "Audio cargado, pero no se pudo reproducir: {error}",
+      err_playlist_item_not_found: "No se encontró ese tema en la playlist.",
+      hint_track_loaded_no_audio: "Tema cargado sin metadatos de audio.",
+      warn_track_loaded_without_audio: "Tema cargado (sin audio).",
+      hint_track_loaded: "Tema cargado: {title}",
+      hint_track_missing_audio_select: "Tema cargado, pero falta el audio en IndexedDB. Selecciónalo manualmente.",
+      warn_track_missing_audio: "Tema cargado, pero falta el audio en IndexedDB.",
+      msg_track_playing: "Reproduciendo: {title}",
+      msg_track_loaded: "Tema cargado: {title}",
+      msg_lyrics_applied: "Letra aplicada: {count} párrafos.",
+      err_no_audio_metadata_delete: "No hay metadatos de audio para eliminar.",
+      hint_audio_deleted_indexeddb: "Audio eliminado de IndexedDB.",
+      msg_audio_deleted: "Audio almacenado eliminado.",
+      err_delete_audio: "No se pudo eliminar audio: {error}",
+      err_audio_play: "No se pudo reproducir el audio: {error}",
+      err_web_audio_start: "No se pudo iniciar Web Audio: {error}",
+      err_indexeddb_unavailable: "IndexedDB no disponible: {error}",
+      err_db_open: "No se pudo abrir IndexedDB",
+      err_db_delete_audio: "No se pudo eliminar el audio"
+    },
+    val: {
+      document_title: "EduKaraoke",
+      app_title: "EduKaraoke",
+      app_subtitle: "Crea el teu karaoke casolà: carrega un àudio, apega la lletra i sincronitza per paràgrafs. Guarda els teus temes favorits en la llista i a cantar!",
+      language_label: "Idioma",
+      open_tools: "Sincronització i exportació",
+      player_title: "Reproductor",
+      select_audio: "Seleccionar àudio",
+      delete_stored_audio: "Eliminar àudio guardat",
+      meta_file: "Arxiu:",
+      meta_type: "Tipus:",
+      meta_time: "Temps:",
+      lyrics_title: "Lletra",
+      lyrics_hint: "Separa paràgrafs deixant una línia en blanc entre blocs.",
+      lyrics_placeholder: "Apega ací la lletra...\n\nParàgraf 1\n\nParàgraf 2",
+      apply_lyrics: "Aplicar lletra",
+      paragraph_count: "{count} paràgraf(s)",
+      playlist_title: "Llista",
+      playlist_hint: "Guarda temes amb el seu àudio i sincronització per a recarregar-los després.",
+      track_title_label: "Títol del tema",
+      track_title_placeholder: "Ex: Cançó 1 (en directe)",
+      new_playlist: "Nova llista...",
+      add_to_playlist: "Afegir a la llista",
+      clear_playlist: "Buidar llista",
+      playlist_count: "{count} tema(es)",
+      no_tracks_saved: "Encara no hi ha temes guardats.",
+      no_playlists_saved: "Encara no hi ha llistes guardades.",
+      karaoke_title: "Karaoke",
+      no_paragraphs: "Encara no hi ha paràgrafs.",
+      fullscreen_open: "Reproduir a pantalla completa",
+      fullscreen_close: "Eixir de pantalla completa",
+      tools_modal_title: "Sincronització i exportació",
+      close: "Tancar",
+      sync_title: "Sincronització",
+      mode_auto: "Mode Auto",
+      mode_calibration: "Mode Calibració",
+      mode_status: "Estat: {mode}",
+      mode_name_auto: "Auto",
+      mode_name_calibration: "Calibració",
+      threshold_label: "Llindar silenci (RMS)",
+      min_silence_label: "Silenci mínim (ms)",
+      analysis_window_label: "Finestra d'anàlisi (ms)",
+      global_offset_label: "Offset global (s)",
+      auto_sync: "Auto-sincronitzar",
+      undo_last_marker: "Desfer últim marcador",
+      clear_times: "Netejar temps",
+      calibration_help: "Calibració: prem <kbd>Espai</kbd> durant la reproducció per a marcar l'inici del següent paràgraf.",
+      pending_none: "No hi ha paràgrafs per a calibrar.",
+      pending_done: "Calibració completada.",
+      pending_next: "Pròxim paràgraf ({current}/{total}): {text}",
+      mode_auto_active: "Mode Auto actiu. Pots generar temps automàticament.",
+      export_import_title: "Exportar / Importar",
+      export_project: "Exportar projecte",
+      import_project: "Importar projecte",
+      export_hint: "S'exporta en ZIP amb àudio + sincronització. També pots importar JSON antic.",
+      playback_controls: "Controls de reproducció",
+      play: "Reproduir",
+      pause: "Pausa",
+      stop: "Aturar",
+      track_default_name: "Tema",
+      playlist_name: "Llista {index}",
+      playlist_no_audio: "sense àudio",
+      playlist_sync_yes: "sincronitzat",
+      playlist_sync_no: "sense sincronitzar",
+      btn_load: "Carregar",
+      btn_load_play: "Carregar i reproduir",
+      btn_delete: "Eliminar",
+      msg_update_available: "Nova versió disponible. Recarrega per a aplicar l'actualització.",
+      msg_updated_cache: "Aplicació actualitzada a la nova versió de caché.",
+      err_pwa_register: "No s'ha pogut registrar la PWA: {error}",
+      err_local_state_invalid: "Estat previ invàlid en localStorage.",
+      err_playlist_ui_unavailable: "La interfície de llista no està disponible en esta versió carregada.",
+      err_select_audio_first: "Primer selecciona un àudio.",
+      err_add_lyrics_first: "Primer afegeix la lletra per paràgrafs.",
+      err_sync_first: "Primer sincronitza la lletra (auto o calibració).",
+      msg_track_added_playlist: "Tema afegit a la llista.",
+      msg_track_deleted_playlist: "Tema eliminat de la llista.",
+      msg_playlist_empty_already: "La llista ja està buida.",
+      msg_playlist_cleared: "Llista buidada.",
+      err_fullscreen_browser: "No s'ha pogut activar la pantalla completa del navegador. S'ha obert el mode ampliat.",
+      err_no_audio_file_selected: "No s'ha seleccionat cap arxiu d'àudio.",
+      msg_audio_saved_indexeddb: "Àudio carregat i guardat en IndexedDB.",
+      err_process_audio: "No s'ha pogut processar l'àudio: {error}",
+      err_add_lyrics_first_short: "Primer afegeix la lletra.",
+      msg_auto_sync_done: "Auto-sync completat: {count} marques.",
+      err_auto_sync: "Error en auto-sync: {error}",
+      msg_all_paragraphs_calibrated: "Tots els paràgrafs ja estan calibrats.",
+      msg_no_markers_undo: "No hi ha marcadors per a desfer.",
+      msg_last_marker_removed: "Últim marcador eliminat.",
+      msg_times_cleared: "Temps netejats.",
+      warn_jszip_not_available_export: "JSZip no disponible. S'ha exportat només JSON (sense àudio).",
+      msg_export_zip_with_audio: "Projecte exportat en ZIP amb àudio i sincronització.",
+      warn_export_zip_without_audio: "Projecte exportat en ZIP sense àudio (no s'ha trobat en IndexedDB).",
+      err_export_zip: "No s'ha pogut exportar ZIP: {error}",
+      msg_imported_restored: "Importat i àudio restaurat.",
+      warn_imported_missing_audio: "Importat. Falta seleccionar àudio.",
+      hint_imported_without_audio_meta: "Projecte importat sense metadades d'àudio.",
+      warn_imported_without_audio: "Projecte importat (sense àudio).",
+      err_import_zip_no_jszip: "No es pot importar ZIP: JSZip no està disponible.",
+      err_zip_no_project_json: "El ZIP no conté project.json",
+      msg_zip_imported_audio_local: "ZIP importat i àudio restaurat.",
+      warn_zip_imported_without_audio: "ZIP importat sense àudio adjunt.",
+      hint_zip_without_audio_file: "ZIP importat sense arxiu d'àudio.",
+      msg_zip_imported_full: "ZIP importat amb àudio i sincronització.",
+      warn_zip_imported_audio_restore_fail: "ZIP importat, però no s'ha pogut restaurar l'àudio.",
+      err_import_file: "Error en importar arxiu: {error}",
+      hint_audio_restored: "Àudio restaurat automàticament des d'IndexedDB.",
+      hint_audio_missing_select_manually: "Projecte importat, però l'àudio no està en IndexedDB. Selecciona'l manualment.",
+      hint_zip_audio_restored_local: "ZIP importat. Àudio restaurat des d'IndexedDB local.",
+      hint_zip_audio_missing_attach: "ZIP importat sense àudio adjunt. Selecciona l'àudio manualment.",
+      hint_audio_imported_from_zip: "Àudio importat des de ZIP i restaurat automàticament.",
+      hint_audio_imported_zip_failed: "S'ha importat el ZIP, però no s'ha pogut restaurar l'àudio.",
+      err_audio_play_after_restore: "Àudio carregat, però no s'ha pogut reproduir: {error}",
+      err_playlist_item_not_found: "No s'ha trobat eixe tema en la llista.",
+      hint_track_loaded_no_audio: "Tema carregat sense metadades d'àudio.",
+      warn_track_loaded_without_audio: "Tema carregat (sense àudio).",
+      hint_track_loaded: "Tema carregat: {title}",
+      hint_track_missing_audio_select: "Tema carregat, però falta l'àudio en IndexedDB. Selecciona'l manualment.",
+      warn_track_missing_audio: "Tema carregat, però falta l'àudio en IndexedDB.",
+      msg_track_playing: "Reproduint: {title}",
+      msg_track_loaded: "Tema carregat: {title}",
+      msg_lyrics_applied: "Lletra aplicada: {count} paràgrafs.",
+      err_no_audio_metadata_delete: "No hi ha metadades d'àudio per a eliminar.",
+      hint_audio_deleted_indexeddb: "Àudio eliminat d'IndexedDB.",
+      msg_audio_deleted: "Àudio guardat eliminat.",
+      err_delete_audio: "No s'ha pogut eliminar l'àudio: {error}",
+      err_audio_play: "No s'ha pogut reproduir l'àudio: {error}",
+      err_web_audio_start: "No s'ha pogut iniciar Web Audio: {error}",
+      err_indexeddb_unavailable: "IndexedDB no disponible: {error}",
+      err_db_open: "No s'ha pogut obrir IndexedDB",
+      err_db_delete_audio: "No s'ha pogut eliminar l'àudio"
+    },
+    en: {
+      document_title: "EduKaraoke",
+      app_title: "EduKaraoke",
+      app_subtitle: "Create your home karaoke: load an audio file, paste lyrics, and sync by paragraphs. Save your favorite tracks in playlists and start singing!",
+      language_label: "Language",
+      open_tools: "Sync and export",
+      player_title: "Player",
+      select_audio: "Select audio",
+      delete_stored_audio: "Delete stored audio",
+      meta_file: "File:",
+      meta_type: "Type:",
+      meta_time: "Time:",
+      lyrics_title: "Lyrics",
+      lyrics_hint: "Separate paragraphs with one blank line between blocks.",
+      lyrics_placeholder: "Paste lyrics here...\n\nParagraph 1\n\nParagraph 2",
+      apply_lyrics: "Apply lyrics",
+      paragraph_count: "{count} paragraph(s)",
+      playlist_title: "Playlist",
+      playlist_hint: "Save tracks with audio and sync data so you can reload them later.",
+      track_title_label: "Track title",
+      track_title_placeholder: "Ex: Song 1 (live)",
+      new_playlist: "New playlist...",
+      add_to_playlist: "Add to playlist",
+      clear_playlist: "Clear playlist",
+      playlist_count: "{count} track(s)",
+      no_tracks_saved: "No saved tracks yet.",
+      no_playlists_saved: "No saved playlists yet.",
+      karaoke_title: "Karaoke",
+      no_paragraphs: "No paragraphs yet.",
+      fullscreen_open: "Play fullscreen",
+      fullscreen_close: "Exit fullscreen",
+      tools_modal_title: "Sync and export",
+      close: "Close",
+      sync_title: "Synchronization",
+      mode_auto: "Auto mode",
+      mode_calibration: "Calibration mode",
+      mode_status: "Status: {mode}",
+      mode_name_auto: "Auto",
+      mode_name_calibration: "Calibration",
+      threshold_label: "Silence threshold (RMS)",
+      min_silence_label: "Minimum silence (ms)",
+      analysis_window_label: "Analysis window (ms)",
+      global_offset_label: "Global offset (s)",
+      auto_sync: "Auto-sync",
+      undo_last_marker: "Undo last marker",
+      clear_times: "Clear timings",
+      calibration_help: "Calibration: press <kbd>Space</kbd> during playback to mark the start of the next paragraph.",
+      pending_none: "No paragraphs to calibrate.",
+      pending_done: "Calibration complete.",
+      pending_next: "Next paragraph ({current}/{total}): {text}",
+      mode_auto_active: "Auto mode active. You can generate timings automatically.",
+      export_import_title: "Export / Import",
+      export_project: "Export project",
+      import_project: "Import project",
+      export_hint: "Exports ZIP with audio + sync. You can also import legacy JSON.",
+      playback_controls: "Playback controls",
+      play: "Play",
+      pause: "Pause",
+      stop: "Stop",
+      track_default_name: "Track",
+      playlist_name: "Playlist {index}",
+      playlist_no_audio: "no audio",
+      playlist_sync_yes: "synced",
+      playlist_sync_no: "not synced",
+      btn_load: "Load",
+      btn_load_play: "Load and play",
+      btn_delete: "Delete",
+      msg_update_available: "New version available. Reload to apply the update.",
+      msg_updated_cache: "Application updated to the new cache version.",
+      err_pwa_register: "Could not register PWA: {error}",
+      err_local_state_invalid: "Invalid previous state in localStorage.",
+      err_playlist_ui_unavailable: "Playlist UI is not available in this loaded version.",
+      err_select_audio_first: "Select an audio file first.",
+      err_add_lyrics_first: "Add lyrics by paragraphs first.",
+      err_sync_first: "Sync the lyrics first (auto or calibration).",
+      msg_track_added_playlist: "Track added to playlist.",
+      msg_track_deleted_playlist: "Track removed from playlist.",
+      msg_playlist_empty_already: "Playlist is already empty.",
+      msg_playlist_cleared: "Playlist cleared.",
+      err_fullscreen_browser: "Could not enable browser fullscreen. Expanded mode was opened.",
+      err_no_audio_file_selected: "No audio file was selected.",
+      msg_audio_saved_indexeddb: "Audio loaded and saved to IndexedDB.",
+      err_process_audio: "Could not process audio: {error}",
+      err_add_lyrics_first_short: "Add lyrics first.",
+      msg_auto_sync_done: "Auto-sync completed: {count} markers.",
+      err_auto_sync: "Auto-sync error: {error}",
+      msg_all_paragraphs_calibrated: "All paragraphs are already calibrated.",
+      msg_no_markers_undo: "No markers to undo.",
+      msg_last_marker_removed: "Last marker removed.",
+      msg_times_cleared: "Timings cleared.",
+      warn_jszip_not_available_export: "JSZip not available. Exported JSON only (without audio).",
+      msg_export_zip_with_audio: "Project exported as ZIP with audio and synchronization.",
+      warn_export_zip_without_audio: "Project exported as ZIP without audio (not found in IndexedDB).",
+      err_export_zip: "Could not export ZIP: {error}",
+      msg_imported_restored: "Imported and audio restored.",
+      warn_imported_missing_audio: "Imported. Please select the audio manually.",
+      hint_imported_without_audio_meta: "Project imported without audio metadata.",
+      warn_imported_without_audio: "Project imported (without audio).",
+      err_import_zip_no_jszip: "Cannot import ZIP: JSZip is not available.",
+      err_zip_no_project_json: "ZIP does not contain project.json",
+      msg_zip_imported_audio_local: "ZIP imported and audio restored.",
+      warn_zip_imported_without_audio: "ZIP imported without attached audio.",
+      hint_zip_without_audio_file: "ZIP imported without audio file.",
+      msg_zip_imported_full: "ZIP imported with audio and synchronization.",
+      warn_zip_imported_audio_restore_fail: "ZIP imported, but audio could not be restored.",
+      err_import_file: "File import error: {error}",
+      hint_audio_restored: "Audio restored automatically from IndexedDB.",
+      hint_audio_missing_select_manually: "Project imported, but audio is not in IndexedDB. Select it manually.",
+      hint_zip_audio_restored_local: "ZIP imported. Audio restored from local IndexedDB.",
+      hint_zip_audio_missing_attach: "ZIP imported without attached audio. Select audio manually.",
+      hint_audio_imported_from_zip: "Audio imported from ZIP and restored automatically.",
+      hint_audio_imported_zip_failed: "ZIP was imported, but audio could not be restored.",
+      err_audio_play_after_restore: "Audio loaded, but could not play: {error}",
+      err_playlist_item_not_found: "Track not found in playlist.",
+      hint_track_loaded_no_audio: "Track loaded without audio metadata.",
+      warn_track_loaded_without_audio: "Track loaded (without audio).",
+      hint_track_loaded: "Track loaded: {title}",
+      hint_track_missing_audio_select: "Track loaded, but audio is missing in IndexedDB. Select it manually.",
+      warn_track_missing_audio: "Track loaded, but audio is missing in IndexedDB.",
+      msg_track_playing: "Playing: {title}",
+      msg_track_loaded: "Track loaded: {title}",
+      msg_lyrics_applied: "Lyrics applied: {count} paragraphs.",
+      err_no_audio_metadata_delete: "No audio metadata available to delete.",
+      hint_audio_deleted_indexeddb: "Audio removed from IndexedDB.",
+      msg_audio_deleted: "Stored audio deleted.",
+      err_delete_audio: "Could not delete audio: {error}",
+      err_audio_play: "Could not play audio: {error}",
+      err_web_audio_start: "Could not start Web Audio: {error}",
+      err_indexeddb_unavailable: "IndexedDB unavailable: {error}",
+      err_db_open: "Could not open IndexedDB",
+      err_db_delete_audio: "Could not delete audio"
+    }
+  };
+
   let audioCtx = null;
   let sourceNode = null;
   let analyser = null;
@@ -88,8 +495,96 @@
   let activeParagraphIndex = -1;
   let shouldPersistMigratedState = false;
   let lastFocusedElementBeforeToolsModal = null;
+  let currentLanguage = "es";
 
   let db = null;
+
+  function t(key, vars = {}) {
+    const fallback = I18N.es[key] || key;
+    const template = I18N[currentLanguage]?.[key] || fallback;
+    return template.replace(/\{(\w+)\}/g, (_, token) => {
+      return Object.prototype.hasOwnProperty.call(vars, token) ? String(vars[token]) : `{${token}}`;
+    });
+  }
+
+  function applyStaticTranslations() {
+    document.title = t("document_title");
+
+    document.querySelectorAll("[data-i18n]").forEach((element) => {
+      const key = element.getAttribute("data-i18n");
+      if (!key) return;
+      element.textContent = t(key);
+    });
+
+    document.querySelectorAll("[data-i18n-html]").forEach((element) => {
+      const key = element.getAttribute("data-i18n-html");
+      if (!key) return;
+      element.innerHTML = t(key);
+    });
+
+    document.querySelectorAll("[data-i18n-placeholder]").forEach((element) => {
+      const key = element.getAttribute("data-i18n-placeholder");
+      if (!key) return;
+      element.setAttribute("placeholder", t(key));
+    });
+
+    document.querySelectorAll("[data-i18n-aria-label]").forEach((element) => {
+      const key = element.getAttribute("data-i18n-aria-label");
+      if (!key) return;
+      element.setAttribute("aria-label", t(key));
+    });
+
+    if (refs.playlistTitleInput) {
+      refs.playlistTitleInput.placeholder = t("track_title_placeholder");
+    }
+
+    if (refs.languageSelect) {
+      refs.languageSelect.setAttribute("aria-label", t("language_label"));
+    }
+  }
+
+  function detectInitialLanguage() {
+    const saved = localStorage.getItem(LS_LANG_KEY);
+    if (saved && (saved === "es" || saved === "val" || saved === "en")) {
+      return saved;
+    }
+
+    const langs = Array.isArray(navigator.languages) && navigator.languages.length
+      ? navigator.languages
+      : [navigator.language || "es"];
+
+    for (const langRaw of langs) {
+      const lang = String(langRaw || "").toLowerCase();
+      if (!lang) continue;
+      if (lang.startsWith("ca")) return "val";
+      if (lang.startsWith("en")) return "en";
+      if (lang.startsWith("es")) return "es";
+    }
+
+    return "es";
+  }
+
+  function setLanguage(lang, options = {}) {
+    const { persist = true } = options;
+    const normalized = lang === "val" || lang === "en" || lang === "es" ? lang : "es";
+    currentLanguage = normalized;
+    document.documentElement.lang = normalized === "val" ? "ca" : normalized;
+
+    if (refs.languageSelect) {
+      refs.languageSelect.value = normalized;
+    }
+
+    if (persist) {
+      localStorage.setItem(LS_LANG_KEY, normalized);
+    }
+
+    applyStaticTranslations();
+    renderLyricsUI();
+    renderPlaylist();
+    renderMode();
+    renderFullscreenToggleButton();
+    renderKaraoke(true);
+  }
 
   // ==================== IndexedDB ====================
   // 1) open + onupgradeneeded
@@ -109,7 +604,7 @@
         resolve(db);
       };
 
-      request.onerror = () => reject(request.error || new Error("No se pudo abrir IndexedDB"));
+      request.onerror = () => reject(request.error || new Error(t("err_db_open")));
     });
   }
 
@@ -167,7 +662,7 @@
       tx.objectStore(STORE_AUDIOS).delete(id);
 
       tx.oncomplete = () => resolve();
-      tx.onerror = () => reject(tx.error || new Error("No se pudo eliminar el audio"));
+      tx.onerror = () => reject(tx.error || new Error(t("err_db_delete_audio")));
     });
   }
 
@@ -242,20 +737,20 @@
 
         newWorker.addEventListener("statechange", () => {
           if (newWorker.state === "installed" && navigator.serviceWorker.controller) {
-            showMessage("Nueva versión disponible. Recarga para aplicar la actualización.");
+            showMessage(t("msg_update_available"));
           }
         });
       });
 
       navigator.serviceWorker.addEventListener("controllerchange", () => {
-        showMessage("Aplicación actualizada a la nueva versión de caché.");
+        showMessage(t("msg_updated_cache"));
         refreshPwaVersionLabel(registration);
       });
 
       await refreshPwaVersionLabel(registration);
       return registration;
     } catch (err) {
-      showMessage(`No se pudo registrar la PWA: ${err.message}`, true);
+      showMessage(t("err_pwa_register", { error: err.message }), true);
       return null;
     }
   }
@@ -331,7 +826,7 @@
     const id = String(raw.id || "").trim() || generateId();
     return {
       id,
-      title: String(raw.title || "Tema sin título"),
+      title: String(raw.title || t("track_default_name")),
       createdAt: Number(raw.createdAt || Date.now()),
       audioMeta: raw.audioMeta || null,
       lyricsOriginal: String(raw.lyricsOriginal || ""),
@@ -353,7 +848,7 @@
     if (Array.isArray(raw.items)) {
       return {
         id: String(raw.id || "").trim() || generateId(),
-        title: String(raw.title || "Playlist"),
+        title: String(raw.title || t("playlist_name", { index: 1 })),
         items: raw.items.map(normalizePlaylistTrack).filter(Boolean)
       };
     }
@@ -363,7 +858,7 @@
 
     return {
       id: `legacy-${legacyTrack.id}`,
-      title: "Playlist",
+      title: t("playlist_name", { index: 1 }),
       items: [legacyTrack]
     };
   }
@@ -414,13 +909,13 @@
       state.offsetSeconds = Number(data.offsetSeconds ?? 0);
       state.audioMeta = data.audioMeta || null;
     } catch {
-      showMessage("Estado previo inválido en localStorage.", true);
+      showMessage(t("err_local_state_invalid"), true);
     }
   }
 
   function renderLyricsUI() {
     refs.lyricsInput.value = state.lyricsOriginal;
-    refs.paragraphCount.textContent = `${state.paragraphs.length} párrafo(s)`;
+    refs.paragraphCount.textContent = t("paragraph_count", { count: state.paragraphs.length });
   }
 
   function getCurrentParagraphIndex() {
@@ -469,7 +964,7 @@
 
   function displayEmptyKaraokeMessage() {
     if (!refs.karaokeView.querySelector(".empty")) {
-      refs.karaokeView.innerHTML = `<p class="empty">Aún no hay párrafos.</p>`;
+      refs.karaokeView.innerHTML = `<p class="empty">${t("no_paragraphs")}</p>`;
     }
     refs.progressIndicator.textContent = "0/0";
     activeParagraphIndex = -1;
@@ -497,7 +992,7 @@
   }
 
   function buildDefaultPlaylistTitle() {
-    const base = state.audioMeta?.name || "Tema";
+    const base = state.audioMeta?.name || t("track_default_name");
     const now = new Date();
     const stamp = `${String(now.getHours()).padStart(2, "0")}:${String(now.getMinutes()).padStart(2, "0")}`;
     return `${base} · ${stamp}`;
@@ -510,16 +1005,16 @@
       return count + (Array.isArray(playlist.items) ? playlist.items.length : 0);
     }, 0);
 
-    refs.playlistCount.textContent = `${totalTracks} tema(s)`;
+    refs.playlistCount.textContent = t("playlist_count", { count: totalTracks });
 
     if (!totalTracks) {
-      refs.playlistView.innerHTML = `<p class="empty">Aún no hay playlists guardadas.</p>`;
-      refs.playlistSelect.innerHTML = `<option value="">Nueva playlist...</option>`;
+      refs.playlistView.innerHTML = `<p class="empty">${t("no_playlists_saved")}</p>`;
+      refs.playlistSelect.innerHTML = `<option value="">${t("new_playlist")}</option>`;
       return;
     }
 
     refs.playlistView.innerHTML = "";
-    refs.playlistSelect.innerHTML = `<option value="">Nueva playlist...</option>`;
+    refs.playlistSelect.innerHTML = `<option value="">${t("new_playlist")}</option>`;
 
     state.playlist.forEach((playlist) => {
       if (!Array.isArray(playlist.items) || !playlist.items.length) return;
@@ -535,17 +1030,18 @@
 
         const date = new Date(item.createdAt || Date.now());
         const hasTimes = (item.calibratedTimes?.length || item.autoTimes?.length || 0) > 0;
+        const locale = DATE_LOCALES[currentLanguage] || "es-ES";
         wrapper.innerHTML = `
           <div class="playlist-item-main">
             <div>
               <div class="playlist-item-title">${item.title}</div>
-              <div class="playlist-item-meta">${item.audioMeta?.name || "sin audio"} · ${item.paragraphs.length} párrafo(s) · ${hasTimes ? "sincronizado" : "sin sincronizar"}</div>
-              <div class="playlist-item-meta">${date.toLocaleString("es-ES")}</div>
+              <div class="playlist-item-meta">${item.audioMeta?.name || t("playlist_no_audio")} · ${t("paragraph_count", { count: item.paragraphs.length })} · ${hasTimes ? t("playlist_sync_yes") : t("playlist_sync_no")}</div>
+              <div class="playlist-item-meta">${date.toLocaleString(locale)}</div>
             </div>
             <div class="playlist-item-actions">
-              <button class="secondary" data-action="load" data-id="${item.id}">Cargar</button>
-              <button data-action="play" data-id="${item.id}">Cargar y reproducir</button>
-              <button class="danger" data-action="delete" data-id="${item.id}">Eliminar</button>
+              <button class="secondary" data-action="load" data-id="${item.id}">${t("btn_load")}</button>
+              <button data-action="play" data-id="${item.id}">${t("btn_load_play")}</button>
+              <button class="danger" data-action="delete" data-id="${item.id}">${t("btn_delete")}</button>
             </div>
           </div>
         `;
@@ -557,15 +1053,15 @@
 
   function addCurrentToPlaylist() {
     if (!refs.playlistTitleInput || !refs.playlistSelect) {
-      return showMessage("La interfaz de playlist no está disponible en esta versión cargada.", true);
+      return showMessage(t("err_playlist_ui_unavailable"), true);
     }
 
-    if (!state.audioMeta) return showMessage("Primero selecciona un audio.", true);
-    if (!state.paragraphs.length) return showMessage("Primero agrega la letra por párrafos.", true);
+    if (!state.audioMeta) return showMessage(t("err_select_audio_first"), true);
+    if (!state.paragraphs.length) return showMessage(t("err_add_lyrics_first"), true);
 
     const times = getEffectiveTimes();
     if (!times.length) {
-      return showMessage("Primero sincroniza la letra (auto o calibración).", true);
+      return showMessage(t("err_sync_first"), true);
     }
 
     const selectedPlaylist = refs.playlistSelect.value;
@@ -575,7 +1071,7 @@
     if (!playlist) {
       playlist = {
         id: generateId(),
-        title: `Playlist ${state.playlist.length + 1}`,
+        title: t("playlist_name", { index: state.playlist.length + 1 }),
         items: []
       };
       state.playlist.push(playlist);
@@ -599,7 +1095,7 @@
     renderPlaylist();
     refs.playlistSelect.value = playlist.id;
     refs.playlistTitleInput.value = "";
-    showMessage("Tema añadido a la playlist.");
+    showMessage(t("msg_track_added_playlist"));
   }
 
   function findPlaylistItemById(id) {
@@ -627,21 +1123,21 @@
     if (!removed) return;
     saveStateToLocalStorage();
     renderPlaylist();
-    showMessage("Tema eliminado de la playlist.");
+    showMessage(t("msg_track_deleted_playlist"));
   }
 
   function clearPlaylist() {
-    if (!state.playlist.length) return showMessage("La playlist ya está vacía.");
+    if (!state.playlist.length) return showMessage(t("msg_playlist_empty_already"));
     state.playlist = [];
     saveStateToLocalStorage();
     renderPlaylist();
-    showMessage("Playlist vaciada.");
+    showMessage(t("msg_playlist_cleared"));
   }
 
   function renderFullscreenParagraph() {
     if (!refs.fullscreenParagraph) return;
     if (!state.paragraphs.length) {
-      refs.fullscreenParagraph.textContent = "Aún no hay párrafos.";
+      refs.fullscreenParagraph.textContent = t("no_paragraphs");
       return;
     }
     const currentIdx = getCurrentParagraphIndex();
@@ -699,8 +1195,8 @@
 
   function renderFullscreenToggleButton() {
     refs.openFullscreenBtn.textContent = isFullscreenKaraokeOpen()
-      ? "Salir de pantalla completa"
-      : "Reproducir a pantalla completa";
+      ? t("fullscreen_close")
+      : t("fullscreen_open");
   }
 
   async function openFullscreenKaraoke() {
@@ -713,7 +1209,7 @@
       try {
         await refs.fullscreenKaraoke.requestFullscreen();
       } catch {
-        showMessage("No se pudo activar fullscreen del navegador. Se abrió modo ampliado.", true);
+        showMessage(t("err_fullscreen_browser"), true);
       }
     }
   }
@@ -742,18 +1238,24 @@
   function getNextPendingText() {
     const done = state.calibratedTimes.length;
     const total = state.paragraphs.length;
-    if (!total) return "No hay párrafos para calibrar.";
-    if (done >= total) return "Calibración completa.";
-    return `Próximo párrafo (${done + 1}/${total}): ${state.paragraphs[done].slice(0, 90)}${state.paragraphs[done].length > 90 ? "..." : ""}`;
+    if (!total) return t("pending_none");
+    if (done >= total) return t("pending_done");
+    return t("pending_next", {
+      current: done + 1,
+      total,
+      text: `${state.paragraphs[done].slice(0, 90)}${state.paragraphs[done].length > 90 ? "..." : ""}`
+    });
   }
 
   function renderMode() {
     const isAuto = state.mode === "auto";
-    refs.modeStatus.textContent = `Estado: ${isAuto ? "Auto" : "Calibración"}`;
+    refs.modeStatus.textContent = t("mode_status", {
+      mode: isAuto ? t("mode_name_auto") : t("mode_name_calibration")
+    });
     refs.modeAutoBtn.disabled = isAuto;
     refs.modeCalibBtn.disabled = !isAuto;
     refs.nextPending.textContent = isAuto
-      ? "Modo Auto activo. Puedes generar tiempos automáticamente."
+      ? t("mode_auto_active")
       : getNextPendingText();
   }
 
@@ -845,7 +1347,7 @@
   }
 
   async function handleAudioFileSelected(file) {
-    if (!file) return showMessage("No se seleccionó ningún archivo de audio.", true);
+    if (!file) return showMessage(t("err_no_audio_file_selected"), true);
 
     try {
       const tempMeta = {
@@ -861,15 +1363,15 @@
       saveStateToLocalStorage();
 
       await saveAudioBlob(state.audioMeta, file);
-      showMessage("Audio cargado y guardado en IndexedDB.");
+      showMessage(t("msg_audio_saved_indexeddb"));
     } catch (err) {
-      showMessage(`No se pudo procesar el audio: ${err.message}`, true);
+      showMessage(t("err_process_audio", { error: err.message }), true);
     }
   }
 
   async function runAutoSync() {
-    if (!state.paragraphs.length) return showMessage("Primero agrega la letra.", true);
-    if (!refs.audio.src) return showMessage("Primero selecciona un audio.", true);
+    if (!state.paragraphs.length) return showMessage(t("err_add_lyrics_first_short"), true);
+    if (!refs.audio.src) return showMessage(t("err_select_audio_first"), true);
 
     try {
       const arrBuf = await fetch(refs.audio.src).then((r) => r.arrayBuffer());
@@ -939,9 +1441,9 @@
       saveStateToLocalStorage();
       renderKaraoke();
       renderMode();
-      showMessage(`Auto-sync completado: ${mapped.length} marcas.`);
+      showMessage(t("msg_auto_sync_done", { count: mapped.length }));
     } catch (err) {
-      showMessage(`Error en auto-sync: ${err.message}`, true);
+      showMessage(t("err_auto_sync", { error: err.message }), true);
     }
   }
 
@@ -950,7 +1452,7 @@
     if (refs.audio.paused) return;
     if (!state.paragraphs.length) return;
     if (state.calibratedTimes.length >= state.paragraphs.length) {
-      return showMessage("Todos los párrafos ya están calibrados.");
+      return showMessage(t("msg_all_paragraphs_calibrated"));
     }
 
     const mark = Math.max(0, refs.audio.currentTime + state.offsetSeconds);
@@ -963,12 +1465,12 @@
   }
 
   function undoLastMarker() {
-    if (!state.calibratedTimes.length) return showMessage("No hay marcadores para deshacer.");
+    if (!state.calibratedTimes.length) return showMessage(t("msg_no_markers_undo"));
     state.calibratedTimes.pop();
     saveStateToLocalStorage();
     refs.nextPending.textContent = getNextPendingText();
     renderKaraoke();
-    showMessage("Último marcador eliminado.");
+    showMessage(t("msg_last_marker_removed"));
   }
 
   function clearAllTimes() {
@@ -977,7 +1479,7 @@
     saveStateToLocalStorage();
     refs.nextPending.textContent = getNextPendingText();
     renderKaraoke();
-    showMessage("Tiempos limpiados.");
+    showMessage(t("msg_times_cleared"));
   }
 
   async function exportProject() {
@@ -987,7 +1489,7 @@
     if (typeof JSZip === "undefined") {
       const jsonBlob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
       downloadBlob(jsonBlob, `karaoke-project-${ts}.json`);
-      showMessage("JSZip no disponible. Se exportó solo JSON (sin audio).", true);
+      showMessage(t("warn_jszip_not_available_export"), true);
       return;
     }
 
@@ -1036,12 +1538,12 @@
       downloadBlob(zipBlob, `karaoke-project-${ts}.zip`);
       showMessage(
         audioIncluded
-          ? "Proyecto exportado en ZIP con audio y sincronización."
-          : "Proyecto exportado en ZIP sin audio (no se encontró en IndexedDB).",
+          ? t("msg_export_zip_with_audio")
+          : t("warn_export_zip_without_audio"),
         !audioIncluded
       );
     } catch (err) {
-      showMessage(`No se pudo exportar ZIP: ${err.message}`, true);
+      showMessage(t("err_export_zip", { error: err.message }), true);
     }
   }
 
@@ -1073,20 +1575,20 @@
 
     if (state.audioMeta) {
       const restored = await restoreAudioFromMeta(state.audioMeta, {
-        successMessage: "Audio restaurado automáticamente desde IndexedDB.",
-        missingMessage: "Proyecto importado, pero el audio no está en IndexedDB. Selecciónalo manualmente."
+        successMessage: t("hint_audio_restored"),
+        missingMessage: t("hint_audio_missing_select_manually")
       });
-      showMessage(restored ? "Importado y audio restaurado." : "Importado. Falta seleccionar audio.", !restored);
+      showMessage(restored ? t("msg_imported_restored") : t("warn_imported_missing_audio"), !restored);
       return;
     }
 
-    refs.audioRestoreHint.textContent = "Proyecto importado sin metadatos de audio.";
-    showMessage("Proyecto importado (sin audio).", true);
+    refs.audioRestoreHint.textContent = t("hint_imported_without_audio_meta");
+    showMessage(t("warn_imported_without_audio"), true);
   }
 
   async function importProjectFromZip(file) {
     if (typeof JSZip === "undefined") {
-      showMessage("No se puede importar ZIP: JSZip no está disponible.", true);
+      showMessage(t("err_import_zip_no_jszip"), true);
       return;
     }
 
@@ -1098,7 +1600,7 @@
     const projectEntry = declaredProject || fallbackProject;
 
     if (!projectEntry) {
-      throw new Error("El ZIP no contiene project.json");
+      throw new Error(t("err_zip_no_project_json"));
     }
 
     const data = JSON.parse(await projectEntry.async("string"));
@@ -1120,15 +1622,15 @@
     if (!audioEntry) {
       if (state.audioMeta) {
         const restored = await restoreAudioFromMeta(state.audioMeta, {
-          successMessage: "ZIP importado. Audio restaurado desde IndexedDB local.",
-          missingMessage: "ZIP importado sin audio adjunto. Selecciona el audio manualmente."
+          successMessage: t("hint_zip_audio_restored_local"),
+          missingMessage: t("hint_zip_audio_missing_attach")
         });
-        showMessage(restored ? "ZIP importado y audio restaurado." : "ZIP importado sin audio adjunto.", !restored);
+        showMessage(restored ? t("msg_zip_imported_audio_local") : t("warn_zip_imported_without_audio"), !restored);
         return;
       }
 
-      refs.audioRestoreHint.textContent = "ZIP importado sin archivo de audio.";
-      showMessage("ZIP importado sin audio adjunto.", true);
+      refs.audioRestoreHint.textContent = t("hint_zip_without_audio_file");
+      showMessage(t("warn_zip_imported_without_audio"), true);
       return;
     }
 
@@ -1142,14 +1644,14 @@
     renderAudioMeta();
 
     const restored = await restoreAudioFromMeta(importedMeta, {
-      successMessage: "Audio importado desde ZIP y restaurado automáticamente.",
-      missingMessage: "Se importó el ZIP, pero no se pudo restaurar el audio."
+      successMessage: t("hint_audio_imported_from_zip"),
+      missingMessage: t("hint_audio_imported_zip_failed")
     });
 
     showMessage(
       restored
-        ? "ZIP importado con audio y sincronización."
-        : "ZIP importado, pero no se pudo restaurar el audio.",
+        ? t("msg_zip_imported_full")
+        : t("warn_zip_imported_audio_restore_fail"),
       !restored
     );
   }
@@ -1166,7 +1668,7 @@
       const data = JSON.parse(text);
       await importProjectFromJsonData(data);
     } catch (err) {
-      showMessage(`Error al importar archivo: ${err.message}`, true);
+      showMessage(t("err_import_file", { error: err.message }), true);
     }
   }
 
@@ -1192,20 +1694,20 @@
         try {
           await refs.audio.play();
         } catch (err) {
-          showMessage(`Audio cargado, pero no se pudo reproducir: ${err.message}`, true);
+          showMessage(t("err_audio_play_after_restore", { error: err.message }), true);
         }
       }
 
       return true;
     } catch {
-      refs.audioRestoreHint.textContent = "Error al intentar restaurar audio desde IndexedDB.";
+      refs.audioRestoreHint.textContent = t("hint_audio_missing_select_manually");
       return false;
     }
   }
 
   async function loadPlaylistItem(id, autoplay = false) {
     const found = findPlaylistItemById(id);
-    if (!found?.item) return showMessage("No se encontró ese tema en la playlist.", true);
+    if (!found?.item) return showMessage(t("err_playlist_item_not_found"), true);
 
     const { item } = found;
 
@@ -1227,26 +1729,26 @@
     renderAudioMeta();
     renderMode();
     renderKaraoke(true);
-    refs.nextPending.textContent = state.mode === "auto" ? "Modo Auto activo. Puedes generar tiempos automáticamente." : getNextPendingText();
+    refs.nextPending.textContent = state.mode === "auto" ? t("mode_auto_active") : getNextPendingText();
 
     if (!state.audioMeta) {
-      refs.audioRestoreHint.textContent = "Tema cargado sin metadatos de audio.";
-      showMessage("Tema cargado (sin audio).", true);
+      refs.audioRestoreHint.textContent = t("hint_track_loaded_no_audio");
+      showMessage(t("warn_track_loaded_without_audio"), true);
       return;
     }
 
     const restored = await restoreAudioFromMeta(state.audioMeta, {
-      successMessage: `Tema cargado: ${item.title}`,
-      missingMessage: "Tema cargado, pero falta el audio en IndexedDB. Selecciónalo manualmente.",
+      successMessage: t("hint_track_loaded", { title: item.title }),
+      missingMessage: t("hint_track_missing_audio_select"),
       autoplay
     });
 
     if (!restored) {
-      showMessage("Tema cargado, pero falta el audio en IndexedDB.", true);
+      showMessage(t("warn_track_missing_audio"), true);
       return;
     }
 
-    showMessage(autoplay ? `Reproduciendo: ${item.title}` : `Tema cargado: ${item.title}`);
+    showMessage(autoplay ? t("msg_track_playing", { title: item.title }) : t("msg_track_loaded", { title: item.title }));
   }
 
   async function restoreAudioFromIndexedDBIfPossible() {
@@ -1255,6 +1757,11 @@
   }
 
   function attachEvents() {
+    refs.languageSelect?.addEventListener("change", (event) => {
+      const value = event.target instanceof HTMLSelectElement ? event.target.value : "es";
+      setLanguage(value);
+    });
+
     refs.audioFile.addEventListener("change", async (e) => {
       const file = e.target.files?.[0];
       if (!file) return;
@@ -1270,7 +1777,7 @@
       renderLyricsUI();
       renderKaraoke(true);
       refs.nextPending.textContent = getNextPendingText();
-      showMessage(`Letra aplicada: ${state.paragraphs.length} párrafos.`);
+      showMessage(t("msg_lyrics_applied", { count: state.paragraphs.length }));
     });
 
     refs.modeAutoBtn.addEventListener("click", () => {
@@ -1325,7 +1832,7 @@
 
     refs.deleteStoredAudioBtn.addEventListener("click", async () => {
       try {
-        if (!state.audioMeta) return showMessage("No hay metadatos de audio para eliminar.");
+        if (!state.audioMeta) return showMessage(t("err_no_audio_metadata_delete"));
         await deleteAudioBlob(state.audioMeta);
         if (currentAudioObjectUrl) {
           URL.revokeObjectURL(currentAudioObjectUrl);
@@ -1336,10 +1843,10 @@
         state.audioMeta = null;
         saveStateToLocalStorage();
         renderAudioMeta();
-        refs.audioRestoreHint.textContent = "Audio eliminado de IndexedDB.";
-        showMessage("Audio almacenado eliminado.");
+        refs.audioRestoreHint.textContent = t("hint_audio_deleted_indexeddb");
+        showMessage(t("msg_audio_deleted"));
       } catch (err) {
-        showMessage(`No se pudo eliminar audio: ${err.message}`, true);
+        showMessage(t("err_delete_audio", { error: err.message }), true);
       }
     });
 
@@ -1353,7 +1860,7 @@
       try {
         await refs.audio.play();
       } catch (err) {
-        showMessage(`No se pudo reproducir el audio: ${err.message}`, true);
+        showMessage(t("err_audio_play", { error: err.message }), true);
       }
     });
 
@@ -1422,7 +1929,7 @@
         }
         startLiveAnalysisLoop();
       } catch (err) {
-        showMessage(`No se pudo iniciar Web Audio: ${err.message}`, true);
+        showMessage(t("err_web_audio_start", { error: err.message }), true);
       }
     });
 
@@ -1473,7 +1980,7 @@
           e.preventDefault();
           if (refs.audio.paused) {
             refs.audio.play().catch((err) => {
-              showMessage(`No se pudo reproducir el audio: ${err.message}`, true);
+              showMessage(t("err_audio_play", { error: err.message }), true);
             });
           } else {
             refs.audio.pause();
@@ -1520,10 +2027,12 @@
   }
 
   async function init() {
+    setLanguage(detectInitialLanguage(), { persist: false });
+
     try {
       await openDB();
     } catch (err) {
-      showMessage(`IndexedDB no disponible: ${err.message}`, true);
+      showMessage(t("err_indexeddb_unavailable", { error: err.message }), true);
     }
 
     loadStateFromLocalStorage();
