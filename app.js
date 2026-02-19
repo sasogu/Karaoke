@@ -289,9 +289,21 @@
     refs.fullscreenParagraph.textContent = state.paragraphs[currentIdx] || "";
   }
 
+  function isFullscreenKaraokeOpen() {
+    return !refs.fullscreenKaraoke.hidden;
+  }
+
+  function renderFullscreenToggleButton() {
+    refs.openFullscreenBtn.textContent = isFullscreenKaraokeOpen()
+      ? "Salir de pantalla completa"
+      : "Reproducir a pantalla completa";
+  }
+
   async function openFullscreenKaraoke() {
+    if (isFullscreenKaraokeOpen()) return;
     refs.fullscreenKaraoke.hidden = false;
     renderFullscreenParagraph();
+    renderFullscreenToggleButton();
 
     if (!document.fullscreenElement && refs.fullscreenKaraoke.requestFullscreen) {
       try {
@@ -303,14 +315,24 @@
   }
 
   async function closeFullscreenKaraoke() {
-    if (document.fullscreenElement === refs.fullscreenKaraoke && document.exitFullscreen) {
+    refs.fullscreenKaraoke.hidden = true;
+    renderFullscreenToggleButton();
+
+    if (document.fullscreenElement && document.exitFullscreen) {
       try {
         await document.exitFullscreen();
       } catch {
         // no-op
       }
     }
-    refs.fullscreenKaraoke.hidden = true;
+  }
+
+  async function toggleFullscreenKaraoke() {
+    if (isFullscreenKaraokeOpen()) {
+      await closeFullscreenKaraoke();
+      return;
+    }
+    await openFullscreenKaraoke();
   }
 
   function getNextPendingText() {
@@ -722,7 +744,7 @@
       }
     });
 
-    refs.openFullscreenBtn.addEventListener("click", openFullscreenKaraoke);
+    refs.openFullscreenBtn.addEventListener("click", toggleFullscreenKaraoke);
     refs.closeFullscreenBtn.addEventListener("click", closeFullscreenKaraoke);
 
     refs.fsPlayBtn.addEventListener("click", async () => {
@@ -771,6 +793,41 @@
     refs.audio.addEventListener("ended", stopLiveAnalysisLoop);
 
     document.addEventListener("keydown", (e) => {
+      if (isFullscreenKaraokeOpen()) {
+        if (e.key === "Escape") {
+          e.preventDefault();
+          closeFullscreenKaraoke();
+          return;
+        }
+
+        if (e.code === "Space") {
+          e.preventDefault();
+          if (refs.audio.paused) {
+            refs.audio.play().catch((err) => {
+              showMessage(`No se pudo reproducir el audio: ${err.message}`, true);
+            });
+          } else {
+            refs.audio.pause();
+          }
+          return;
+        }
+
+        if (e.key.toLowerCase() === "s") {
+          e.preventDefault();
+          refs.audio.pause();
+          refs.audio.currentTime = 0;
+          updateTimeDisplay();
+          renderKaraoke();
+          return;
+        }
+
+        if (e.key.toLowerCase() === "f") {
+          e.preventDefault();
+          toggleFullscreenKaraoke();
+          return;
+        }
+      }
+
       if (e.key === "Escape" && !refs.fullscreenKaraoke.hidden) {
         closeFullscreenKaraoke();
       }
@@ -788,6 +845,7 @@
     document.addEventListener("fullscreenchange", () => {
       if (document.fullscreenElement !== refs.fullscreenKaraoke) {
         refs.fullscreenKaraoke.hidden = true;
+        renderFullscreenToggleButton();
       }
     });
   }
@@ -805,6 +863,7 @@
     renderAudioMeta();
     renderMode();
     renderKaraoke(true);
+    renderFullscreenToggleButton();
     updateTimeDisplay();
     await restoreAudioFromIndexedDBIfPossible();
     attachEvents();
