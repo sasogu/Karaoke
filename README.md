@@ -18,7 +18,7 @@ Proyecto sin frameworks ni backend, compatible con GitHub Pages y ejecución loc
 
 Este proyecto se distribuye bajo licencia **MIT**. Revisa el archivo `LICENSE`.
 
-## Uso local
+## Local Usage
 
 1. Sirve la carpeta con HTTP local (por ejemplo `python -m http.server 8080`).
 2. Abre `http://localhost:8080` en un navegador moderno.
@@ -26,7 +26,7 @@ Este proyecto se distribuye bajo licencia **MIT**. Revisa el archivo `LICENSE`.
 
 > Nota: el service worker no funciona en `file://`; para PWA necesitas `http://localhost` o HTTPS.
 
-## PWA (versiones y limpieza de caché)
+## PWA (Versions and Cache Cleaning)
 
 - La app registra `sw.js` automáticamente al iniciar.
 - La versión de caché se controla con `APP_CACHE_VERSION` en `sw.js`.
