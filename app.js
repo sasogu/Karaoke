@@ -6,7 +6,7 @@
   const DB_VERSION = 1;
   const STORE_AUDIOS = "audios";
   const PROJECT_VERSION = "1.0.0";
-  const APP_CACHE_VERSION = "1.0.2";
+  const APP_CACHE_VERSION = "1.0.3";
 
   const state = {
     lyricsOriginal: "",
@@ -82,6 +82,7 @@
   let analysisTimer = null;
   let currentAudioObjectUrl = null;
   let activeParagraphIndex = -1;
+  let shouldPersistMigratedState = false;
 
   let db = null;
 
@@ -172,6 +173,14 @@
     setTimeout(() => refs.message.classList.remove("show"), 2600);
   }
 
+  function showMessage(message, isError = false) {
+    displayNotification(message, isError);
+  }
+
+  function renderKaraoke(forceUpdate = false) {
+    updateKaraokeDisplay(forceUpdate);
+  }
+
   async function registerServiceWorker() {
     if (!("serviceWorker" in navigator)) return;
 
@@ -212,11 +221,17 @@
       .filter(Boolean);
   }
 
-  function normalizePlaylistItem(raw) {
-    if (!raw || typeof raw !== "object") return null;
-    const id = String(raw.id || "").trim();
-    if (!id) return null;
+  function generateId() {
+    if (typeof crypto !== "undefined" && crypto.randomUUID) {
+      return crypto.randomUUID();
+    }
+    return `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+  }
 
+  function normalizePlaylistTrack(raw) {
+    if (!raw || typeof raw !== "object") return null;
+
+    const id = String(raw.id || "").trim() || generateId();
     return {
       id,
       title: String(raw.title || "Tema sin título"),
@@ -232,6 +247,27 @@
         windowMs: Number(raw.detector?.windowMs ?? 80)
       },
       offsetSeconds: Number(raw.offsetSeconds ?? 0)
+    };
+  }
+
+  function normalizePlaylistItem(raw) {
+    if (!raw || typeof raw !== "object") return null;
+
+    if (Array.isArray(raw.items)) {
+      return {
+        id: String(raw.id || "").trim() || generateId(),
+        title: String(raw.title || "Playlist"),
+        items: raw.items.map(normalizePlaylistTrack).filter(Boolean)
+      };
+    }
+
+    const legacyTrack = normalizePlaylistTrack(raw);
+    if (!legacyTrack) return null;
+
+    return {
+      id: `legacy-${legacyTrack.id}`,
+      title: "Playlist",
+      items: [legacyTrack]
     };
   }
 
@@ -263,9 +299,16 @@
       state.paragraphs = Array.isArray(data.paragraphs) ? data.paragraphs : [];
       state.autoTimes = Array.isArray(data.autoTimes) ? data.autoTimes : [];
       state.calibratedTimes = Array.isArray(data.calibratedTimes) ? data.calibratedTimes : [];
-      state.playlist = Array.isArray(data.playlist)
-        ? data.playlist.map(normalizePlaylistItem).filter(Boolean)
-        : [];
+      if (Array.isArray(data.playlist)) {
+        const normalizedPlaylist = data.playlist.map(normalizePlaylistItem).filter(Boolean);
+        const hadLegacyShape = data.playlist.some((entry) => !Array.isArray(entry?.items));
+        const hadDroppedEntries = normalizedPlaylist.length !== data.playlist.length;
+        state.playlist = normalizedPlaylist;
+        shouldPersistMigratedState = hadLegacyShape || hadDroppedEntries;
+      } else {
+        state.playlist = [];
+      }
+
       state.detector = {
         threshold: Number(data.detector?.threshold ?? 0.02),
         minSilenceMs: Number(data.detector?.minSilenceMs ?? 320),
@@ -364,9 +407,13 @@
   }
 
   function renderPlaylist() {
-    refs.playlistCount.textContent = `${state.playlist.length} playlist(s)`;
+    const totalTracks = state.playlist.reduce((count, playlist) => {
+      return count + (Array.isArray(playlist.items) ? playlist.items.length : 0);
+    }, 0);
 
-    if (!state.playlist.length) {
+    refs.playlistCount.textContent = `${totalTracks} tema(s)`;
+
+    if (!totalTracks) {
       refs.playlistView.innerHTML = `<p class="empty">Aún no hay playlists guardadas.</p>`;
       refs.playlistSelect.innerHTML = `<option value="">Nueva playlist...</option>`;
       return;
@@ -376,6 +423,8 @@
     refs.playlistSelect.innerHTML = `<option value="">Nueva playlist...</option>`;
 
     state.playlist.forEach((playlist) => {
+      if (!Array.isArray(playlist.items) || !playlist.items.length) return;
+
       const option = document.createElement("option");
       option.value = playlist.id;
       option.textContent = playlist.title;
@@ -417,26 +466,21 @@
     }
 
     const selectedPlaylist = refs.playlistSelect.value;
-    let playlist = state.playlist.find(p => p.id === selectedPlaylist);
+    let playlist = state.playlist.find((entry) => entry.id === selectedPlaylist);
+    const trackTitle = refs.playlistTitleInput.value.trim() || buildDefaultPlaylistTitle();
 
     if (!playlist) {
-      const customTitle = refs.playlistTitleInput.value.trim();
-      const id = (typeof crypto !== "undefined" && crypto.randomUUID)
-        ? crypto.randomUUID()
-        : `${Date.now()}-${Math.random().toString(16).slice(2)}`;
-
       playlist = {
-        id,
-        title: customTitle || buildDefaultPlaylistTitle(),
+        id: generateId(),
+        title: `Playlist ${state.playlist.length + 1}`,
         items: []
       };
       state.playlist.push(playlist);
     }
 
     const snapshot = {
-      id: (typeof crypto !== "undefined" && crypto.randomUUID)
-        ? crypto.randomUUID()
-        : `${Date.now()}-${Math.random().toString(16).slice(2)}`,
+      id: generateId(),
+      title: trackTitle,
       createdAt: Date.now(),
       audioMeta: state.audioMeta ? { ...state.audioMeta } : null,
       lyricsOriginal: state.lyricsOriginal,
@@ -450,17 +494,37 @@
     playlist.items.unshift(snapshot);
     saveStateToLocalStorage();
     renderPlaylist();
+    refs.playlistSelect.value = playlist.id;
     refs.playlistTitleInput.value = "";
     showMessage("Tema añadido a la playlist.");
   }
 
+  function findPlaylistItemById(id) {
+    for (const playlist of state.playlist) {
+      if (!Array.isArray(playlist.items)) continue;
+      const item = playlist.items.find((entry) => entry.id === id);
+      if (item) return { playlist, item };
+    }
+    return null;
+  }
+
   function deletePlaylistItem(id) {
-    const before = state.playlist.length;
-    state.playlist = state.playlist.filter((item) => item.id !== id);
-    if (state.playlist.length === before) return;
+    let removed = false;
+
+    state.playlist = state.playlist
+      .map((playlist) => {
+        if (!Array.isArray(playlist.items)) return playlist;
+        const before = playlist.items.length;
+        playlist.items = playlist.items.filter((item) => item.id !== id);
+        if (playlist.items.length !== before) removed = true;
+        return playlist;
+      })
+      .filter((playlist) => Array.isArray(playlist.items) && playlist.items.length > 0);
+
+    if (!removed) return;
     saveStateToLocalStorage();
     renderPlaylist();
-    showMessage("Tema eliminado de playlist.");
+    showMessage("Tema eliminado de la playlist.");
   }
 
   function clearPlaylist() {
@@ -867,8 +931,10 @@
   }
 
   async function loadPlaylistItem(id, autoplay = false) {
-    const item = state.playlist.find((entry) => entry.id === id);
-    if (!item) return showMessage("No se encontró ese tema en la playlist.", true);
+    const found = findPlaylistItemById(id);
+    if (!found?.item) return showMessage("No se encontró ese tema en la playlist.", true);
+
+    const { item } = found;
 
     state.lyricsOriginal = item.lyricsOriginal || "";
     state.paragraphs = Array.isArray(item.paragraphs) ? [...item.paragraphs] : [];
@@ -1150,7 +1216,13 @@
     renderPlaylist();
     renderFullscreenToggleButton();
     updateTimeDisplay();
-    refs.pwaVersion.textContent = `PWA v1.0.2`;
+    refs.pwaVersion.textContent = `PWA v${APP_CACHE_VERSION}`;
+
+    if (shouldPersistMigratedState) {
+      saveStateToLocalStorage();
+      shouldPersistMigratedState = false;
+    }
+
     await restoreAudioFromIndexedDBIfPossible();
     await registerServiceWorker();
     attachEvents();
