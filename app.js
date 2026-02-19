@@ -6,6 +6,7 @@
   const DB_VERSION = 1;
   const STORE_AUDIOS = "audios";
   const PROJECT_VERSION = "1.0.0";
+  const APP_CACHE_VERSION = "1.0.1";
 
   const state = {
     lyricsOriginal: "",
@@ -159,6 +160,31 @@
     refs.message.style.borderColor = isError ? "#ef4444" : "#374151";
     refs.message.classList.add("show");
     setTimeout(() => refs.message.classList.remove("show"), 2600);
+  }
+
+  async function registerServiceWorker() {
+    if (!("serviceWorker" in navigator)) return;
+
+    try {
+      const registration = await navigator.serviceWorker.register("./sw.js", { scope: "./" });
+
+      registration.addEventListener("updatefound", () => {
+        const newWorker = registration.installing;
+        if (!newWorker) return;
+
+        newWorker.addEventListener("statechange", () => {
+          if (newWorker.state === "installed" && navigator.serviceWorker.controller) {
+            showMessage("Nueva versión disponible. Recarga para aplicar la actualización.");
+          }
+        });
+      });
+
+      navigator.serviceWorker.addEventListener("controllerchange", () => {
+        showMessage("Aplicación actualizada a la nueva versión de caché.");
+      });
+    } catch (err) {
+      showMessage(`No se pudo registrar la PWA: ${err.message}`, true);
+    }
   }
 
   function formatTime(seconds) {
@@ -865,7 +891,9 @@
     renderKaraoke(true);
     renderFullscreenToggleButton();
     updateTimeDisplay();
+    refs.audioRestoreHint.textContent = `${refs.audioRestoreHint.textContent || ""}${refs.audioRestoreHint.textContent ? " · " : ""}PWA caché v${APP_CACHE_VERSION}`;
     await restoreAudioFromIndexedDBIfPossible();
+    await registerServiceWorker();
     attachEvents();
     window.addEventListener("beforeunload", () => {
       if (currentAudioObjectUrl) URL.revokeObjectURL(currentAudioObjectUrl);

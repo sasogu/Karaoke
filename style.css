@@ -241,6 +241,10 @@ button.danger:hover {
   padding: 24px;
 }
 
+.fullscreen-karaoke[hidden] {
+  display: none !important;
+}
+
 .fullscreen-paragraph {
   width: min(1100px, 88vw);
   text-align: center;

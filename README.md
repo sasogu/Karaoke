@@ -7,17 +7,41 @@ Proyecto sin frameworks ni backend, compatible con GitHub Pages y ejecución loc
 - `index.html`
 - `style.css`
 - `app.js`
+- `manifest.webmanifest`
+- `sw.js`
+- `icons/icon-192.svg`
+- `icons/icon-512.svg`
 - `README.md`
 
 ## Uso local
 
-1. Abre `index.html` en un navegador moderno.
-2. Selecciona un audio.
-3. Pega la letra y pulsa **Aplicar letra**.
-4. Sincroniza:
+1. Sirve la carpeta con HTTP local (por ejemplo `python -m http.server 8080`).
+2. Abre `http://localhost:8080` en un navegador moderno.
+3. (Opcional) Instala la app como PWA desde el navegador.
+
+> Nota: el service worker no funciona en `file://`; para PWA necesitas `http://localhost` o HTTPS.
+
+## PWA (versiones y limpieza de caché)
+
+- La app registra `sw.js` automáticamente al iniciar.
+- La versión de caché se controla con `APP_CACHE_VERSION` en `sw.js`.
+- En `activate`, el service worker elimina cachés antiguas con prefijo `karaoke-pwa-*`.
+- Si existe una versión nueva, la app avisa para recargar y aplicar la actualización.
+
+### Publicar nueva versión de caché
+
+1. Incrementa `APP_CACHE_VERSION` en `sw.js`.
+2. Despliega archivos actualizados.
+3. Recarga la app para activar el nuevo SW y limpiar cachés antiguas.
+
+## Uso de karaoke
+
+1. Selecciona un audio.
+2. Pega la letra y pulsa **Aplicar letra**.
+3. Sincroniza:
    - **Auto-sincronizar** (RMS + silencios), o
    - **Modo Calibración** + barra espaciadora para marcar párrafos.
-5. Exporta/importa proyectos en JSON.
+4. Exporta/importa proyectos en JSON.
 
 ## GitHub Pages
 

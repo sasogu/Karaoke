@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" viewBox="0 0 192 192" role="img" aria-label="Karaoke">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1220"/>
+      <stop offset="1" stop-color="#111827"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="192" height="192" rx="36" fill="url(#bg)"/>
+  <circle cx="60" cy="60" r="24" fill="#22c55e"/>
+  <rect x="102" y="48" width="16" height="68" rx="8" fill="#e5e7eb"/>
+  <rect x="86" y="112" width="48" height="12" rx="6" fill="#e5e7eb"/>
+  <path d="M48 140c14 10 31 14 48 14s34-4 48-14" stroke="#22c55e" stroke-width="10" fill="none" stroke-linecap="round"/>
+</svg>
