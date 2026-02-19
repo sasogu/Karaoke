@@ -197,6 +197,18 @@
     });
   }
 
+  async function requestCacheVersionFromScript() {
+    try {
+      const response = await fetch("./sw.js", { cache: "no-store" });
+      if (!response.ok) return null;
+      const source = await response.text();
+      const match = source.match(/APP_CACHE_VERSION\s*=\s*"([^"]+)"/);
+      return match?.[1] || null;
+    } catch {
+      return null;
+    }
+  }
+
   async function refreshPwaVersionLabel(registration) {
     if (!refs.pwaVersion) return;
 
@@ -206,7 +218,9 @@
       registration?.waiting ||
       registration?.installing;
 
-    const version = await requestCacheVersionFromWorker(worker);
+    const version =
+      (await requestCacheVersionFromWorker(worker)) ||
+      (await requestCacheVersionFromScript());
     refs.pwaVersion.textContent = version ? `PWA v${version}` : "PWA v—";
   }
 
