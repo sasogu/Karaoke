@@ -6,7 +6,6 @@
   const DB_VERSION = 1;
   const STORE_AUDIOS = "audios";
   const PROJECT_VERSION = "1.0.0";
-  const APP_CACHE_VERSION = "1.0.3";
 
   const state = {
     lyricsOriginal: "",
@@ -181,8 +180,38 @@
     updateKaraokeDisplay(forceUpdate);
   }
 
+  async function requestCacheVersionFromWorker(worker) {
+    if (!worker) return null;
+
+    return new Promise((resolve) => {
+      const channel = new MessageChannel();
+      const timeout = setTimeout(() => resolve(null), 1500);
+
+      channel.port1.onmessage = (event) => {
+        clearTimeout(timeout);
+        const version = event.data?.type === "CACHE_VERSION" ? event.data.version : null;
+        resolve(version || null);
+      };
+
+      worker.postMessage({ type: "GET_CACHE_VERSION" }, [channel.port2]);
+    });
+  }
+
+  async function refreshPwaVersionLabel(registration) {
+    if (!refs.pwaVersion) return;
+
+    const worker =
+      navigator.serviceWorker.controller ||
+      registration?.active ||
+      registration?.waiting ||
+      registration?.installing;
+
+    const version = await requestCacheVersionFromWorker(worker);
+    refs.pwaVersion.textContent = version ? `PWA v${version}` : "PWA v—";
+  }
+
   async function registerServiceWorker() {
-    if (!("serviceWorker" in navigator)) return;
+    if (!("serviceWorker" in navigator)) return null;
 
     try {
       const registration = await navigator.serviceWorker.register("./sw.js", { scope: "./" });
@@ -200,9 +229,14 @@
 
       navigator.serviceWorker.addEventListener("controllerchange", () => {
         showMessage("Aplicación actualizada a la nueva versión de caché.");
+        refreshPwaVersionLabel(registration);
       });
+
+      await refreshPwaVersionLabel(registration);
+      return registration;
     } catch (err) {
       showMessage(`No se pudo registrar la PWA: ${err.message}`, true);
+      return null;
     }
   }
 
@@ -407,6 +441,8 @@
   }
 
   function renderPlaylist() {
+    if (!refs.playlistView || !refs.playlistCount || !refs.playlistSelect) return;
+
     const totalTracks = state.playlist.reduce((count, playlist) => {
       return count + (Array.isArray(playlist.items) ? playlist.items.length : 0);
     }, 0);
@@ -457,6 +493,10 @@
   }
 
   function addCurrentToPlaylist() {
+    if (!refs.playlistTitleInput || !refs.playlistSelect) {
+      return showMessage("La interfaz de playlist no está disponible en esta versión cargada.", true);
+    }
+
     if (!state.audioMeta) return showMessage("Primero selecciona un audio.", true);
     if (!state.paragraphs.length) return showMessage("Primero agrega la letra por párrafos.", true);
 
@@ -1088,31 +1128,38 @@
       renderKaraoke();
     });
 
-    refs.addToPlaylistBtn.addEventListener("click", addCurrentToPlaylist);
-    refs.clearPlaylistBtn.addEventListener("click", clearPlaylist);
+    if (refs.addToPlaylistBtn) {
+      refs.addToPlaylistBtn.addEventListener("click", addCurrentToPlaylist);
+    }
 
-    refs.playlistView.addEventListener("click", async (event) => {
-      const target = event.target;
-      if (!(target instanceof HTMLElement)) return;
+    if (refs.clearPlaylistBtn) {
+      refs.clearPlaylistBtn.addEventListener("click", clearPlaylist);
+    }
 
-      const action = target.dataset.action;
-      const id = target.dataset.id;
-      if (!action || !id) return;
+    if (refs.playlistView) {
+      refs.playlistView.addEventListener("click", async (event) => {
+        const target = event.target;
+        if (!(target instanceof HTMLElement)) return;
 
-      if (action === "load") {
-        await loadPlaylistItem(id, false);
-        return;
-      }
+        const action = target.dataset.action;
+        const id = target.dataset.id;
+        if (!action || !id) return;
 
-      if (action === "play") {
-        await loadPlaylistItem(id, true);
-        return;
-      }
+        if (action === "load") {
+          await loadPlaylistItem(id, false);
+          return;
+        }
 
-      if (action === "delete") {
-        deletePlaylistItem(id);
-      }
-    });
+        if (action === "play") {
+          await loadPlaylistItem(id, true);
+          return;
+        }
+
+        if (action === "delete") {
+          deletePlaylistItem(id);
+        }
+      });
+    }
 
     refs.audio.addEventListener("loadedmetadata", () => {
       updateTimeDisplay();
@@ -1216,7 +1263,7 @@
     renderPlaylist();
     renderFullscreenToggleButton();
     updateTimeDisplay();
-    refs.pwaVersion.textContent = `PWA v${APP_CACHE_VERSION}`;
+    if (refs.pwaVersion) refs.pwaVersion.textContent = "PWA v—";
 
     if (shouldPersistMigratedState) {
       saveStateToLocalStorage();

@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-globals */
 
-const APP_CACHE_VERSION = "1.0.3";
+const APP_CACHE_VERSION = "1.0.4";
 const CACHE_PREFIX = "karaoke-pwa";
 const STATIC_CACHE = `${CACHE_PREFIX}-static-${APP_CACHE_VERSION}`;
 const RUNTIME_CACHE = `${CACHE_PREFIX}-runtime-${APP_CACHE_VERSION}`;
@@ -28,6 +28,11 @@ self.addEventListener("activate", (event) => {
 });
 
 self.addEventListener("message", (event) => {
+  if (event.data?.type === "GET_CACHE_VERSION") {
+    event.ports?.[0]?.postMessage({ type: "CACHE_VERSION", version: APP_CACHE_VERSION });
+    return;
+  }
+
   if (event.data?.type === "SKIP_WAITING") {
     self.skipWaiting();
     return;
