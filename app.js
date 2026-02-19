@@ -6,7 +6,7 @@
   const DB_VERSION = 1;
   const STORE_AUDIOS = "audios";
   const PROJECT_VERSION = "1.0.0";
-  const APP_CACHE_VERSION = "1.0.1";
+  const APP_CACHE_VERSION = "1.0.2";
 
   const state = {
     lyricsOriginal: "",
@@ -1150,7 +1150,7 @@
     renderPlaylist();
     renderFullscreenToggleButton();
     updateTimeDisplay();
-    refs.pwaVersion.textContent = `PWA v${APP_CACHE_VERSION}`;
+    refs.pwaVersion.textContent = `PWA v1.0.2`;
     await restoreAudioFromIndexedDBIfPossible();
     await registerServiceWorker();
     attachEvents();
