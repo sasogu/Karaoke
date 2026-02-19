@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Karaoke por párrafos (HTML5 + IndexedDB)</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="app-header">
+        <h1>Karaoke por párrafos</h1>
+        <p class="subtitle">
+          Proyecto estático (sin backend) con persistencia en localStorage + IndexedDB
+        </p>
+      </header>
+
+      <main class="grid">
+        <section class="card">
+          <h2>Reproductor</h2>
+
+          <div class="row">
+            <label for="audioFile" class="file-label">Seleccionar audio</label>
+            <input id="audioFile" type="file" accept="audio/*" />
+            <button id="deleteStoredAudioBtn" class="danger">Eliminar audio almacenado</button>
+          </div>
+
+          <audio id="audio" controls preload="metadata"></audio>
+
+          <div class="meta">
+            <div><strong>Archivo:</strong> <span id="audioName">—</span></div>
+            <div><strong>Tipo:</strong> <span id="audioType">—</span></div>
+            <div><strong>Tiempo:</strong> <span id="timeDisplay">00:00 / 00:00</span></div>
+          </div>
+
+          <p id="audioRestoreHint" class="hint"></p>
+        </section>
+
+        <section class="card">
+          <h2>Letra</h2>
+          <p class="hint">Separa párrafos dejando una línea en blanco entre bloques.</p>
+
+          <textarea
+            id="lyricsInput"
+            rows="10"
+            placeholder="Pega aquí la letra...&#10;&#10;Párrafo 1&#10;&#10;Párrafo 2"
+          ></textarea>
+
+          <div class="row">
+            <button id="applyLyricsBtn">Aplicar letra</button>
+            <span id="paragraphCount" class="badge">0 párrafos</span>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>Sincronización</h2>
+
+          <div class="mode-row">
+            <button id="modeAutoBtn" class="secondary">Modo Auto</button>
+            <button id="modeCalibBtn" class="secondary">Modo Calibración</button>
+            <span id="modeStatus" class="badge">Estado: Auto</span>
+          </div>
+
+          <div class="controls-grid">
+            <label>
+              Umbral silencio (RMS)
+              <input id="thresholdInput" type="number" min="0.001" max="1" step="0.001" />
+            </label>
+            <label>
+              Silencio mínimo (ms)
+              <input id="minSilenceInput" type="number" min="50" max="3000" step="10" />
+            </label>
+            <label>
+              Ventana análisis (ms)
+              <input id="windowMsInput" type="number" min="50" max="100" step="5" />
+            </label>
+            <label>
+              Offset global (s)
+              <input id="offsetInput" type="number" min="-10" max="10" step="0.01" />
+            </label>
+          </div>
+
+          <div class="row">
+            <button id="autoSyncBtn">Auto-sincronizar</button>
+            <button id="undoMarkerBtn" class="secondary">Deshacer último marcador</button>
+            <button id="clearTimesBtn" class="secondary">Limpiar tiempos</button>
+          </div>
+
+          <p id="calibHelp" class="hint">
+            Calibración: pulsa <kbd>Espacio</kbd> durante reproducción para marcar el inicio del
+            siguiente párrafo.
+          </p>
+          <p id="nextPending" class="hint"></p>
+        </section>
+
+        <section class="card">
+          <h2>Exportar / Importar</h2>
+
+          <div class="row">
+            <button id="exportBtn">Exportar proyecto</button>
+            <label for="importFile" class="file-label">Importar proyecto</label>
+            <input id="importFile" type="file" accept="application/json" />
+          </div>
+
+          <p class="hint">
+            El JSON exportado NO contiene el audio; solo metadatos y configuración.
+          </p>
+        </section>
+
+        <section class="card karaoke-card full-width">
+          <h2>Karaoke</h2>
+          <div class="karaoke-header">
+            <span id="progressIndicator" class="badge">0/0</span>
+          </div>
+          <div id="karaokeView" class="karaoke-view">
+            <p class="empty">Aún no hay párrafos.</p>
+          </div>
+        </section>
+      </main>
+
+      <div id="message" class="toast" aria-live="polite"></div>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
