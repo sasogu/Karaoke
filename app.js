@@ -633,6 +633,8 @@
   }
 
   async function handleAudioFileSelected(file) {
+    if (!file) return showMessage("No se seleccionó ningún archivo de audio.", true);
+
     try {
       const tempMeta = {
         name: file.name,
@@ -1062,7 +1064,9 @@
     refs.audio.addEventListener("play", async () => {
       try {
         setupAudioGraphIfNeeded();
-        if (audioCtx.state === "suspended") await audioCtx.resume();
+        if (audioCtx.state === "suspended") {
+          await audioCtx.resume();
+        }
         startLiveAnalysisLoop();
       } catch (err) {
         showMessage(`No se pudo iniciar Web Audio: ${err.message}`, true);
