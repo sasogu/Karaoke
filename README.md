@@ -11,7 +11,12 @@ Proyecto sin frameworks ni backend, compatible con GitHub Pages y ejecución loc
 - `sw.js`
 - `icons/icon-192.svg`
 - `icons/icon-512.svg`
+- `LICENSE` (MIT)
 - `README.md`
+
+## Licencia
+
+Este proyecto se distribuye bajo licencia **MIT**. Revisa el archivo `LICENSE`.
 
 ## Uso local
 

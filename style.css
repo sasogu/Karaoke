@@ -29,6 +29,12 @@ body {
   padding: 20px;
 }
 
+.app-footer {
+  margin-top: 16px;
+  padding: 8px 4px 2px;
+  text-align: right;
+}
+
 .app-header h1 {
   margin-bottom: 6px;
 }

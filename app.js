@@ -61,6 +61,8 @@
     fsPauseBtn: $("fsPauseBtn"),
     fsStopBtn: $("fsStopBtn"),
 
+    pwaVersion: $("pwaVersion"),
+
     progressIndicator: $("progressIndicator"),
     karaokeView: $("karaokeView"),
     message: $("message")
@@ -891,7 +893,7 @@
     renderKaraoke(true);
     renderFullscreenToggleButton();
     updateTimeDisplay();
-    refs.audioRestoreHint.textContent = `${refs.audioRestoreHint.textContent || ""}${refs.audioRestoreHint.textContent ? " · " : ""}PWA caché v${APP_CACHE_VERSION}`;
+    refs.pwaVersion.textContent = `PWA v${APP_CACHE_VERSION}`;
     await restoreAudioFromIndexedDBIfPossible();
     await registerServiceWorker();
     attachEvents();
