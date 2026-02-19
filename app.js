@@ -164,8 +164,8 @@
     });
   }
 
-  function showMessage(text, isError = false) {
-    refs.message.textContent = text;
+  function displayNotification(message, isError = false) {
+    refs.message.textContent = message;
     refs.message.style.borderColor = isError ? "#ef4444" : "#374151";
     refs.message.classList.add("show");
     setTimeout(() => refs.message.classList.remove("show"), 2600);
@@ -305,30 +305,46 @@
     activeParagraphIndex = -1;
   }
 
-  function renderKaraoke(force = false) {
+  function updateKaraokeDisplay(forceUpdate = false) {
     if (!state.paragraphs.length) {
-      if (!refs.karaokeView.querySelector(".empty")) {
-        refs.karaokeView.innerHTML = `<p class="empty">Aún no hay párrafos.</p>`;
-      }
-      refs.progressIndicator.textContent = "0/0";
-      activeParagraphIndex = -1;
-      renderFullscreenParagraph();
+      displayEmptyKaraokeMessage();
       return;
     }
 
-    if (force) buildKaraokeParagraphs();
-    if (
-      refs.karaokeView.children.length !== state.paragraphs.length ||
-      refs.karaokeView.querySelector(".empty")
-    ) {
+    if (forceUpdate) buildKaraokeParagraphs();
+    if (shouldRebuildKaraokeView()) {
       buildKaraokeParagraphs();
-      force = true;
+      forceUpdate = true;
     }
 
     const currentIdx = getCurrentParagraphIndex();
-    refs.progressIndicator.textContent = `${Math.min(currentIdx + 1, state.paragraphs.length)}/${state.paragraphs.length}`;
-    if (!force && currentIdx === activeParagraphIndex) return;
+    updateProgressIndicator(currentIdx);
+    if (!forceUpdate && currentIdx === activeParagraphIndex) return;
 
+    highlightCurrentParagraph(currentIdx);
+    activeParagraphIndex = currentIdx;
+    renderFullscreenParagraph();
+  }
+
+  function displayEmptyKaraokeMessage() {
+    if (!refs.karaokeView.querySelector(".empty")) {
+      refs.karaokeView.innerHTML = `<p class="empty">Aún no hay párrafos.</p>`;
+    }
+    refs.progressIndicator.textContent = "0/0";
+    activeParagraphIndex = -1;
+    renderFullscreenParagraph();
+  }
+
+  function shouldRebuildKaraokeView() {
+    return refs.karaokeView.children.length !== state.paragraphs.length ||
+           refs.karaokeView.querySelector(".empty");
+  }
+
+  function updateProgressIndicator(currentIdx) {
+    refs.progressIndicator.textContent = `${Math.min(currentIdx + 1, state.paragraphs.length)}/${state.paragraphs.length}`;
+  }
+
+  function highlightCurrentParagraph(currentIdx) {
     const paragraphs = refs.karaokeView.querySelectorAll(".paragraph");
     if (activeParagraphIndex >= 0 && paragraphs[activeParagraphIndex]) {
       paragraphs[activeParagraphIndex].classList.remove("active");
@@ -337,8 +353,6 @@
       paragraphs[currentIdx].classList.add("active");
       paragraphs[currentIdx].scrollIntoView({ behavior: "smooth", block: "center" });
     }
-    activeParagraphIndex = currentIdx;
-    renderFullscreenParagraph();
   }
 
   function buildDefaultPlaylistTitle() {
