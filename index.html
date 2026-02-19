@@ -110,6 +110,7 @@
         <section class="card karaoke-card full-width">
           <h2>Karaoke</h2>
           <div class="karaoke-header">
+            <button id="openFullscreenBtn" class="secondary">Reproducir a pantalla completa</button>
             <span id="progressIndicator" class="badge">0/0</span>
           </div>
           <div id="karaokeView" class="karaoke-view">
@@ -119,6 +120,16 @@
       </main>
 
       <div id="message" class="toast" aria-live="polite"></div>
+    </div>
+
+    <div id="fullscreenKaraoke" class="fullscreen-karaoke" hidden>
+      <button id="closeFullscreenBtn" class="secondary close-fullscreen-btn">Cerrar</button>
+      <div id="fullscreenParagraph" class="fullscreen-paragraph">Aún no hay párrafos.</div>
+      <div class="fullscreen-controls" aria-label="Controles de reproducción">
+        <button id="fsPlayBtn">Play</button>
+        <button id="fsPauseBtn" class="secondary">Pause</button>
+        <button id="fsStopBtn" class="danger">Stop</button>
+      </div>
     </div>
 
     <script src="./app.js"></script>

@@ -52,6 +52,14 @@
     importFile: $("importFile"),
     deleteStoredAudioBtn: $("deleteStoredAudioBtn"),
 
+    openFullscreenBtn: $("openFullscreenBtn"),
+    fullscreenKaraoke: $("fullscreenKaraoke"),
+    fullscreenParagraph: $("fullscreenParagraph"),
+    closeFullscreenBtn: $("closeFullscreenBtn"),
+    fsPlayBtn: $("fsPlayBtn"),
+    fsPauseBtn: $("fsPauseBtn"),
+    fsStopBtn: $("fsStopBtn"),
+
     progressIndicator: $("progressIndicator"),
     karaokeView: $("karaokeView"),
     message: $("message")
@@ -242,6 +250,7 @@
       }
       refs.progressIndicator.textContent = "0/0";
       activeParagraphIndex = -1;
+      renderFullscreenParagraph();
       return;
     }
 
@@ -267,6 +276,41 @@
       paragraphs[currentIdx].scrollIntoView({ behavior: "smooth", block: "center" });
     }
     activeParagraphIndex = currentIdx;
+    renderFullscreenParagraph();
+  }
+
+  function renderFullscreenParagraph() {
+    if (!refs.fullscreenParagraph) return;
+    if (!state.paragraphs.length) {
+      refs.fullscreenParagraph.textContent = "Aún no hay párrafos.";
+      return;
+    }
+    const currentIdx = getCurrentParagraphIndex();
+    refs.fullscreenParagraph.textContent = state.paragraphs[currentIdx] || "";
+  }
+
+  async function openFullscreenKaraoke() {
+    refs.fullscreenKaraoke.hidden = false;
+    renderFullscreenParagraph();
+
+    if (!document.fullscreenElement && refs.fullscreenKaraoke.requestFullscreen) {
+      try {
+        await refs.fullscreenKaraoke.requestFullscreen();
+      } catch {
+        showMessage("No se pudo activar fullscreen del navegador. Se abrió modo ampliado.", true);
+      }
+    }
+  }
+
+  async function closeFullscreenKaraoke() {
+    if (document.fullscreenElement === refs.fullscreenKaraoke && document.exitFullscreen) {
+      try {
+        await document.exitFullscreen();
+      } catch {
+        // no-op
+      }
+    }
+    refs.fullscreenKaraoke.hidden = true;
   }
 
   function getNextPendingText() {
@@ -678,6 +722,28 @@
       }
     });
 
+    refs.openFullscreenBtn.addEventListener("click", openFullscreenKaraoke);
+    refs.closeFullscreenBtn.addEventListener("click", closeFullscreenKaraoke);
+
+    refs.fsPlayBtn.addEventListener("click", async () => {
+      try {
+        await refs.audio.play();
+      } catch (err) {
+        showMessage(`No se pudo reproducir el audio: ${err.message}`, true);
+      }
+    });
+
+    refs.fsPauseBtn.addEventListener("click", () => {
+      refs.audio.pause();
+    });
+
+    refs.fsStopBtn.addEventListener("click", () => {
+      refs.audio.pause();
+      refs.audio.currentTime = 0;
+      updateTimeDisplay();
+      renderKaraoke();
+    });
+
     refs.audio.addEventListener("loadedmetadata", () => {
       updateTimeDisplay();
       if (state.audioMeta) {
@@ -705,6 +771,10 @@
     refs.audio.addEventListener("ended", stopLiveAnalysisLoop);
 
     document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !refs.fullscreenKaraoke.hidden) {
+        closeFullscreenKaraoke();
+      }
+
       if (e.code !== "Space") return;
       const tag = (document.activeElement?.tagName || "").toLowerCase();
       if (tag === "textarea" || tag === "input") return;
@@ -712,6 +782,12 @@
       if (state.mode === "calibration") {
         e.preventDefault();
         markNextParagraph();
+      }
+    });
+
+    document.addEventListener("fullscreenchange", () => {
+      if (document.fullscreenElement !== refs.fullscreenKaraoke) {
+        refs.fullscreenKaraoke.hidden = true;
       }
     });
   }
