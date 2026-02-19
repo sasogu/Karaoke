@@ -99,7 +99,8 @@ label {
 }
 
 textarea,
-input[type="number"] {
+input[type="number"],
+input[type="text"] {
   width: 100%;
   background: var(--card-2);
   color: var(--text);
@@ -175,6 +176,48 @@ button.danger:hover {
 
 .karaoke-card {
   min-height: 280px;
+}
+
+#playlistTitleInput {
+  min-width: 230px;
+  max-width: 420px;
+}
+
+.playlist-view {
+  display: grid;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.playlist-item {
+  display: grid;
+  gap: 8px;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: rgba(11, 18, 32, 0.55);
+}
+
+.playlist-item-main {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+}
+
+.playlist-item-title {
+  font-weight: 600;
+}
+
+.playlist-item-meta {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.playlist-item-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
 .karaoke-header {

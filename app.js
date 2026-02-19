@@ -13,6 +13,7 @@
     paragraphs: [],
     autoTimes: [],
     calibratedTimes: [],
+    playlist: [],
     mode: "auto",
     detector: {
       threshold: 0.02,
@@ -60,6 +61,12 @@
     fsPlayBtn: $("fsPlayBtn"),
     fsPauseBtn: $("fsPauseBtn"),
     fsStopBtn: $("fsStopBtn"),
+
+    playlistTitleInput: $("playlistTitleInput"),
+    addToPlaylistBtn: $("addToPlaylistBtn"),
+    clearPlaylistBtn: $("clearPlaylistBtn"),
+    playlistCount: $("playlistCount"),
+    playlistView: $("playlistView"),
 
     pwaVersion: $("pwaVersion"),
 
@@ -204,6 +211,29 @@
       .filter(Boolean);
   }
 
+  function normalizePlaylistItem(raw) {
+    if (!raw || typeof raw !== "object") return null;
+    const id = String(raw.id || "").trim();
+    if (!id) return null;
+
+    return {
+      id,
+      title: String(raw.title || "Tema sin título"),
+      createdAt: Number(raw.createdAt || Date.now()),
+      audioMeta: raw.audioMeta || null,
+      lyricsOriginal: String(raw.lyricsOriginal || ""),
+      paragraphs: Array.isArray(raw.paragraphs) ? raw.paragraphs : [],
+      autoTimes: Array.isArray(raw.autoTimes) ? raw.autoTimes : [],
+      calibratedTimes: Array.isArray(raw.calibratedTimes) ? raw.calibratedTimes : [],
+      detector: {
+        threshold: Number(raw.detector?.threshold ?? 0.02),
+        minSilenceMs: Number(raw.detector?.minSilenceMs ?? 320),
+        windowMs: Number(raw.detector?.windowMs ?? 80)
+      },
+      offsetSeconds: Number(raw.offsetSeconds ?? 0)
+    };
+  }
+
   function getEffectiveTimes() {
     return state.calibratedTimes.length ? state.calibratedTimes : state.autoTimes;
   }
@@ -215,6 +245,7 @@
       paragraphs: state.paragraphs,
       autoTimes: state.autoTimes,
       calibratedTimes: state.calibratedTimes,
+      playlist: state.playlist,
       detector: state.detector,
       offsetSeconds: state.offsetSeconds,
       audioMeta: state.audioMeta
@@ -231,6 +262,9 @@
       state.paragraphs = Array.isArray(data.paragraphs) ? data.paragraphs : [];
       state.autoTimes = Array.isArray(data.autoTimes) ? data.autoTimes : [];
       state.calibratedTimes = Array.isArray(data.calibratedTimes) ? data.calibratedTimes : [];
+      state.playlist = Array.isArray(data.playlist)
+        ? data.playlist.map(normalizePlaylistItem).filter(Boolean)
+        : [];
       state.detector = {
         threshold: Number(data.detector?.threshold ?? 0.02),
         minSilenceMs: Number(data.detector?.minSilenceMs ?? 320),
@@ -305,6 +339,98 @@
     }
     activeParagraphIndex = currentIdx;
     renderFullscreenParagraph();
+  }
+
+  function buildDefaultPlaylistTitle() {
+    const base = state.audioMeta?.name || "Tema";
+    const now = new Date();
+    const stamp = `${String(now.getHours()).padStart(2, "0")}:${String(now.getMinutes()).padStart(2, "0")}`;
+    return `${base} · ${stamp}`;
+  }
+
+  function renderPlaylist() {
+    refs.playlistCount.textContent = `${state.playlist.length} tema(s)`;
+
+    if (!state.playlist.length) {
+      refs.playlistView.innerHTML = `<p class="empty">Aún no hay temas guardados.</p>`;
+      return;
+    }
+
+    refs.playlistView.innerHTML = "";
+    state.playlist.forEach((item) => {
+      const wrapper = document.createElement("article");
+      wrapper.className = "playlist-item";
+
+      const date = new Date(item.createdAt || Date.now());
+      const hasTimes = (item.calibratedTimes?.length || item.autoTimes?.length || 0) > 0;
+      wrapper.innerHTML = `
+        <div class="playlist-item-main">
+          <div>
+            <div class="playlist-item-title">${item.title}</div>
+            <div class="playlist-item-meta">${item.audioMeta?.name || "sin audio"} · ${item.paragraphs.length} párrafo(s) · ${hasTimes ? "sincronizado" : "sin sincronizar"}</div>
+            <div class="playlist-item-meta">${date.toLocaleString("es-ES")}</div>
+          </div>
+          <div class="playlist-item-actions">
+            <button class="secondary" data-action="load" data-id="${item.id}">Cargar</button>
+            <button data-action="play" data-id="${item.id}">Cargar y reproducir</button>
+            <button class="danger" data-action="delete" data-id="${item.id}">Eliminar</button>
+          </div>
+        </div>
+      `;
+
+      refs.playlistView.appendChild(wrapper);
+    });
+  }
+
+  function addCurrentToPlaylist() {
+    if (!state.audioMeta) return showMessage("Primero selecciona un audio.", true);
+    if (!state.paragraphs.length) return showMessage("Primero agrega la letra por párrafos.", true);
+
+    const times = getEffectiveTimes();
+    if (!times.length) {
+      return showMessage("Primero sincroniza la letra (auto o calibración).", true);
+    }
+
+    const customTitle = refs.playlistTitleInput.value.trim();
+    const id = (typeof crypto !== "undefined" && crypto.randomUUID)
+      ? crypto.randomUUID()
+      : `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+
+    const snapshot = {
+      id,
+      title: customTitle || buildDefaultPlaylistTitle(),
+      createdAt: Date.now(),
+      audioMeta: state.audioMeta ? { ...state.audioMeta } : null,
+      lyricsOriginal: state.lyricsOriginal,
+      paragraphs: [...state.paragraphs],
+      autoTimes: [...state.autoTimes],
+      calibratedTimes: [...state.calibratedTimes],
+      detector: { ...state.detector },
+      offsetSeconds: state.offsetSeconds
+    };
+
+    state.playlist.unshift(snapshot);
+    saveStateToLocalStorage();
+    renderPlaylist();
+    refs.playlistTitleInput.value = "";
+    showMessage("Tema guardado en playlist.");
+  }
+
+  function deletePlaylistItem(id) {
+    const before = state.playlist.length;
+    state.playlist = state.playlist.filter((item) => item.id !== id);
+    if (state.playlist.length === before) return;
+    saveStateToLocalStorage();
+    renderPlaylist();
+    showMessage("Tema eliminado de playlist.");
+  }
+
+  function clearPlaylist() {
+    if (!state.playlist.length) return showMessage("La playlist ya está vacía.");
+    state.playlist = [];
+    saveStateToLocalStorage();
+    renderPlaylist();
+    showMessage("Playlist vaciada.");
   }
 
   function renderFullscreenParagraph() {
@@ -651,18 +777,14 @@
       renderAudioMeta();
       renderMode();
       renderKaraoke(true);
+      renderPlaylist();
 
       if (state.audioMeta) {
-        const found = await getAudioBlob(state.audioMeta);
-        if (found?.blob) {
-          setAudioFromBlob(found.blob, found);
-          refs.audioRestoreHint.textContent = "Audio restaurado automáticamente desde IndexedDB.";
-          showMessage("Importado y audio restaurado.");
-        } else {
-          refs.audioRestoreHint.textContent =
-            "Proyecto importado, pero el audio no está en IndexedDB. Selecciónalo manualmente.";
-          showMessage("Importado. Falta seleccionar audio.", true);
-        }
+        const restored = await restoreAudioFromMeta(state.audioMeta, {
+          successMessage: "Audio restaurado automáticamente desde IndexedDB.",
+          missingMessage: "Proyecto importado, pero el audio no está en IndexedDB. Selecciónalo manualmente."
+        });
+        showMessage(restored ? "Importado y audio restaurado." : "Importado. Falta seleccionar audio.", !restored);
       } else {
         refs.audioRestoreHint.textContent = "Proyecto importado sin metadatos de audio.";
       }
@@ -671,20 +793,86 @@
     }
   }
 
-  async function restoreAudioFromIndexedDBIfPossible() {
-    if (!state.audioMeta) return;
+  async function restoreAudioFromMeta(meta, options = {}) {
+    if (!meta) return false;
+    const {
+      successMessage = "Audio restaurado desde IndexedDB.",
+      missingMessage = "No se encontró el audio en IndexedDB. Selecciónalo nuevamente para restaurar.",
+      autoplay = false
+    } = options;
+
     try {
-      const found = await getAudioBlob(state.audioMeta);
-      if (found?.blob) {
-        setAudioFromBlob(found.blob, found);
-        refs.audioRestoreHint.textContent = "Audio restaurado desde IndexedDB.";
-      } else {
-        refs.audioRestoreHint.textContent =
-          "No se encontró el audio en IndexedDB. Selecciónalo nuevamente para restaurar.";
+      const found = await getAudioBlob(meta);
+      if (!found?.blob) {
+        refs.audioRestoreHint.textContent = missingMessage;
+        return false;
       }
+
+      setAudioFromBlob(found.blob, found);
+      refs.audioRestoreHint.textContent = successMessage;
+
+      if (autoplay) {
+        try {
+          await refs.audio.play();
+        } catch (err) {
+          showMessage(`Audio cargado, pero no se pudo reproducir: ${err.message}`, true);
+        }
+      }
+
+      return true;
     } catch {
       refs.audioRestoreHint.textContent = "Error al intentar restaurar audio desde IndexedDB.";
+      return false;
     }
+  }
+
+  async function loadPlaylistItem(id, autoplay = false) {
+    const item = state.playlist.find((entry) => entry.id === id);
+    if (!item) return showMessage("No se encontró ese tema en la playlist.", true);
+
+    state.lyricsOriginal = item.lyricsOriginal || "";
+    state.paragraphs = Array.isArray(item.paragraphs) ? [...item.paragraphs] : [];
+    state.autoTimes = Array.isArray(item.autoTimes) ? [...item.autoTimes] : [];
+    state.calibratedTimes = Array.isArray(item.calibratedTimes) ? [...item.calibratedTimes] : [];
+    state.detector = {
+      threshold: Number(item.detector?.threshold ?? 0.02),
+      minSilenceMs: Number(item.detector?.minSilenceMs ?? 320),
+      windowMs: Number(item.detector?.windowMs ?? 80)
+    };
+    state.offsetSeconds = Number(item.offsetSeconds ?? 0);
+    state.audioMeta = item.audioMeta ? { ...item.audioMeta } : null;
+
+    saveStateToLocalStorage();
+    renderLyricsUI();
+    renderDetectorControls();
+    renderAudioMeta();
+    renderMode();
+    renderKaraoke(true);
+    refs.nextPending.textContent = state.mode === "auto" ? "Modo Auto activo. Puedes generar tiempos automáticamente." : getNextPendingText();
+
+    if (!state.audioMeta) {
+      refs.audioRestoreHint.textContent = "Tema cargado sin metadatos de audio.";
+      showMessage("Tema cargado (sin audio).", true);
+      return;
+    }
+
+    const restored = await restoreAudioFromMeta(state.audioMeta, {
+      successMessage: `Tema cargado: ${item.title}`,
+      missingMessage: "Tema cargado, pero falta el audio en IndexedDB. Selecciónalo manualmente.",
+      autoplay
+    });
+
+    if (!restored) {
+      showMessage("Tema cargado, pero falta el audio en IndexedDB.", true);
+      return;
+    }
+
+    showMessage(autoplay ? `Reproduciendo: ${item.title}` : `Tema cargado: ${item.title}`);
+  }
+
+  async function restoreAudioFromIndexedDBIfPossible() {
+    if (!state.audioMeta) return;
+    await restoreAudioFromMeta(state.audioMeta);
   }
 
   function attachEvents() {
@@ -794,6 +982,32 @@
       renderKaraoke();
     });
 
+    refs.addToPlaylistBtn.addEventListener("click", addCurrentToPlaylist);
+    refs.clearPlaylistBtn.addEventListener("click", clearPlaylist);
+
+    refs.playlistView.addEventListener("click", async (event) => {
+      const target = event.target;
+      if (!(target instanceof HTMLElement)) return;
+
+      const action = target.dataset.action;
+      const id = target.dataset.id;
+      if (!action || !id) return;
+
+      if (action === "load") {
+        await loadPlaylistItem(id, false);
+        return;
+      }
+
+      if (action === "play") {
+        await loadPlaylistItem(id, true);
+        return;
+      }
+
+      if (action === "delete") {
+        deletePlaylistItem(id);
+      }
+    });
+
     refs.audio.addEventListener("loadedmetadata", () => {
       updateTimeDisplay();
       if (state.audioMeta) {
@@ -891,6 +1105,7 @@
     renderAudioMeta();
     renderMode();
     renderKaraoke(true);
+    renderPlaylist();
     renderFullscreenToggleButton();
     updateTimeDisplay();
     refs.pwaVersion.textContent = `PWA v${APP_CACHE_VERSION}`;

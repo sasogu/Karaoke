@@ -112,6 +112,23 @@
           </p>
         </section>
 
+        <section class="card full-width">
+          <h2>Playlist</h2>
+          <p class="hint">Guarda temas con su audio y sincronización para recargarlos después.</p>
+
+          <div class="row">
+            <label for="playlistTitleInput">Título del tema</label>
+            <input id="playlistTitleInput" type="text" placeholder="Ej: Canción 1 (en vivo)" />
+            <button id="addToPlaylistBtn">Guardar tema en playlist</button>
+            <button id="clearPlaylistBtn" class="secondary">Vaciar playlist</button>
+            <span id="playlistCount" class="badge">0 tema(s)</span>
+          </div>
+
+          <div id="playlistView" class="playlist-view">
+            <p class="empty">Aún no hay temas guardados.</p>
+          </div>
+        </section>
+
         <section class="card karaoke-card full-width">
           <h2>Karaoke</h2>
           <div class="karaoke-header">
