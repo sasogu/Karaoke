@@ -61,6 +61,8 @@
   let sourceNode = null;
   let analyser = null;
   let analysisTimer = null;
+  let currentAudioObjectUrl = null;
+  let activeParagraphIndex = -1;
 
   let db = null;
 
@@ -222,28 +224,49 @@
     return Math.max(0, Math.min(idx, state.paragraphs.length - 1));
   }
 
-  function renderKaraoke() {
+  function buildKaraokeParagraphs() {
     refs.karaokeView.innerHTML = "";
-    if (!state.paragraphs.length) {
-      refs.karaokeView.innerHTML = `<p class="empty">Aún no hay párrafos.</p>`;
-      refs.progressIndicator.textContent = "0/0";
-      return;
-    }
-
-    const currentIdx = getCurrentParagraphIndex();
-
-    state.paragraphs.forEach((text, i) => {
+    state.paragraphs.forEach((text) => {
       const p = document.createElement("p");
       p.className = "paragraph";
       p.textContent = text;
-      if (i === currentIdx) p.classList.add("active");
       refs.karaokeView.appendChild(p);
     });
+    activeParagraphIndex = -1;
+  }
 
+  function renderKaraoke(force = false) {
+    if (!state.paragraphs.length) {
+      if (!refs.karaokeView.querySelector(".empty")) {
+        refs.karaokeView.innerHTML = `<p class="empty">Aún no hay párrafos.</p>`;
+      }
+      refs.progressIndicator.textContent = "0/0";
+      activeParagraphIndex = -1;
+      return;
+    }
+
+    if (force) buildKaraokeParagraphs();
+    if (
+      refs.karaokeView.children.length !== state.paragraphs.length ||
+      refs.karaokeView.querySelector(".empty")
+    ) {
+      buildKaraokeParagraphs();
+      force = true;
+    }
+
+    const currentIdx = getCurrentParagraphIndex();
     refs.progressIndicator.textContent = `${Math.min(currentIdx + 1, state.paragraphs.length)}/${state.paragraphs.length}`;
+    if (!force && currentIdx === activeParagraphIndex) return;
 
-    const activeEl = refs.karaokeView.querySelector(".paragraph.active");
-    if (activeEl) activeEl.scrollIntoView({ behavior: "smooth", block: "center" });
+    const paragraphs = refs.karaokeView.querySelectorAll(".paragraph");
+    if (activeParagraphIndex >= 0 && paragraphs[activeParagraphIndex]) {
+      paragraphs[activeParagraphIndex].classList.remove("active");
+    }
+    if (paragraphs[currentIdx]) {
+      paragraphs[currentIdx].classList.add("active");
+      paragraphs[currentIdx].scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+    activeParagraphIndex = currentIdx;
   }
 
   function getNextPendingText() {
@@ -337,7 +360,9 @@
   }
 
   function setAudioFromBlob(blob, meta) {
+    if (currentAudioObjectUrl) URL.revokeObjectURL(currentAudioObjectUrl);
     const url = URL.createObjectURL(blob);
+    currentAudioObjectUrl = url;
     refs.audio.src = url;
     state.audioMeta = {
       name: meta.name,
@@ -531,7 +556,7 @@
       renderDetectorControls();
       renderAudioMeta();
       renderMode();
-      renderKaraoke();
+      renderKaraoke(true);
 
       if (state.audioMeta) {
         const found = await getAudioBlob(state.audioMeta);
@@ -578,9 +603,11 @@
     refs.applyLyricsBtn.addEventListener("click", () => {
       state.lyricsOriginal = refs.lyricsInput.value;
       state.paragraphs = parseParagraphs(state.lyricsOriginal);
+      state.autoTimes = [];
+      state.calibratedTimes = [];
       saveStateToLocalStorage();
       renderLyricsUI();
-      renderKaraoke();
+      renderKaraoke(true);
       refs.nextPending.textContent = getNextPendingText();
       showMessage(`Letra aplicada: ${state.paragraphs.length} párrafos.`);
     });
@@ -635,7 +662,12 @@
       try {
         if (!state.audioMeta) return showMessage("No hay metadatos de audio para eliminar.");
         await deleteAudioBlob(state.audioMeta);
-        refs.audio.src = "";
+        if (currentAudioObjectUrl) {
+          URL.revokeObjectURL(currentAudioObjectUrl);
+          currentAudioObjectUrl = null;
+        }
+        refs.audio.removeAttribute("src");
+        refs.audio.load();
         state.audioMeta = null;
         saveStateToLocalStorage();
         renderAudioMeta();
@@ -696,10 +728,13 @@
     renderDetectorControls();
     renderAudioMeta();
     renderMode();
-    renderKaraoke();
+    renderKaraoke(true);
     updateTimeDisplay();
     await restoreAudioFromIndexedDBIfPossible();
     attachEvents();
+    window.addEventListener("beforeunload", () => {
+      if (currentAudioObjectUrl) URL.revokeObjectURL(currentAudioObjectUrl);
+    });
   }
 
   init();
