@@ -26,8 +26,6 @@ body {
 
 .app {
   max-width: 1100px;
-  margin: 0 auto;
-  padding: 20px;
 }
 
 .app-footer {
@@ -45,22 +43,13 @@ body {
   color: var(--muted);
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
-
 .card {
   background: rgba(17, 24, 39, 0.92);
   border: 1px solid var(--border);
   border-radius: 14px;
   padding: 16px;
   box-shadow: var(--shadow);
-}
-
-.full-width {
-  grid-column: 1 / -1;
+  height: 100%;
 }
 
 h2 {
@@ -68,7 +57,7 @@ h2 {
   font-size: 1.05rem;
 }
 
-.row {
+.action-row {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
@@ -101,7 +90,8 @@ label {
 
 textarea,
 input[type="number"],
-input[type="text"] {
+input[type="text"],
+select {
   width: 100%;
   background: var(--card-2);
   color: var(--text);
@@ -331,10 +321,4 @@ kbd {
   border-radius: 6px;
   color: #e2e8f0;
   font-size: 0.8rem;
-}
-
-@media (max-width: 860px) {
-  .grid {
-    grid-template-columns: 1fr;
-  }
 }
