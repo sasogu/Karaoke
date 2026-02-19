@@ -13,7 +13,7 @@
     autoTimes: [],
     calibratedTimes: [],
     playlist: [],
-    mode: "auto",
+    mode: "calibration",
     detector: {
       threshold: 0.02,
       minSilenceMs: 320,
@@ -52,6 +52,10 @@
     exportBtn: $("exportBtn"),
     importFile: $("importFile"),
     deleteStoredAudioBtn: $("deleteStoredAudioBtn"),
+    openToolsModalBtn: $("openToolsModalBtn"),
+    toolsModal: $("toolsModal"),
+    toolsModalBackdrop: $("toolsModalBackdrop"),
+    closeToolsModalBtn: $("closeToolsModalBtn"),
 
     openFullscreenBtn: $("openFullscreenBtn"),
     fullscreenKaraoke: $("fullscreenKaraoke"),
@@ -599,6 +603,22 @@
     refs.fullscreenParagraph.textContent = state.paragraphs[currentIdx] || "";
   }
 
+  function isToolsModalOpen() {
+    return refs.toolsModal && !refs.toolsModal.hidden;
+  }
+
+  function openToolsModal() {
+    if (!refs.toolsModal || isToolsModalOpen()) return;
+    refs.toolsModal.hidden = false;
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeToolsModal() {
+    if (!refs.toolsModal || !isToolsModalOpen()) return;
+    refs.toolsModal.hidden = true;
+    document.body.style.overflow = "";
+  }
+
   function isFullscreenKaraokeOpen() {
     return !refs.fullscreenKaraoke.hidden;
   }
@@ -1091,13 +1111,17 @@
     refs.autoSyncBtn.addEventListener("click", runAutoSync);
     refs.undoMarkerBtn.addEventListener("click", undoLastMarker);
     refs.clearTimesBtn.addEventListener("click", clearAllTimes);
-    refs.exportBtn.addEventListener("click", exportProject);
+    refs.exportBtn.addEventListener("click", () => {
+      exportProject();
+      closeToolsModal();
+    });
 
     refs.importFile.addEventListener("change", async (e) => {
       const file = e.target.files?.[0];
       if (!file) return;
       await importProjectFromFile(file);
       refs.importFile.value = "";
+      closeToolsModal();
     });
 
     refs.deleteStoredAudioBtn.addEventListener("click", async () => {
@@ -1122,6 +1146,9 @@
 
     refs.openFullscreenBtn.addEventListener("click", toggleFullscreenKaraoke);
     refs.closeFullscreenBtn.addEventListener("click", closeFullscreenKaraoke);
+    refs.openToolsModalBtn?.addEventListener("click", openToolsModal);
+    refs.closeToolsModalBtn?.addEventListener("click", closeToolsModal);
+    refs.toolsModalBackdrop?.addEventListener("click", closeToolsModal);
 
     refs.fsPlayBtn.addEventListener("click", async () => {
       try {
@@ -1204,6 +1231,14 @@
     refs.audio.addEventListener("ended", stopLiveAnalysisLoop);
 
     document.addEventListener("keydown", (e) => {
+      if (isToolsModalOpen() && e.key === "Escape") {
+        e.preventDefault();
+        closeToolsModal();
+        return;
+      }
+
+      if (isToolsModalOpen()) return;
+
       if (isFullscreenKaraokeOpen()) {
         if (e.key === "Escape") {
           e.preventDefault();

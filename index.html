@@ -24,6 +24,9 @@
         <p class="subtitle">
           Proyecto estático (sin backend) con persistencia en localStorage + IndexedDB
         </p>
+        <div class="action-row header-actions">
+          <button id="openToolsModalBtn" class="secondary">Sincronización y exportar</button>
+        </div>
       </header>
 
       <main class="row g-3">
@@ -63,61 +66,6 @@
           </div>
         </section>
 
-        <section class="card col-12 col-lg-6">
-          <h2>Sincronización</h2>
-
-          <div class="mode-row">
-            <button id="modeAutoBtn" class="secondary">Modo Auto</button>
-            <button id="modeCalibBtn" class="secondary">Modo Calibración</button>
-            <span id="modeStatus" class="badge">Estado: Auto</span>
-          </div>
-
-          <div class="controls-grid">
-            <label>
-              Umbral silencio (RMS)
-              <input id="thresholdInput" type="number" min="0.001" max="1" step="0.001" />
-            </label>
-            <label>
-              Silencio mínimo (ms)
-              <input id="minSilenceInput" type="number" min="50" max="3000" step="10" />
-            </label>
-            <label>
-              Ventana análisis (ms)
-              <input id="windowMsInput" type="number" min="50" max="100" step="5" />
-            </label>
-            <label>
-              Offset global (s)
-              <input id="offsetInput" type="number" min="-10" max="10" step="0.01" />
-            </label>
-          </div>
-
-          <div class="action-row">
-            <button id="autoSyncBtn">Auto-sincronizar</button>
-            <button id="undoMarkerBtn" class="secondary">Deshacer último marcador</button>
-            <button id="clearTimesBtn" class="secondary">Limpiar tiempos</button>
-          </div>
-
-          <p id="calibHelp" class="hint">
-            Calibración: pulsa <kbd>Espacio</kbd> durante reproducción para marcar el inicio del
-            siguiente párrafo.
-          </p>
-          <p id="nextPending" class="hint"></p>
-        </section>
-
-        <section class="card col-12 col-lg-6">
-          <h2>Exportar / Importar</h2>
-
-          <div class="action-row">
-            <button id="exportBtn">Exportar proyecto</button>
-            <label for="importFile" class="file-label">Importar proyecto</label>
-            <input id="importFile" type="file" accept="application/json" />
-          </div>
-
-          <p class="hint">
-            El JSON exportado NO contiene el audio; solo metadatos y configuración.
-          </p>
-        </section>
-
         <section class="card col-12">
           <h2>Playlist</h2>
           <p class="hint">Guarda temas con su audio y sincronización para recargarlos después.</p>
@@ -155,6 +103,71 @@
       <footer class="app-footer">
         <span id="pwaVersion" class="hint">PWA v—</span>
       </footer>
+    </div>
+
+    <div id="toolsModal" class="tools-modal" hidden>
+      <div id="toolsModalBackdrop" class="tools-modal-backdrop"></div>
+      <div class="tools-modal-panel" role="dialog" aria-modal="true" aria-labelledby="toolsModalTitle">
+        <div class="tools-modal-header">
+          <h2 id="toolsModalTitle">Sincronización y exportar</h2>
+          <button id="closeToolsModalBtn" class="secondary">Cerrar</button>
+        </div>
+
+        <section class="card tools-modal-card">
+          <h2>Sincronización</h2>
+
+          <div class="mode-row">
+            <button id="modeAutoBtn" class="secondary">Modo Auto</button>
+            <button id="modeCalibBtn" class="secondary">Modo Calibración</button>
+            <span id="modeStatus" class="badge">Estado: Calibración</span>
+          </div>
+
+          <div class="controls-grid">
+            <label>
+              Umbral silencio (RMS)
+              <input id="thresholdInput" type="number" min="0.001" max="1" step="0.001" />
+            </label>
+            <label>
+              Silencio mínimo (ms)
+              <input id="minSilenceInput" type="number" min="50" max="3000" step="10" />
+            </label>
+            <label>
+              Ventana análisis (ms)
+              <input id="windowMsInput" type="number" min="50" max="100" step="5" />
+            </label>
+            <label>
+              Offset global (s)
+              <input id="offsetInput" type="number" min="-10" max="10" step="0.01" />
+            </label>
+          </div>
+
+          <div class="action-row">
+            <button id="autoSyncBtn">Auto-sincronizar</button>
+            <button id="undoMarkerBtn" class="secondary">Deshacer último marcador</button>
+            <button id="clearTimesBtn" class="secondary">Limpiar tiempos</button>
+          </div>
+
+          <p id="calibHelp" class="hint">
+            Calibración: pulsa <kbd>Espacio</kbd> durante reproducción para marcar el inicio del
+            siguiente párrafo.
+          </p>
+          <p id="nextPending" class="hint"></p>
+        </section>
+
+        <section class="card tools-modal-card">
+          <h2>Exportar / Importar</h2>
+
+          <div class="action-row">
+            <button id="exportBtn">Exportar proyecto</button>
+            <label for="importFile" class="file-label">Importar proyecto</label>
+            <input id="importFile" type="file" accept="application/json" />
+          </div>
+
+          <p class="hint">
+            El JSON exportado NO contiene el audio; solo metadatos y configuración.
+          </p>
+        </section>
+      </div>
     </div>
 
     <div id="fullscreenKaraoke" class="fullscreen-karaoke" hidden>
