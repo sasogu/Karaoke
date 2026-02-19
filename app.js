@@ -6,6 +6,7 @@
   const DB_VERSION = 1;
   const STORE_AUDIOS = "audios";
   const PROJECT_VERSION = "1.0.0";
+  const PROJECT_PACKAGE_VERSION = "zip-v1";
 
   const state = {
     lyricsOriginal: "",
@@ -272,6 +273,49 @@
       .split(/\n\s*\n/g)
       .map((p) => p.trim())
       .filter(Boolean);
+  }
+
+  function sanitizeFileName(name) {
+    const base = String(name || "audio-importado")
+      .replace(/[\\/:*?"<>|\u0000-\u001F]/g, "-")
+      .replace(/\s+/g, " ")
+      .trim();
+    return base || "audio-importado";
+  }
+
+  function normalizeImportedAudioMeta(meta, fallbackName, blob) {
+    const safeName = sanitizeFileName(meta?.name || fallbackName || "audio-importado");
+    const type = String(meta?.type || blob?.type || "audio/mpeg");
+    return {
+      name: safeName,
+      type,
+      size: Number(blob?.size ?? meta?.size ?? 0),
+      duration: Number(meta?.duration ?? 0)
+    };
+  }
+
+  function buildProjectPayload() {
+    return {
+      version: PROJECT_VERSION,
+      lyricsOriginal: state.lyricsOriginal,
+      paragraphs: state.paragraphs,
+      times: {
+        auto: state.autoTimes,
+        calibrated: state.calibratedTimes
+      },
+      detector: state.detector,
+      offsetSeconds: state.offsetSeconds,
+      audioMeta: state.audioMeta
+    };
+  }
+
+  function downloadBlob(blob, filename) {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    a.click();
+    URL.revokeObjectURL(url);
   }
 
   function generateId() {
@@ -936,68 +980,193 @@
     showMessage("Tiempos limpiados.");
   }
 
-  function exportProject() {
-    const payload = {
-      version: PROJECT_VERSION,
-      lyricsOriginal: state.lyricsOriginal,
-      paragraphs: state.paragraphs,
-      times: {
-        auto: state.autoTimes,
-        calibrated: state.calibratedTimes
-      },
-      detector: state.detector,
-      offsetSeconds: state.offsetSeconds,
-      audioMeta: state.audioMeta
-    };
-
-    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
+  async function exportProject() {
+    const payload = buildProjectPayload();
     const ts = new Date().toISOString().replace(/[:.]/g, "-");
-    a.href = url;
-    a.download = `karaoke-project-${ts}.json`;
-    a.click();
-    URL.revokeObjectURL(url);
-    showMessage("Proyecto exportado.");
+
+    if (typeof JSZip === "undefined") {
+      const jsonBlob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+      downloadBlob(jsonBlob, `karaoke-project-${ts}.json`);
+      showMessage("JSZip no disponible. Se exportó solo JSON (sin audio).", true);
+      return;
+    }
+
+    try {
+      const zip = new JSZip();
+      const packagedPayload = {
+        ...payload,
+        package: {
+          format: PROJECT_PACKAGE_VERSION,
+          audioPath: null
+        }
+      };
+      let audioIncluded = false;
+
+      if (state.audioMeta) {
+        const found = await getAudioBlob(state.audioMeta);
+        if (found?.blob) {
+          const safeAudioName = sanitizeFileName(state.audioMeta.name || found.name || "audio-importado");
+          const audioPath = `audio/${safeAudioName}`;
+          const normalizedMeta = normalizeImportedAudioMeta(
+            {
+              ...state.audioMeta,
+              name: safeAudioName,
+              type: found.type || state.audioMeta.type,
+              size: found.blob.size,
+              duration: state.audioMeta.duration
+            },
+            safeAudioName,
+            found.blob
+          );
+
+          packagedPayload.audioMeta = normalizedMeta;
+          packagedPayload.package.audioPath = audioPath;
+          zip.file(audioPath, found.blob);
+          audioIncluded = true;
+        }
+      }
+
+      zip.file("project.json", JSON.stringify(packagedPayload, null, 2));
+      const zipBlob = await zip.generateAsync({
+        type: "blob",
+        compression: "DEFLATE",
+        compressionOptions: { level: 6 }
+      });
+
+      downloadBlob(zipBlob, `karaoke-project-${ts}.zip`);
+      showMessage(
+        audioIncluded
+          ? "Proyecto exportado en ZIP con audio y sincronización."
+          : "Proyecto exportado en ZIP sin audio (no se encontró en IndexedDB).",
+        !audioIncluded
+      );
+    } catch (err) {
+      showMessage(`No se pudo exportar ZIP: ${err.message}`, true);
+    }
+  }
+
+  function applyImportedProjectData(data) {
+    state.lyricsOriginal = String(data.lyricsOriginal || "");
+    state.paragraphs = Array.isArray(data.paragraphs) ? data.paragraphs : parseParagraphs(state.lyricsOriginal);
+    state.autoTimes = Array.isArray(data.times?.auto) ? data.times.auto : [];
+    state.calibratedTimes = Array.isArray(data.times?.calibrated) ? data.times.calibrated : [];
+    state.detector = {
+      threshold: Number(data.detector?.threshold ?? 0.02),
+      minSilenceMs: Number(data.detector?.minSilenceMs ?? 320),
+      windowMs: Number(data.detector?.windowMs ?? 80)
+    };
+    state.offsetSeconds = Number(data.offsetSeconds ?? 0);
+    state.audioMeta = data.audioMeta || null;
+
+    saveStateToLocalStorage();
+
+    renderLyricsUI();
+    renderDetectorControls();
+    renderAudioMeta();
+    renderMode();
+    renderKaraoke(true);
+    renderPlaylist();
+  }
+
+  async function importProjectFromJsonData(data) {
+    applyImportedProjectData(data);
+
+    if (state.audioMeta) {
+      const restored = await restoreAudioFromMeta(state.audioMeta, {
+        successMessage: "Audio restaurado automáticamente desde IndexedDB.",
+        missingMessage: "Proyecto importado, pero el audio no está en IndexedDB. Selecciónalo manualmente."
+      });
+      showMessage(restored ? "Importado y audio restaurado." : "Importado. Falta seleccionar audio.", !restored);
+      return;
+    }
+
+    refs.audioRestoreHint.textContent = "Proyecto importado sin metadatos de audio.";
+    showMessage("Proyecto importado (sin audio).", true);
+  }
+
+  async function importProjectFromZip(file) {
+    if (typeof JSZip === "undefined") {
+      showMessage("No se puede importar ZIP: JSZip no está disponible.", true);
+      return;
+    }
+
+    const zip = await JSZip.loadAsync(file);
+    const declaredProject = zip.file("project.json");
+    const fallbackProject = zip
+      .filter((path, entry) => !entry.dir && path.toLowerCase().endsWith(".json"))
+      .sort((a, b) => a.name.localeCompare(b.name))[0];
+    const projectEntry = declaredProject || fallbackProject;
+
+    if (!projectEntry) {
+      throw new Error("El ZIP no contiene project.json");
+    }
+
+    const data = JSON.parse(await projectEntry.async("string"));
+    applyImportedProjectData(data);
+
+    const declaredAudioPath =
+      typeof data.package?.audioPath === "string" && data.package.audioPath.trim()
+        ? data.package.audioPath.trim()
+        : null;
+
+    let audioEntry = declaredAudioPath ? zip.file(declaredAudioPath) : null;
+    if (!audioEntry) {
+      const audioCandidates = zip
+        .filter((path, entry) => !entry.dir && path.toLowerCase().startsWith("audio/"))
+        .sort((a, b) => a.name.localeCompare(b.name));
+      audioEntry = audioCandidates[0] || null;
+    }
+
+    if (!audioEntry) {
+      if (state.audioMeta) {
+        const restored = await restoreAudioFromMeta(state.audioMeta, {
+          successMessage: "ZIP importado. Audio restaurado desde IndexedDB local.",
+          missingMessage: "ZIP importado sin audio adjunto. Selecciona el audio manualmente."
+        });
+        showMessage(restored ? "ZIP importado y audio restaurado." : "ZIP importado sin audio adjunto.", !restored);
+        return;
+      }
+
+      refs.audioRestoreHint.textContent = "ZIP importado sin archivo de audio.";
+      showMessage("ZIP importado sin audio adjunto.", true);
+      return;
+    }
+
+    const blob = await audioEntry.async("blob");
+    const fallbackName = audioEntry.name.split("/").pop() || "audio-importado";
+    const importedMeta = normalizeImportedAudioMeta(data.audioMeta, fallbackName, blob);
+
+    await saveAudioBlob(importedMeta, blob);
+    state.audioMeta = importedMeta;
+    saveStateToLocalStorage();
+    renderAudioMeta();
+
+    const restored = await restoreAudioFromMeta(importedMeta, {
+      successMessage: "Audio importado desde ZIP y restaurado automáticamente.",
+      missingMessage: "Se importó el ZIP, pero no se pudo restaurar el audio."
+    });
+
+    showMessage(
+      restored
+        ? "ZIP importado con audio y sincronización."
+        : "ZIP importado, pero no se pudo restaurar el audio.",
+      !restored
+    );
   }
 
   async function importProjectFromFile(file) {
     try {
+      const isZip = /\.zip$/i.test(file.name) || file.type === "application/zip";
+      if (isZip) {
+        await importProjectFromZip(file);
+        return;
+      }
+
       const text = await file.text();
       const data = JSON.parse(text);
-
-      state.lyricsOriginal = String(data.lyricsOriginal || "");
-      state.paragraphs = Array.isArray(data.paragraphs) ? data.paragraphs : parseParagraphs(state.lyricsOriginal);
-      state.autoTimes = Array.isArray(data.times?.auto) ? data.times.auto : [];
-      state.calibratedTimes = Array.isArray(data.times?.calibrated) ? data.times.calibrated : [];
-      state.detector = {
-        threshold: Number(data.detector?.threshold ?? 0.02),
-        minSilenceMs: Number(data.detector?.minSilenceMs ?? 320),
-        windowMs: Number(data.detector?.windowMs ?? 80)
-      };
-      state.offsetSeconds = Number(data.offsetSeconds ?? 0);
-      state.audioMeta = data.audioMeta || null;
-
-      saveStateToLocalStorage();
-
-      renderLyricsUI();
-      renderDetectorControls();
-      renderAudioMeta();
-      renderMode();
-      renderKaraoke(true);
-      renderPlaylist();
-
-      if (state.audioMeta) {
-        const restored = await restoreAudioFromMeta(state.audioMeta, {
-          successMessage: "Audio restaurado automáticamente desde IndexedDB.",
-          missingMessage: "Proyecto importado, pero el audio no está en IndexedDB. Selecciónalo manualmente."
-        });
-        showMessage(restored ? "Importado y audio restaurado." : "Importado. Falta seleccionar audio.", !restored);
-      } else {
-        refs.audioRestoreHint.textContent = "Proyecto importado sin metadatos de audio.";
-      }
+      await importProjectFromJsonData(data);
     } catch (err) {
-      showMessage(`Error al importar JSON: ${err.message}`, true);
+      showMessage(`Error al importar archivo: ${err.message}`, true);
     }
   }
 
@@ -1141,8 +1310,8 @@
     refs.autoSyncBtn.addEventListener("click", runAutoSync);
     refs.undoMarkerBtn.addEventListener("click", undoLastMarker);
     refs.clearTimesBtn.addEventListener("click", clearAllTimes);
-    refs.exportBtn.addEventListener("click", () => {
-      exportProject();
+    refs.exportBtn.addEventListener("click", async () => {
+      await exportProject();
       closeToolsModal();
     });
 

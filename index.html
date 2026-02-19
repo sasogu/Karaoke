@@ -161,11 +161,11 @@
           <div class="action-row">
             <button id="exportBtn">Exportar proyecto</button>
             <label for="importFile" class="file-label">Importar proyecto</label>
-            <input id="importFile" type="file" accept="application/json" />
+            <input id="importFile" type="file" accept=".zip,.json,application/zip,application/json" />
           </div>
 
           <p class="hint">
-            El JSON exportado NO contiene el audio; solo metadatos y configuración.
+            Se exporta en ZIP con audio + sincronización. También puedes importar JSON legado.
           </p>
         </section>
       </div>
@@ -181,6 +181,7 @@
       </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
     <script src="./app.js"></script>
   </body>
 </html>
