@@ -323,10 +323,11 @@ button.danger:hover {
   max-height: 74vh;
   overflow-y: auto;
   display: grid;
-  align-content: center;
+  align-content: start;
   gap: 18px;
   scroll-behavior: smooth;
-  scroll-snap-type: y proximity;
+  padding-top: 8px;
+  padding-bottom: 16px;
 }
 
 .paragraph {
@@ -338,7 +339,6 @@ button.danger:hover {
   font-size: clamp(1.15rem, 2.8vw, 2.45rem);
   padding: 16px 18px;
   border-radius: 12px;
-  scroll-snap-align: center;
 }
 
 .paragraph.active {

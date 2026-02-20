@@ -1186,7 +1186,8 @@
     }
     if (paragraphs[currentIdx]) {
       paragraphs[currentIdx].classList.add("active");
-      paragraphs[currentIdx].scrollIntoView({ behavior: "smooth", block: "center" });
+      const block = currentIdx === 0 ? "start" : "center";
+      paragraphs[currentIdx].scrollIntoView({ behavior: "smooth", block });
     }
   }
 
