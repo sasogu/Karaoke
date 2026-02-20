@@ -63,6 +63,9 @@
     closeToolsModalBtn: $("closeToolsModalBtn"),
 
     openFullscreenBtn: $("openFullscreenBtn"),
+    playBtn: $("playBtn"),
+    pauseBtn: $("pauseBtn"),
+    stopBtn: $("stopBtn"),
     fullscreenKaraoke: $("fullscreenKaraoke"),
     fullscreenParagraph: $("fullscreenParagraph"),
     closeFullscreenBtn: $("closeFullscreenBtn"),
@@ -1454,6 +1457,25 @@
     refs.timeDisplay.textContent = `${formatTime(refs.audio.currentTime)} / ${formatTime(refs.audio.duration)}`;
   }
 
+  async function playAudio() {
+    try {
+      await refs.audio.play();
+    } catch (err) {
+      showMessage(t("err_audio_play", { error: err.message }), true);
+    }
+  }
+
+  function pauseAudio() {
+    refs.audio.pause();
+  }
+
+  function stopAudio() {
+    refs.audio.pause();
+    refs.audio.currentTime = 0;
+    updateTimeDisplay();
+    renderKaraoke();
+  }
+
   function setupAudioGraphIfNeeded() {
     if (audioCtx && sourceNode && analyser) return;
     audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -2037,24 +2059,13 @@
     refs.closeToolsModalBtn?.addEventListener("click", closeToolsModal);
     refs.toolsModalBackdrop?.addEventListener("click", closeToolsModal);
 
-    refs.fsPlayBtn.addEventListener("click", async () => {
-      try {
-        await refs.audio.play();
-      } catch (err) {
-        showMessage(t("err_audio_play", { error: err.message }), true);
-      }
-    });
+    refs.playBtn?.addEventListener("click", playAudio);
+    refs.pauseBtn?.addEventListener("click", pauseAudio);
+    refs.stopBtn?.addEventListener("click", stopAudio);
 
-    refs.fsPauseBtn.addEventListener("click", () => {
-      refs.audio.pause();
-    });
-
-    refs.fsStopBtn.addEventListener("click", () => {
-      refs.audio.pause();
-      refs.audio.currentTime = 0;
-      updateTimeDisplay();
-      renderKaraoke();
-    });
+    refs.fsPlayBtn.addEventListener("click", playAudio);
+    refs.fsPauseBtn.addEventListener("click", pauseAudio);
+    refs.fsStopBtn.addEventListener("click", stopAudio);
 
     if (refs.addToPlaylistBtn) {
       refs.addToPlaylistBtn.addEventListener("click", addCurrentToPlaylist);
@@ -2168,21 +2179,16 @@
         if (e.code === "Space") {
           e.preventDefault();
           if (refs.audio.paused) {
-            refs.audio.play().catch((err) => {
-              showMessage(t("err_audio_play", { error: err.message }), true);
-            });
+            playAudio();
           } else {
-            refs.audio.pause();
+            pauseAudio();
           }
           return;
         }
 
         if (e.key.toLowerCase() === "s") {
           e.preventDefault();
-          refs.audio.pause();
-          refs.audio.currentTime = 0;
-          updateTimeDisplay();
-          renderKaraoke();
+          stopAudio();
           return;
         }
 

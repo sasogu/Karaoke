@@ -273,6 +273,13 @@ button.danger:hover {
   align-items: center;
   gap: 10px;
   margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.karaoke-controls-inline {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
 .karaoke-view {
@@ -532,6 +539,14 @@ kbd {
   .karaoke-header {
     justify-content: flex-start;
     flex-wrap: wrap;
+  }
+
+  .karaoke-controls-inline {
+    width: 100%;
+  }
+
+  .karaoke-controls-inline button {
+    flex: 1 1 120px;
   }
 
   .karaoke-card {
