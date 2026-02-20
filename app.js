@@ -51,7 +51,7 @@
     undoMarkerBtn: $("undoMarkerBtn"),
     clearTimesBtn: $("clearTimesBtn"),
     nextPending: $("nextPending"),
-    languageSelect: $("languageSelect"),
+    languageSwitch: $("languageSwitch"),
     mainBlocks: $("mainBlocks"),
 
     exportBtn: $("exportBtn"),
@@ -573,9 +573,17 @@
       refs.playlistNameInput.placeholder = t("playlist_name_placeholder");
     }
 
-    if (refs.languageSelect) {
-      refs.languageSelect.setAttribute("aria-label", t("language_label"));
-    }
+  }
+
+  function renderLanguageSwitch() {
+    if (!refs.languageSwitch) return;
+    const buttons = refs.languageSwitch.querySelectorAll(".lang-btn");
+    buttons.forEach((button) => {
+      if (!(button instanceof HTMLButtonElement)) return;
+      const isActive = button.dataset.lang === currentLanguage;
+      button.classList.toggle("active", isActive);
+      button.setAttribute("aria-pressed", isActive ? "true" : "false");
+    });
   }
 
   function detectInitialLanguage() {
@@ -605,14 +613,11 @@
     currentLanguage = normalized;
     document.documentElement.lang = normalized === "val" ? "ca" : normalized;
 
-    if (refs.languageSelect) {
-      refs.languageSelect.value = normalized;
-    }
-
     if (persist) {
       localStorage.setItem(LS_LANG_KEY, normalized);
     }
 
+    renderLanguageSwitch();
     applyStaticTranslations();
     renderLyricsUI();
     renderPlaylist();
@@ -1958,9 +1963,12 @@
   }
 
   function attachEvents() {
-    refs.languageSelect?.addEventListener("change", (event) => {
-      const value = event.target instanceof HTMLSelectElement ? event.target.value : "es";
-      setLanguage(value);
+    refs.languageSwitch?.addEventListener("click", (event) => {
+      const target = event.target;
+      if (!(target instanceof HTMLElement)) return;
+      const button = target.closest(".lang-btn");
+      if (!(button instanceof HTMLButtonElement)) return;
+      setLanguage(button.dataset.lang || "es");
     });
 
     attachBlockOrderEvents();

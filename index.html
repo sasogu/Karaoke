@@ -26,13 +26,12 @@
           tus temas favoritos en la playlist y ¡a cantar!
         </p>
         <div class="action-row header-actions">
-          <label for="languageSelect" data-i18n="language_label">Idioma</label>
-          <select id="languageSelect" aria-label="Selector de idioma">
-            <option value="es">Español</option>
-            <option value="val">Valencià</option>
-            <option value="en">English</option>
-          </select>
           <button id="openToolsModalBtn" class="secondary" data-i18n="open_tools">Sincronización y exportar</button>
+          <div id="languageSwitch" class="language-switch" data-i18n-aria-label="language_label" aria-label="Idioma">
+            <button type="button" class="secondary lang-btn" data-lang="es">ES</button>
+            <button type="button" class="secondary lang-btn" data-lang="val">CA</button>
+            <button type="button" class="secondary lang-btn" data-lang="en">EN</button>
+          </div>
         </div>
       </header>
 

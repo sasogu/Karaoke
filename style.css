@@ -45,6 +45,34 @@ body {
 
 .header-actions {
   margin-top: 8px;
+  justify-content: flex-end;
+}
+
+.language-switch {
+  display: inline-flex;
+  gap: 6px;
+  padding: 4px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(11, 18, 32, 0.7);
+}
+
+.lang-btn {
+  min-width: 46px;
+  padding: 7px 10px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.lang-btn.active {
+  background: var(--primary);
+  border-color: rgba(34, 197, 94, 0.45);
+}
+
+.lang-btn.active:hover {
+  background: var(--primary-2);
 }
 
 .card {
@@ -527,6 +555,24 @@ kbd {
   .action-row button,
   .action-row .file-label {
     width: 100%;
+  }
+
+  .header-actions {
+    justify-content: flex-start;
+  }
+
+  .header-actions #openToolsModalBtn {
+    width: auto;
+  }
+
+  .header-actions .language-switch {
+    width: auto;
+  }
+
+  .header-actions .language-switch .lang-btn {
+    width: auto;
+    flex: 0 0 auto;
+    min-height: 40px;
   }
 
   .action-row .badge {
