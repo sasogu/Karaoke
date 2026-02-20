@@ -1017,13 +1017,17 @@
     if (!raw || typeof raw !== "object") return null;
 
     const id = String(raw.id || "").trim() || generateId();
+    const lyricsOriginal = String(raw.lyricsOriginal || "");
+    const paragraphs = Array.isArray(raw.paragraphs) && raw.paragraphs.length
+      ? raw.paragraphs
+      : parseParagraphs(lyricsOriginal);
     return {
       id,
       title: String(raw.title || t("track_default_name")),
       createdAt: Number(raw.createdAt || Date.now()),
       audioMeta: raw.audioMeta || null,
-      lyricsOriginal: String(raw.lyricsOriginal || ""),
-      paragraphs: Array.isArray(raw.paragraphs) ? raw.paragraphs : [],
+      lyricsOriginal,
+      paragraphs,
       autoTimes: Array.isArray(raw.autoTimes) ? raw.autoTimes : [],
       calibratedTimes: Array.isArray(raw.calibratedTimes) ? raw.calibratedTimes : [],
       detector: {
@@ -1081,7 +1085,9 @@
     try {
       const data = JSON.parse(raw);
       state.lyricsOriginal = data.lyricsOriginal || "";
-      state.paragraphs = Array.isArray(data.paragraphs) ? data.paragraphs : [];
+      state.paragraphs = Array.isArray(data.paragraphs) && data.paragraphs.length
+        ? data.paragraphs
+        : parseParagraphs(state.lyricsOriginal);
       state.autoTimes = Array.isArray(data.autoTimes) ? data.autoTimes : [];
       state.calibratedTimes = Array.isArray(data.calibratedTimes) ? data.calibratedTimes : [];
       if (Array.isArray(data.playlist)) {
