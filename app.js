@@ -1387,7 +1387,22 @@
       return;
     }
     const currentIdx = getCurrentParagraphIndex();
-    refs.fullscreenParagraph.textContent = state.paragraphs[currentIdx] || "";
+    const currentText = state.paragraphs[currentIdx] || "";
+    const nextText = state.paragraphs[currentIdx + 1] || "";
+
+    refs.fullscreenParagraph.innerHTML = "";
+
+    const current = document.createElement("div");
+    current.className = "fullscreen-current";
+    current.textContent = currentText;
+    refs.fullscreenParagraph.appendChild(current);
+
+    if (nextText) {
+      const next = document.createElement("div");
+      next.className = "fullscreen-next";
+      next.textContent = nextText;
+      refs.fullscreenParagraph.appendChild(next);
+    }
   }
 
   function isToolsModalOpen() {

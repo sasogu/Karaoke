@@ -442,11 +442,29 @@ button.danger:hover {
 .fullscreen-paragraph {
   width: min(1100px, 88vw);
   text-align: center;
+  color: #f8fafc;
+  text-wrap: balance;
+  display: grid;
+  gap: clamp(10px, 2vh, 24px);
+}
+
+.fullscreen-current {
   font-size: clamp(2rem, 4.8vw, 4.2rem);
   line-height: 1.28;
   font-weight: 700;
-  color: #f8fafc;
-  text-wrap: balance;
+}
+
+.fullscreen-next {
+  font-size: clamp(1.05rem, 2.2vw, 1.9rem);
+  line-height: 1.35;
+  font-weight: 500;
+  color: rgba(248, 250, 252, 0.72);
+  max-width: min(900px, 80vw);
+  margin: 0 auto;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .fullscreen-controls {
