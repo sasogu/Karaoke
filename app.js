@@ -9,6 +9,7 @@
   const PROJECT_PACKAGE_VERSION = "zip-v1";
   const LS_LANG_KEY = "karaokeLanguageV1";
   const LS_BLOCK_ORDER_KEY = "karaokeBlockOrderV1";
+  const LS_BLOCK_COLLAPSE_KEY = "karaokeBlockCollapseV1";
 
   const state = {
     lyricsOriginal: "",
@@ -147,6 +148,8 @@
       clear_times: "Limpiar tiempos",
       move_up: "Subir",
       move_down: "Bajar",
+      collapse_block: "Contraer bloque",
+      expand_block: "Expandir bloque",
       calibration_help: "Calibración: pulsa <kbd>Espacio</kbd> durante reproducción para marcar el inicio del siguiente párrafo.",
       pending_none: "No hay párrafos para calibrar.",
       pending_done: "Calibración completa.",
@@ -287,6 +290,8 @@
       clear_times: "Netejar temps",
       move_up: "Pujar",
       move_down: "Baixar",
+      collapse_block: "Contraure bloc",
+      expand_block: "Expandir bloc",
       calibration_help: "Calibració: prem <kbd>Espai</kbd> durant la reproducció per a marcar l'inici del següent paràgraf.",
       pending_none: "No hi ha paràgrafs per a calibrar.",
       pending_done: "Calibració completada.",
@@ -427,6 +432,8 @@
       clear_times: "Clear timings",
       move_up: "Move up",
       move_down: "Move down",
+      collapse_block: "Collapse block",
+      expand_block: "Expand block",
       calibration_help: "Calibration: press <kbd>Space</kbd> during playback to mark the start of the next paragraph.",
       pending_none: "No paragraphs to calibrate.",
       pending_done: "Calibration complete.",
@@ -639,20 +646,63 @@
     localStorage.setItem(LS_BLOCK_ORDER_KEY, JSON.stringify(order));
   }
 
+  function saveCollapsedBlocks() {
+    const collapsed = getReorderableBlocks()
+      .filter((block) => block.classList.contains("collapsed"))
+      .map((block) => block.dataset.blockId)
+      .filter(Boolean);
+    localStorage.setItem(LS_BLOCK_COLLAPSE_KEY, JSON.stringify(collapsed));
+  }
+
   function refreshBlockOrderControls() {
     const blocks = getReorderableBlocks();
     blocks.forEach((block, index) => {
       const upBtn = block.querySelector('[data-action="move-up"]');
       const downBtn = block.querySelector('[data-action="move-down"]');
+      const collapseBtn = block.querySelector('[data-action="toggle-collapse"]');
       if (upBtn instanceof HTMLButtonElement) {
         upBtn.disabled = index === 0;
+        upBtn.textContent = "↑";
         upBtn.title = t("move_up");
+        upBtn.setAttribute("aria-label", t("move_up"));
       }
       if (downBtn instanceof HTMLButtonElement) {
         downBtn.disabled = index === blocks.length - 1;
+        downBtn.textContent = "↓";
         downBtn.title = t("move_down");
+        downBtn.setAttribute("aria-label", t("move_down"));
+      }
+      if (collapseBtn instanceof HTMLButtonElement) {
+        const collapsed = block.classList.contains("collapsed");
+        collapseBtn.textContent = collapsed ? "▸" : "▾";
+        collapseBtn.title = collapsed ? t("expand_block") : t("collapse_block");
+        collapseBtn.setAttribute("aria-label", collapseBtn.title);
+        collapseBtn.setAttribute("aria-expanded", collapsed ? "false" : "true");
       }
     });
+  }
+
+  function applySavedCollapsedBlocks() {
+    const raw = localStorage.getItem(LS_BLOCK_COLLAPSE_KEY);
+    if (!raw) return;
+    try {
+      const collapsed = JSON.parse(raw);
+      if (!Array.isArray(collapsed)) return;
+      const collapsedSet = new Set(collapsed.map(String));
+      getReorderableBlocks().forEach((block) => {
+        const id = String(block.dataset.blockId || "");
+        block.classList.toggle("collapsed", collapsedSet.has(id));
+      });
+    } catch {
+      // no-op
+    }
+  }
+
+  function toggleBlockCollapsed(block) {
+    if (!block) return;
+    block.classList.toggle("collapsed");
+    saveCollapsedBlocks();
+    refreshBlockOrderControls();
   }
 
   function applySavedBlockOrder() {
@@ -723,6 +773,8 @@
         moveBlock(block, "up");
       } else if (action === "move-down") {
         moveBlock(block, "down");
+      } else if (action === "toggle-collapse") {
+        toggleBlockCollapsed(block);
       }
     });
   }
@@ -2247,6 +2299,8 @@
     renderPlaylist();
     renderFullscreenToggleButton();
     applySavedBlockOrder();
+    applySavedCollapsedBlocks();
+    refreshBlockOrderControls();
     updateTimeDisplay();
     if (refs.pwaVersion) refs.pwaVersion.textContent = "PWA v—";
 

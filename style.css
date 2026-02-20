@@ -102,13 +102,21 @@ h2 {
 }
 
 .block-order-btn {
-  padding: 6px 9px;
-  font-size: 0.78rem;
+  min-width: 34px;
+  min-height: 34px;
+  padding: 6px 8px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1;
 }
 
 .block-order-btn:disabled {
   opacity: 0.55;
   cursor: not-allowed;
+}
+
+.reorderable-block.collapsed > :not(.block-header) {
+  display: none !important;
 }
 
 .action-row {
@@ -492,11 +500,13 @@ kbd {
   }
 
   .block-order-controls {
-    width: 100%;
+    width: auto;
   }
 
   .block-order-btn {
-    width: 100%;
+    width: auto;
+    min-width: 40px;
+    min-height: 40px;
   }
 
   audio {
