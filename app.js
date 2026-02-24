@@ -10,7 +10,6 @@
   const LS_LANG_KEY = "karaokeLanguageV1";
   const LS_BLOCK_ORDER_KEY = "karaokeBlockOrderV1";
   const LS_BLOCK_COLLAPSE_KEY = "karaokeBlockCollapseV1";
-  const LS_REMOTE_CATALOG_URL_KEY = "karaokeRemoteCatalogUrlV1";
   const DEFAULT_REMOTE_CATALOG_URL = "./catalog/canciones.json";
 
   const state = {
@@ -20,7 +19,6 @@
     calibratedTimes: [],
     playlist: [],
     remoteSongs: [],
-    remoteCatalogUrl: DEFAULT_REMOTE_CATALOG_URL,
     mode: "calibration",
     detector: {
       threshold: 0.02,
@@ -88,10 +86,13 @@
     playlistCount: $("playlistCount"),
     playlistView: $("playlistView"),
 
-    remoteCatalogUrlInput: $("remoteCatalogUrlInput"),
     loadRemoteCatalogBtn: $("loadRemoteCatalogBtn"),
     remoteCatalogStatus: $("remoteCatalogStatus"),
     remoteSongsView: $("remoteSongsView"),
+
+    publishCategoryInput: $("publishCategoryInput"),
+    publishSlugInput: $("publishSlugInput"),
+    exportPublishJsonBtn: $("exportPublishJsonBtn"),
 
     pwaVersion: $("pwaVersion"),
 
@@ -138,14 +139,13 @@
       no_tracks_saved: "Aún no hay temas guardados.",
       no_playlists_saved: "Aún no hay playlists guardadas.",
       remote_songs_title: "Canciones subidas",
-      remote_songs_hint: "Carga un catálogo JSON (GitHub Pages o raw.githubusercontent.com) con MP3 y sincronización.",
-      remote_catalog_url_label: "URL del catálogo",
-      remote_catalog_url_placeholder: "https://raw.githubusercontent.com/usuario/repo/main/catalog/canciones.json",
-      remote_load_btn: "Cargar catálogo",
+      remote_songs_hint: "Este listado se carga automáticamente desde el catálogo publicado del proyecto.",
+      remote_reload_btn: "Recargar publicadas",
       remote_songs_empty: "Aún no hay canciones remotas cargadas.",
-      remote_status_idle: "Pendiente",
+      remote_status_idle: "Sin publicar",
       remote_status_loading: "Cargando...",
-      remote_status_ready: "{count} canción(es)",
+      remote_status_ready: "{count} publicadas",
+      remote_category_default: "General",
       karaoke_title: "Karaoke",
       no_paragraphs: "Aún no hay párrafos.",
       fullscreen_open: "Reproducir a pantalla completa",
@@ -178,6 +178,13 @@
       export_project: "Exportar proyecto",
       import_project: "Importar proyecto",
       export_hint: "Se exporta en ZIP con audio + sincronización. También puedes importar JSON legado.",
+      publish_export_title: "Publicar en catálogo",
+      publish_category_label: "Categoría",
+      publish_category_placeholder: "pop",
+      publish_slug_label: "Slug/ID del tema",
+      publish_slug_placeholder: "mi-cancion",
+      publish_export_btn: "Exportar JSON publicable",
+      publish_export_hint: "Descarga un JSON del tema sincronizado para guardarlo en la carpeta sync/ y publicarlo con el catálogo.",
       playback_controls: "Controles de reproducción",
       play: "Play",
       pause: "Pause",
@@ -243,9 +250,12 @@
       err_remote_catalog_fetch: "No se pudo cargar el catálogo remoto: {error}",
       err_remote_catalog_invalid: "El catálogo remoto no tiene un formato válido.",
       err_remote_song_not_found: "No se encontró la canción remota.",
+      err_publish_missing_audio: "Para publicar, primero selecciona o carga un audio.",
+      err_publish_missing_lyrics: "Para publicar, primero agrega y sincroniza la letra.",
       hint_remote_song_loaded: "Canción remota cargada: {title}",
       msg_remote_song_loaded: "Canción remota lista: {title}",
       msg_remote_song_playing: "Reproduciendo canción remota: {title}",
+      msg_publish_json_exported: "JSON publicable exportado: {file}",
       hint_track_loaded_no_audio: "Tema cargado sin metadatos de audio.",
       warn_track_loaded_without_audio: "Tema cargado (sin audio).",
       hint_track_loaded: "Tema cargado: {title}",
@@ -997,6 +1007,15 @@
     return base || "audio-importado";
   }
 
+  function slugify(value) {
+    return String(value || "")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "") || "tema";
+  }
+
   function normalizeImportedAudioMeta(meta, fallbackName, blob) {
     const safeName = sanitizeFileName(meta?.name || fallbackName || "audio-importado");
     const type = String(meta?.type || blob?.type || "audio/mpeg");
@@ -1103,8 +1122,7 @@
       detector: state.detector,
       offsetSeconds: state.offsetSeconds,
       audioMeta: state.audioMeta,
-      audioSourceUrl: state.audioSourceUrl,
-      remoteCatalogUrl: state.remoteCatalogUrl
+      audioSourceUrl: state.audioSourceUrl
     };
     localStorage.setItem(LS_KEY, JSON.stringify(payload));
   }
@@ -1138,7 +1156,6 @@
       state.offsetSeconds = Number(data.offsetSeconds ?? 0);
       state.audioMeta = data.audioMeta || null;
       state.audioSourceUrl = typeof data.audioSourceUrl === "string" ? data.audioSourceUrl : null;
-      state.remoteCatalogUrl = String(data.remoteCatalogUrl || localStorage.getItem(LS_REMOTE_CATALOG_URL_KEY) || DEFAULT_REMOTE_CATALOG_URL);
     } catch {
       showMessage(t("err_local_state_invalid"), true);
     }
@@ -1304,12 +1321,16 @@
       syncPlaylistNameInputFromSelection();
   }
 
-  function normalizeRemoteSong(raw) {
+  function normalizeRemoteSong(raw, categoryMap = new Map()) {
     if (!raw || typeof raw !== "object") return null;
 
     const title = String(raw.title || "").trim();
     const audioUrl = String(raw.audioUrl || raw.audio || "").trim();
     if (!title || !audioUrl) return null;
+
+    const categoryId = String(raw.category || raw.categoryId || "").trim() || "general";
+    const categoryFromMap = categoryMap.get(categoryId);
+    const categoryTitle = String(raw.categoryTitle || categoryFromMap?.title || t("remote_category_default")).trim() || t("remote_category_default");
 
     const lyricsOriginal = String(raw.lyricsOriginal || raw.lyrics || "");
     const paragraphs = Array.isArray(raw.paragraphs) && raw.paragraphs.length
@@ -1327,6 +1348,8 @@
       id: String(raw.id || "").trim() || generateId(),
       title,
       audioUrl,
+      categoryId,
+      categoryTitle,
       lyricsOriginal,
       paragraphs,
       autoTimes: timesAuto,
@@ -1356,33 +1379,83 @@
     }
 
     refs.remoteSongsView.innerHTML = "";
+    const grouped = new Map();
     state.remoteSongs.forEach((song) => {
-      const hasTimes = (song.calibratedTimes?.length || song.autoTimes?.length || 0) > 0;
-      const wrapper = document.createElement("article");
-      wrapper.className = "playlist-item";
-      wrapper.innerHTML = `
-        <div class="playlist-item-main">
-          <div>
-            <div class="playlist-item-title">${song.title}</div>
-            <div class="playlist-item-meta">${inferAudioNameFromUrl(song.audioUrl)} · ${t("paragraph_count", { count: song.paragraphs.length })} · ${hasTimes ? t("playlist_sync_yes") : t("playlist_sync_no")}</div>
-          </div>
-          <div class="playlist-item-actions">
-            <button class="secondary" data-action="remote-load" data-id="${song.id}">${t("btn_load")}</button>
-            <button data-action="remote-play" data-id="${song.id}">${t("btn_load_play")}</button>
-          </div>
-        </div>
-      `;
-      refs.remoteSongsView.appendChild(wrapper);
+      const key = `${song.categoryId}::${song.categoryTitle}`;
+      if (!grouped.has(key)) {
+        grouped.set(key, {
+          categoryId: song.categoryId,
+          categoryTitle: song.categoryTitle,
+          songs: []
+        });
+      }
+      grouped.get(key).songs.push(song);
     });
+
+    Array.from(grouped.values())
+      .sort((a, b) => a.categoryTitle.localeCompare(b.categoryTitle, "es"))
+      .forEach((group) => {
+        const section = document.createElement("section");
+        section.className = "remote-category";
+
+        const title = document.createElement("h3");
+        title.className = "remote-category-title";
+        title.textContent = group.categoryTitle;
+        section.appendChild(title);
+
+        group.songs
+          .sort((a, b) => a.title.localeCompare(b.title, "es"))
+          .forEach((song) => {
+            const hasTimes = (song.calibratedTimes?.length || song.autoTimes?.length || 0) > 0;
+            const wrapper = document.createElement("article");
+            wrapper.className = "playlist-item";
+            wrapper.innerHTML = `
+              <div class="playlist-item-main">
+                <div>
+                  <div class="playlist-item-title">${song.title}</div>
+                  <div class="playlist-item-meta">${inferAudioNameFromUrl(song.audioUrl)} · ${t("paragraph_count", { count: song.paragraphs.length })} · ${hasTimes ? t("playlist_sync_yes") : t("playlist_sync_no")}</div>
+                </div>
+                <div class="playlist-item-actions">
+                  <button class="secondary" data-action="remote-load" data-id="${song.id}">${t("btn_load")}</button>
+                  <button data-action="remote-play" data-id="${song.id}">${t("btn_load_play")}</button>
+                </div>
+              </div>
+            `;
+            section.appendChild(wrapper);
+          });
+
+        refs.remoteSongsView.appendChild(section);
+      });
+  }
+
+  function parseRemoteCatalogPayload(payload) {
+    if (Array.isArray(payload)) {
+      return { songsRaw: payload, categoryMap: new Map() };
+    }
+
+    if (!payload || typeof payload !== "object") {
+      return { songsRaw: null, categoryMap: new Map() };
+    }
+
+    const songsRaw = Array.isArray(payload.songs) ? payload.songs : null;
+    const categoriesRaw = Array.isArray(payload.categories) ? payload.categories : [];
+    const categoryMap = new Map();
+
+    categoriesRaw.forEach((entry) => {
+      if (!entry || typeof entry !== "object") return;
+      const id = String(entry.id || entry.slug || "").trim();
+      const title = String(entry.title || entry.name || "").trim();
+      if (!id || !title) return;
+      categoryMap.set(id, { id, title });
+    });
+
+    return { songsRaw, categoryMap };
   }
 
   async function loadRemoteCatalog() {
-    if (!refs.remoteCatalogUrlInput || !refs.remoteCatalogStatus) return;
+    if (!refs.remoteCatalogStatus) return;
 
-    const url = String(refs.remoteCatalogUrlInput.value || "").trim() || DEFAULT_REMOTE_CATALOG_URL;
-    refs.remoteCatalogUrlInput.value = url;
-    state.remoteCatalogUrl = url;
-    localStorage.setItem(LS_REMOTE_CATALOG_URL_KEY, url);
+    const url = DEFAULT_REMOTE_CATALOG_URL;
     refs.remoteCatalogStatus.textContent = t("remote_status_loading");
 
     try {
@@ -1392,20 +1465,19 @@
       }
 
       const payload = await response.json();
-      const songsRaw = Array.isArray(payload)
-        ? payload
-        : (Array.isArray(payload?.songs) ? payload.songs : null);
+      const { songsRaw, categoryMap } = parseRemoteCatalogPayload(payload);
 
       if (!songsRaw) {
         throw new Error(t("err_remote_catalog_invalid"));
       }
 
-      state.remoteSongs = songsRaw.map(normalizeRemoteSong).filter(Boolean);
+      state.remoteSongs = songsRaw.map((song) => normalizeRemoteSong(song, categoryMap)).filter(Boolean);
       renderRemoteSongs();
       showMessage(t("remote_status_ready", { count: state.remoteSongs.length }));
     } catch (err) {
-      state.remoteSongs = [];
-      renderRemoteSongs();
+      if (!state.remoteSongs.length) {
+        renderRemoteSongs();
+      }
       showMessage(t("err_remote_catalog_fetch", { error: err.message }), true);
     }
   }
@@ -2036,6 +2108,56 @@
     }
   }
 
+  function exportPublishSongJson() {
+    if (!state.audioMeta) {
+      showMessage(t("err_publish_missing_audio"), true);
+      return;
+    }
+
+    const times = getEffectiveTimes();
+    if (!state.paragraphs.length || !times.length) {
+      showMessage(t("err_publish_missing_lyrics"), true);
+      return;
+    }
+
+    const categoryRaw = refs.publishCategoryInput?.value?.trim() || "general";
+    const category = slugify(categoryRaw);
+    const baseTitle = state.audioMeta?.name?.replace(/\.[^.]+$/, "") || t("track_default_name");
+    const slugRaw = refs.publishSlugInput?.value?.trim() || baseTitle;
+    const slug = slugify(slugRaw);
+
+    const payload = {
+      id: slug,
+      title: baseTitle,
+      category,
+      lyricsOriginal: state.lyricsOriginal,
+      paragraphs: [...state.paragraphs],
+      times: {
+        auto: [...state.autoTimes],
+        calibrated: [...state.calibratedTimes]
+      },
+      offsetSeconds: Number(state.offsetSeconds ?? 0),
+      detector: {
+        threshold: Number(state.detector?.threshold ?? 0.02),
+        minSilenceMs: Number(state.detector?.minSilenceMs ?? 320),
+        windowMs: Number(state.detector?.windowMs ?? 80)
+      },
+      audioMeta: {
+        name: state.audioMeta.name,
+        type: state.audioMeta.type || "audio/mpeg"
+      }
+    };
+
+    if (state.audioSourceUrl) {
+      payload.audioUrl = state.audioSourceUrl;
+    }
+
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+    const fileName = `${slug}.json`;
+    downloadBlob(blob, fileName);
+    showMessage(t("msg_publish_json_exported", { file: fileName }));
+  }
+
   function applyImportedProjectData(data) {
     state.lyricsOriginal = String(data.lyricsOriginal || "");
     state.paragraphs = Array.isArray(data.paragraphs) ? data.paragraphs : parseParagraphs(state.lyricsOriginal);
@@ -2393,11 +2515,7 @@
     }
 
     refs.loadRemoteCatalogBtn?.addEventListener("click", loadRemoteCatalog);
-    refs.remoteCatalogUrlInput?.addEventListener("keydown", async (event) => {
-      if (event.key !== "Enter") return;
-      event.preventDefault();
-      await loadRemoteCatalog();
-    });
+    refs.exportPublishJsonBtn?.addEventListener("click", exportPublishSongJson);
 
     if (refs.playlistView) {
       refs.playlistView.addEventListener("click", async (event) => {
@@ -2571,9 +2689,6 @@
     renderMode();
     renderKaraoke(true);
     renderPlaylist();
-    if (refs.remoteCatalogUrlInput) {
-      refs.remoteCatalogUrlInput.value = state.remoteCatalogUrl || DEFAULT_REMOTE_CATALOG_URL;
-    }
     renderRemoteSongs();
     if (refs.remoteCatalogStatus && !state.remoteSongs.length) {
       refs.remoteCatalogStatus.textContent = t("remote_status_idle");
@@ -2591,6 +2706,7 @@
     }
 
     await restoreAudioFromIndexedDBIfPossible();
+  await loadRemoteCatalog();
     await registerServiceWorker();
     attachEvents();
     window.addEventListener("beforeunload", () => {

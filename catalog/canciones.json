@@ -1,13 +1,35 @@
 {
+  "generatedAt": "2026-02-24T21:26:50.860Z",
+  "source": {
+    "audioDir": "audio",
+    "syncDir": "sync"
+  },
+  "categories": [
+    {
+      "id": "demos",
+      "title": "Demos"
+    }
+  ],
   "songs": [
     {
-      "id": "demo-track",
-      "title": "Tema de ejemplo",
-      "audioUrl": "https://raw.githubusercontent.com/usuario/repo/main/audio/tema-ejemplo.mp3",
-      "lyricsOriginal": "Estrofa 1\n\nEstrofa 2\n\nEstribillo",
+      "id": "tema-demo",
+      "title": "Tema Demo Remoto",
+      "category": "demos",
+      "categoryTitle": "Demos",
+      "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+      "lyricsOriginal": "Esta es la primera estrofa del tema demo.\n\nAquí va la segunda estrofa para probar el cambio de párrafo.\n\nY este sería el estribillo final para el karaoke.",
+      "paragraphs": [
+        "Esta es la primera estrofa del tema demo.",
+        "Aquí va la segunda estrofa para probar el cambio de párrafo.",
+        "Y este sería el estribillo final para el karaoke."
+      ],
       "times": {
-        "auto": [0, 12.4, 25.8],
-        "calibrated": [0, 12.1, 25.5]
+        "auto": [],
+        "calibrated": [
+          0,
+          12,
+          24
+        ]
       },
       "offsetSeconds": 0,
       "detector": {
@@ -16,7 +38,7 @@
         "windowMs": 80
       },
       "audioMeta": {
-        "name": "tema-ejemplo.mp3",
+        "name": "SoundHelix-Song-1.mp3",
         "type": "audio/mpeg"
       }
     }

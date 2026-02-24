@@ -255,11 +255,6 @@ button.danger:hover {
   background: var(--card-2);
 }
 
-#remoteCatalogUrlInput {
-  min-width: 320px;
-  flex: 1 1 420px;
-}
-
 #playlistNameInput::placeholder {
   color: #cbd5e1;
   opacity: 1;
@@ -306,6 +301,19 @@ button.danger:hover {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
+}
+
+.remote-category {
+  display: grid;
+  gap: 8px;
+}
+
+.remote-category-title {
+  margin: 2px 0 0;
+  font-size: 0.95rem;
+  color: #cbd5e1;
+  border-left: 3px solid var(--primary);
+  padding-left: 8px;
 }
 
 .karaoke-header {
@@ -467,6 +475,7 @@ button.danger:hover {
   max-width: min(900px, 80vw);
   margin: 0 auto;
   display: -webkit-box;
+  line-clamp: 2;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;

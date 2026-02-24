@@ -52,7 +52,19 @@ Este proyecto se distribuye bajo licencia **MIT**. Revisa el archivo `LICENSE`.
 
 ## Canciones subidas en GitHub (MP3 + sincronización)
 
-La app incluye una sección **Canciones subidas** para cargar un catálogo remoto en JSON con pistas alojadas en GitHub.
+La app incluye una sección **Canciones subidas** que carga automáticamente `catalog/canciones.json` y muestra temas **por categorías** en un bloque separado de la playlist local.
+
+### URL limpia solo de publicadas
+
+Además de la app completa, tienes una vista pública dedicada en:
+
+- `/publicadas/`
+
+En GitHub Pages normalmente quedará como:
+
+- `https://USUARIO.github.io/REPO/publicadas/`
+
+Esta página carga solo el catálogo publicado y no muestra herramientas de edición.
 
 ### Formato del catálogo
 
@@ -65,17 +77,17 @@ Ejemplo mínimo:
 
 ```json
 {
-   "songs": [
-      {
-         "id": "mi-cancion-1",
-         "title": "Mi canción",
-         "audioUrl": "https://raw.githubusercontent.com/USUARIO/REPO/main/audio/mi-cancion.mp3",
-         "lyricsOriginal": "Párrafo 1\n\nPárrafo 2",
-         "times": {
-            "calibrated": [0, 14.2]
-         }
+  "songs": [
+    {
+      "id": "mi-cancion-1",
+      "title": "Mi canción",
+      "audioUrl": "https://raw.githubusercontent.com/USUARIO/REPO/main/audio/mi-cancion.mp3",
+      "lyricsOriginal": "Párrafo 1\n\nPárrafo 2",
+      "times": {
+        "calibrated": [0, 14.2]
       }
-   ]
+    }
+  ]
 }
 ```
 
@@ -92,9 +104,60 @@ Campos soportados por canción:
 1. Sube los MP3 al repositorio (por ejemplo en `audio/`).
 2. Crea el catálogo JSON (por ejemplo `catalog/canciones.json`).
 3. Publica con GitHub Pages o usa URL directa de `raw.githubusercontent.com`.
-4. Pega esa URL en **Canciones subidas → URL del catálogo** y pulsa **Cargar catálogo**.
+4. Recarga la app y el listado publicado aparecerá automáticamente.
 
 > Nota: los archivos deben ser accesibles públicamente por URL para que el navegador pueda reproducirlos.
+
+### Flujo editorial recomendado (sin editar el catálogo a mano)
+
+Estructura sugerida en el repo:
+
+- `audio/` → MP3 (u otros formatos soportados)
+- `sync/` → JSON de sincronización por canción (`sync/<nombre>.json`)
+- `catalog/canciones.json` → catálogo generado automáticamente
+
+También puedes definir canciones remotas sin archivo local en `audio/`: crea directamente un `sync/*.json` con `title` y `audioUrl`.
+
+Campos útiles para organización:
+
+- `category`: slug de categoría (`pop`, `rock`, `clasicos`)
+- `categoryTitle`: nombre visible de categoría (`Pop`, `Rock`, `Clásicos`)
+
+Genera el catálogo con:
+
+```bash
+node scripts/generate-catalog.mjs --base-url https://raw.githubusercontent.com/USUARIO/REPO/main
+```
+
+Opciones útiles:
+
+- `--audio-dir audio`
+- `--sync-dir sync`
+- `--output catalog/canciones.json`
+
+Detalles del formato de los JSON de sincronización en `sync/README.md`.
+
+### GitHub Actions (autogeneración en cada push)
+
+Se incluye el workflow [`.github/workflows/update-catalog.yml`](.github/workflows/update-catalog.yml) para regenerar `catalog/canciones.json` automáticamente cuando cambien `audio/`, `sync/` o el script generador.
+
+Flujo:
+
+1. Haces push a `main`.
+2. Action ejecuta `scripts/generate-catalog.mjs`.
+3. Si hay cambios, hace commit automático del catálogo.
+
+### Exportar tema publicable desde la app
+
+En **Sincronización y exportar → Publicar en catálogo** puedes descargar un JSON publicable del tema actual.
+
+Flujo sugerido:
+
+1. Sincronizas el tema en la app.
+2. Pulsas **Exportar JSON publicable**.
+3. Guardas el archivo descargado en `sync/`.
+4. Añades el audio en `audio/` (o dejas `audioUrl` remoto en el JSON).
+5. Ejecutas el generador y publicas cambios en GitHub.
 
 ## GitHub Pages
 

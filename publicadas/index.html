@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0f172a" />
+    <title>Canciones publicadas · EduKaraoke</title>
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="./publicadas.css" />
+  </head>
+  <body>
+    <div class="app container py-3 published-app">
+      <header class="app-header">
+        <h1>Canciones publicadas</h1>
+        <p class="subtitle">Listado público generado desde <code>catalog/canciones.json</code>.</p>
+        <div class="action-row header-actions">
+          <a class="secondary file-label" href="../index.html">Abrir app completa</a>
+          <button id="reloadBtn" class="secondary">Recargar catálogo</button>
+          <span id="status" class="badge">Cargando...</span>
+        </div>
+      </header>
+
+      <main class="published-layout">
+        <section class="card">
+          <h2>Catálogo</h2>
+          <div id="catalogView" class="playlist-view">
+            <p class="empty">Cargando canciones publicadas...</p>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2 id="nowTitle">Selecciona una canción</h2>
+          <div class="action-row">
+            <button id="playBtn">Play</button>
+            <button id="pauseBtn" class="secondary">Pause</button>
+            <button id="stopBtn" class="danger">Stop</button>
+            <button id="openFullscreenBtn" class="secondary">Pantalla completa</button>
+            <span id="progress" class="badge">0/0</span>
+          </div>
+
+          <audio id="audio" controls preload="metadata"></audio>
+
+          <div class="meta">
+            <div><strong>Archivo:</strong> <span id="audioName">—</span></div>
+            <div><strong>Categoría:</strong> <span id="audioCategory">—</span></div>
+            <div><strong>Tiempo:</strong> <span id="timeDisplay">00:00 / 00:00</span></div>
+          </div>
+
+          <div id="lyricsView" class="karaoke-view compact-view">
+            <p class="empty">Selecciona una canción publicada para ver su letra.</p>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div id="fullscreenKaraoke" class="fullscreen-karaoke" hidden>
+      <button id="closeFullscreenBtn" class="secondary close-fullscreen-btn">Cerrar</button>
+      <div id="fullscreenParagraph" class="fullscreen-paragraph">Selecciona una canción publicada para ver su letra.</div>
+      <div class="fullscreen-controls" aria-label="Controles de reproducción">
+        <button id="fsPlayBtn">Play</button>
+        <button id="fsPauseBtn" class="secondary">Pause</button>
+        <button id="fsStopBtn" class="danger">Stop</button>
+      </div>
+    </div>
+
+    <script src="./publicadas.js"></script>
+  </body>
+</html>

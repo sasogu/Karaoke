@@ -1,0 +1,43 @@
+.published-layout {
+  display: grid;
+  grid-template-columns: minmax(280px, 1fr) minmax(360px, 2fr);
+  gap: 12px;
+}
+
+.published-app .file-label {
+  text-decoration: none;
+}
+
+.compact-view {
+  min-height: 45vh;
+  max-height: 55vh;
+}
+
+.remote-song-item {
+  display: grid;
+  gap: 8px;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: rgba(11, 18, 32, 0.55);
+}
+
+.remote-song-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.remote-cat-title {
+  margin: 4px 0 0;
+  font-size: 0.95rem;
+  color: #cbd5e1;
+  border-left: 3px solid var(--primary);
+  padding-left: 8px;
+}
+
+@media (max-width: 960px) {
+  .published-layout {
+    grid-template-columns: 1fr;
+  }
+}

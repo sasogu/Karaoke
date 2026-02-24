@@ -127,17 +127,10 @@
             </div>
           </div>
 
-          <p class="hint" data-i18n="remote_songs_hint">Carga un catálogo JSON (GitHub Pages o raw.githubusercontent.com) con MP3 y sincronización.</p>
+          <p class="hint" data-i18n="remote_songs_hint">Este listado se carga automáticamente desde el catálogo publicado del proyecto.</p>
 
           <div class="action-row">
-            <label for="remoteCatalogUrlInput" data-i18n="remote_catalog_url_label">URL del catálogo</label>
-            <input
-              id="remoteCatalogUrlInput"
-              type="text"
-              data-i18n-placeholder="remote_catalog_url_placeholder"
-              placeholder="https://raw.githubusercontent.com/usuario/repo/main/catalog/canciones.json"
-            />
-            <button id="loadRemoteCatalogBtn" class="secondary" data-i18n="remote_load_btn">Cargar catálogo</button>
+            <button id="loadRemoteCatalogBtn" class="secondary" data-i18n="remote_reload_btn">Recargar publicadas</button>
             <span id="remoteCatalogStatus" class="badge">—</span>
           </div>
 
@@ -237,6 +230,29 @@
 
           <p class="hint" data-i18n="export_hint">
             Se exporta en ZIP con audio + sincronización. También puedes importar JSON legado.
+          </p>
+
+          <hr />
+
+          <h3 data-i18n="publish_export_title">Publicar en catálogo</h3>
+
+          <div class="controls-grid">
+            <label>
+              <span data-i18n="publish_category_label">Categoría</span>
+              <input id="publishCategoryInput" type="text" data-i18n-placeholder="publish_category_placeholder" placeholder="pop" />
+            </label>
+            <label>
+              <span data-i18n="publish_slug_label">Slug/ID del tema</span>
+              <input id="publishSlugInput" type="text" data-i18n-placeholder="publish_slug_placeholder" placeholder="mi-cancion" />
+            </label>
+          </div>
+
+          <div class="action-row">
+            <button id="exportPublishJsonBtn" class="secondary" data-i18n="publish_export_btn">Exportar JSON publicable</button>
+          </div>
+
+          <p class="hint" data-i18n="publish_export_hint">
+            Descarga un JSON del tema sincronizado para guardarlo en la carpeta sync/ y publicarlo con el catálogo.
           </p>
         </section>
       </div>

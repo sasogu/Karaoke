@@ -1,0 +1,25 @@
+{
+  "id": "tema-demo",
+  "title": "Tema Demo Remoto",
+  "category": "demos",
+  "categoryTitle": "Demos",
+  "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+  "lyricsOriginal": "Esta es la primera estrofa del tema demo.\n\nAquí va la segunda estrofa para probar el cambio de párrafo.\n\nY este sería el estribillo final para el karaoke.",
+  "times": {
+    "calibrated": [
+      0,
+      12,
+      24
+    ]
+  },
+  "offsetSeconds": 0,
+  "detector": {
+    "threshold": 0.02,
+    "minSilenceMs": 320,
+    "windowMs": 80
+  },
+  "audioMeta": {
+    "name": "SoundHelix-Song-1.mp3",
+    "type": "audio/mpeg"
+  }
+}
