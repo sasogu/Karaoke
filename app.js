@@ -93,6 +93,7 @@
     publishCategoryInput: $("publishCategoryInput"),
     publishSlugInput: $("publishSlugInput"),
     exportPublishJsonBtn: $("exportPublishJsonBtn"),
+    exportCatalogBundleBtn: $("exportCatalogBundleBtn"),
 
     pwaVersion: $("pwaVersion"),
 
@@ -185,6 +186,8 @@
       publish_slug_placeholder: "mi-cancion",
       publish_export_btn: "Exportar JSON publicable",
       publish_export_hint: "Descarga un JSON del tema sincronizado para guardarlo en la carpeta sync/ y publicarlo con el catálogo.",
+      export_catalog_bundle_btn: "Exportar catálogo completo (ZIP)",
+      export_catalog_bundle_hint: "Genera un ZIP con carpetas audio/, sync/ y catalog/ listo para copiar al proyecto y subir a GitHub.",
       playback_controls: "Controles de reproducción",
       play: "Play",
       pause: "Pause",
@@ -252,10 +255,13 @@
       err_remote_song_not_found: "No se encontró la canción remota.",
       err_publish_missing_audio: "Para publicar, primero selecciona o carga un audio.",
       err_publish_missing_lyrics: "Para publicar, primero agrega y sincroniza la letra.",
+      err_catalog_bundle_no_tracks: "No hay temas sincronizados para exportar al catálogo.",
+      err_catalog_bundle_jszip: "No se puede exportar catálogo: JSZip no está disponible.",
       hint_remote_song_loaded: "Canción remota cargada: {title}",
       msg_remote_song_loaded: "Canción remota lista: {title}",
       msg_remote_song_playing: "Reproduciendo canción remota: {title}",
       msg_publish_json_exported: "JSON publicable exportado: {file}",
+      msg_catalog_bundle_exported: "Catálogo exportado: {tracks} tema(s), {audios} audio(s) incluidos.",
       hint_track_loaded_no_audio: "Tema cargado sin metadatos de audio.",
       warn_track_loaded_without_audio: "Tema cargado (sin audio).",
       hint_track_loaded: "Tema cargado: {title}",
@@ -1364,6 +1370,17 @@
     };
   }
 
+  function resolveUrlFromCatalog(rawUrl, catalogUrl) {
+    const candidate = String(rawUrl || "").trim();
+    if (!candidate) return "";
+    try {
+      const catalogAbsolute = new URL(catalogUrl, window.location.href);
+      return new URL(candidate, catalogAbsolute).href;
+    } catch {
+      return candidate;
+    }
+  }
+
   function getRemoteSongById(id) {
     return state.remoteSongs.find((song) => song.id === id) || null;
   }
@@ -1471,7 +1488,17 @@
         throw new Error(t("err_remote_catalog_invalid"));
       }
 
-      state.remoteSongs = songsRaw.map((song) => normalizeRemoteSong(song, categoryMap)).filter(Boolean);
+      const resolvedCatalogUrl = new URL(url, window.location.href).href;
+      state.remoteSongs = songsRaw
+        .map((song) => {
+          const normalized = normalizeRemoteSong(song, categoryMap);
+          if (!normalized) return null;
+          return {
+            ...normalized,
+            audioUrl: resolveUrlFromCatalog(normalized.audioUrl, resolvedCatalogUrl)
+          };
+        })
+        .filter(Boolean);
       renderRemoteSongs();
       showMessage(t("remote_status_ready", { count: state.remoteSongs.length }));
     } catch (err) {
@@ -2158,6 +2185,150 @@
     showMessage(t("msg_publish_json_exported", { file: fileName }));
   }
 
+  function collectTracksForCatalogExport() {
+    const tracks = [];
+
+    state.playlist.forEach((playlist) => {
+      const categoryTitle = String(playlist?.title || "General").trim() || "General";
+      const category = slugify(categoryTitle || "general");
+      const items = Array.isArray(playlist?.items) ? playlist.items : [];
+
+      items.forEach((item) => {
+        const effectiveTimes = Array.isArray(item.calibratedTimes) && item.calibratedTimes.length
+          ? item.calibratedTimes
+          : (Array.isArray(item.autoTimes) ? item.autoTimes : []);
+        if (!Array.isArray(item.paragraphs) || !item.paragraphs.length) return;
+        if (!effectiveTimes.length) return;
+
+        tracks.push({
+          category,
+          categoryTitle,
+          source: item
+        });
+      });
+    });
+
+    return tracks;
+  }
+
+  async function exportCatalogBundle() {
+    if (typeof JSZip === "undefined") {
+      showMessage(t("err_catalog_bundle_jszip"), true);
+      return;
+    }
+
+    const tracks = collectTracksForCatalogExport();
+    if (!tracks.length) {
+      showMessage(t("err_catalog_bundle_no_tracks"), true);
+      return;
+    }
+
+    const zip = new JSZip();
+    const usedSongIds = new Set();
+    const usedAudioFileNames = new Set();
+    const categoriesMap = new Map();
+    const songs = [];
+    let includedAudios = 0;
+
+    for (const entry of tracks) {
+      const item = entry.source;
+      const category = entry.category;
+      const categoryTitle = entry.categoryTitle;
+
+      const baseId = slugify(item.id || item.title || item.audioMeta?.name || "tema");
+      let songId = baseId;
+      let idCounter = 2;
+      while (usedSongIds.has(songId)) {
+        songId = `${baseId}-${idCounter}`;
+        idCounter += 1;
+      }
+      usedSongIds.add(songId);
+
+      const defaultAudioName = sanitizeFileName(item.audioMeta?.name || `${songId}.mp3`);
+      let audioFileName = defaultAudioName;
+      let audioUrl = typeof item.audioUrl === "string" ? item.audioUrl : "";
+
+      if (item.audioMeta) {
+        const found = await getAudioBlob(item.audioMeta).catch(() => null);
+        if (found?.blob) {
+          let audioCandidate = audioFileName;
+          let audioNameCounter = 2;
+          while (usedAudioFileNames.has(audioCandidate)) {
+            const dot = audioFileName.lastIndexOf(".");
+            if (dot > 0) {
+              audioCandidate = `${audioFileName.slice(0, dot)}-${audioNameCounter}${audioFileName.slice(dot)}`;
+            } else {
+              audioCandidate = `${audioFileName}-${audioNameCounter}`;
+            }
+            audioNameCounter += 1;
+          }
+          audioFileName = audioCandidate;
+          usedAudioFileNames.add(audioFileName);
+          zip.file(`audio/${audioFileName}`, found.blob);
+          includedAudios += 1;
+          audioUrl = `audio/${audioFileName}`;
+        }
+      }
+
+      const syncPayload = {
+        id: songId,
+        title: String(item.title || item.audioMeta?.name || songId),
+        category,
+        categoryTitle,
+        lyricsOriginal: String(item.lyricsOriginal || ""),
+        paragraphs: Array.isArray(item.paragraphs) ? [...item.paragraphs] : [],
+        times: {
+          auto: Array.isArray(item.autoTimes) ? [...item.autoTimes] : [],
+          calibrated: Array.isArray(item.calibratedTimes) ? [...item.calibratedTimes] : []
+        },
+        offsetSeconds: Number(item.offsetSeconds ?? 0),
+        detector: {
+          threshold: Number(item.detector?.threshold ?? 0.02),
+          minSilenceMs: Number(item.detector?.minSilenceMs ?? 320),
+          windowMs: Number(item.detector?.windowMs ?? 80)
+        },
+        audioMeta: {
+          name: audioFileName,
+          type: String(item.audioMeta?.type || "audio/mpeg")
+        }
+      };
+
+      if (audioUrl) {
+        syncPayload.audioUrl = audioUrl;
+      }
+
+      zip.file(`sync/${songId}.json`, JSON.stringify(syncPayload, null, 2));
+      categoriesMap.set(category, { id: category, title: categoryTitle });
+      songs.push(syncPayload);
+    }
+
+    const categories = Array.from(categoriesMap.values())
+      .sort((a, b) => a.title.localeCompare(b.title, "es"));
+    songs.sort((a, b) => a.title.localeCompare(b.title, "es"));
+
+    const catalogPayload = {
+      generatedAt: new Date().toISOString(),
+      source: {
+        audioDir: "audio",
+        syncDir: "sync"
+      },
+      categories,
+      songs
+    };
+
+    zip.file("catalog/canciones.json", JSON.stringify(catalogPayload, null, 2));
+
+    const ts = new Date().toISOString().replace(/[:.]/g, "-");
+    const blob = await zip.generateAsync({
+      type: "blob",
+      compression: "DEFLATE",
+      compressionOptions: { level: 6 }
+    });
+
+    downloadBlob(blob, `karaoke-catalog-bundle-${ts}.zip`);
+    showMessage(t("msg_catalog_bundle_exported", { tracks: songs.length, audios: includedAudios }));
+  }
+
   function applyImportedProjectData(data) {
     state.lyricsOriginal = String(data.lyricsOriginal || "");
     state.paragraphs = Array.isArray(data.paragraphs) ? data.paragraphs : parseParagraphs(state.lyricsOriginal);
@@ -2516,6 +2687,7 @@
 
     refs.loadRemoteCatalogBtn?.addEventListener("click", loadRemoteCatalog);
     refs.exportPublishJsonBtn?.addEventListener("click", exportPublishSongJson);
+    refs.exportCatalogBundleBtn?.addEventListener("click", exportCatalogBundle);
 
     if (refs.playlistView) {
       refs.playlistView.addEventListener("click", async (event) => {
