@@ -50,6 +50,52 @@ Este proyecto se distribuye bajo licencia **MIT**. Revisa el archivo `LICENSE`.
    - **Modo Calibración** + barra espaciadora para marcar párrafos.
 4. Exporta/importa proyectos en JSON.
 
+## Canciones subidas en GitHub (MP3 + sincronización)
+
+La app incluye una sección **Canciones subidas** para cargar un catálogo remoto en JSON con pistas alojadas en GitHub.
+
+### Formato del catálogo
+
+Puedes usar:
+
+- un array directo de canciones, o
+- un objeto con `songs: []`.
+
+Ejemplo mínimo:
+
+```json
+{
+   "songs": [
+      {
+         "id": "mi-cancion-1",
+         "title": "Mi canción",
+         "audioUrl": "https://raw.githubusercontent.com/USUARIO/REPO/main/audio/mi-cancion.mp3",
+         "lyricsOriginal": "Párrafo 1\n\nPárrafo 2",
+         "times": {
+            "calibrated": [0, 14.2]
+         }
+      }
+   ]
+}
+```
+
+Campos soportados por canción:
+
+- `title` (obligatorio)
+- `audioUrl` (obligatorio)
+- `lyricsOriginal` o `paragraphs`
+- `times.auto` y/o `times.calibrated`
+- `offsetSeconds`, `detector`, `audioMeta`
+
+### Cómo publicarlo
+
+1. Sube los MP3 al repositorio (por ejemplo en `audio/`).
+2. Crea el catálogo JSON (por ejemplo `catalog/canciones.json`).
+3. Publica con GitHub Pages o usa URL directa de `raw.githubusercontent.com`.
+4. Pega esa URL en **Canciones subidas → URL del catálogo** y pulsa **Cargar catálogo**.
+
+> Nota: los archivos deben ser accesibles públicamente por URL para que el navegador pueda reproducirlos.
+
 ## GitHub Pages
 
 1. Sube los archivos al repo.

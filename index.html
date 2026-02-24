@@ -117,6 +117,35 @@
           </div>
         </section>
 
+        <section class="card col-12 reorderable-block" data-block-id="uploadedSongs">
+          <div class="block-header">
+            <h2 data-i18n="remote_songs_title">Canciones subidas</h2>
+            <div class="block-order-controls">
+              <button class="secondary block-order-btn" data-action="move-up" aria-label="Subir" title="Subir">↑</button>
+              <button class="secondary block-order-btn" data-action="move-down" aria-label="Bajar" title="Bajar">↓</button>
+              <button class="secondary block-order-btn" data-action="toggle-collapse" aria-label="Contraer" title="Contraer">▾</button>
+            </div>
+          </div>
+
+          <p class="hint" data-i18n="remote_songs_hint">Carga un catálogo JSON (GitHub Pages o raw.githubusercontent.com) con MP3 y sincronización.</p>
+
+          <div class="action-row">
+            <label for="remoteCatalogUrlInput" data-i18n="remote_catalog_url_label">URL del catálogo</label>
+            <input
+              id="remoteCatalogUrlInput"
+              type="text"
+              data-i18n-placeholder="remote_catalog_url_placeholder"
+              placeholder="https://raw.githubusercontent.com/usuario/repo/main/catalog/canciones.json"
+            />
+            <button id="loadRemoteCatalogBtn" class="secondary" data-i18n="remote_load_btn">Cargar catálogo</button>
+            <span id="remoteCatalogStatus" class="badge">—</span>
+          </div>
+
+          <div id="remoteSongsView" class="playlist-view">
+            <p class="empty" data-i18n="remote_songs_empty">Aún no hay canciones remotas cargadas.</p>
+          </div>
+        </section>
+
         <section class="card karaoke-card col-12 reorderable-block" data-block-id="karaoke">
           <div class="block-header">
             <h2 data-i18n="karaoke_title">Karaoke</h2>

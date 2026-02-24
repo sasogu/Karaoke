@@ -1,0 +1,24 @@
+{
+  "songs": [
+    {
+      "id": "demo-track",
+      "title": "Tema de ejemplo",
+      "audioUrl": "https://raw.githubusercontent.com/usuario/repo/main/audio/tema-ejemplo.mp3",
+      "lyricsOriginal": "Estrofa 1\n\nEstrofa 2\n\nEstribillo",
+      "times": {
+        "auto": [0, 12.4, 25.8],
+        "calibrated": [0, 12.1, 25.5]
+      },
+      "offsetSeconds": 0,
+      "detector": {
+        "threshold": 0.02,
+        "minSilenceMs": 320,
+        "windowMs": 80
+      },
+      "audioMeta": {
+        "name": "tema-ejemplo.mp3",
+        "type": "audio/mpeg"
+      }
+    }
+  ]
+}

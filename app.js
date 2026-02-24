@@ -10,6 +10,8 @@
   const LS_LANG_KEY = "karaokeLanguageV1";
   const LS_BLOCK_ORDER_KEY = "karaokeBlockOrderV1";
   const LS_BLOCK_COLLAPSE_KEY = "karaokeBlockCollapseV1";
+  const LS_REMOTE_CATALOG_URL_KEY = "karaokeRemoteCatalogUrlV1";
+  const DEFAULT_REMOTE_CATALOG_URL = "./catalog/canciones.json";
 
   const state = {
     lyricsOriginal: "",
@@ -17,6 +19,8 @@
     autoTimes: [],
     calibratedTimes: [],
     playlist: [],
+    remoteSongs: [],
+    remoteCatalogUrl: DEFAULT_REMOTE_CATALOG_URL,
     mode: "calibration",
     detector: {
       threshold: 0.02,
@@ -24,7 +28,8 @@
       windowMs: 80
     },
     offsetSeconds: 0,
-    audioMeta: null
+    audioMeta: null,
+    audioSourceUrl: null
   };
 
   const $ = (id) => document.getElementById(id);
@@ -83,6 +88,11 @@
     playlistCount: $("playlistCount"),
     playlistView: $("playlistView"),
 
+    remoteCatalogUrlInput: $("remoteCatalogUrlInput"),
+    loadRemoteCatalogBtn: $("loadRemoteCatalogBtn"),
+    remoteCatalogStatus: $("remoteCatalogStatus"),
+    remoteSongsView: $("remoteSongsView"),
+
     pwaVersion: $("pwaVersion"),
 
     progressIndicator: $("progressIndicator"),
@@ -127,6 +137,15 @@
       playlist_count: "{count} tema(s)",
       no_tracks_saved: "Aún no hay temas guardados.",
       no_playlists_saved: "Aún no hay playlists guardadas.",
+      remote_songs_title: "Canciones subidas",
+      remote_songs_hint: "Carga un catálogo JSON (GitHub Pages o raw.githubusercontent.com) con MP3 y sincronización.",
+      remote_catalog_url_label: "URL del catálogo",
+      remote_catalog_url_placeholder: "https://raw.githubusercontent.com/usuario/repo/main/catalog/canciones.json",
+      remote_load_btn: "Cargar catálogo",
+      remote_songs_empty: "Aún no hay canciones remotas cargadas.",
+      remote_status_idle: "Pendiente",
+      remote_status_loading: "Cargando...",
+      remote_status_ready: "{count} canción(es)",
       karaoke_title: "Karaoke",
       no_paragraphs: "Aún no hay párrafos.",
       fullscreen_open: "Reproducir a pantalla completa",
@@ -221,6 +240,12 @@
       hint_audio_imported_zip_failed: "Se importó el ZIP, pero no se pudo restaurar el audio.",
       err_audio_play_after_restore: "Audio cargado, pero no se pudo reproducir: {error}",
       err_playlist_item_not_found: "No se encontró ese tema en la playlist.",
+      err_remote_catalog_fetch: "No se pudo cargar el catálogo remoto: {error}",
+      err_remote_catalog_invalid: "El catálogo remoto no tiene un formato válido.",
+      err_remote_song_not_found: "No se encontró la canción remota.",
+      hint_remote_song_loaded: "Canción remota cargada: {title}",
+      msg_remote_song_loaded: "Canción remota lista: {title}",
+      msg_remote_song_playing: "Reproduciendo canción remota: {title}",
       hint_track_loaded_no_audio: "Tema cargado sin metadatos de audio.",
       warn_track_loaded_without_audio: "Tema cargado (sin audio).",
       hint_track_loaded: "Tema cargado: {title}",
@@ -628,6 +653,7 @@
     applyStaticTranslations();
     renderLyricsUI();
     renderPlaylist();
+    renderRemoteSongs();
     renderMode();
     renderFullscreenToggleButton();
     refreshBlockOrderControls();
@@ -993,7 +1019,8 @@
       },
       detector: state.detector,
       offsetSeconds: state.offsetSeconds,
-      audioMeta: state.audioMeta
+      audioMeta: state.audioMeta,
+      audioSourceUrl: state.audioSourceUrl
     };
   }
 
@@ -1026,6 +1053,7 @@
       title: String(raw.title || t("track_default_name")),
       createdAt: Number(raw.createdAt || Date.now()),
       audioMeta: raw.audioMeta || null,
+      audioUrl: typeof raw.audioUrl === "string" ? raw.audioUrl : null,
       lyricsOriginal,
       paragraphs,
       autoTimes: Array.isArray(raw.autoTimes) ? raw.autoTimes : [],
@@ -1074,7 +1102,9 @@
       playlist: state.playlist,
       detector: state.detector,
       offsetSeconds: state.offsetSeconds,
-      audioMeta: state.audioMeta
+      audioMeta: state.audioMeta,
+      audioSourceUrl: state.audioSourceUrl,
+      remoteCatalogUrl: state.remoteCatalogUrl
     };
     localStorage.setItem(LS_KEY, JSON.stringify(payload));
   }
@@ -1107,6 +1137,8 @@
       };
       state.offsetSeconds = Number(data.offsetSeconds ?? 0);
       state.audioMeta = data.audioMeta || null;
+      state.audioSourceUrl = typeof data.audioSourceUrl === "string" ? data.audioSourceUrl : null;
+      state.remoteCatalogUrl = String(data.remoteCatalogUrl || localStorage.getItem(LS_REMOTE_CATALOG_URL_KEY) || DEFAULT_REMOTE_CATALOG_URL);
     } catch {
       showMessage(t("err_local_state_invalid"), true);
     }
@@ -1272,6 +1304,153 @@
       syncPlaylistNameInputFromSelection();
   }
 
+  function normalizeRemoteSong(raw) {
+    if (!raw || typeof raw !== "object") return null;
+
+    const title = String(raw.title || "").trim();
+    const audioUrl = String(raw.audioUrl || raw.audio || "").trim();
+    if (!title || !audioUrl) return null;
+
+    const lyricsOriginal = String(raw.lyricsOriginal || raw.lyrics || "");
+    const paragraphs = Array.isArray(raw.paragraphs) && raw.paragraphs.length
+      ? raw.paragraphs.map((p) => String(p || "")).filter(Boolean)
+      : parseParagraphs(lyricsOriginal);
+
+    const timesAuto = Array.isArray(raw.times?.auto)
+      ? raw.times.auto
+      : (Array.isArray(raw.autoTimes) ? raw.autoTimes : []);
+    const timesCalibrated = Array.isArray(raw.times?.calibrated)
+      ? raw.times.calibrated
+      : (Array.isArray(raw.calibratedTimes) ? raw.calibratedTimes : []);
+
+    return {
+      id: String(raw.id || "").trim() || generateId(),
+      title,
+      audioUrl,
+      lyricsOriginal,
+      paragraphs,
+      autoTimes: timesAuto,
+      calibratedTimes: timesCalibrated,
+      detector: {
+        threshold: Number(raw.detector?.threshold ?? 0.02),
+        minSilenceMs: Number(raw.detector?.minSilenceMs ?? 320),
+        windowMs: Number(raw.detector?.windowMs ?? 80)
+      },
+      offsetSeconds: Number(raw.offsetSeconds ?? 0),
+      audioMeta: raw.audioMeta || null
+    };
+  }
+
+  function getRemoteSongById(id) {
+    return state.remoteSongs.find((song) => song.id === id) || null;
+  }
+
+  function renderRemoteSongs() {
+    if (!refs.remoteSongsView || !refs.remoteCatalogStatus) return;
+
+    refs.remoteCatalogStatus.textContent = t("remote_status_ready", { count: state.remoteSongs.length });
+
+    if (!state.remoteSongs.length) {
+      refs.remoteSongsView.innerHTML = `<p class="empty">${t("remote_songs_empty")}</p>`;
+      return;
+    }
+
+    refs.remoteSongsView.innerHTML = "";
+    state.remoteSongs.forEach((song) => {
+      const hasTimes = (song.calibratedTimes?.length || song.autoTimes?.length || 0) > 0;
+      const wrapper = document.createElement("article");
+      wrapper.className = "playlist-item";
+      wrapper.innerHTML = `
+        <div class="playlist-item-main">
+          <div>
+            <div class="playlist-item-title">${song.title}</div>
+            <div class="playlist-item-meta">${inferAudioNameFromUrl(song.audioUrl)} · ${t("paragraph_count", { count: song.paragraphs.length })} · ${hasTimes ? t("playlist_sync_yes") : t("playlist_sync_no")}</div>
+          </div>
+          <div class="playlist-item-actions">
+            <button class="secondary" data-action="remote-load" data-id="${song.id}">${t("btn_load")}</button>
+            <button data-action="remote-play" data-id="${song.id}">${t("btn_load_play")}</button>
+          </div>
+        </div>
+      `;
+      refs.remoteSongsView.appendChild(wrapper);
+    });
+  }
+
+  async function loadRemoteCatalog() {
+    if (!refs.remoteCatalogUrlInput || !refs.remoteCatalogStatus) return;
+
+    const url = String(refs.remoteCatalogUrlInput.value || "").trim() || DEFAULT_REMOTE_CATALOG_URL;
+    refs.remoteCatalogUrlInput.value = url;
+    state.remoteCatalogUrl = url;
+    localStorage.setItem(LS_REMOTE_CATALOG_URL_KEY, url);
+    refs.remoteCatalogStatus.textContent = t("remote_status_loading");
+
+    try {
+      const response = await fetch(url, { cache: "no-store" });
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+
+      const payload = await response.json();
+      const songsRaw = Array.isArray(payload)
+        ? payload
+        : (Array.isArray(payload?.songs) ? payload.songs : null);
+
+      if (!songsRaw) {
+        throw new Error(t("err_remote_catalog_invalid"));
+      }
+
+      state.remoteSongs = songsRaw.map(normalizeRemoteSong).filter(Boolean);
+      renderRemoteSongs();
+      showMessage(t("remote_status_ready", { count: state.remoteSongs.length }));
+    } catch (err) {
+      state.remoteSongs = [];
+      renderRemoteSongs();
+      showMessage(t("err_remote_catalog_fetch", { error: err.message }), true);
+    }
+  }
+
+  async function loadRemoteSongById(id, autoplay = false) {
+    const song = getRemoteSongById(id);
+    if (!song) {
+      showMessage(t("err_remote_song_not_found"), true);
+      return;
+    }
+
+    state.lyricsOriginal = song.lyricsOriginal || "";
+    state.paragraphs = Array.isArray(song.paragraphs) ? [...song.paragraphs] : [];
+    state.autoTimes = Array.isArray(song.autoTimes) ? [...song.autoTimes] : [];
+    state.calibratedTimes = Array.isArray(song.calibratedTimes) ? [...song.calibratedTimes] : [];
+    state.detector = {
+      threshold: Number(song.detector?.threshold ?? 0.02),
+      minSilenceMs: Number(song.detector?.minSilenceMs ?? 320),
+      windowMs: Number(song.detector?.windowMs ?? 80)
+    };
+    state.offsetSeconds = Number(song.offsetSeconds ?? 0);
+
+    setAudioFromUrl(song.audioUrl, {
+      name: song.audioMeta?.name || inferAudioNameFromUrl(song.audioUrl),
+      type: song.audioMeta?.type || "audio/mpeg",
+      size: Number(song.audioMeta?.size || 0),
+      duration: Number(song.audioMeta?.duration || 0)
+    });
+
+    renderLyricsUI();
+    renderDetectorControls();
+    renderMode();
+    renderKaraoke(true);
+    refs.nextPending.textContent = state.mode === "auto" ? t("mode_auto_active") : getNextPendingText();
+    refs.audioRestoreHint.textContent = t("hint_remote_song_loaded", { title: song.title });
+
+    if (autoplay) {
+      await playAudio();
+      showMessage(t("msg_remote_song_playing", { title: song.title }));
+      return;
+    }
+
+    showMessage(t("msg_remote_song_loaded", { title: song.title }));
+  }
+
   function addCurrentToPlaylist() {
     if (!refs.playlistTitleInput || !refs.playlistSelect) {
       return showMessage(t("err_playlist_ui_unavailable"), true);
@@ -1304,6 +1483,7 @@
       title: trackTitle,
       createdAt: Date.now(),
       audioMeta: state.audioMeta ? { ...state.audioMeta } : null,
+      audioUrl: state.audioSourceUrl || null,
       lyricsOriginal: state.lyricsOriginal,
       paragraphs: [...state.paragraphs],
       autoTimes: [...state.autoTimes],
@@ -1611,6 +1791,16 @@
     });
   }
 
+  function inferAudioNameFromUrl(url) {
+    try {
+      const parsed = new URL(url, window.location.href);
+      const last = parsed.pathname.split("/").pop() || "audio-remoto.mp3";
+      return sanitizeFileName(decodeURIComponent(last));
+    } catch {
+      return "audio-remoto.mp3";
+    }
+  }
+
   function setAudioFromBlob(blob, meta) {
     if (currentAudioObjectUrl) URL.revokeObjectURL(currentAudioObjectUrl);
     const url = URL.createObjectURL(blob);
@@ -1622,6 +1812,25 @@
       size: meta.size,
       duration: meta.duration || 0
     };
+    state.audioSourceUrl = null;
+    renderAudioMeta();
+    saveStateToLocalStorage();
+  }
+
+  function setAudioFromUrl(url, meta = {}) {
+    if (currentAudioObjectUrl) {
+      URL.revokeObjectURL(currentAudioObjectUrl);
+      currentAudioObjectUrl = null;
+    }
+
+    refs.audio.src = url;
+    state.audioMeta = {
+      name: String(meta.name || inferAudioNameFromUrl(url)),
+      type: String(meta.type || "audio/mpeg"),
+      size: Number(meta.size || 0),
+      duration: Number(meta.duration || 0)
+    };
+    state.audioSourceUrl = url;
     renderAudioMeta();
     saveStateToLocalStorage();
   }
@@ -1839,6 +2048,7 @@
     };
     state.offsetSeconds = Number(data.offsetSeconds ?? 0);
     state.audioMeta = data.audioMeta || null;
+    state.audioSourceUrl = typeof data.audioSourceUrl === "string" ? data.audioSourceUrl : null;
 
     saveStateToLocalStorage();
 
@@ -1852,6 +2062,12 @@
 
   async function importProjectFromJsonData(data) {
     applyImportedProjectData(data);
+
+    if (state.audioSourceUrl) {
+      setAudioFromUrl(state.audioSourceUrl, state.audioMeta || {});
+      showMessage(t("msg_imported_restored"));
+      return;
+    }
 
     if (state.audioMeta) {
       const restored = await restoreAudioFromMeta(state.audioMeta, {
@@ -2002,6 +2218,7 @@
     };
     state.offsetSeconds = Number(item.offsetSeconds ?? 0);
     state.audioMeta = item.audioMeta ? { ...item.audioMeta } : null;
+    state.audioSourceUrl = typeof item.audioUrl === "string" ? item.audioUrl : null;
 
     saveStateToLocalStorage();
     renderLyricsUI();
@@ -2022,6 +2239,16 @@
       missingMessage: t("hint_track_missing_audio_select"),
       autoplay
     });
+
+    if (!restored && state.audioSourceUrl) {
+      setAudioFromUrl(state.audioSourceUrl, state.audioMeta || {});
+      refs.audioRestoreHint.textContent = t("hint_track_loaded", { title: item.title });
+      if (autoplay) {
+        await playAudio();
+      }
+      showMessage(autoplay ? t("msg_track_playing", { title: item.title }) : t("msg_track_loaded", { title: item.title }));
+      return;
+    }
 
     if (!restored) {
       showMessage(t("warn_track_missing_audio"), true);
@@ -2165,6 +2392,13 @@
       refs.clearPlaylistBtn.addEventListener("click", clearPlaylist);
     }
 
+    refs.loadRemoteCatalogBtn?.addEventListener("click", loadRemoteCatalog);
+    refs.remoteCatalogUrlInput?.addEventListener("keydown", async (event) => {
+      if (event.key !== "Enter") return;
+      event.preventDefault();
+      await loadRemoteCatalog();
+    });
+
     if (refs.playlistView) {
       refs.playlistView.addEventListener("click", async (event) => {
         const target = event.target;
@@ -2189,6 +2423,24 @@
         }
       });
     }
+
+    refs.remoteSongsView?.addEventListener("click", async (event) => {
+      const target = event.target;
+      if (!(target instanceof HTMLElement)) return;
+
+      const action = target.dataset.action;
+      const id = target.dataset.id;
+      if (!action || !id) return;
+
+      if (action === "remote-load") {
+        await loadRemoteSongById(id, false);
+        return;
+      }
+
+      if (action === "remote-play") {
+        await loadRemoteSongById(id, true);
+      }
+    });
 
     refs.audio.addEventListener("loadedmetadata", () => {
       updateTimeDisplay();
@@ -2319,6 +2571,13 @@
     renderMode();
     renderKaraoke(true);
     renderPlaylist();
+    if (refs.remoteCatalogUrlInput) {
+      refs.remoteCatalogUrlInput.value = state.remoteCatalogUrl || DEFAULT_REMOTE_CATALOG_URL;
+    }
+    renderRemoteSongs();
+    if (refs.remoteCatalogStatus && !state.remoteSongs.length) {
+      refs.remoteCatalogStatus.textContent = t("remote_status_idle");
+    }
     renderFullscreenToggleButton();
     applySavedBlockOrder();
     applySavedCollapsedBlocks();

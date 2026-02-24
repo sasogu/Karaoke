@@ -255,6 +255,11 @@ button.danger:hover {
   background: var(--card-2);
 }
 
+#remoteCatalogUrlInput {
+  min-width: 320px;
+  flex: 1 1 420px;
+}
+
 #playlistNameInput::placeholder {
   color: #cbd5e1;
   opacity: 1;
