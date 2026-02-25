@@ -1,0 +1,45 @@
+{
+  "id": "a2483c62-6088-4785-bfcb-b9909596ec98",
+  "title": "Diameantes 4B",
+  "category": "4b",
+  "categoryTitle": "4B",
+  "lyricsOriginal": "Al pati sona fort “Stranger Things”,\nmentre juguem a Minecraft fins a les cinc.\nCom en Com entrenar al teu drac, volant,\nimaginació en mode gegant.\n\nLa paret pintada de blanc,\nun segon de silenci… i pam!\nApareix el Demogorgon ballant,\ni l’Azotamentes saludant.\n\nPre-cor\nSix seven, comptem per començar,\namb George cridant sense parar.\nEntre rialles i caramels,\nla vida és genial, pura pell.\n\nEstribillo\nSom los diamantes negros brillants,\ncolor turquesa radiant.\nEntre esports i gimnàsia,\nla classe és pura fantasia.\n\nVers 2\nAl mòbil sona GTA,\nperò al pati tot és realitat.\nLamin Yamal fa un gol brutal,\ni celebrem com un festival.\n\n“Duérmete niño duérmete ya\nque si no viene el coco y te va a chulear”,\nho cantem rient sense por,\nmentre el gos corre pel voltant amb amor.\n\nPont\nSom quatre beibis sense fre,\namb energia de Macaco també.\nSi algú diu “bad girl”, què més dóna?,\nsom equip, ningú ens corona.\n\nBridge esbojarrat\n“Tung tung shaur!” sona al final,\ni el pati es torna digital.\nEntre memes, dracs i misteri,\nla nostra història és un imperi.\n\nEstribillo final\nSom los diamantes negros brillants,\ncolor turquesa constant.\nDe Pepa Pig al món virtual,\naquesta classe és espectacular.\n\nFinal\nQuan el dia es torna blau marí,\nens quedem junts fins al matí.\nEntre rialles i amistat,\naquesta aventura no s’acabarà mai.",
+  "paragraphs": [
+    "Al pati sona fort “Stranger Things”,\nmentre juguem a Minecraft fins a les cinc.\nCom en Com entrenar al teu drac, volant,\nimaginació en mode gegant.",
+    "La paret pintada de blanc,\nun segon de silenci… i pam!\nApareix el Demogorgon ballant,\ni l’Azotamentes saludant.",
+    "Pre-cor\nSix seven, comptem per començar,\namb George cridant sense parar.\nEntre rialles i caramels,\nla vida és genial, pura pell.",
+    "Estribillo\nSom los diamantes negros brillants,\ncolor turquesa radiant.\nEntre esports i gimnàsia,\nla classe és pura fantasia.",
+    "Vers 2\nAl mòbil sona GTA,\nperò al pati tot és realitat.\nLamin Yamal fa un gol brutal,\ni celebrem com un festival.",
+    "“Duérmete niño duérmete ya\nque si no viene el coco y te va a chulear”,\nho cantem rient sense por,\nmentre el gos corre pel voltant amb amor.",
+    "Pont\nSom quatre beibis sense fre,\namb energia de Macaco també.\nSi algú diu “bad girl”, què més dóna?,\nsom equip, ningú ens corona.",
+    "Bridge esbojarrat\n“Tung tung shaur!” sona al final,\ni el pati es torna digital.\nEntre memes, dracs i misteri,\nla nostra història és un imperi.",
+    "Estribillo final\nSom los diamantes negros brillants,\ncolor turquesa constant.\nDe Pepa Pig al món virtual,\naquesta classe és espectacular.",
+    "Final\nQuan el dia es torna blau marí,\nens quedem junts fins al matí.\nEntre rialles i amistat,\naquesta aventura no s’acabarà mai."
+  ],
+  "times": {
+    "auto": [],
+    "calibrated": [
+      19.584,
+      19.946666,
+      29.610666,
+      40.021333,
+      49.642666,
+      68.597333,
+      81.066666,
+      90.698666,
+      100.885333,
+      122.314666
+    ]
+  },
+  "offsetSeconds": 0,
+  "detector": {
+    "threshold": 0.02,
+    "minSilenceMs": 320,
+    "windowMs": 80
+  },
+  "audioMeta": {
+    "name": "4B_ Turquesa i Diamants Negres.mp3",
+    "type": "audio/mpeg"
+  },
+  "audioUrl": "audio/4B_ Turquesa i Diamants Negres.mp3"
+}

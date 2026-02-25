@@ -1,0 +1,39 @@
+{
+  "id": "bb8c98e6-4a54-43e6-9c13-753bcb817a2e",
+  "title": "Fi de curs al Blasco.mp3 · 10:23",
+  "category": "6a",
+  "categoryTitle": "6A",
+  "lyricsOriginal": "Batxata al pati\narigato al profe\nperro salchicha\ncorrent entre els peus (hey!)\n\n[Verse 1]\nSix seven, sona el timbre\npollito a la llibreta, cor dibuixat\nenhorabona a la taula\napunts plens de riures, mig tacats\n\nFi de curs, ulls brillant\nmirem l’horari com si fos passat\nterminem al Blasco\ni el passadís sembla un carnaval\n\n[Chorus]\nFi de curs al Blasco (eh!)\nbatxata al passadís\narigato, gràcies\nper tot el que hem viscut aquí\nBanda femenina\ncridem ben fort així\nfi de curs al Blasco\nque no s’acabi mai aquest matí\n\n[Verse 2]\nPerro salchicha a la foto\nsix seven somrises, ningú mira bé\npollito al marge de l’examen\n“sort” escrit en petit, que no es veu gaire bé\n\nEnhorabona, profa, et quedes\nnosaltres marxem, però tornem pensant\nterminem al Blasco\nperò dins del cor encara hi fem campana\n\n[Chorus]\nFi de curs al Blasco (eh!)\nbatxata al passadís\narigato, gràcies\nper tot el que hem viscut aquí\nBanda femenina\ncridem ben fort així\nfi de curs al Blasco\nque no s’acabi mai aquest matí",
+  "paragraphs": [
+    "Batxata al pati\narigato al profe\nperro salchicha\ncorrent entre els peus (hey!)",
+    "[Verse 1]\nSix seven, sona el timbre\npollito a la llibreta, cor dibuixat\nenhorabona a la taula\napunts plens de riures, mig tacats",
+    "Fi de curs, ulls brillant\nmirem l’horari com si fos passat\nterminem al Blasco\ni el passadís sembla un carnaval",
+    "[Chorus]\nFi de curs al Blasco (eh!)\nbatxata al passadís\narigato, gràcies\nper tot el que hem viscut aquí\nBanda femenina\ncridem ben fort així\nfi de curs al Blasco\nque no s’acabi mai aquest matí",
+    "[Verse 2]\nPerro salchicha a la foto\nsix seven somrises, ningú mira bé\npollito al marge de l’examen\n“sort” escrit en petit, que no es veu gaire bé",
+    "Enhorabona, profa, et quedes\nnosaltres marxem, però tornem pensant\nterminem al Blasco\nperò dins del cor encara hi fem campana",
+    "[Chorus]\nFi de curs al Blasco (eh!)\nbatxata al passadís\narigato, gràcies\nper tot el que hem viscut aquí\nBanda femenina\ncridem ben fort així\nfi de curs al Blasco\nque no s’acabi mai aquest matí"
+  ],
+  "times": {
+    "auto": [],
+    "calibrated": [
+      7.424,
+      8.48,
+      22.912,
+      30.122666,
+      44.362666,
+      60.981333,
+      67.872
+    ]
+  },
+  "offsetSeconds": 0,
+  "detector": {
+    "threshold": 0.02,
+    "minSilenceMs": 320,
+    "windowMs": 80
+  },
+  "audioMeta": {
+    "name": "Fi de curs al Blasco-2.mp3",
+    "type": "audio/mpeg"
+  },
+  "audioUrl": "audio/Fi de curs al Blasco-2.mp3"
+}

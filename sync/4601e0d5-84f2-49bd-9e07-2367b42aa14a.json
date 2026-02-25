@@ -1,0 +1,61 @@
+{
+  "id": "4601e0d5-84f2-49bd-9e07-2367b42aa14a",
+  "title": "Un lloc, un record",
+  "category": "4a",
+  "categoryTitle": "4A",
+  "lyricsOriginal": "Títol: Un lloc, un record\n\n\nComença el dia amb música a tot volum,\nsom com la sèrie Rivales, pura llum.\nEntre partides de Fornite sense por,\ni encanteris de Harry Potter al corredor.\n\nSi dic esternocleiodomastoideo del tiró,\nja tenim riures per a tota la sessió.\nA Blox Fruits lluitem sense final,\na Roblox Rivals som nivell brutal.\n\n\nSix seven, comptem i a jugar,\namb Felipe cridant sense parar.\nSom equip, som energia total,\nclasse mítica, llegenda digital.\n\n\nÉs un lugar un recuerdo,\nque no s’esborra mai del cervell.\nEntre FIFA, memes i dracs,\nla nostra història no té fre.\n\n\nÉs un lugar un recuerdo,\nque no s’esborra mai del cervell.\nEntre FIFA, memes i dracs,\nla nostra història no té fre.\n\nLes beibis brillen com estrelles,\nguardianes de la noche, cent centelles.\nSona estil Bizarap al pati central,\nritme que puja, ambient espectacular.\n\nAbrahaham diu “anem allà!”,\nmentre Fernan Floo ens fa flipar.\nA Blarwl Star som imparables,\nsomnis enormes, imparables.\n\n\n“Sunami for brainots!” algú va cridar,\ni tot el pati va començar a saltar.\nUn T-Rex ballant amb Terry al costat,\nsurrealisme en estat natural.\n\nÉs un lugar un recuerdo,\nque no s’esborra mai del cervell.\nEntre FIFA, memes i dracs,\nla nostra història no té fre.\n\nÉs un lugar un recuerdo,\nque no s’esborra mai del cervell.\nEntre FIFA, memes i dracs,\nla nostra història no té fre.\n\nCom Shakira, facturem rialles,\nmoments petits que són detalls.\nSi la vida diu “Supercalifragilisticoespialidoso”,\nnosaltres responem: és meravellós.\n\nÉs un lugar un recuerdo,\nque no s’esborra mai del cervell.\nEntre FIFA, memes i dracs,\nla nostra història no té fre.\n\nÉs un lugar un recuerdo,\nque no s’esborra mai del cervell.\nEntre FIFA, memes i dracs,\nla nostra història no té fre.\n\nI si algun dia sona “no vol.”,\nsabrem que el viatge continua enlloc.\nPerquè mentre hi haja amistat,\nla partida no s’ha acabat. \n\nI si algun dia sona “no vol.”,\nsabrem que el viatge continua enlloc.\nPerquè mentre hi haja amistat,\nla partida no s’ha acabat. \n\nÉs un lugar un recuerdo,\nque no s’esborra mai del cervell.\nEntre FIFA, memes i dracs,\nla nostra història no té fre.\n\nnosaltres responem: és meravellós.",
+  "paragraphs": [
+    "Títol: Un lloc, un record",
+    "Comença el dia amb música a tot volum,\nsom com la sèrie Rivales, pura llum.\nEntre partides de Fornite sense por,\ni encanteris de Harry Potter al corredor.",
+    "Si dic esternocleiodomastoideo del tiró,\nja tenim riures per a tota la sessió.\nA Blox Fruits lluitem sense final,\na Roblox Rivals som nivell brutal.",
+    "Six seven, comptem i a jugar,\namb Felipe cridant sense parar.\nSom equip, som energia total,\nclasse mítica, llegenda digital.",
+    "És un lugar un recuerdo,\nque no s’esborra mai del cervell.\nEntre FIFA, memes i dracs,\nla nostra història no té fre.",
+    "És un lugar un recuerdo,\nque no s’esborra mai del cervell.\nEntre FIFA, memes i dracs,\nla nostra història no té fre.",
+    "Les beibis brillen com estrelles,\nguardianes de la noche, cent centelles.\nSona estil Bizarap al pati central,\nritme que puja, ambient espectacular.",
+    "Abrahaham diu “anem allà!”,\nmentre Fernan Floo ens fa flipar.\nA Blarwl Star som imparables,\nsomnis enormes, imparables.",
+    "“Sunami for brainots!” algú va cridar,\ni tot el pati va començar a saltar.\nUn T-Rex ballant amb Terry al costat,\nsurrealisme en estat natural.",
+    "És un lugar un recuerdo,\nque no s’esborra mai del cervell.\nEntre FIFA, memes i dracs,\nla nostra història no té fre.",
+    "És un lugar un recuerdo,\nque no s’esborra mai del cervell.\nEntre FIFA, memes i dracs,\nla nostra història no té fre.",
+    "Com Shakira, facturem rialles,\nmoments petits que són detalls.\nSi la vida diu “Supercalifragilisticoespialidoso”,\nnosaltres responem: és meravellós.",
+    "És un lugar un recuerdo,\nque no s’esborra mai del cervell.\nEntre FIFA, memes i dracs,\nla nostra història no té fre.",
+    "És un lugar un recuerdo,\nque no s’esborra mai del cervell.\nEntre FIFA, memes i dracs,\nla nostra història no té fre.",
+    "I si algun dia sona “no vol.”,\nsabrem que el viatge continua enlloc.\nPerquè mentre hi haja amistat,\nla partida no s’ha acabat.",
+    "I si algun dia sona “no vol.”,\nsabrem que el viatge continua enlloc.\nPerquè mentre hi haja amistat,\nla partida no s’ha acabat.",
+    "És un lugar un recuerdo,\nque no s’esborra mai del cervell.\nEntre FIFA, memes i dracs,\nla nostra història no té fre.",
+    "nosaltres responem: és meravellós."
+  ],
+  "times": {
+    "auto": [],
+    "calibrated": [
+      2.293333,
+      2.976,
+      15.818666,
+      26.506666,
+      36.864,
+      47.616,
+      58.293333,
+      70.144,
+      78.325333,
+      90.666666,
+      101.024,
+      112.885333,
+      124.096,
+      136.544,
+      147.541333,
+      157.834666,
+      169.738666,
+      184.106666
+    ]
+  },
+  "offsetSeconds": 0,
+  "detector": {
+    "threshold": 0.02,
+    "minSilenceMs": 320,
+    "windowMs": 80
+  },
+  "audioMeta": {
+    "name": "4A_ Un lloc, un record.mp3",
+    "type": "audio/mpeg"
+  },
+  "audioUrl": "audio/4A_ Un lloc, un record.mp3"
+}

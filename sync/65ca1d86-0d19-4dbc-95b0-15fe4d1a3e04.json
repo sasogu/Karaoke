@@ -1,0 +1,41 @@
+{
+  "id": "65ca1d86-0d19-4dbc-95b0-15fe4d1a3e04",
+  "title": "El B el millor!",
+  "category": "6b",
+  "categoryTitle": "6B",
+  "lyricsOriginal": "Un strawberry elephant creua el carrer,\nmenjant papaya sense pressa ni perill.\nComptem 123, 45, 67,\ni el pati esclata com un míssil.\n\nSona Pepa Pig des del mòbil trencat,\nmentre algú comparteix fuet al costat.\nCridem fort “somos Carlo Kirk!”,\ni ningú sap què vol dir, però flipem.\n\n\nEnrriqueta mira i diu: “què feu?”\ni nosaltres riem sense fre.\nA la pista sona el crit final:\n“El A contra el B!” total.\n\n\nEl B el millor! ho tornem a cantar,\naña, que ningú ens pot parar.\nSi sona “This Is the End”,\nsabem que la festa només comença.\n\n\nCom Antonio Lobato narrat en directe,\n“corre que nos roban el bombardiro!” perfecte.\nVelocitat màxima al passadís,\nsom pura energia, foc i encís.\n\nGarama and Madungdung fan el ritual,\nballen estrany però queda brutal.\nEl món és absurd i ens dóna igual,\nperquè junts tot és espectacular.\n\n\n123, salta del banc,\n45, ritme constant,\n67, ningú es cansa,\nla vida és boja però ens encanta.\n\n\nEl B el millor!, repetim sense por,\nsom equip, som soroll i color.\nSi això és “This Is the End”,\ndemà tornarem més forts que mai també.",
+  "paragraphs": [
+    "Un strawberry elephant creua el carrer,\nmenjant papaya sense pressa ni perill.\nComptem 123, 45, 67,\ni el pati esclata com un míssil.",
+    "Sona Pepa Pig des del mòbil trencat,\nmentre algú comparteix fuet al costat.\nCridem fort “somos Carlo Kirk!”,\ni ningú sap què vol dir, però flipem.",
+    "Enrriqueta mira i diu: “què feu?”\ni nosaltres riem sense fre.\nA la pista sona el crit final:\n“El A contra el B!” total.",
+    "El B el millor! ho tornem a cantar,\naña, que ningú ens pot parar.\nSi sona “This Is the End”,\nsabem que la festa només comença.",
+    "Com Antonio Lobato narrat en directe,\n“corre que nos roban el bombardiro!” perfecte.\nVelocitat màxima al passadís,\nsom pura energia, foc i encís.",
+    "Garama and Madungdung fan el ritual,\nballen estrany però queda brutal.\nEl món és absurd i ens dóna igual,\nperquè junts tot és espectacular.",
+    "123, salta del banc,\n45, ritme constant,\n67, ningú es cansa,\nla vida és boja però ens encanta.",
+    "El B el millor!, repetim sense por,\nsom equip, som soroll i color.\nSi això és “This Is the End”,\ndemà tornarem més forts que mai també."
+  ],
+  "times": {
+    "auto": [],
+    "calibrated": [
+      9.216,
+      19.456,
+      29.973333,
+      39.541333,
+      51.050666,
+      65.642666,
+      75.413333,
+      87.370666
+    ]
+  },
+  "offsetSeconds": 0,
+  "detector": {
+    "threshold": 0.02,
+    "minSilenceMs": 320,
+    "windowMs": 80
+  },
+  "audioMeta": {
+    "name": "6B.mp3",
+    "type": "audio/mpeg"
+  },
+  "audioUrl": "audio/6B.mp3"
+}

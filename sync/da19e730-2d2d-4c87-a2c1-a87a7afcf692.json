@@ -1,0 +1,45 @@
+{
+  "id": "da19e730-2d2d-4c87-a2c1-a87a7afcf692",
+  "title": "3A rock",
+  "category": "3a",
+  "categoryTitle": "3A",
+  "lyricsOriginal": "Sona la guitarra eléctrica, comença el show,\nsom amics i amigues, ningú diu que no.\nDe Harry Potter a Stranger Thinks,\nmisteris al pati, vibes de remix.\n\nA Minecraft construïm un món,\nmentre el Demogorgon perd el control.\nEntre rialles i algun “me aburro” perdut,\nla classe és caos absolut.\n\nPre-cor\n“No sé jo paso”, diu algú al fons,\nperò quan sona el ritme tots fem el pont.\nDe Barbie rosa a ninja dragó,\nNinjago al cor amb foc i passió.\n\nEstribillo\nDel u al 25 som en clase,\ncridem fort perquè ningú ens pare.\nUn like, dos pavos para el Fornite,\nsom llegenda, pur highlight.\n\nVers 2 (rap)\nFlow de rap al passadís,\namb estil Brat i ritme precís.\nA Roblox som nivell expert,\nsi perdem? Tranquis, tot obert.\n\nOnce al camp i gol brutal,\nels matones Blasco flipen igual.\n“No lo sé”, però sona genial,\nsom equip digital i real.\n\nPont\nCom La historia interminable,\nsom aventura inacabable.\nEntre animals i fantasia,\ncada dia és nova energia.\n\nBridge (canvi suau)\nLiker Friday, vibra especial,\namb Becna al centre, moment viral.\nEntre memes i connexió,\nla classe és pura explosió.\n\nEstribillo final\nDel u al 25 som en clase,\nsom tempesta que mai no es desfa.\nRock i rap en el mateix compàs,\naquesta història no té final.\n\nFinal\nSi algú diu “me aburro” una vegada més,\nli pugem el volum fins a cent.\nPerquè junts, siga com siga el rol,\naquesta classe és rock and roll. 🎸✨",
+  "paragraphs": [
+    "Sona la guitarra eléctrica, comença el show,\nsom amics i amigues, ningú diu que no.\nDe Harry Potter a Stranger Thinks,\nmisteris al pati, vibes de remix.",
+    "A Minecraft construïm un món,\nmentre el Demogorgon perd el control.\nEntre rialles i algun “me aburro” perdut,\nla classe és caos absolut.",
+    "Pre-cor\n“No sé jo paso”, diu algú al fons,\nperò quan sona el ritme tots fem el pont.\nDe Barbie rosa a ninja dragó,\nNinjago al cor amb foc i passió.",
+    "Estribillo\nDel u al 25 som en clase,\ncridem fort perquè ningú ens pare.\nUn like, dos pavos para el Fornite,\nsom llegenda, pur highlight.",
+    "Vers 2 (rap)\nFlow de rap al passadís,\namb estil Brat i ritme precís.\nA Roblox som nivell expert,\nsi perdem? Tranquis, tot obert.",
+    "Once al camp i gol brutal,\nels matones Blasco flipen igual.\n“No lo sé”, però sona genial,\nsom equip digital i real.",
+    "Pont\nCom La historia interminable,\nsom aventura inacabable.\nEntre animals i fantasia,\ncada dia és nova energia.",
+    "Bridge (canvi suau)\nLiker Friday, vibra especial,\namb Becna al centre, moment viral.\nEntre memes i connexió,\nla classe és pura explosió.",
+    "Estribillo final\nDel u al 25 som en clase,\nsom tempesta que mai no es desfa.\nRock i rap en el mateix compàs,\naquesta història no té final.",
+    "Final\nSi algú diu “me aburro” una vegada més,\nli pugem el volum fins a cent.\nPerquè junts, siga com siga el rol,\naquesta classe és rock and roll. 🎸✨"
+  ],
+  "times": {
+    "auto": [],
+    "calibrated": [
+      5.130666,
+      16.394666,
+      24.16,
+      32.533333,
+      51.530666,
+      66.325333,
+      74.549333,
+      82.944,
+      101.642666,
+      116.576
+    ]
+  },
+  "offsetSeconds": 0,
+  "detector": {
+    "threshold": 0.02,
+    "minSilenceMs": 320,
+    "windowMs": 80
+  },
+  "audioMeta": {
+    "name": "3A (rock).mp3",
+    "type": "audio/mpeg"
+  },
+  "audioUrl": "audio/3A (rock).mp3"
+}

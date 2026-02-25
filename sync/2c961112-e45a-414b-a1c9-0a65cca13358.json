@@ -1,0 +1,45 @@
+{
+  "id": "2c961112-e45a-414b-a1c9-0a65cca13358",
+  "title": "5B Dale dale",
+  "category": "5b",
+  "categoryTitle": "5B",
+  "lyricsOriginal": "Al pati sona la música, el sol fa una aura daurada,\nriem sense pensar en res, vesprada improvisada.\nCridem fort “i like Steve!”, algú respon “jo també!”,\ncomença la festa loca de la classe cinquè B.\n\nPre-cor\nEntre rialles i secrets,\nhistòries que ningú sap bé,\nperò junts tot té sentit,\ncom si fora una sèrie en directe.\n\nEstribillo\nDale dale dale, que no pare mai,\nsom alpha en el joc i en la vida també.\nAmb Roblox fins que es faça tard,\ni cridem ben fort: gràcies a tots per estar!\n\nVers 2\nA la motxilla un mini peluche, guardat amb emoció,\nsona “Rainig Tacos” com a banda sonora del cor.\nAlgú diu “I love Will”, i tots esclatem a riure,\ncom si fórem dins de Stranger Things vivint lliures.\n\nPont\nSix seven, comptem abans de saltar,\nsomnis que ningú pot parar.\nEntre memes i videojocs,\nun univers que no vol acabar.\n\nEstribillo\nDale dale dale, que no pare mai,\nsom alpha en el joc i en la vida també.\nAmb Roblox fins que es faça tard,\ni cridem ben fort: gràcies a tots per estar!\n\nVers 3\nEl Sr. Don Pepe diu: “Silenci, per favor!”,\nperò sona el timbre i explota l’alegria al corredor.\nPollito con alioli per celebrar,\nque l’estiu ja està a punt d’arribar.\n\nBridge divertit\nDustin bon, misteriós i genial,\ncom un heroi d’un món digital.\nSu Min i Mini ballen sense parar,\ni cridem “Aitana por siempre!” fins rebentar.\n\nFinal\nI quan el dia s’acaba lentament,\ni el cel es torna roig brillant,\nsabem que aquest moment\nquedarà per sempre guardat.\n\nEstribillo final\nDale dale dale, que no pare mai,\nsom alpha en el joc i en la vida també.\nEntre rialles, records i amistat,\ngràcies a tots per aquesta eternitat.",
+  "paragraphs": [
+    "Al pati sona la música, el sol fa una aura daurada,\nriem sense pensar en res, vesprada improvisada.\nCridem fort “i like Steve!”, algú respon “jo també!”,\ncomença la festa loca de la classe cinquè B.",
+    "Pre-cor\nEntre rialles i secrets,\nhistòries que ningú sap bé,\nperò junts tot té sentit,\ncom si fora una sèrie en directe.",
+    "Estribillo\nDale dale dale, que no pare mai,\nsom alpha en el joc i en la vida també.\nAmb Roblox fins que es faça tard,\ni cridem ben fort: gràcies a tots per estar!",
+    "Vers 2\nA la motxilla un mini peluche, guardat amb emoció,\nsona “Rainig Tacos” com a banda sonora del cor.\nAlgú diu “I love Will”, i tots esclatem a riure,\ncom si fórem dins de Stranger Things vivint lliures.",
+    "Pont\nSix seven, comptem abans de saltar,\nsomnis que ningú pot parar.\nEntre memes i videojocs,\nun univers que no vol acabar.",
+    "Estribillo\nDale dale dale, que no pare mai,\nsom alpha en el joc i en la vida també.\nAmb Roblox fins que es faça tard,\ni cridem ben fort: gràcies a tots per estar!",
+    "Vers 3\nEl Sr. Don Pepe diu: “Silenci, per favor!”,\nperò sona el timbre i explota l’alegria al corredor.\nPollito con alioli per celebrar,\nque l’estiu ja està a punt d’arribar.",
+    "Bridge divertit\nDustin bon, misteriós i genial,\ncom un heroi d’un món digital.\nSu Min i Mini ballen sense parar,\ni cridem “Aitana por siempre!” fins rebentar.",
+    "Final\nI quan el dia s’acaba lentament,\ni el cel es torna roig brillant,\nsabem que aquest moment\nquedarà per sempre guardat.",
+    "Estribillo final\nDale dale dale, que no pare mai,\nsom alpha en el joc i en la vida també.\nEntre rialles, records i amistat,\ngràcies a tots per aquesta eternitat."
+  ],
+  "times": {
+    "auto": [],
+    "calibrated": [
+      24.469333,
+      25.034666,
+      38.432,
+      54.709333,
+      71.808,
+      79.168,
+      100.586666,
+      115.082666,
+      128.778666,
+      136.810666
+    ]
+  },
+  "offsetSeconds": 0,
+  "detector": {
+    "threshold": 0.02,
+    "minSilenceMs": 320,
+    "windowMs": 80
+  },
+  "audioMeta": {
+    "name": "5B.mp3",
+    "type": "audio/mpeg"
+  },
+  "audioUrl": "audio/5B.mp3"
+}
