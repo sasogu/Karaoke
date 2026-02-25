@@ -123,14 +123,23 @@ Campos útiles para organización:
 - `category`: slug de categoría (`pop`, `rock`, `clasicos`)
 - `categoryTitle`: nombre visible de categoría (`Pop`, `Rock`, `Clásicos`)
 
-Genera el catálogo con:
+Genera el catálogo con (recomendado para GitHub Pages):
 
 ```bash
-node scripts/generate-catalog.mjs --base-url https://raw.githubusercontent.com/USUARIO/REPO/main
+node scripts/generate-catalog.mjs
+```
+
+Si prefieres URLs absolutas (por ejemplo para consumir fuera del sitio):
+
+```bash
+node scripts/generate-catalog.mjs \
+   --audio-url-mode absolute \
+   --base-url https://raw.githubusercontent.com/USUARIO/REPO/main
 ```
 
 Opciones útiles:
 
+- `--audio-url-mode relative|absolute` (default: `relative`)
 - `--audio-dir audio`
 - `--sync-dir sync`
 - `--output catalog/canciones.json`

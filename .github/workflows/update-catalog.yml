@@ -28,8 +28,7 @@ jobs:
 
       - name: Generate catalog
         run: |
-          node scripts/generate-catalog.mjs \
-            --base-url "https://raw.githubusercontent.com/${{ github.repository }}/${{ github.ref_name }}"
+          node scripts/generate-catalog.mjs
 
       - name: Commit catalog changes
         run: |

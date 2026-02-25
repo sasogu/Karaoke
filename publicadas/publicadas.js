@@ -2,6 +2,7 @@
   "use strict";
 
   const CATALOG_URL = "../catalog/canciones.json";
+  const APP_BASE_URL = new URL("../", window.location.href);
 
   const refs = {
     reloadBtn: document.getElementById("reloadBtn"),
@@ -57,10 +58,30 @@
     }
   }
 
+  function resolveAudioUrl(url) {
+    const raw = String(url || "").trim();
+    if (!raw) return "";
+
+    if (/^[a-zA-Z][a-zA-Z\d+.-]*:/.test(raw) || raw.startsWith("//")) {
+      return raw;
+    }
+
+    if (raw.startsWith("/")) {
+      return new URL(raw, window.location.origin).href;
+    }
+
+    if (raw.startsWith("./") || raw.startsWith("../")) {
+      return new URL(raw, window.location.href).href;
+    }
+
+    return new URL(raw, APP_BASE_URL).href;
+  }
+
   function normalizeSong(raw, categoriesMap) {
     if (!raw || typeof raw !== "object") return null;
     const title = String(raw.title || "").trim();
-    const audioUrl = String(raw.audioUrl || raw.audio || "").trim();
+    const audioUrlRaw = String(raw.audioUrl || raw.audio || "").trim();
+    const audioUrl = resolveAudioUrl(audioUrlRaw);
     if (!title || !audioUrl) return null;
 
     const lyricsOriginal = String(raw.lyricsOriginal || raw.lyrics || "");

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-02-25T08:52:20.876Z",
+  "generatedAt": "2026-02-25T10:23:36.122Z",
   "source": {
     "audioDir": "audio",
     "syncDir": "sync"
@@ -36,36 +36,9 @@
     {
       "id": "demos",
       "title": "Demos"
-    },
-    {
-      "id": "general",
-      "title": "General"
     }
   ],
   "songs": [
-    {
-      "id": "3a-rock",
-      "title": "3A (rock)",
-      "category": "general",
-      "categoryTitle": "General",
-      "audioUrl": "https://raw.githubusercontent.com/sasogu/Karaoke/main/audio/3A (rock).mp3",
-      "lyricsOriginal": "",
-      "paragraphs": [],
-      "times": {
-        "auto": [],
-        "calibrated": []
-      },
-      "offsetSeconds": 0,
-      "detector": {
-        "threshold": 0.02,
-        "minSilenceMs": 320,
-        "windowMs": 80
-      },
-      "audioMeta": {
-        "name": "3A (rock).mp3",
-        "type": "audio/mpeg"
-      }
-    },
     {
       "id": "da19e730-2d2d-4c87-a2c1-a87a7afcf692",
       "title": "3A rock",
@@ -112,52 +85,6 @@
       }
     },
     {
-      "id": "4a-un-lloc-un-record",
-      "title": "4A Un lloc, un record",
-      "category": "general",
-      "categoryTitle": "General",
-      "audioUrl": "https://raw.githubusercontent.com/sasogu/Karaoke/main/audio/4A_ Un lloc, un record.mp3",
-      "lyricsOriginal": "",
-      "paragraphs": [],
-      "times": {
-        "auto": [],
-        "calibrated": []
-      },
-      "offsetSeconds": 0,
-      "detector": {
-        "threshold": 0.02,
-        "minSilenceMs": 320,
-        "windowMs": 80
-      },
-      "audioMeta": {
-        "name": "4A_ Un lloc, un record.mp3",
-        "type": "audio/mpeg"
-      }
-    },
-    {
-      "id": "4b-turquesa-i-diamants-negres",
-      "title": "4B Turquesa i Diamants Negres",
-      "category": "general",
-      "categoryTitle": "General",
-      "audioUrl": "https://raw.githubusercontent.com/sasogu/Karaoke/main/audio/4B_ Turquesa i Diamants Negres.mp3",
-      "lyricsOriginal": "",
-      "paragraphs": [],
-      "times": {
-        "auto": [],
-        "calibrated": []
-      },
-      "offsetSeconds": 0,
-      "detector": {
-        "threshold": 0.02,
-        "minSilenceMs": 320,
-        "windowMs": 80
-      },
-      "audioMeta": {
-        "name": "4B_ Turquesa i Diamants Negres.mp3",
-        "type": "audio/mpeg"
-      }
-    },
-    {
       "id": "c87dc706-ed55-4649-a7a2-9f951143f680",
       "title": "5a school of cool",
       "category": "5a",
@@ -199,29 +126,6 @@
       },
       "audioMeta": {
         "name": "__Títol_ _The School of Cool (Cinquè A)_.mp3",
-        "type": "audio/mpeg"
-      }
-    },
-    {
-      "id": "5b",
-      "title": "5B",
-      "category": "general",
-      "categoryTitle": "General",
-      "audioUrl": "https://raw.githubusercontent.com/sasogu/Karaoke/main/audio/5B.mp3",
-      "lyricsOriginal": "",
-      "paragraphs": [],
-      "times": {
-        "auto": [],
-        "calibrated": []
-      },
-      "offsetSeconds": 0,
-      "detector": {
-        "threshold": 0.02,
-        "minSilenceMs": 320,
-        "windowMs": 80
-      },
-      "audioMeta": {
-        "name": "5B.mp3",
         "type": "audio/mpeg"
       }
     },
@@ -310,29 +214,6 @@
       }
     },
     {
-      "id": "6b",
-      "title": "6B",
-      "category": "general",
-      "categoryTitle": "General",
-      "audioUrl": "https://raw.githubusercontent.com/sasogu/Karaoke/main/audio/6B.mp3",
-      "lyricsOriginal": "",
-      "paragraphs": [],
-      "times": {
-        "auto": [],
-        "calibrated": []
-      },
-      "offsetSeconds": 0,
-      "detector": {
-        "threshold": 0.02,
-        "minSilenceMs": 320,
-        "windowMs": 80
-      },
-      "audioMeta": {
-        "name": "6B.mp3",
-        "type": "audio/mpeg"
-      }
-    },
-    {
       "id": "a2483c62-6088-4785-bfcb-b9909596ec98",
       "title": "Diameantes 4B",
       "category": "4b",
@@ -415,75 +296,6 @@
       },
       "audioMeta": {
         "name": "6B.mp3",
-        "type": "audio/mpeg"
-      }
-    },
-    {
-      "id": "fi-de-curs-al-blasco",
-      "title": "Fi de curs al Blasco",
-      "category": "general",
-      "categoryTitle": "General",
-      "audioUrl": "https://raw.githubusercontent.com/sasogu/Karaoke/main/audio/Fi de curs al Blasco.mp3",
-      "lyricsOriginal": "",
-      "paragraphs": [],
-      "times": {
-        "auto": [],
-        "calibrated": []
-      },
-      "offsetSeconds": 0,
-      "detector": {
-        "threshold": 0.02,
-        "minSilenceMs": 320,
-        "windowMs": 80
-      },
-      "audioMeta": {
-        "name": "Fi de curs al Blasco.mp3",
-        "type": "audio/mpeg"
-      }
-    },
-    {
-      "id": "fi-de-curs-al-blasco-2",
-      "title": "Fi de curs al Blasco 2",
-      "category": "general",
-      "categoryTitle": "General",
-      "audioUrl": "https://raw.githubusercontent.com/sasogu/Karaoke/main/audio/Fi de curs al Blasco-2.mp3",
-      "lyricsOriginal": "",
-      "paragraphs": [],
-      "times": {
-        "auto": [],
-        "calibrated": []
-      },
-      "offsetSeconds": 0,
-      "detector": {
-        "threshold": 0.02,
-        "minSilenceMs": 320,
-        "windowMs": 80
-      },
-      "audioMeta": {
-        "name": "Fi de curs al Blasco-2.mp3",
-        "type": "audio/mpeg"
-      }
-    },
-    {
-      "id": "fi-de-curs-al-blasco-3",
-      "title": "Fi de curs al Blasco 3",
-      "category": "general",
-      "categoryTitle": "General",
-      "audioUrl": "https://raw.githubusercontent.com/sasogu/Karaoke/main/audio/Fi de curs al Blasco-3.mp3",
-      "lyricsOriginal": "",
-      "paragraphs": [],
-      "times": {
-        "auto": [],
-        "calibrated": []
-      },
-      "offsetSeconds": 0,
-      "detector": {
-        "threshold": 0.02,
-        "minSilenceMs": 320,
-        "windowMs": 80
-      },
-      "audioMeta": {
-        "name": "Fi de curs al Blasco-3.mp3",
         "type": "audio/mpeg"
       }
     },
@@ -593,29 +405,6 @@
       },
       "audioMeta": {
         "name": "SoundHelix-Song-1.mp3",
-        "type": "audio/mpeg"
-      }
-    },
-    {
-      "id": "titol-the-school-of-cool-cinque-a",
-      "title": "Títol The School of Cool (Cinquè A)",
-      "category": "general",
-      "categoryTitle": "General",
-      "audioUrl": "https://raw.githubusercontent.com/sasogu/Karaoke/main/audio/__Títol_ _The School of Cool (Cinquè A)_.mp3",
-      "lyricsOriginal": "",
-      "paragraphs": [],
-      "times": {
-        "auto": [],
-        "calibrated": []
-      },
-      "offsetSeconds": 0,
-      "detector": {
-        "threshold": 0.02,
-        "minSilenceMs": 320,
-        "windowMs": 80
-      },
-      "audioMeta": {
-        "name": "__Títol_ _The School of Cool (Cinquè A)_.mp3",
         "type": "audio/mpeg"
       }
     },
