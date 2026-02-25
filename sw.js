@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-globals */
 
-const APP_CACHE_VERSION = "1.0.22";
+const APP_CACHE_VERSION = "1.0.23";
 const CACHE_PREFIX = "karaoke-pwa";
 const STATIC_CACHE = `${CACHE_PREFIX}-static-${APP_CACHE_VERSION}`;
 const RUNTIME_CACHE = `${CACHE_PREFIX}-runtime-${APP_CACHE_VERSION}`;
@@ -52,6 +52,7 @@ self.addEventListener("fetch", (event) => {
   const { request } = event;
 
   if (request.method !== "GET") return;
+  if (request.headers.has("range")) return;
 
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return;
@@ -80,7 +81,9 @@ async function networkFirst(request, fallbackUrl) {
 
   try {
     const response = await fetch(request);
-    runtime.put(request, response.clone());
+    if (isCacheableResponse(response)) {
+      runtime.put(request, response.clone());
+    }
     return response;
   } catch {
     return (await runtime.match(request)) || (await caches.match(fallbackUrl));
@@ -93,10 +96,24 @@ async function staleWhileRevalidate(request) {
 
   const networkPromise = fetch(request)
     .then((response) => {
-      runtime.put(request, response.clone());
+      if (isCacheableResponse(response)) {
+        runtime.put(request, response.clone());
+      }
       return response;
     })
-    .catch(() => null);
+    .catch(() => undefined);
 
-  return cached || networkPromise || fetch(request);
+  if (cached) {
+    networkPromise.catch(() => undefined);
+    return cached;
+  }
+
+  const networkResponse = await networkPromise;
+  if (networkResponse) return networkResponse;
+
+  return fetch(request);
+}
+
+function isCacheableResponse(response) {
+  return response && response.ok && response.status === 200 && response.type === "basic";
 }
