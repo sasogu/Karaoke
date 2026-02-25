@@ -7,6 +7,7 @@
   const refs = {
     reloadBtn: document.getElementById("reloadBtn"),
     status: document.getElementById("status"),
+    catalogFilter: document.getElementById("catalogFilter"),
     catalogView: document.getElementById("catalogView"),
 
     nowTitle: document.getElementById("nowTitle"),
@@ -32,7 +33,8 @@
   const state = {
     songs: [],
     currentSong: null,
-    activeParagraphIndex: -1
+    activeParagraphIndex: -1,
+    selectedCategoryId: ""
   };
 
   const parseParagraphs = (text) => String(text || "")
@@ -117,16 +119,55 @@
     refs.status.textContent = text;
   }
 
+  function renderCatalogFilter() {
+    if (!refs.catalogFilter) return;
+
+    const previousSelected = state.selectedCategoryId || refs.catalogFilter.value || "";
+    const categories = new Map();
+
+    state.songs.forEach((song) => {
+      const id = String(song.categoryId || "general").trim() || "general";
+      const title = String(song.categoryTitle || "General").trim() || "General";
+      if (!categories.has(id)) categories.set(id, title);
+    });
+
+    refs.catalogFilter.innerHTML = '<option value="">Todas</option>';
+
+    Array.from(categories.entries())
+      .sort((a, b) => a[1].localeCompare(b[1], "es"))
+      .forEach(([id, title]) => {
+        const option = document.createElement("option");
+        option.value = id;
+        option.textContent = title;
+        refs.catalogFilter.appendChild(option);
+      });
+
+    state.selectedCategoryId = categories.has(previousSelected) ? previousSelected : "";
+    refs.catalogFilter.value = state.selectedCategoryId;
+  }
+
   function renderCatalog() {
     if (!state.songs.length) {
       refs.catalogView.innerHTML = '<p class="empty">Aún no hay canciones publicadas.</p>';
+      if (refs.catalogFilter) refs.catalogFilter.innerHTML = '<option value="">Todas</option>';
+      return;
+    }
+
+    renderCatalogFilter();
+
+    const visibleSongs = state.selectedCategoryId
+      ? state.songs.filter((song) => song.categoryId === state.selectedCategoryId)
+      : state.songs;
+
+    if (!visibleSongs.length) {
+      refs.catalogView.innerHTML = '<p class="empty">No hay canciones para este filtro.</p>';
       return;
     }
 
     refs.catalogView.innerHTML = "";
     const grouped = new Map();
 
-    state.songs.forEach((song) => {
+    visibleSongs.forEach((song) => {
       const key = `${song.categoryId}::${song.categoryTitle}`;
       if (!grouped.has(key)) grouped.set(key, { title: song.categoryTitle, songs: [] });
       grouped.get(key).songs.push(song);
@@ -367,6 +408,10 @@
 
   function attachEvents() {
     refs.reloadBtn?.addEventListener("click", loadCatalog);
+    refs.catalogFilter?.addEventListener("change", () => {
+      state.selectedCategoryId = refs.catalogFilter.value || "";
+      renderCatalog();
+    });
 
     refs.catalogView?.addEventListener("click", async (event) => {
       const target = event.target;
