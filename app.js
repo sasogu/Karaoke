@@ -1284,13 +1284,29 @@
     refs.playlistView.innerHTML = "";
     refs.playlistSelect.innerHTML = `<option value="">${t("new_playlist")}</option>`;
 
-    state.playlist.forEach((playlist) => {
+    const playlistsWithItems = state.playlist.filter((playlist) => Array.isArray(playlist.items) && playlist.items.length);
+
+    playlistsWithItems.forEach((playlist) => {
       if (!Array.isArray(playlist.items) || !playlist.items.length) return;
 
       const option = document.createElement("option");
       option.value = playlist.id;
       option.textContent = playlist.title;
       refs.playlistSelect.appendChild(option);
+
+    });
+
+    if (previousSelected && getPlaylistById(previousSelected)) {
+      refs.playlistSelect.value = previousSelected;
+    } else {
+      refs.playlistSelect.value = "";
+    }
+
+    const selectedPlaylist = getPlaylistById(refs.playlistSelect.value);
+    const visiblePlaylists = selectedPlaylist ? [selectedPlaylist] : playlistsWithItems;
+
+    visiblePlaylists.forEach((playlist) => {
+      if (!Array.isArray(playlist.items) || !playlist.items.length) return;
 
       playlist.items.forEach((item) => {
         const wrapper = document.createElement("article");
@@ -1318,13 +1334,7 @@
       });
     });
 
-      if (previousSelected && getPlaylistById(previousSelected)) {
-        refs.playlistSelect.value = previousSelected;
-      } else {
-        refs.playlistSelect.value = "";
-      }
-
-      syncPlaylistNameInputFromSelection();
+    syncPlaylistNameInputFromSelection();
   }
 
   function normalizeRemoteSong(raw, categoryMap = new Map()) {
@@ -1595,6 +1605,7 @@
     saveStateToLocalStorage();
     renderPlaylist();
     refs.playlistSelect.value = playlist.id;
+    renderPlaylist();
     refs.playlistTitleInput.value = "";
     syncPlaylistNameInputFromSelection();
     showMessage(t("msg_track_added_playlist"));
@@ -2678,7 +2689,7 @@
     }
 
     if (refs.playlistSelect) {
-      refs.playlistSelect.addEventListener("change", syncPlaylistNameInputFromSelection);
+      refs.playlistSelect.addEventListener("change", renderPlaylist);
     }
 
     if (refs.clearPlaylistBtn) {
