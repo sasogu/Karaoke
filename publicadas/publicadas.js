@@ -3,6 +3,114 @@
 
   const CATALOG_URL = "../catalog/canciones.json";
   const APP_BASE_URL = new URL("../", window.location.href);
+  const LS_LANG_KEY = "karaokeLanguageV1";
+
+  const I18N = {
+    es: {
+      document_title: "Canciones publicadas · EduKaraoke",
+      language_label: "Idioma",
+      page_title: "Canciones publicadas",
+      page_subtitle: "Listado público generado desde <code>catalog/canciones.json</code>.",
+      open_full_app: "Abrir app completa",
+      reload_catalog: "Recargar catálogo",
+      status_loading: "Cargando...",
+      status_error: "Error",
+      status_ready: "{count} publicadas",
+      catalog_title: "Catálogo",
+      filter_label: "Filtrar:",
+      filter_all: "Todas",
+      catalog_loading: "Cargando canciones publicadas...",
+      catalog_empty: "Aún no hay canciones publicadas.",
+      catalog_filtered_empty: "No hay canciones para este filtro.",
+      now_title_default: "Selecciona una canción",
+      lyrics_empty: "Selecciona una canción publicada para ver su letra.",
+      fullscreen_open: "Pantalla completa",
+      close: "Cerrar",
+      play: "Play",
+      pause: "Pause",
+      stop: "Stop",
+      meta_file: "Archivo:",
+      meta_category: "Categoría:",
+      meta_time: "Tiempo:",
+      paragraph_count: "{count} párrafo(s)",
+      sync_yes: "sincronizado",
+      sync_no: "sin sincronizar",
+      btn_load: "Cargar",
+      btn_load_play: "Cargar y reproducir",
+      catalog_invalid: "Formato de catálogo inválido",
+      catalog_load_error: "No se pudo cargar el catálogo: {error}"
+    },
+    val: {
+      document_title: "Cançons publicades · EduKaraoke",
+      language_label: "Idioma",
+      page_title: "Cançons publicades",
+      page_subtitle: "Llistat públic generat des de <code>catalog/canciones.json</code>.",
+      open_full_app: "Obrir app completa",
+      reload_catalog: "Recarregar catàleg",
+      status_loading: "Carregant...",
+      status_error: "Error",
+      status_ready: "{count} publicades",
+      catalog_title: "Catàleg",
+      filter_label: "Filtrar:",
+      filter_all: "Totes",
+      catalog_loading: "Carregant cançons publicades...",
+      catalog_empty: "Encara no hi ha cançons publicades.",
+      catalog_filtered_empty: "No hi ha cançons per a este filtre.",
+      now_title_default: "Selecciona una cançó",
+      lyrics_empty: "Selecciona una cançó publicada per a vore la lletra.",
+      fullscreen_open: "Pantalla completa",
+      close: "Tancar",
+      play: "Play",
+      pause: "Pause",
+      stop: "Stop",
+      meta_file: "Arxiu:",
+      meta_category: "Categoria:",
+      meta_time: "Temps:",
+      paragraph_count: "{count} paràgraf(s)",
+      sync_yes: "sincronitzat",
+      sync_no: "sense sincronitzar",
+      btn_load: "Carregar",
+      btn_load_play: "Carregar i reproduir",
+      catalog_invalid: "Format de catàleg invàlid",
+      catalog_load_error: "No s'ha pogut carregar el catàleg: {error}"
+    },
+    en: {
+      document_title: "Published songs · EduKaraoke",
+      language_label: "Language",
+      page_title: "Published songs",
+      page_subtitle: "Public list generated from <code>catalog/canciones.json</code>.",
+      open_full_app: "Open full app",
+      reload_catalog: "Reload catalog",
+      status_loading: "Loading...",
+      status_error: "Error",
+      status_ready: "{count} published",
+      catalog_title: "Catalog",
+      filter_label: "Filter:",
+      filter_all: "All",
+      catalog_loading: "Loading published songs...",
+      catalog_empty: "No published songs yet.",
+      catalog_filtered_empty: "No songs for this filter.",
+      now_title_default: "Select a song",
+      lyrics_empty: "Select a published song to view lyrics.",
+      fullscreen_open: "Fullscreen",
+      close: "Close",
+      play: "Play",
+      pause: "Pause",
+      stop: "Stop",
+      meta_file: "File:",
+      meta_category: "Category:",
+      meta_time: "Time:",
+      paragraph_count: "{count} paragraph(s)",
+      sync_yes: "synced",
+      sync_no: "not synced",
+      btn_load: "Load",
+      btn_load_play: "Load & play",
+      catalog_invalid: "Invalid catalog format",
+      catalog_load_error: "Could not load catalog: {error}"
+    }
+  };
+
+  let currentLanguage = "es";
 
   const refs = {
     reloadBtn: document.getElementById("reloadBtn"),
@@ -27,7 +135,8 @@
     closeFullscreenBtn: document.getElementById("closeFullscreenBtn"),
     fsPlayBtn: document.getElementById("fsPlayBtn"),
     fsPauseBtn: document.getElementById("fsPauseBtn"),
-    fsStopBtn: document.getElementById("fsStopBtn")
+    fsStopBtn: document.getElementById("fsStopBtn"),
+    languageSwitch: document.getElementById("languageSwitch")
   };
 
   const state = {
@@ -41,6 +150,63 @@
     .split(/\n\s*\n/g)
     .map((p) => p.trim())
     .filter(Boolean);
+
+  function t(key, params = {}) {
+    const bundle = I18N[currentLanguage] || I18N.es;
+    const template = bundle[key] || I18N.es[key] || key;
+    return String(template).replace(/\{(\w+)\}/g, (_, token) => String(params[token] ?? `{${token}}`));
+  }
+
+  function getInitialLanguage() {
+    const stored = String(localStorage.getItem(LS_LANG_KEY) || "").trim().toLowerCase();
+    if (stored === "es" || stored === "val" || stored === "en") return stored;
+    return "es";
+  }
+
+  function setLanguage(lang) {
+    if (!I18N[lang]) return;
+    currentLanguage = lang;
+    localStorage.setItem(LS_LANG_KEY, lang);
+    applyI18n();
+    renderCatalog();
+    updateNowTitle();
+    buildLyrics();
+    renderFullscreenParagraph();
+    updateStatus(state.songs.length ? t("status_ready", { count: state.songs.length }) : t("status_loading"));
+  }
+
+  function updateLanguageButtons() {
+    refs.languageSwitch?.querySelectorAll(".lang-btn").forEach((button) => {
+      if (!(button instanceof HTMLButtonElement)) return;
+      button.classList.toggle("active", button.dataset.lang === currentLanguage);
+    });
+  }
+
+  function applyI18n() {
+    document.title = t("document_title");
+
+    document.querySelectorAll("[data-i18n]").forEach((node) => {
+      const key = node.getAttribute("data-i18n");
+      if (!key) return;
+      if (key === "page_subtitle") {
+        node.innerHTML = t(key);
+      } else {
+        node.textContent = t(key);
+      }
+    });
+
+    document.querySelectorAll("[data-i18n-aria-label]").forEach((node) => {
+      const key = node.getAttribute("data-i18n-aria-label");
+      if (!key) return;
+      node.setAttribute("aria-label", t(key));
+    });
+
+    updateLanguageButtons();
+  }
+
+  function updateNowTitle() {
+    refs.nowTitle.textContent = state.currentSong?.title || t("now_title_default");
+  }
 
   function formatTime(seconds) {
     if (!Number.isFinite(seconds)) return "00:00";
@@ -132,6 +298,7 @@
     });
 
     refs.catalogFilter.innerHTML = '<option value="">Todas</option>';
+    refs.catalogFilter.innerHTML = `<option value="">${t("filter_all")}</option>`;
 
     Array.from(categories.entries())
       .sort((a, b) => a[1].localeCompare(b[1], "es"))
@@ -148,8 +315,8 @@
 
   function renderCatalog() {
     if (!state.songs.length) {
-      refs.catalogView.innerHTML = '<p class="empty">Aún no hay canciones publicadas.</p>';
-      if (refs.catalogFilter) refs.catalogFilter.innerHTML = '<option value="">Todas</option>';
+      refs.catalogView.innerHTML = `<p class="empty">${t("catalog_empty")}</p>`;
+      if (refs.catalogFilter) refs.catalogFilter.innerHTML = `<option value="">${t("filter_all")}</option>`;
       return;
     }
 
@@ -160,7 +327,7 @@
       : state.songs;
 
     if (!visibleSongs.length) {
-      refs.catalogView.innerHTML = '<p class="empty">No hay canciones para este filtro.</p>';
+      refs.catalogView.innerHTML = `<p class="empty">${t("catalog_filtered_empty")}</p>`;
       return;
     }
 
@@ -190,11 +357,11 @@
             item.innerHTML = `
               <div>
                 <div class="playlist-item-title">${song.title}</div>
-                <div class="playlist-item-meta">${inferAudioNameFromUrl(song.audioUrl)} · ${song.paragraphs.length} párrafo(s) · ${hasTimes ? "sincronizado" : "sin sincronizar"}</div>
+                <div class="playlist-item-meta">${inferAudioNameFromUrl(song.audioUrl)} · ${t("paragraph_count", { count: song.paragraphs.length })} · ${hasTimes ? t("sync_yes") : t("sync_no")}</div>
               </div>
               <div class="remote-song-actions">
-                <button class="secondary" data-action="load" data-id="${song.id}">Cargar</button>
-                <button data-action="play" data-id="${song.id}">Cargar y reproducir</button>
+                <button class="secondary" data-action="load" data-id="${song.id}">${t("btn_load")}</button>
+                <button data-action="play" data-id="${song.id}">${t("btn_load_play")}</button>
               </div>
             `;
             refs.catalogView.appendChild(item);
@@ -205,7 +372,7 @@
   function buildLyrics() {
     const song = state.currentSong;
     if (!song || !song.paragraphs.length) {
-      refs.lyricsView.innerHTML = '<p class="empty">Selecciona una canción publicada para ver su letra.</p>';
+      refs.lyricsView.innerHTML = `<p class="empty">${t("lyrics_empty")}</p>`;
       refs.progress.textContent = "0/0";
       state.activeParagraphIndex = -1;
       return;
@@ -283,7 +450,7 @@
 
     const song = state.currentSong;
     if (!song || !song.paragraphs.length) {
-      refs.fullscreenParagraph.textContent = "Selecciona una canción publicada para ver su letra.";
+      refs.fullscreenParagraph.textContent = t("lyrics_empty");
       return;
     }
 
@@ -350,7 +517,7 @@
     if (!song) return;
 
     state.currentSong = song;
-    refs.nowTitle.textContent = song.title;
+    updateNowTitle();
     refs.audio.src = song.audioUrl;
     refs.audioName.textContent = song.audioMeta?.name || inferAudioNameFromUrl(song.audioUrl);
     refs.audioCategory.textContent = song.categoryTitle;
@@ -369,7 +536,7 @@
   }
 
   async function loadCatalog() {
-    updateStatus("Cargando...");
+    updateStatus(t("status_loading"));
 
     try {
       const response = await fetch(CATALOG_URL, { cache: "no-store" });
@@ -377,7 +544,7 @@
 
       const payload = await response.json();
       const songsRaw = Array.isArray(payload) ? payload : (Array.isArray(payload?.songs) ? payload.songs : null);
-      if (!songsRaw) throw new Error("Formato de catálogo inválido");
+      if (!songsRaw) throw new Error(t("catalog_invalid"));
 
       const categoriesMap = new Map();
       if (Array.isArray(payload?.categories)) {
@@ -392,22 +559,29 @@
 
       state.songs = songsRaw.map((raw) => normalizeSong(raw, categoriesMap)).filter(Boolean);
       renderCatalog();
-      updateStatus(`${state.songs.length} publicadas`);
+      updateStatus(t("status_ready", { count: state.songs.length }));
 
       const firstSong = state.songs[0];
       if (firstSong && !state.currentSong) {
         await loadSongById(firstSong.id, false);
       }
     } catch (error) {
-      updateStatus("Error");
+      updateStatus(t("status_error"));
       if (!state.songs.length) {
-        refs.catalogView.innerHTML = `<p class="empty">No se pudo cargar el catálogo: ${error.message}</p>`;
+        refs.catalogView.innerHTML = `<p class="empty">${t("catalog_load_error", { error: error.message })}</p>`;
       }
     }
   }
 
   function attachEvents() {
     refs.reloadBtn?.addEventListener("click", loadCatalog);
+    refs.languageSwitch?.addEventListener("click", (event) => {
+      const target = event.target;
+      if (!(target instanceof HTMLElement)) return;
+      const lang = String(target.dataset.lang || "").trim();
+      if (!lang) return;
+      setLanguage(lang);
+    });
     refs.catalogFilter?.addEventListener("change", () => {
       state.selectedCategoryId = refs.catalogFilter.value || "";
       renderCatalog();
@@ -513,6 +687,10 @@
       }
     });
   }
+
+  currentLanguage = getInitialLanguage();
+  applyI18n();
+  updateNowTitle();
 
   attachEvents();
   loadCatalog();

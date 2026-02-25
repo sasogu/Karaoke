@@ -1,0 +1,41 @@
+{
+  "id": "bc3b1307-21e6-42cb-9427-bfb362ab2e6f",
+  "title": "3B Benvingut al Món de Joc",
+  "category": "3b",
+  "categoryTitle": "3B",
+  "lyricsOriginal": "\"Benvingut al Món de Joc\"\n\nEn el fornait jugant a Roblox,  \nBenvingut a Hockyns, tot és un flow.  \nAl pati ens trobem, amics i amigues,  \nCom a *Stranger Things*, llum d’estrelles.  \n\nSix seven, preparem el moment,  \nMúsica amb el profe, ballant conscient.  \nMily Poppy Braun ens guia la ruta,  \nDustin i Demogorgon fan la disputa.  \n\n\nEdy Manson amb la guitarra elèctrica,  \nAl costat d'un altavoz, la festa és màgica.  \nJugant al Brawl Start, no hi ha temps a perdre,  \nShakira, Shakira, la música ens enreda.  \n\nSix seven, preparem el moment,  \nMúsica amb el profe, ballant conscient.  \nMily Poppy Braun ens guia la ruta,  \nDustin i Demogorgon fan la disputa.  \n\n\nA l'escola de ball, Gud But Dance,  \nJugant al FIFA, tindre un bon romance.  \nUna super estrella, el futbol a l'aire,  \nAl col·legi, la diversió no para mai.  \n\n\nSix seven, preparem el moment,  \nMúsica amb el profe, ballant conscient.  \nMily Poppy Braun ens guia la ruta,  \nDustin i Demogorgon fan la disputa.  \n\n\nBenvingut al món de joc i de rialles,  \nAmb amics i amigues, sempre trobarem cadires.  \nLa vida és una festa, vibra aquest instant,  \nA Hockyns, cada dia és un nou avanç.  ",
+  "paragraphs": [
+    "\"Benvingut al Món de Joc\"",
+    "En el fornait jugant a Roblox,  \nBenvingut a Hockyns, tot és un flow.  \nAl pati ens trobem, amics i amigues,  \nCom a *Stranger Things*, llum d’estrelles.",
+    "Six seven, preparem el moment,  \nMúsica amb el profe, ballant conscient.  \nMily Poppy Braun ens guia la ruta,  \nDustin i Demogorgon fan la disputa.",
+    "Edy Manson amb la guitarra elèctrica,  \nAl costat d'un altavoz, la festa és màgica.  \nJugant al Brawl Start, no hi ha temps a perdre,  \nShakira, Shakira, la música ens enreda.",
+    "Six seven, preparem el moment,  \nMúsica amb el profe, ballant conscient.  \nMily Poppy Braun ens guia la ruta,  \nDustin i Demogorgon fan la disputa.",
+    "A l'escola de ball, Gud But Dance,  \nJugant al FIFA, tindre un bon romance.  \nUna super estrella, el futbol a l'aire,  \nAl col·legi, la diversió no para mai.",
+    "Six seven, preparem el moment,  \nMúsica amb el profe, ballant conscient.  \nMily Poppy Braun ens guia la ruta,  \nDustin i Demogorgon fan la disputa.",
+    "Benvingut al món de joc i de rialles,  \nAmb amics i amigues, sempre trobarem cadires.  \nLa vida és una festa, vibra aquest instant,  \nA Hockyns, cada dia és un nou avanç."
+  ],
+  "times": {
+    "auto": [],
+    "calibrated": [
+      4.853333,
+      8.778666,
+      30.986666,
+      47.829333,
+      79.488,
+      97.098666,
+      125.941333,
+      144.266666
+    ]
+  },
+  "offsetSeconds": 0,
+  "detector": {
+    "threshold": 0.02,
+    "minSilenceMs": 320,
+    "windowMs": 80
+  },
+  "audioMeta": {
+    "name": "3B Lletra de Cançó_ _Benvingut al Món de.mp3",
+    "type": "audio/mpeg"
+  },
+  "audioUrl": "audio/3B Lletra de Cançó_ _Benvingut al Món de.mp3"
+}

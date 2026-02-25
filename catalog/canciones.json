@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-02-25T10:24:14.212Z",
+  "generatedAt": "2026-02-25T12:33:59.206Z",
   "source": {
     "audioDir": "audio",
     "syncDir": "sync"
@@ -8,6 +8,10 @@
     {
       "id": "3a",
       "title": "3A"
+    },
+    {
+      "id": "3b",
+      "title": "3B"
     },
     {
       "id": "4a",
@@ -32,10 +36,6 @@
     {
       "id": "6b",
       "title": "6B"
-    },
-    {
-      "id": "demos",
-      "title": "Demos"
     }
   ],
   "songs": [
@@ -44,7 +44,6 @@
       "title": "3A rock",
       "category": "3a",
       "categoryTitle": "3A",
-      "audioUrl": "audio/3A (rock).mp3",
       "lyricsOriginal": "Sona la guitarra eléctrica, comença el show,\nsom amics i amigues, ningú diu que no.\nDe Harry Potter a Stranger Thinks,\nmisteris al pati, vibes de remix.\n\nA Minecraft construïm un món,\nmentre el Demogorgon perd el control.\nEntre rialles i algun “me aburro” perdut,\nla classe és caos absolut.\n\nPre-cor\n“No sé jo paso”, diu algú al fons,\nperò quan sona el ritme tots fem el pont.\nDe Barbie rosa a ninja dragó,\nNinjago al cor amb foc i passió.\n\nEstribillo\nDel u al 25 som en clase,\ncridem fort perquè ningú ens pare.\nUn like, dos pavos para el Fornite,\nsom llegenda, pur highlight.\n\nVers 2 (rap)\nFlow de rap al passadís,\namb estil Brat i ritme precís.\nA Roblox som nivell expert,\nsi perdem? Tranquis, tot obert.\n\nOnce al camp i gol brutal,\nels matones Blasco flipen igual.\n“No lo sé”, però sona genial,\nsom equip digital i real.\n\nPont\nCom La historia interminable,\nsom aventura inacabable.\nEntre animals i fantasia,\ncada dia és nova energia.\n\nBridge (canvi suau)\nLiker Friday, vibra especial,\namb Becna al centre, moment viral.\nEntre memes i connexió,\nla classe és pura explosió.\n\nEstribillo final\nDel u al 25 som en clase,\nsom tempesta que mai no es desfa.\nRock i rap en el mateix compàs,\naquesta història no té final.\n\nFinal\nSi algú diu “me aburro” una vegada més,\nli pugem el volum fins a cent.\nPerquè junts, siga com siga el rol,\naquesta classe és rock and roll. 🎸✨",
       "paragraphs": [
         "Sona la guitarra eléctrica, comença el show,\nsom amics i amigues, ningú diu que no.\nDe Harry Potter a Stranger Thinks,\nmisteris al pati, vibes de remix.",
@@ -82,14 +81,55 @@
       "audioMeta": {
         "name": "3A (rock).mp3",
         "type": "audio/mpeg"
-      }
+      },
+      "audioUrl": "audio/3A (rock).mp3"
+    },
+    {
+      "id": "bc3b1307-21e6-42cb-9427-bfb362ab2e6f",
+      "title": "3B Benvingut al Món de Joc",
+      "category": "3b",
+      "categoryTitle": "3B",
+      "lyricsOriginal": "\"Benvingut al Món de Joc\"\n\nEn el fornait jugant a Roblox,  \nBenvingut a Hockyns, tot és un flow.  \nAl pati ens trobem, amics i amigues,  \nCom a *Stranger Things*, llum d’estrelles.  \n\nSix seven, preparem el moment,  \nMúsica amb el profe, ballant conscient.  \nMily Poppy Braun ens guia la ruta,  \nDustin i Demogorgon fan la disputa.  \n\n\nEdy Manson amb la guitarra elèctrica,  \nAl costat d'un altavoz, la festa és màgica.  \nJugant al Brawl Start, no hi ha temps a perdre,  \nShakira, Shakira, la música ens enreda.  \n\nSix seven, preparem el moment,  \nMúsica amb el profe, ballant conscient.  \nMily Poppy Braun ens guia la ruta,  \nDustin i Demogorgon fan la disputa.  \n\n\nA l'escola de ball, Gud But Dance,  \nJugant al FIFA, tindre un bon romance.  \nUna super estrella, el futbol a l'aire,  \nAl col·legi, la diversió no para mai.  \n\n\nSix seven, preparem el moment,  \nMúsica amb el profe, ballant conscient.  \nMily Poppy Braun ens guia la ruta,  \nDustin i Demogorgon fan la disputa.  \n\n\nBenvingut al món de joc i de rialles,  \nAmb amics i amigues, sempre trobarem cadires.  \nLa vida és una festa, vibra aquest instant,  \nA Hockyns, cada dia és un nou avanç.  ",
+      "paragraphs": [
+        "\"Benvingut al Món de Joc\"",
+        "En el fornait jugant a Roblox,  \nBenvingut a Hockyns, tot és un flow.  \nAl pati ens trobem, amics i amigues,  \nCom a *Stranger Things*, llum d’estrelles.",
+        "Six seven, preparem el moment,  \nMúsica amb el profe, ballant conscient.  \nMily Poppy Braun ens guia la ruta,  \nDustin i Demogorgon fan la disputa.",
+        "Edy Manson amb la guitarra elèctrica,  \nAl costat d'un altavoz, la festa és màgica.  \nJugant al Brawl Start, no hi ha temps a perdre,  \nShakira, Shakira, la música ens enreda.",
+        "Six seven, preparem el moment,  \nMúsica amb el profe, ballant conscient.  \nMily Poppy Braun ens guia la ruta,  \nDustin i Demogorgon fan la disputa.",
+        "A l'escola de ball, Gud But Dance,  \nJugant al FIFA, tindre un bon romance.  \nUna super estrella, el futbol a l'aire,  \nAl col·legi, la diversió no para mai.",
+        "Six seven, preparem el moment,  \nMúsica amb el profe, ballant conscient.  \nMily Poppy Braun ens guia la ruta,  \nDustin i Demogorgon fan la disputa.",
+        "Benvingut al món de joc i de rialles,  \nAmb amics i amigues, sempre trobarem cadires.  \nLa vida és una festa, vibra aquest instant,  \nA Hockyns, cada dia és un nou avanç."
+      ],
+      "times": {
+        "auto": [],
+        "calibrated": [
+          4.853333,
+          8.778666,
+          30.986666,
+          47.829333,
+          79.488,
+          97.098666,
+          125.941333,
+          144.266666
+        ]
+      },
+      "offsetSeconds": 0,
+      "detector": {
+        "threshold": 0.02,
+        "minSilenceMs": 320,
+        "windowMs": 80
+      },
+      "audioMeta": {
+        "name": "3B Lletra de Cançó_ _Benvingut al Món de.mp3",
+        "type": "audio/mpeg"
+      },
+      "audioUrl": "audio/3B Lletra de Cançó_ _Benvingut al Món de.mp3"
     },
     {
       "id": "c87dc706-ed55-4649-a7a2-9f951143f680",
       "title": "5a school of cool",
       "category": "5a",
       "categoryTitle": "5A",
-      "audioUrl": "audio/__Títol_ _The School of Cool (Cinquè A)_.mp3",
       "lyricsOriginal": "Matí d’escola, sol brillant, tot comença a vibrar,\na the school of cool ningú vol parar.\nAmb Minecraft o somnis per crear,\nsabem que hui serà un dia brutal.\n\nPre-cor\nEntre rialles i corredors,\nhistòries que ningú pot parar,\nsom la classe que fa soroll\ni que sempre vol celebrar.\n\nEstribillo\nGràcies per estar, cantem sense por,\na cinquè A tot sona millor.\nBomboclat, la festa ja està,\naitana por siempre, ningú ho pot negar.\n\nVers 2\nRebeca y Will, secrets al passadís,\ny Sheyla y Steve rient sense fi.\nHéctor y Raúl jugant sense parar,\ni Garnacho es el mejor, ho tornem a cridar.\n\nPont gamer\nTodos farmearemos aura esta nit,\npixel a pixel, construint l’infinit.\nSi comptem six seven on a merry Christmas,\ncomença el ball i ningú descansa.\n\nEstribillo\nGràcies per estar, cantem sense por,\na cinquè A tot sona millor.\nBomboclat, la festa ja està, i love aitana\naitana por siempre, ningú ho pot negar.\n\nVers 3\nOnce y Angie ballen sense parar,\nlas Marias son simpáticas, ho tornen a demostrar.\nSu mini mini mini sona al final,\ncom una banda sonora genial.\n\nBridge\nStranger Things al pati escolar,\naventures que ningú oblidarà.\nThi is Colombia pa que lo entiendan,\ncridem tots junts mentre la música tremola.\n\nVers 4\nVicente Blasco Ibáñez amb les seues festes,\nrecords que el temps mai s’emporta després.\nI per sopar, tradició mundial:\npollito con alioli per celebrar el final.\n\nEstribillo final\nGràcies per estar, amics de veritat,\nsom història viva de felicitat.\nQuan el curs s’acabe i el temps passarà,\nel cor de cinquè A sempre bategarà.",
       "paragraphs": [
         "Matí d’escola, sol brillant, tot comença a vibrar,\na the school of cool ningú vol parar.\nAmb Minecraft o somnis per crear,\nsabem que hui serà un dia brutal.",
@@ -127,14 +167,14 @@
       "audioMeta": {
         "name": "__Títol_ _The School of Cool (Cinquè A)_.mp3",
         "type": "audio/mpeg"
-      }
+      },
+      "audioUrl": "audio/__Títol_ _The School of Cool (Cinquè A)_.mp3"
     },
     {
       "id": "2c961112-e45a-414b-a1c9-0a65cca13358",
       "title": "5B Dale dale",
       "category": "5b",
       "categoryTitle": "5B",
-      "audioUrl": "audio/5B.mp3",
       "lyricsOriginal": "Al pati sona la música, el sol fa una aura daurada,\nriem sense pensar en res, vesprada improvisada.\nCridem fort “i like Steve!”, algú respon “jo també!”,\ncomença la festa loca de la classe cinquè B.\n\nPre-cor\nEntre rialles i secrets,\nhistòries que ningú sap bé,\nperò junts tot té sentit,\ncom si fora una sèrie en directe.\n\nEstribillo\nDale dale dale, que no pare mai,\nsom alpha en el joc i en la vida també.\nAmb Roblox fins que es faça tard,\ni cridem ben fort: gràcies a tots per estar!\n\nVers 2\nA la motxilla un mini peluche, guardat amb emoció,\nsona “Rainig Tacos” com a banda sonora del cor.\nAlgú diu “I love Will”, i tots esclatem a riure,\ncom si fórem dins de Stranger Things vivint lliures.\n\nPont\nSix seven, comptem abans de saltar,\nsomnis que ningú pot parar.\nEntre memes i videojocs,\nun univers que no vol acabar.\n\nEstribillo\nDale dale dale, que no pare mai,\nsom alpha en el joc i en la vida també.\nAmb Roblox fins que es faça tard,\ni cridem ben fort: gràcies a tots per estar!\n\nVers 3\nEl Sr. Don Pepe diu: “Silenci, per favor!”,\nperò sona el timbre i explota l’alegria al corredor.\nPollito con alioli per celebrar,\nque l’estiu ja està a punt d’arribar.\n\nBridge divertit\nDustin bon, misteriós i genial,\ncom un heroi d’un món digital.\nSu Min i Mini ballen sense parar,\ni cridem “Aitana por siempre!” fins rebentar.\n\nFinal\nI quan el dia s’acaba lentament,\ni el cel es torna roig brillant,\nsabem que aquest moment\nquedarà per sempre guardat.\n\nEstribillo final\nDale dale dale, que no pare mai,\nsom alpha en el joc i en la vida també.\nEntre rialles, records i amistat,\ngràcies a tots per aquesta eternitat.",
       "paragraphs": [
         "Al pati sona la música, el sol fa una aura daurada,\nriem sense pensar en res, vesprada improvisada.\nCridem fort “i like Steve!”, algú respon “jo també!”,\ncomença la festa loca de la classe cinquè B.",
@@ -172,14 +212,14 @@
       "audioMeta": {
         "name": "5B.mp3",
         "type": "audio/mpeg"
-      }
+      },
+      "audioUrl": "audio/5B.mp3"
     },
     {
       "id": "c5e6e67d-3501-427d-ae08-a060f9ab6c14",
       "title": "6A Fi de curs",
       "category": "6a",
       "categoryTitle": "6A",
-      "audioUrl": "audio/Fi de curs al Blasco-3.mp3",
       "lyricsOriginal": "Batxata al pati\narigato al profe\nperro salchicha\ncorrent entre els peus (hey!)\n\n[Verse 1]\nSix seven, sona el timbre\npollito a la llibreta, cor dibuixat\nenhorabona a la taula\napunts plens de riures, mig tacats\n\nFi de curs, ulls brillant\nmirem l’horari com si fos passat\nterminem al Blasco\ni el passadís sembla un carnaval\n\n[Chorus]\nFi de curs al Blasco (eh!)\nbatxata al passadís\narigato, gràcies\nper tot el que hem viscut aquí\nBanda femenina\ncridem ben fort així\nfi de curs al Blasco\nque no s’acabi mai aquest matí\n\n[Verse 2]\nPerro salchicha a la foto\nsix seven somrises, ningú mira bé\npollito al marge de l’examen\n“sort” escrit en petit, que no es veu gaire bé\n\nEnhorabona, profa, et quedes\nnosaltres marxem, però tornem pensant\nterminem al Blasco\nperò dins del cor encara hi fem campana\n\n[Chorus]\nFi de curs al Blasco (eh!)\nbatxata al passadís\narigato, gràcies\nper tot el que hem viscut aquí\nBanda femenina\ncridem ben fort així\nfi de curs al Blasco\nque no s’acabi mai aquest matí",
       "paragraphs": [
         "Batxata al pati\narigato al profe\nperro salchicha\ncorrent entre els peus (hey!)",
@@ -211,14 +251,59 @@
       "audioMeta": {
         "name": "Fi de curs al Blasco-3.mp3",
         "type": "audio/mpeg"
-      }
+      },
+      "audioUrl": "audio/Fi de curs al Blasco-3.mp3"
+    },
+    {
+      "id": "b627c32d-0e4b-4be2-9751-6dfcbc34e2e7",
+      "title": "Diamantes 2 4B",
+      "category": "4b",
+      "categoryTitle": "4B",
+      "lyricsOriginal": "Al pati sona fort “Stranger Things”,\nmentre juguem a Minecraft fins a les cinc.\nCom en Com entrenar al teu drac, volant,\nimaginació en mode gegant.\n\nLa paret pintada de blanc,\nun segon de silenci… i pam!\nApareix el Demogorgon ballant,\ni l’Azotamentes saludant.\n\nPre-cor\nSix seven, comptem per començar,\namb George cridant sense parar.\nEntre rialles i caramels,\nla vida és genial, pura pell.\n\nEstribillo\nSom los diamantes negros brillants,\ncolor turquesa radiant.\nEntre esports i gimnàsia,\nla classe és pura fantasia.\n\nVers 2\nAl mòbil sona GTA,\nperò al pati tot és realitat.\nLamin Yamal fa un gol brutal,\ni celebrem com un festival.\n\n“Duérmete niño duérmete ya\nque si no viene el coco y te va a chulear”,\nho cantem rient sense por,\nmentre el gos corre pel voltant amb amor.\n\nPont\nSom quatre beibis sense fre,\namb energia de Macaco també.\nSi algú diu “bad girl”, què més dóna?,\nsom equip, ningú ens corona.\n\nBridge esbojarrat\n“Tung tung shaur!” sona al final,\ni el pati es torna digital.\nEntre memes, dracs i misteri,\nla nostra història és un imperi.\n\nEstribillo final\nSom los diamantes negros brillants,\ncolor turquesa constant.\nDe Pepa Pig al món virtual,\naquesta classe és espectacular.\n\nFinal\nQuan el dia es torna blau marí,\nens quedem junts fins al matí.\nEntre rialles i amistat,\naquesta aventura no s’acabarà mai.",
+      "paragraphs": [
+        "Al pati sona fort “Stranger Things”,\nmentre juguem a Minecraft fins a les cinc.\nCom en Com entrenar al teu drac, volant,\nimaginació en mode gegant.",
+        "La paret pintada de blanc,\nun segon de silenci… i pam!\nApareix el Demogorgon ballant,\ni l’Azotamentes saludant.",
+        "Pre-cor\nSix seven, comptem per començar,\namb George cridant sense parar.\nEntre rialles i caramels,\nla vida és genial, pura pell.",
+        "Estribillo\nSom los diamantes negros brillants,\ncolor turquesa radiant.\nEntre esports i gimnàsia,\nla classe és pura fantasia.",
+        "Vers 2\nAl mòbil sona GTA,\nperò al pati tot és realitat.\nLamin Yamal fa un gol brutal,\ni celebrem com un festival.",
+        "“Duérmete niño duérmete ya\nque si no viene el coco y te va a chulear”,\nho cantem rient sense por,\nmentre el gos corre pel voltant amb amor.",
+        "Pont\nSom quatre beibis sense fre,\namb energia de Macaco també.\nSi algú diu “bad girl”, què més dóna?,\nsom equip, ningú ens corona.",
+        "Bridge esbojarrat\n“Tung tung shaur!” sona al final,\ni el pati es torna digital.\nEntre memes, dracs i misteri,\nla nostra història és un imperi.",
+        "Estribillo final\nSom los diamantes negros brillants,\ncolor turquesa constant.\nDe Pepa Pig al món virtual,\naquesta classe és espectacular.",
+        "Final\nQuan el dia es torna blau marí,\nens quedem junts fins al matí.\nEntre rialles i amistat,\naquesta aventura no s’acabarà mai."
+      ],
+      "times": {
+        "auto": [],
+        "calibrated": [
+          2.624,
+          19.146666,
+          27.093333,
+          37.408,
+          56.010666,
+          68.064,
+          78.709333,
+          88.277333,
+          97.749333,
+          97.834666
+        ]
+      },
+      "offsetSeconds": 0,
+      "detector": {
+        "threshold": 0.02,
+        "minSilenceMs": 320,
+        "windowMs": 80
+      },
+      "audioMeta": {
+        "name": "Títol_ Turquesa i Diamants Negres.mp3",
+        "type": "audio/mpeg"
+      },
+      "audioUrl": "audio/Títol_ Turquesa i Diamants Negres.mp3"
     },
     {
       "id": "a2483c62-6088-4785-bfcb-b9909596ec98",
       "title": "Diameantes 4B",
       "category": "4b",
       "categoryTitle": "4B",
-      "audioUrl": "audio/4B_ Turquesa i Diamants Negres.mp3",
       "lyricsOriginal": "Al pati sona fort “Stranger Things”,\nmentre juguem a Minecraft fins a les cinc.\nCom en Com entrenar al teu drac, volant,\nimaginació en mode gegant.\n\nLa paret pintada de blanc,\nun segon de silenci… i pam!\nApareix el Demogorgon ballant,\ni l’Azotamentes saludant.\n\nPre-cor\nSix seven, comptem per començar,\namb George cridant sense parar.\nEntre rialles i caramels,\nla vida és genial, pura pell.\n\nEstribillo\nSom los diamantes negros brillants,\ncolor turquesa radiant.\nEntre esports i gimnàsia,\nla classe és pura fantasia.\n\nVers 2\nAl mòbil sona GTA,\nperò al pati tot és realitat.\nLamin Yamal fa un gol brutal,\ni celebrem com un festival.\n\n“Duérmete niño duérmete ya\nque si no viene el coco y te va a chulear”,\nho cantem rient sense por,\nmentre el gos corre pel voltant amb amor.\n\nPont\nSom quatre beibis sense fre,\namb energia de Macaco també.\nSi algú diu “bad girl”, què més dóna?,\nsom equip, ningú ens corona.\n\nBridge esbojarrat\n“Tung tung shaur!” sona al final,\ni el pati es torna digital.\nEntre memes, dracs i misteri,\nla nostra història és un imperi.\n\nEstribillo final\nSom los diamantes negros brillants,\ncolor turquesa constant.\nDe Pepa Pig al món virtual,\naquesta classe és espectacular.\n\nFinal\nQuan el dia es torna blau marí,\nens quedem junts fins al matí.\nEntre rialles i amistat,\naquesta aventura no s’acabarà mai.",
       "paragraphs": [
         "Al pati sona fort “Stranger Things”,\nmentre juguem a Minecraft fins a les cinc.\nCom en Com entrenar al teu drac, volant,\nimaginació en mode gegant.",
@@ -256,14 +341,14 @@
       "audioMeta": {
         "name": "4B_ Turquesa i Diamants Negres.mp3",
         "type": "audio/mpeg"
-      }
+      },
+      "audioUrl": "audio/4B_ Turquesa i Diamants Negres.mp3"
     },
     {
       "id": "65ca1d86-0d19-4dbc-95b0-15fe4d1a3e04",
       "title": "El B el millor!",
       "category": "6b",
       "categoryTitle": "6B",
-      "audioUrl": "audio/6B.mp3",
       "lyricsOriginal": "Un strawberry elephant creua el carrer,\nmenjant papaya sense pressa ni perill.\nComptem 123, 45, 67,\ni el pati esclata com un míssil.\n\nSona Pepa Pig des del mòbil trencat,\nmentre algú comparteix fuet al costat.\nCridem fort “somos Carlo Kirk!”,\ni ningú sap què vol dir, però flipem.\n\n\nEnrriqueta mira i diu: “què feu?”\ni nosaltres riem sense fre.\nA la pista sona el crit final:\n“El A contra el B!” total.\n\n\nEl B el millor! ho tornem a cantar,\naña, que ningú ens pot parar.\nSi sona “This Is the End”,\nsabem que la festa només comença.\n\n\nCom Antonio Lobato narrat en directe,\n“corre que nos roban el bombardiro!” perfecte.\nVelocitat màxima al passadís,\nsom pura energia, foc i encís.\n\nGarama and Madungdung fan el ritual,\nballen estrany però queda brutal.\nEl món és absurd i ens dóna igual,\nperquè junts tot és espectacular.\n\n\n123, salta del banc,\n45, ritme constant,\n67, ningú es cansa,\nla vida és boja però ens encanta.\n\n\nEl B el millor!, repetim sense por,\nsom equip, som soroll i color.\nSi això és “This Is the End”,\ndemà tornarem més forts que mai també.",
       "paragraphs": [
         "Un strawberry elephant creua el carrer,\nmenjant papaya sense pressa ni perill.\nComptem 123, 45, 67,\ni el pati esclata com un míssil.",
@@ -297,14 +382,14 @@
       "audioMeta": {
         "name": "6B.mp3",
         "type": "audio/mpeg"
-      }
+      },
+      "audioUrl": "audio/6B.mp3"
     },
     {
       "id": "bb8c98e6-4a54-43e6-9c13-753bcb817a2e",
       "title": "Fi de curs al Blasco.mp3 · 10:23",
       "category": "6a",
       "categoryTitle": "6A",
-      "audioUrl": "audio/Fi de curs al Blasco-2.mp3",
       "lyricsOriginal": "Batxata al pati\narigato al profe\nperro salchicha\ncorrent entre els peus (hey!)\n\n[Verse 1]\nSix seven, sona el timbre\npollito a la llibreta, cor dibuixat\nenhorabona a la taula\napunts plens de riures, mig tacats\n\nFi de curs, ulls brillant\nmirem l’horari com si fos passat\nterminem al Blasco\ni el passadís sembla un carnaval\n\n[Chorus]\nFi de curs al Blasco (eh!)\nbatxata al passadís\narigato, gràcies\nper tot el que hem viscut aquí\nBanda femenina\ncridem ben fort així\nfi de curs al Blasco\nque no s’acabi mai aquest matí\n\n[Verse 2]\nPerro salchicha a la foto\nsix seven somrises, ningú mira bé\npollito al marge de l’examen\n“sort” escrit en petit, que no es veu gaire bé\n\nEnhorabona, profa, et quedes\nnosaltres marxem, però tornem pensant\nterminem al Blasco\nperò dins del cor encara hi fem campana\n\n[Chorus]\nFi de curs al Blasco (eh!)\nbatxata al passadís\narigato, gràcies\nper tot el que hem viscut aquí\nBanda femenina\ncridem ben fort així\nfi de curs al Blasco\nque no s’acabi mai aquest matí",
       "paragraphs": [
         "Batxata al pati\narigato al profe\nperro salchicha\ncorrent entre els peus (hey!)",
@@ -336,14 +421,14 @@
       "audioMeta": {
         "name": "Fi de curs al Blasco-2.mp3",
         "type": "audio/mpeg"
-      }
+      },
+      "audioUrl": "audio/Fi de curs al Blasco-2.mp3"
     },
     {
       "id": "f892b147-2998-4218-97c1-a7f4f13be053",
       "title": "Fi de curs al Blasco.mp3 · 10:24",
       "category": "6a",
       "categoryTitle": "6A",
-      "audioUrl": "audio/Fi de curs al Blasco.mp3",
       "lyricsOriginal": "Batxata al pati\narigato al profe\nperro salchicha\ncorrent entre els peus (hey!)\n\n[Verse 1]\nSix seven, sona el timbre\npollito a la llibreta, cor dibuixat\nenhorabona a la taula\napunts plens de riures, mig tacats\n\nFi de curs, ulls brillant\nmirem l’horari com si fos passat\nterminem al Blasco\ni el passadís sembla un carnaval\n\n[Chorus]\nFi de curs al Blasco (eh!)\nbatxata al passadís\narigato, gràcies\nper tot el que hem viscut aquí\nBanda femenina\ncridem ben fort així\nfi de curs al Blasco\nque no s’acabi mai aquest matí\n\n[Verse 2]\nPerro salchicha a la foto\nsix seven somrises, ningú mira bé\npollito al marge de l’examen\n“sort” escrit en petit, que no es veu gaire bé\n\nEnhorabona, profa, et quedes\nnosaltres marxem, però tornem pensant\nterminem al Blasco\nperò dins del cor encara hi fem campana\n\n[Chorus]\nFi de curs al Blasco (eh!)\nbatxata al passadís\narigato, gràcies\nper tot el que hem viscut aquí\nBanda femenina\ncridem ben fort així\nfi de curs al Blasco\nque no s’acabi mai aquest matí",
       "paragraphs": [
         "Batxata al pati\narigato al profe\nperro salchicha\ncorrent entre els peus (hey!)",
@@ -375,45 +460,14 @@
       "audioMeta": {
         "name": "Fi de curs al Blasco.mp3",
         "type": "audio/mpeg"
-      }
-    },
-    {
-      "id": "tema-demo",
-      "title": "Tema Demo Remoto",
-      "category": "demos",
-      "categoryTitle": "Demos",
-      "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-      "lyricsOriginal": "Esta es la primera estrofa del tema demo.\n\nAquí va la segunda estrofa para probar el cambio de párrafo.\n\nY este sería el estribillo final para el karaoke.",
-      "paragraphs": [
-        "Esta es la primera estrofa del tema demo.",
-        "Aquí va la segunda estrofa para probar el cambio de párrafo.",
-        "Y este sería el estribillo final para el karaoke."
-      ],
-      "times": {
-        "auto": [],
-        "calibrated": [
-          0,
-          12,
-          24
-        ]
       },
-      "offsetSeconds": 0,
-      "detector": {
-        "threshold": 0.02,
-        "minSilenceMs": 320,
-        "windowMs": 80
-      },
-      "audioMeta": {
-        "name": "SoundHelix-Song-1.mp3",
-        "type": "audio/mpeg"
-      }
+      "audioUrl": "audio/Fi de curs al Blasco.mp3"
     },
     {
       "id": "4601e0d5-84f2-49bd-9e07-2367b42aa14a",
       "title": "Un lloc, un record",
       "category": "4a",
       "categoryTitle": "4A",
-      "audioUrl": "audio/4A_ Un lloc, un record.mp3",
       "lyricsOriginal": "Títol: Un lloc, un record\n\n\nComença el dia amb música a tot volum,\nsom com la sèrie Rivales, pura llum.\nEntre partides de Fornite sense por,\ni encanteris de Harry Potter al corredor.\n\nSi dic esternocleiodomastoideo del tiró,\nja tenim riures per a tota la sessió.\nA Blox Fruits lluitem sense final,\na Roblox Rivals som nivell brutal.\n\n\nSix seven, comptem i a jugar,\namb Felipe cridant sense parar.\nSom equip, som energia total,\nclasse mítica, llegenda digital.\n\n\nÉs un lugar un recuerdo,\nque no s’esborra mai del cervell.\nEntre FIFA, memes i dracs,\nla nostra història no té fre.\n\n\nÉs un lugar un recuerdo,\nque no s’esborra mai del cervell.\nEntre FIFA, memes i dracs,\nla nostra història no té fre.\n\nLes beibis brillen com estrelles,\nguardianes de la noche, cent centelles.\nSona estil Bizarap al pati central,\nritme que puja, ambient espectacular.\n\nAbrahaham diu “anem allà!”,\nmentre Fernan Floo ens fa flipar.\nA Blarwl Star som imparables,\nsomnis enormes, imparables.\n\n\n“Sunami for brainots!” algú va cridar,\ni tot el pati va començar a saltar.\nUn T-Rex ballant amb Terry al costat,\nsurrealisme en estat natural.\n\nÉs un lugar un recuerdo,\nque no s’esborra mai del cervell.\nEntre FIFA, memes i dracs,\nla nostra història no té fre.\n\nÉs un lugar un recuerdo,\nque no s’esborra mai del cervell.\nEntre FIFA, memes i dracs,\nla nostra història no té fre.\n\nCom Shakira, facturem rialles,\nmoments petits que són detalls.\nSi la vida diu “Supercalifragilisticoespialidoso”,\nnosaltres responem: és meravellós.\n\nÉs un lugar un recuerdo,\nque no s’esborra mai del cervell.\nEntre FIFA, memes i dracs,\nla nostra història no té fre.\n\nÉs un lugar un recuerdo,\nque no s’esborra mai del cervell.\nEntre FIFA, memes i dracs,\nla nostra història no té fre.\n\nI si algun dia sona “no vol.”,\nsabrem que el viatge continua enlloc.\nPerquè mentre hi haja amistat,\nla partida no s’ha acabat. \n\nI si algun dia sona “no vol.”,\nsabrem que el viatge continua enlloc.\nPerquè mentre hi haja amistat,\nla partida no s’ha acabat. \n\nÉs un lugar un recuerdo,\nque no s’esborra mai del cervell.\nEntre FIFA, memes i dracs,\nla nostra història no té fre.\n\nnosaltres responem: és meravellós.",
       "paragraphs": [
         "Títol: Un lloc, un record",
@@ -467,7 +521,8 @@
       "audioMeta": {
         "name": "4A_ Un lloc, un record.mp3",
         "type": "audio/mpeg"
-      }
+      },
+      "audioUrl": "audio/4A_ Un lloc, un record.mp3"
     }
   ]
 }
