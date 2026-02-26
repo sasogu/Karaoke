@@ -1279,6 +1279,12 @@
   function renderPlaylist() {
     if (!refs.playlistView || !refs.playlistCount || !refs.playlistSelect) return;
     const previousSelected = refs.playlistSelect.value;
+    const locale = DATE_LOCALES[currentLanguage] || "es-ES";
+    const sortedPlaylists = [...state.playlist].sort((a, b) => {
+      const titleA = String(a?.title || "");
+      const titleB = String(b?.title || "");
+      return titleA.localeCompare(titleB, locale, { sensitivity: "base" });
+    });
 
     const totalTracks = state.playlist.reduce((count, playlist) => {
       return count + (Array.isArray(playlist.items) ? playlist.items.length : 0);
@@ -1296,7 +1302,7 @@
     refs.playlistView.innerHTML = "";
     refs.playlistSelect.innerHTML = `<option value="">${t("new_playlist")}</option>`;
 
-    state.playlist.forEach((playlist) => {
+    sortedPlaylists.forEach((playlist) => {
       const option = document.createElement("option");
       option.value = playlist.id;
       option.textContent = playlist.title;
@@ -1312,7 +1318,7 @@
     const selectedPlaylist = getPlaylistById(refs.playlistSelect.value);
     const visiblePlaylists = selectedPlaylist
       ? [selectedPlaylist]
-      : state.playlist.filter((playlist) => Array.isArray(playlist.items) && playlist.items.length);
+      : sortedPlaylists.filter((playlist) => Array.isArray(playlist.items) && playlist.items.length);
 
     if (selectedPlaylist && (!Array.isArray(selectedPlaylist.items) || !selectedPlaylist.items.length)) {
       refs.playlistView.innerHTML = `<p class="empty">${t("no_tracks_saved")}</p>`;
@@ -1335,7 +1341,6 @@
 
         const date = new Date(item.createdAt || Date.now());
         const hasTimes = (item.calibratedTimes?.length || item.autoTimes?.length || 0) > 0;
-        const locale = DATE_LOCALES[currentLanguage] || "es-ES";
         wrapper.innerHTML = `
           <div class="playlist-item-main">
             <div>
