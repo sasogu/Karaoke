@@ -126,6 +126,7 @@
     playBtn: document.getElementById("playBtn"),
     pauseBtn: document.getElementById("pauseBtn"),
     stopBtn: document.getElementById("stopBtn"),
+    openFullscreenInlineBtn: document.getElementById("openFullscreenInlineBtn"),
     openFullscreenBtn: document.getElementById("openFullscreenBtn"),
     fullscreenKaraoke: document.getElementById("fullscreenKaraoke"),
     fullscreenParagraph: document.getElementById("fullscreenParagraph"),
@@ -620,6 +621,7 @@
     });
 
     refs.openFullscreenBtn?.addEventListener("click", toggleFullscreen);
+    refs.openFullscreenInlineBtn?.addEventListener("click", toggleFullscreen);
     refs.closeFullscreenBtn?.addEventListener("click", closeFullscreen);
     refs.fsPlayBtn?.addEventListener("click", async () => {
       try {
