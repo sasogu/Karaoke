@@ -1,6 +1,6 @@
 {
   "name": "Karaoke por párrafos",
-  "short_name": "Karaoke",
+  "short_name": "EduKaraoke",
   "description": "Karaoke estático con sincronización por párrafos y persistencia local.",
   "lang": "es",
   "start_url": "./",
