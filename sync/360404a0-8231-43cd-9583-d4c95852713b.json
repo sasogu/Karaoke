@@ -1,0 +1,49 @@
+{
+  "id": "360404a0-8231-43cd-9583-d4c95852713b",
+  "title": "1A Rock start en el Blasco",
+  "category": "1a",
+  "categoryTitle": "1A",
+  "lyricsOriginal": "Rock start en el Blasco\n\nEn la escuela sona el timbre,\nsix seven, two one, va!\nt-roblox a la motxilla,\nhui ningú vol estudiar.\n\nNo no, diu l’ànec del pati,\nballant rock and rol sense por,\nlos amiguitos dicen saminitos\nmentre boten al corredor.\n\nTralalero tralalal simpasini,\nque no se que decir,\nsi apareix el Demogorgon\ntornem tots a riure i a fugir.\n\nDemogorgon, Demogorgon dos,\nix del llibre de socials,\nperò en el Blasco som valents\ni fem crits colossals.\n\nRock start, indoman,\nsix seven, two one, go!\nsomos todos amigos\nbaix el cel de color groc.\n\nQue no se que decir,\nperò ho cante igualment,\nfeliz navidad cridem\nencara que siga setembre calent.\n\nTralalero tralalal simpasini,\nsona fort al menjador,\nt-roblox, ànec i indoman\nfan un solo de tambor.\n\nNo no, ningú s’espanta,\nni del Demogorgon dos,\nperquè en el Blasco la vida\nsona a rock and rol poderós.\n\nSomos todos amigos,\nsix seven, two one, clap!\nla escuela és una festa\nque no cap dins d’un map.\n\nRock start, rock start,\nla banda ja està ací,\nfeliz navidad cantem\nfins que el món diga que sí.\n\nTralalero tralalal simpasini…\ni tornem a començar així.",
+  "paragraphs": [
+    "Rock start en el Blasco",
+    "En la escuela sona el timbre,\nsix seven, two one, va!\nt-roblox a la motxilla,\nhui ningú vol estudiar.",
+    "No no, diu l’ànec del pati,\nballant rock and rol sense por,\nlos amiguitos dicen saminitos\nmentre boten al corredor.",
+    "Tralalero tralalal simpasini,\nque no se que decir,\nsi apareix el Demogorgon\ntornem tots a riure i a fugir.",
+    "Demogorgon, Demogorgon dos,\nix del llibre de socials,\nperò en el Blasco som valents\ni fem crits colossals.",
+    "Rock start, indoman,\nsix seven, two one, go!\nsomos todos amigos\nbaix el cel de color groc.",
+    "Que no se que decir,\nperò ho cante igualment,\nfeliz navidad cridem\nencara que siga setembre calent.",
+    "Tralalero tralalal simpasini,\nsona fort al menjador,\nt-roblox, ànec i indoman\nfan un solo de tambor.",
+    "No no, ningú s’espanta,\nni del Demogorgon dos,\nperquè en el Blasco la vida\nsona a rock and rol poderós.",
+    "Somos todos amigos,\nsix seven, two one, clap!\nla escuela és una festa\nque no cap dins d’un map.",
+    "Rock start, rock start,\nla banda ja està ací,\nfeliz navidad cantem\nfins que el món diga que sí.",
+    "Tralalero tralalal simpasini…\ni tornem a començar així."
+  ],
+  "times": {
+    "auto": [],
+    "calibrated": [
+      2.965333,
+      3.221333,
+      14.506666,
+      24.885333,
+      36.352,
+      47.029333,
+      53.269333,
+      61.610666,
+      71.957333,
+      83.018666,
+      94.730666,
+      105.152
+    ]
+  },
+  "offsetSeconds": 0,
+  "detector": {
+    "threshold": 0.02,
+    "minSilenceMs": 320,
+    "windowMs": 80
+  },
+  "audioMeta": {
+    "name": "1A Rock start en el Blasco.mp3",
+    "type": "audio/mpeg"
+  },
+  "audioUrl": "audio/1A Rock start en el Blasco.mp3"
+}

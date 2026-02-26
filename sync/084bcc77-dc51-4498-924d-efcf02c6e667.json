@@ -1,0 +1,39 @@
+{
+  "id": "084bcc77-dc51-4498-924d-efcf02c6e667",
+  "title": "1B La vaca",
+  "category": "1b",
+  "categoryTitle": "1B",
+  "lyricsOriginal": "Estava en la granja, el sol brillava,\nLa vaca va muuu, la vida encantava.\nLa morocha dansava, amb somriures verts,\nCom un conte d’hivern, els amics i els certs.\n\nSix seven, six nain, tots a jugar,\nLa frangi verde ens convida a ballar.\nMery Christmas en cada moment,\nTralalelo, tralalá, que arribi el bon temps.\n\nLes flors al camp, un vent suau,\nLa vaca i la morocha, en un món ben plaer.\nCantem tots junts, la mà al cor,\nLes estrelles brillen, des de l'alba fins al fons.\n\nSix seven, six nain, tots a jugar,\nLa frangi verde ens convida a ballar.\nMery Christmas en cada moment,\nTralalelo, tralalá, que arribi el bon temps.\n\nEls ocells piulen, un aire de festa,\nLa vaca i la morocha mai no es queden en resta.\nAmb riures i jocs, l’amistat perdura,\nEn la granja, la màgia és ben pura.\n\nSix seven, six nain, tots a jugar,\nLa frangi verde ens convida a ballar.\nMery Christmas en cada moment,\nTralalelo, tralalá, que arribi el bon temps.\n\nAmb la vaca al camp, el món és millor,\nLa morocha i els amics, un gran clamor.\nCanteu ben fort, deixeu el passat,\nTralalelo, tralalá, visca l’amistat!",
+  "paragraphs": [
+    "Estava en la granja, el sol brillava,\nLa vaca va muuu, la vida encantava.\nLa morocha dansava, amb somriures verts,\nCom un conte d’hivern, els amics i els certs.",
+    "Six seven, six nain, tots a jugar,\nLa frangi verde ens convida a ballar.\nMery Christmas en cada moment,\nTralalelo, tralalá, que arribi el bon temps.",
+    "Les flors al camp, un vent suau,\nLa vaca i la morocha, en un món ben plaer.\nCantem tots junts, la mà al cor,\nLes estrelles brillen, des de l'alba fins al fons.",
+    "Six seven, six nain, tots a jugar,\nLa frangi verde ens convida a ballar.\nMery Christmas en cada moment,\nTralalelo, tralalá, que arribi el bon temps.",
+    "Els ocells piulen, un aire de festa,\nLa vaca i la morocha mai no es queden en resta.\nAmb riures i jocs, l’amistat perdura,\nEn la granja, la màgia és ben pura.",
+    "Six seven, six nain, tots a jugar,\nLa frangi verde ens convida a ballar.\nMery Christmas en cada moment,\nTralalelo, tralalá, que arribi el bon temps.",
+    "Amb la vaca al camp, el món és millor,\nLa morocha i els amics, un gran clamor.\nCanteu ben fort, deixeu el passat,\nTralalelo, tralalá, visca l’amistat!"
+  ],
+  "times": {
+    "auto": [],
+    "calibrated": [
+      22.4,
+      23.018666,
+      40.512,
+      57.248,
+      71.872,
+      88.608,
+      109.216
+    ]
+  },
+  "offsetSeconds": 0,
+  "detector": {
+    "threshold": 0.02,
+    "minSilenceMs": 320,
+    "windowMs": 80
+  },
+  "audioMeta": {
+    "name": "1B La vaca.mp3",
+    "type": "audio/mpeg"
+  },
+  "audioUrl": "audio/1B La vaca.mp3"
+}

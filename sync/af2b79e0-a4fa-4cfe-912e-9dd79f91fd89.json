@@ -1,0 +1,53 @@
+{
+  "id": "af2b79e0-a4fa-4cfe-912e-9dd79f91fd89",
+  "title": "2B",
+  "category": "2b",
+  "categoryTitle": "2B",
+  "lyricsOriginal": "Six Seven en segon B\n\nEn la clase de segon B\nsona un crit: “hay mi madre!”,\nRoblox obert a la tauleta\ni la profe que no quadre.\n\nSix seven a la pissarra,\nsix nain escrit en guix,\nyo no quiero decir nada…\nperò el pati ja bull per dins.\n\nEl mon es un rock,\ngira fort com GTA,\nDemogorgon en la porta\ni ningú sap què passarà.\n\nNo se, nooooooo,\ncrida sigma boy des del fons,\ngeli copter imaginari\nsobrevola els balcons.\n\nPoochaco en la carpeta,\nMickey Mouse al estoig blau,\nSpiderman penjat del sostre,\nSuperman fa un salt molt alt.\n\nMi mama me pega —\n(diari secret del calaix),\nperò després tot és riure\nquan sona el timbre i s’acaba el xoc.\n\nOnce mira des del passadís,\nStranger Thinks dins del cap,\nsom herois de videojoc\namb energia que no cap.\n\nSix seven, six nain,\nningú entén el ritual,\nperò sona com un himne\nde segon B mundial.\n\nEl mon es un rock,\ni nosaltres també,\nentre llibres i pantalles\nfem revolució de paper.\n\nHay mi madre!, quina vida,\nno se què dir ni pensar,\nyo no quiero decir nada…\nperò no deixem de cantar.\n\nNooooooo…\n(rialla general),\nDemogorgon desapareix\nquan el rock sona brutal.\n\nRoblox tanca la partida,\nGTA queda en pausa ja,\nperò en segon B la història\nmai no s’acaba de contar.\n\nSix seven… six nain…\ntralalelo imaginari,\nel mon es un rock que gira\ndins del nostre horari.",
+  "paragraphs": [
+    "Six Seven en segon B",
+    "En la clase de segon B\nsona un crit: “hay mi madre!”,\nRoblox obert a la tauleta\ni la profe que no quadre.",
+    "Six seven a la pissarra,\nsix nain escrit en guix,\nyo no quiero decir nada…\nperò el pati ja bull per dins.",
+    "El mon es un rock,\ngira fort com GTA,\nDemogorgon en la porta\ni ningú sap què passarà.",
+    "No se, nooooooo,\ncrida sigma boy des del fons,\ngeli copter imaginari\nsobrevola els balcons.",
+    "Poochaco en la carpeta,\nMickey Mouse al estoig blau,\nSpiderman penjat del sostre,\nSuperman fa un salt molt alt.",
+    "Mi mama me pega —\n(diari secret del calaix),\nperò després tot és riure\nquan sona el timbre i s’acaba el xoc.",
+    "Once mira des del passadís,\nStranger Thinks dins del cap,\nsom herois de videojoc\namb energia que no cap.",
+    "Six seven, six nain,\nningú entén el ritual,\nperò sona com un himne\nde segon B mundial.",
+    "El mon es un rock,\ni nosaltres també,\nentre llibres i pantalles\nfem revolució de paper.",
+    "Hay mi madre!, quina vida,\nno se què dir ni pensar,\nyo no quiero decir nada…\nperò no deixem de cantar.",
+    "Nooooooo…\n(rialla general),\nDemogorgon desapareix\nquan el rock sona brutal.",
+    "Roblox tanca la partida,\nGTA queda en pausa ja,\nperò en segon B la història\nmai no s’acaba de contar.",
+    "Six seven… six nain…\ntralalelo imaginari,\nel mon es un rock que gira\ndins del nostre horari."
+  ],
+  "times": {
+    "auto": [],
+    "calibrated": [
+      1.717333,
+      5.312,
+      17.28,
+      31.797333,
+      44.469333,
+      60.746666,
+      75.232,
+      89.877333,
+      104.117333,
+      118.912,
+      134.368,
+      147.904,
+      164.064,
+      178.069333
+    ]
+  },
+  "offsetSeconds": 0,
+  "detector": {
+    "threshold": 0.02,
+    "minSilenceMs": 320,
+    "windowMs": 80
+  },
+  "audioMeta": {
+    "name": "2B.mp3",
+    "type": "audio/mpeg"
+  },
+  "audioUrl": "audio/2B.mp3"
+}

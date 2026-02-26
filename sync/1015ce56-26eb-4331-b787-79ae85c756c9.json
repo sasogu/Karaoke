@@ -1,0 +1,49 @@
+{
+  "id": "1015ce56-26eb-4331-b787-79ae85c756c9",
+  "title": "2A Six Seven",
+  "category": "2a",
+  "categoryTitle": "2A",
+  "lyricsOriginal": "Six seven al Blasco\n\nAl Blasco sona la campana,\nroblox o llibre a la mà?\nsix seven, six one,\nningú sap què vol dir això ja.\n\nUna palabra diu la mestra,\nperò el cap se’n va volant,\nzombis ixen del quadern\ncom si fora Minecraft gegant.\n\nNo volem més parauletes en l’escola,\nvolem tralalelo tralala,\ncoco power rangers criden fort\nmentre sona key-pop al passadís central.\n\nStranger thinks al meu cap,\nsuper veant adventure també,\nAladin passa amb la catifa\ni suko diu que tot està bé.\n\nSix seven, nain, nain,\nningú sap el que és six seven,\nAnabel riu des del fons\ni diu que ve del cel setè.\n\nDragon bol suuuuuu!\ngoku y sogoan al pati gran,\nfan un kamehame invisible\ncontra un zombis mutant.\n\nBombardino cocodrilo\nvol tocar la bateria,\nDaniel el travieso corre\ni ningú sap qui el seguia.\n\nAmongus al menjador,\nqui és l’impostor hui?\nsix one, six seven,\ntot el món diu “no he sigut jo, ui!”\n\nNo volem més parauletes en l’escola,\nvolem riure sense final,\nroblox, Minecraft i somnis\npintats al mural digital.\n\nTralalelo tralala,\nal Blasco tot és possible,\nentre zombis i coco power\nla fantasia és invencible.\n\nSix seven, six one,\nnain, nain, sense traducció,\nningú sap el que és six seven…\nperò sona a revolució!",
+  "paragraphs": [
+    "Six seven al Blasco",
+    "Al Blasco sona la campana,\nroblox o llibre a la mà?\nsix seven, six one,\nningú sap què vol dir això ja.",
+    "Una palabra diu la mestra,\nperò el cap se’n va volant,\nzombis ixen del quadern\ncom si fora Minecraft gegant.",
+    "No volem més parauletes en l’escola,\nvolem tralalelo tralala,\ncoco power rangers criden fort\nmentre sona key-pop al passadís central.",
+    "Stranger thinks al meu cap,\nsuper veant adventure també,\nAladin passa amb la catifa\ni suko diu que tot està bé.",
+    "Six seven, nain, nain,\nningú sap el que és six seven,\nAnabel riu des del fons\ni diu que ve del cel setè.",
+    "Dragon bol suuuuuu!\ngoku y sogoan al pati gran,\nfan un kamehame invisible\ncontra un zombis mutant.",
+    "Bombardino cocodrilo\nvol tocar la bateria,\nDaniel el travieso corre\ni ningú sap qui el seguia.",
+    "Amongus al menjador,\nqui és l’impostor hui?\nsix one, six seven,\ntot el món diu “no he sigut jo, ui!”",
+    "No volem més parauletes en l’escola,\nvolem riure sense final,\nroblox, Minecraft i somnis\npintats al mural digital.",
+    "Tralalelo tralala,\nal Blasco tot és possible,\nentre zombis i coco power\nla fantasia és invencible.",
+    "Six seven, six one,\nnain, nain, sense traducció,\nningú sap el que és six seven…\nperò sona a revolució!"
+  ],
+  "times": {
+    "auto": [],
+    "calibrated": [
+      7.893333,
+      8.586666,
+      23.808,
+      35.722666,
+      57.514666,
+      72.16,
+      79.914666,
+      96.906666,
+      107.861333,
+      118.762666,
+      135.488,
+      149.226666
+    ]
+  },
+  "offsetSeconds": 0,
+  "detector": {
+    "threshold": 0.02,
+    "minSilenceMs": 320,
+    "windowMs": 80
+  },
+  "audioMeta": {
+    "name": "2A six seven.mp3",
+    "type": "audio/mpeg"
+  },
+  "audioUrl": "audio/2A six seven.mp3"
+}
