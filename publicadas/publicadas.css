@@ -43,8 +43,10 @@
 }
 
 #catalogView {
-  max-height: calc(100vh - 260px);
-  overflow: auto;
+  height: calc(100vh - 190px);
+  max-height: calc(100vh - 190px);
+  overflow-y: auto;
+  overflow-x: hidden;
   padding-right: 4px;
 }
 
