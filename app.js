@@ -199,6 +199,7 @@
       playlist_sync_no: "sin sincronizar",
       btn_load: "Cargar",
       btn_load_play: "Cargar y reproducir",
+      btn_rename_track: "Renombrar tema",
       btn_delete: "Eliminar",
       msg_update_available: "Nueva versión disponible. Recarga para aplicar la actualización.",
       msg_updated_cache: "Aplicación actualizada a la nueva versión de caché.",
@@ -210,11 +211,14 @@
       err_sync_first: "Primero sincroniza la letra (auto o calibración).",
       msg_track_added_playlist: "Tema añadido a la playlist.",
       msg_track_deleted_playlist: "Tema eliminado de la playlist.",
+      msg_track_renamed: "Tema renombrado.",
       msg_playlist_empty_already: "La playlist ya está vacía.",
       msg_playlist_cleared: "Playlist vaciada.",
       err_select_playlist_to_rename: "Selecciona una playlist para renombrar.",
       err_playlist_name_required: "Escribe un nombre para la playlist.",
+      err_track_name_required: "Escribe un nombre para el tema.",
       msg_playlist_renamed: "Playlist renombrada.",
+      prompt_track_name: "Nuevo nombre del tema",
       err_fullscreen_browser: "No se pudo activar fullscreen del navegador. Se abrió modo ampliado.",
       err_no_audio_file_selected: "No se seleccionó ningún archivo de audio.",
       msg_audio_saved_indexeddb: "Audio cargado y guardado en IndexedDB.",
@@ -353,6 +357,7 @@
       playlist_sync_no: "sense sincronitzar",
       btn_load: "Carregar",
       btn_load_play: "Carregar i reproduir",
+      btn_rename_track: "Canviar nom del tema",
       btn_delete: "Eliminar",
       msg_update_available: "Nova versió disponible. Recarrega per a aplicar l'actualització.",
       msg_updated_cache: "Aplicació actualitzada a la nova versió de caché.",
@@ -364,11 +369,14 @@
       err_sync_first: "Primer sincronitza la lletra (auto o calibració).",
       msg_track_added_playlist: "Tema afegit a la llista.",
       msg_track_deleted_playlist: "Tema eliminat de la llista.",
+      msg_track_renamed: "Tema reanomenat.",
       msg_playlist_empty_already: "La llista ja està buida.",
       msg_playlist_cleared: "Llista buidada.",
       err_select_playlist_to_rename: "Selecciona una llista per a canviar-li el nom.",
       err_playlist_name_required: "Escriu un nom per a la llista.",
+      err_track_name_required: "Escriu un nom per al tema.",
       msg_playlist_renamed: "Llista reanomenada.",
+      prompt_track_name: "Nou nom del tema",
       err_fullscreen_browser: "No s'ha pogut activar la pantalla completa del navegador. S'ha obert el mode ampliat.",
       err_no_audio_file_selected: "No s'ha seleccionat cap arxiu d'àudio.",
       msg_audio_saved_indexeddb: "Àudio carregat i guardat en IndexedDB.",
@@ -495,6 +503,7 @@
       playlist_sync_no: "not synced",
       btn_load: "Load",
       btn_load_play: "Load and play",
+      btn_rename_track: "Rename track",
       btn_delete: "Delete",
       msg_update_available: "New version available. Reload to apply the update.",
       msg_updated_cache: "Application updated to the new cache version.",
@@ -506,11 +515,14 @@
       err_sync_first: "Sync the lyrics first (auto or calibration).",
       msg_track_added_playlist: "Track added to playlist.",
       msg_track_deleted_playlist: "Track removed from playlist.",
+      msg_track_renamed: "Track renamed.",
       msg_playlist_empty_already: "Playlist is already empty.",
       msg_playlist_cleared: "Playlist cleared.",
       err_select_playlist_to_rename: "Select a playlist to rename.",
       err_playlist_name_required: "Enter a playlist name.",
+      err_track_name_required: "Enter a track name.",
       msg_playlist_renamed: "Playlist renamed.",
+      prompt_track_name: "New track name",
       err_fullscreen_browser: "Could not enable browser fullscreen. Expanded mode was opened.",
       err_no_audio_file_selected: "No audio file was selected.",
       msg_audio_saved_indexeddb: "Audio loaded and saved to IndexedDB.",
@@ -1334,6 +1346,7 @@
             <div class="playlist-item-actions">
               <button class="secondary" data-action="load" data-id="${item.id}">${t("btn_load")}</button>
               <button data-action="play" data-id="${item.id}">${t("btn_load_play")}</button>
+              <button class="secondary" data-action="rename" data-id="${item.id}">${t("btn_rename_track")}</button>
               <button class="danger" data-action="delete" data-id="${item.id}">${t("btn_delete")}</button>
             </div>
           </div>
@@ -1667,6 +1680,29 @@
     saveStateToLocalStorage();
     renderPlaylist();
     showMessage(t("msg_track_deleted_playlist"));
+  }
+
+  function renamePlaylistItem(id) {
+    const found = findPlaylistItemById(id);
+    if (!found?.item) {
+      showMessage(t("err_playlist_item_not_found"), true);
+      return;
+    }
+
+    const currentTitle = String(found.item.title || "").trim();
+    const nextTitle = window.prompt(t("prompt_track_name"), currentTitle);
+    if (nextTitle === null) return;
+
+    const trimmed = nextTitle.trim();
+    if (!trimmed) {
+      showMessage(t("err_track_name_required"), true);
+      return;
+    }
+
+    found.item.title = trimmed;
+    saveStateToLocalStorage();
+    renderPlaylist();
+    showMessage(t("msg_track_renamed"));
   }
 
   function clearPlaylist() {
@@ -2729,6 +2765,11 @@
 
         if (action === "delete") {
           deletePlaylistItem(id);
+          return;
+        }
+
+        if (action === "rename") {
+          renamePlaylistItem(id);
         }
       });
     }
