@@ -1274,7 +1274,7 @@
 
     refs.playlistCount.textContent = t("playlist_count", { count: totalTracks });
 
-    if (!totalTracks) {
+    if (!state.playlist.length) {
       refs.playlistView.innerHTML = `<p class="empty">${t("no_playlists_saved")}</p>`;
       refs.playlistSelect.innerHTML = `<option value="">${t("new_playlist")}</option>`;
       syncPlaylistNameInputFromSelection();
@@ -1284,16 +1284,11 @@
     refs.playlistView.innerHTML = "";
     refs.playlistSelect.innerHTML = `<option value="">${t("new_playlist")}</option>`;
 
-    const playlistsWithItems = state.playlist.filter((playlist) => Array.isArray(playlist.items) && playlist.items.length);
-
-    playlistsWithItems.forEach((playlist) => {
-      if (!Array.isArray(playlist.items) || !playlist.items.length) return;
-
+    state.playlist.forEach((playlist) => {
       const option = document.createElement("option");
       option.value = playlist.id;
       option.textContent = playlist.title;
       refs.playlistSelect.appendChild(option);
-
     });
 
     if (previousSelected && getPlaylistById(previousSelected)) {
@@ -1303,7 +1298,21 @@
     }
 
     const selectedPlaylist = getPlaylistById(refs.playlistSelect.value);
-    const visiblePlaylists = selectedPlaylist ? [selectedPlaylist] : playlistsWithItems;
+    const visiblePlaylists = selectedPlaylist
+      ? [selectedPlaylist]
+      : state.playlist.filter((playlist) => Array.isArray(playlist.items) && playlist.items.length);
+
+    if (selectedPlaylist && (!Array.isArray(selectedPlaylist.items) || !selectedPlaylist.items.length)) {
+      refs.playlistView.innerHTML = `<p class="empty">${t("no_tracks_saved")}</p>`;
+      syncPlaylistNameInputFromSelection();
+      return;
+    }
+
+    if (!visiblePlaylists.length) {
+      refs.playlistView.innerHTML = `<p class="empty">${t("no_tracks_saved")}</p>`;
+      syncPlaylistNameInputFromSelection();
+      return;
+    }
 
     visiblePlaylists.forEach((playlist) => {
       if (!Array.isArray(playlist.items) || !playlist.items.length) return;
@@ -1652,8 +1661,7 @@
         playlist.items = playlist.items.filter((item) => item.id !== id);
         if (playlist.items.length !== before) removed = true;
         return playlist;
-      })
-      .filter((playlist) => Array.isArray(playlist.items) && playlist.items.length > 0);
+      });
 
     if (!removed) return;
     saveStateToLocalStorage();
