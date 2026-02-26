@@ -93,6 +93,7 @@
   }
 
   #catalogView {
+    height: auto;
     max-height: none;
     overflow: visible;
     padding-right: 0;
