@@ -1,0 +1,47 @@
+{
+  "id": "c4a4b606-19b3-4550-9784-0ac7b356ce46",
+  "title": "Títol: Un lloc, un record",
+  "category": "4a",
+  "categoryTitle": "4A",
+  "lyricsOriginal": "Títol: Un lloc, un record\n\nVers 1\nComença el dia amb música a tot volum,\nsom com la sèrie Rivales, pura llum.\nEntre partides de Fornite sense por,\ni encanteris de Harry Potter al corredor.\n\nSi dic esternocleiodomastoideo del tiró,\nja tenim riures per a tota la sessió.\nA Blox Fruits lluitem sense final,\na Roblox Rivals som nivell brutal.\n\nPre-cor\nSix seven, comptem i a jugar,\namb Felipe cridant sense parar.\nSom equip, som energia total,\nclasse mítica, llegenda digital.\n\nEstribillo\nÉs un lugar un recuerdo,\nque no s’esborra mai del cervell.\nEntre FIFA, memes i dracs,\nla nostra història no té fre.\n\nVers 2\nLes beibis brillen com estrelles,\nguardianes de la noche, cent centelles.\nSona estil Biza al pati central,\nritme que puja, ambient espectacular.\n\nAbrahaham diu “anem allà!”,\nmentre Fernan Floo ens fa flipar.\nA Blarwl Star som imparables,\nsomnis enormes, imparables.\n\nPont\n“Sunami for brainots!” algú va cridar,\ni tot el pati va començar a saltar.\nUn T-Rex ballant amb Terry al costat,\nsurrealisme en estat natural.\n\nBridge\nCom Shakira, facturem rialles,\nmoments petits que són detalls.\nSi la vida diu “Supercalifragilisticoespialidoso”,\nnosaltres responem: és meravellós.\n\nEstribillo final\nÉs un lugar un recuerdo,\nque guardarem al cor etern.\nEntre videojocs i amistat,\naquesta classe és immortal.\n\nFinal\nI si algun dia sona “no vol.”,\nsabrem que el viatge continua enlloc.\nPerquè mentre hi haja amistat,\nla partida no s’ha acabat. ✨",
+  "paragraphs": [
+    "Títol: Un lloc, un record",
+    "Vers 1\nComença el dia amb música a tot volum,\nsom com la sèrie Rivales, pura llum.\nEntre partides de Fornite sense por,\ni encanteris de Harry Potter al corredor.",
+    "Si dic esternocleiodomastoideo del tiró,\nja tenim riures per a tota la sessió.\nA Blox Fruits lluitem sense final,\na Roblox Rivals som nivell brutal.",
+    "Pre-cor\nSix seven, comptem i a jugar,\namb Felipe cridant sense parar.\nSom equip, som energia total,\nclasse mítica, llegenda digital.",
+    "Estribillo\nÉs un lugar un recuerdo,\nque no s’esborra mai del cervell.\nEntre FIFA, memes i dracs,\nla nostra història no té fre.",
+    "Vers 2\nLes beibis brillen com estrelles,\nguardianes de la noche, cent centelles.\nSona estil Biza al pati central,\nritme que puja, ambient espectacular.",
+    "Abrahaham diu “anem allà!”,\nmentre Fernan Floo ens fa flipar.\nA Blarwl Star som imparables,\nsomnis enormes, imparables.",
+    "Pont\n“Sunami for brainots!” algú va cridar,\ni tot el pati va començar a saltar.\nUn T-Rex ballant amb Terry al costat,\nsurrealisme en estat natural.",
+    "Bridge\nCom Shakira, facturem rialles,\nmoments petits que són detalls.\nSi la vida diu “Supercalifragilisticoespialidoso”,\nnosaltres responem: és meravellós.",
+    "Estribillo final\nÉs un lugar un recuerdo,\nque guardarem al cor etern.\nEntre videojocs i amistat,\naquesta classe és immortal.",
+    "Final\nI si algun dia sona “no vol.”,\nsabrem que el viatge continua enlloc.\nPerquè mentre hi haja amistat,\nla partida no s’ha acabat. ✨"
+  ],
+  "times": {
+    "auto": [],
+    "calibrated": [
+      10.487999,
+      11.234666,
+      19.533332,
+      29.730666,
+      41.357332,
+      62.274666,
+      71.821332,
+      81.346666,
+      91.821332,
+      103.575999,
+      134.093332
+    ]
+  },
+  "offsetSeconds": 0,
+  "detector": {
+    "threshold": 0.02,
+    "minSilenceMs": 320,
+    "windowMs": 80
+  },
+  "audioMeta": {
+    "name": "4A2_ Un lloc, un record.mp3",
+    "type": "audio/mpeg"
+  },
+  "audioUrl": "audio/4A2_ Un lloc, un record.mp3"
+}

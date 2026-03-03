@@ -1,0 +1,43 @@
+{
+  "id": "1ff95ccc-d7e2-45af-b468-d4de2a274c02",
+  "title": "Feliç aniversari",
+  "category": "5b",
+  "categoryTitle": "5B",
+  "lyricsOriginal": "\nGràcies per ser la nostra mestra,  \nper caminar sempre al costat,  \nles classes amb tu són millor  \nquan tot sembla complicat.\n\nEns ajudes emocionalment  \nquan el dia es fa més dur,  \namb els teus consells som millors,  \nens dones força i futur.\n\n**Feliç aniversari, Mari Carmen,  \nla millor tutora,  \nets molt bona mestra, de veritat,  \ngràcies per estar amb nosaltres  \namb paciència i bondat.**\n\nMassa proves però ets molt bona mestra,  \nencara que diguem “no se…”,  \nsempre trobes la manera  \nde fer-nos entendre el perquè.\n\nGràcies per ajudar-nos en tot,  \ngràcies per resoldre tots els problemes,  \nmai t’oblidarem,  \nencara que passen els temps.\n\n**Siempre et portarem en el cor,  \nsiempre t’estimarem així,  \nper cada somriure i cada paraula  \nque ens ha fet créixer fins ací.**\n\n\nGracias por acogerme,  \nper fer-nos sentir importants,  \ncom si cada alumne fora  \núnic entre tots els estudiants.\n\nSi algun dia algú és advocat,  \no científic, o el que siga després,  \nserà perquè tu vas creure  \nquan nosaltres no ho fèiem bé.\n\n\n**Feliç aniversari, Mari Carmen,  \nla millor tutora del món,  \ngràcies per ser la nostra mestra…  \nets llum dins del nostre cor.**\n\n",
+  "paragraphs": [
+    "Gràcies per ser la nostra mestra,  \nper caminar sempre al costat,  \nles classes amb tu són millor  \nquan tot sembla complicat.",
+    "Ens ajudes emocionalment  \nquan el dia es fa més dur,  \namb els teus consells som millors,  \nens dones força i futur.",
+    "**Feliç aniversari, Mari Carmen,  \nla millor tutora,  \nets molt bona mestra, de veritat,  \ngràcies per estar amb nosaltres  \namb paciència i bondat.**",
+    "Massa proves però ets molt bona mestra,  \nencara que diguem “no se…”,  \nsempre trobes la manera  \nde fer-nos entendre el perquè.",
+    "Gràcies per ajudar-nos en tot,  \ngràcies per resoldre tots els problemes,  \nmai t’oblidarem,  \nencara que passen els temps.",
+    "**Siempre et portarem en el cor,  \nsiempre t’estimarem així,  \nper cada somriure i cada paraula  \nque ens ha fet créixer fins ací.**",
+    "Gracias por acogerme,  \nper fer-nos sentir importants,  \ncom si cada alumne fora  \núnic entre tots els estudiants.",
+    "Si algun dia algú és advocat,  \no científic, o el que siga després,  \nserà perquè tu vas creure  \nquan nosaltres no ho fèiem bé.",
+    "**Feliç aniversari, Mari Carmen,  \nla millor tutora del món,  \ngràcies per ser la nostra mestra…  \nets llum dins del nostre cor.**"
+  ],
+  "times": {
+    "auto": [],
+    "calibrated": [
+      32.045333,
+      32.568,
+      48.226666,
+      66.445333,
+      81.816,
+      98.189333,
+      115.586666,
+      130.957333,
+      149.176
+    ]
+  },
+  "offsetSeconds": 0,
+  "detector": {
+    "threshold": 0.02,
+    "minSilenceMs": 320,
+    "windowMs": 80
+  },
+  "audioMeta": {
+    "name": "MariCarmen.mp3",
+    "type": "audio/mpeg"
+  },
+  "audioUrl": "audio/MariCarmen.mp3"
+}

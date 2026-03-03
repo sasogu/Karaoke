@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-02-26T13:13:27.776Z",
+  "generatedAt": "2026-03-03T10:06:31.102Z",
   "source": {
     "audioDir": "audio",
     "syncDir": "sync"
@@ -55,51 +55,6 @@
     }
   ],
   "songs": [
-    {
-      "id": "c87dc706-ed55-4649-a7a2-9f951143f680",
-      "title": "__Títol_ _The School of Cool (Cinquè A)_",
-      "category": "5a",
-      "categoryTitle": "5A",
-      "audioUrl": "audio/5A-school-of-cool.mp3",
-      "lyricsOriginal": "Matí d’escola, sol brillant, tot comença a vibrar,\na the school of cool ningú vol parar.\nAmb Minecraft o somnis per crear,\nsabem que hui serà un dia brutal.\n\nPre-cor\nEntre rialles i corredors,\nhistòries que ningú pot parar,\nsom la classe que fa soroll\ni que sempre vol celebrar.\n\nEstribillo\nGràcies per estar, cantem sense por,\na cinquè A tot sona millor.\nBomboclat, la festa ja està,\naitana por siempre, ningú ho pot negar.\n\nVers 2\nRebeca y Will, secrets al passadís,\ny Sheyla y Steve rient sense fi.\nHéctor y Raúl jugant sense parar,\ni Garnacho es el mejor, ho tornem a cridar.\n\nPont gamer\nTodos farmearemos aura esta nit,\npixel a pixel, construint l’infinit.\nSi comptem six seven on a merry Christmas,\ncomença el ball i ningú descansa.\n\nEstribillo\nGràcies per estar, cantem sense por,\na cinquè A tot sona millor.\nBomboclat, la festa ja està, i love aitana\naitana por siempre, ningú ho pot negar.\n\nVers 3\nOnce y Angie ballen sense parar,\nlas Marias son simpáticas, ho tornen a demostrar.\nSu mini mini mini sona al final,\ncom una banda sonora genial.\n\nBridge\nStranger Things al pati escolar,\naventures que ningú oblidarà.\nThi is Colombia pa que lo entiendan,\ncridem tots junts mentre la música tremola.\n\nVers 4\nVicente Blasco Ibáñez amb les seues festes,\nrecords que el temps mai s’emporta després.\nI per sopar, tradició mundial:\npollito con alioli per celebrar el final.\n\nEstribillo final\nGràcies per estar, amics de veritat,\nsom història viva de felicitat.\nQuan el curs s’acabe i el temps passarà,\nel cor de cinquè A sempre bategarà.",
-      "paragraphs": [
-        "Matí d’escola, sol brillant, tot comença a vibrar,\na the school of cool ningú vol parar.\nAmb Minecraft o somnis per crear,\nsabem que hui serà un dia brutal.",
-        "Pre-cor\nEntre rialles i corredors,\nhistòries que ningú pot parar,\nsom la classe que fa soroll\ni que sempre vol celebrar.",
-        "Estribillo\nGràcies per estar, cantem sense por,\na cinquè A tot sona millor.\nBomboclat, la festa ja està,\naitana por siempre, ningú ho pot negar.",
-        "Vers 2\nRebeca y Will, secrets al passadís,\ny Sheyla y Steve rient sense fi.\nHéctor y Raúl jugant sense parar,\ni Garnacho es el mejor, ho tornem a cridar.",
-        "Pont gamer\nTodos farmearemos aura esta nit,\npixel a pixel, construint l’infinit.\nSi comptem six seven on a merry Christmas,\ncomença el ball i ningú descansa.",
-        "Estribillo\nGràcies per estar, cantem sense por,\na cinquè A tot sona millor.\nBomboclat, la festa ja està, i love aitana\naitana por siempre, ningú ho pot negar.",
-        "Vers 3\nOnce y Angie ballen sense parar,\nlas Marias son simpáticas, ho tornen a demostrar.\nSu mini mini mini sona al final,\ncom una banda sonora genial.",
-        "Bridge\nStranger Things al pati escolar,\naventures que ningú oblidarà.\nThi is Colombia pa que lo entiendan,\ncridem tots junts mentre la música tremola.",
-        "Vers 4\nVicente Blasco Ibáñez amb les seues festes,\nrecords que el temps mai s’emporta després.\nI per sopar, tradició mundial:\npollito con alioli per celebrar el final.",
-        "Estribillo final\nGràcies per estar, amics de veritat,\nsom història viva de felicitat.\nQuan el curs s’acabe i el temps passarà,\nel cor de cinquè A sempre bategarà."
-      ],
-      "times": {
-        "auto": [],
-        "calibrated": [
-          0.874666,
-          15.477333,
-          23.786666,
-          41.813333,
-          73.461333,
-          89.258666,
-          107.413333,
-          138.645333,
-          155.274666,
-          171.637333
-        ]
-      },
-      "offsetSeconds": 0,
-      "detector": {
-        "threshold": 0.02,
-        "minSilenceMs": 320,
-        "windowMs": 80
-      },
-      "audioMeta": {
-        "name": "5A-school-of-cool.mp3",
-        "type": "audio/mpeg"
-      }
-    },
     {
       "id": "360404a0-8231-43cd-9583-d4c95852713b",
       "title": "1A Rock start en el Blasco",
@@ -377,6 +332,51 @@
       }
     },
     {
+      "id": "c87dc706-ed55-4649-a7a2-9f951143f680",
+      "title": "5a school of cool",
+      "category": "5a",
+      "categoryTitle": "5A",
+      "audioUrl": "audio/5A-school-of-cool.mp3",
+      "lyricsOriginal": "Matí d’escola, sol brillant, tot comença a vibrar,\na the school of cool ningú vol parar.\nAmb Minecraft o somnis per crear,\nsabem que hui serà un dia brutal.\n\nPre-cor\nEntre rialles i corredors,\nhistòries que ningú pot parar,\nsom la classe que fa soroll\ni que sempre vol celebrar.\n\nEstribillo\nGràcies per estar, cantem sense por,\na cinquè A tot sona millor.\nBomboclat, la festa ja està,\naitana por siempre, ningú ho pot negar.\n\nVers 2\nRebeca y Will, secrets al passadís,\ny Sheyla y Steve rient sense fi.\nHéctor y Raúl jugant sense parar,\ni Garnacho es el mejor, ho tornem a cridar.\n\nPont gamer\nTodos farmearemos aura esta nit,\npixel a pixel, construint l’infinit.\nSi comptem six seven on a merry Christmas,\ncomença el ball i ningú descansa.\n\nEstribillo\nGràcies per estar, cantem sense por,\na cinquè A tot sona millor.\nBomboclat, la festa ja està, i love aitana\naitana por siempre, ningú ho pot negar.\n\nVers 3\nOnce y Angie ballen sense parar,\nlas Marias son simpáticas, ho tornen a demostrar.\nSu mini mini mini sona al final,\ncom una banda sonora genial.\n\nBridge\nStranger Things al pati escolar,\naventures que ningú oblidarà.\nThi is Colombia pa que lo entiendan,\ncridem tots junts mentre la música tremola.\n\nVers 4\nVicente Blasco Ibáñez amb les seues festes,\nrecords que el temps mai s’emporta després.\nI per sopar, tradició mundial:\npollito con alioli per celebrar el final.\n\nEstribillo final\nGràcies per estar, amics de veritat,\nsom història viva de felicitat.\nQuan el curs s’acabe i el temps passarà,\nel cor de cinquè A sempre bategarà.",
+      "paragraphs": [
+        "Matí d’escola, sol brillant, tot comença a vibrar,\na the school of cool ningú vol parar.\nAmb Minecraft o somnis per crear,\nsabem que hui serà un dia brutal.",
+        "Pre-cor\nEntre rialles i corredors,\nhistòries que ningú pot parar,\nsom la classe que fa soroll\ni que sempre vol celebrar.",
+        "Estribillo\nGràcies per estar, cantem sense por,\na cinquè A tot sona millor.\nBomboclat, la festa ja està,\naitana por siempre, ningú ho pot negar.",
+        "Vers 2\nRebeca y Will, secrets al passadís,\ny Sheyla y Steve rient sense fi.\nHéctor y Raúl jugant sense parar,\ni Garnacho es el mejor, ho tornem a cridar.",
+        "Pont gamer\nTodos farmearemos aura esta nit,\npixel a pixel, construint l’infinit.\nSi comptem six seven on a merry Christmas,\ncomença el ball i ningú descansa.",
+        "Estribillo\nGràcies per estar, cantem sense por,\na cinquè A tot sona millor.\nBomboclat, la festa ja està, i love aitana\naitana por siempre, ningú ho pot negar.",
+        "Vers 3\nOnce y Angie ballen sense parar,\nlas Marias son simpáticas, ho tornen a demostrar.\nSu mini mini mini sona al final,\ncom una banda sonora genial.",
+        "Bridge\nStranger Things al pati escolar,\naventures que ningú oblidarà.\nThi is Colombia pa que lo entiendan,\ncridem tots junts mentre la música tremola.",
+        "Vers 4\nVicente Blasco Ibáñez amb les seues festes,\nrecords que el temps mai s’emporta després.\nI per sopar, tradició mundial:\npollito con alioli per celebrar el final.",
+        "Estribillo final\nGràcies per estar, amics de veritat,\nsom història viva de felicitat.\nQuan el curs s’acabe i el temps passarà,\nel cor de cinquè A sempre bategarà."
+      ],
+      "times": {
+        "auto": [],
+        "calibrated": [
+          0.874666,
+          15.477333,
+          23.786666,
+          41.813333,
+          73.461333,
+          89.258666,
+          107.413333,
+          138.645333,
+          155.274666,
+          171.637333
+        ]
+      },
+      "offsetSeconds": 0,
+      "detector": {
+        "threshold": 0.02,
+        "minSilenceMs": 320,
+        "windowMs": 80
+      },
+      "audioMeta": {
+        "name": "5A-school-of-cool.mp3",
+        "type": "audio/mpeg"
+      }
+    },
+    {
       "id": "2c961112-e45a-414b-a1c9-0a65cca13358",
       "title": "5B Dale dale",
       "category": "5b",
@@ -592,6 +592,49 @@
       }
     },
     {
+      "id": "1ff95ccc-d7e2-45af-b468-d4de2a274c02",
+      "title": "Feliç aniversari",
+      "category": "5b",
+      "categoryTitle": "5B",
+      "audioUrl": "audio/MariCarmen.mp3",
+      "lyricsOriginal": "\nGràcies per ser la nostra mestra,  \nper caminar sempre al costat,  \nles classes amb tu són millor  \nquan tot sembla complicat.\n\nEns ajudes emocionalment  \nquan el dia es fa més dur,  \namb els teus consells som millors,  \nens dones força i futur.\n\n**Feliç aniversari, Mari Carmen,  \nla millor tutora,  \nets molt bona mestra, de veritat,  \ngràcies per estar amb nosaltres  \namb paciència i bondat.**\n\nMassa proves però ets molt bona mestra,  \nencara que diguem “no se…”,  \nsempre trobes la manera  \nde fer-nos entendre el perquè.\n\nGràcies per ajudar-nos en tot,  \ngràcies per resoldre tots els problemes,  \nmai t’oblidarem,  \nencara que passen els temps.\n\n**Siempre et portarem en el cor,  \nsiempre t’estimarem així,  \nper cada somriure i cada paraula  \nque ens ha fet créixer fins ací.**\n\n\nGracias por acogerme,  \nper fer-nos sentir importants,  \ncom si cada alumne fora  \núnic entre tots els estudiants.\n\nSi algun dia algú és advocat,  \no científic, o el que siga després,  \nserà perquè tu vas creure  \nquan nosaltres no ho fèiem bé.\n\n\n**Feliç aniversari, Mari Carmen,  \nla millor tutora del món,  \ngràcies per ser la nostra mestra…  \nets llum dins del nostre cor.**\n\n",
+      "paragraphs": [
+        "Gràcies per ser la nostra mestra,  \nper caminar sempre al costat,  \nles classes amb tu són millor  \nquan tot sembla complicat.",
+        "Ens ajudes emocionalment  \nquan el dia es fa més dur,  \namb els teus consells som millors,  \nens dones força i futur.",
+        "**Feliç aniversari, Mari Carmen,  \nla millor tutora,  \nets molt bona mestra, de veritat,  \ngràcies per estar amb nosaltres  \namb paciència i bondat.**",
+        "Massa proves però ets molt bona mestra,  \nencara que diguem “no se…”,  \nsempre trobes la manera  \nde fer-nos entendre el perquè.",
+        "Gràcies per ajudar-nos en tot,  \ngràcies per resoldre tots els problemes,  \nmai t’oblidarem,  \nencara que passen els temps.",
+        "**Siempre et portarem en el cor,  \nsiempre t’estimarem així,  \nper cada somriure i cada paraula  \nque ens ha fet créixer fins ací.**",
+        "Gracias por acogerme,  \nper fer-nos sentir importants,  \ncom si cada alumne fora  \núnic entre tots els estudiants.",
+        "Si algun dia algú és advocat,  \no científic, o el que siga després,  \nserà perquè tu vas creure  \nquan nosaltres no ho fèiem bé.",
+        "**Feliç aniversari, Mari Carmen,  \nla millor tutora del món,  \ngràcies per ser la nostra mestra…  \nets llum dins del nostre cor.**"
+      ],
+      "times": {
+        "auto": [],
+        "calibrated": [
+          32.045333,
+          32.568,
+          48.226666,
+          66.445333,
+          81.816,
+          98.189333,
+          115.586666,
+          130.957333,
+          149.176
+        ]
+      },
+      "offsetSeconds": 0,
+      "detector": {
+        "threshold": 0.02,
+        "minSilenceMs": 320,
+        "windowMs": 80
+      },
+      "audioMeta": {
+        "name": "MariCarmen.mp3",
+        "type": "audio/mpeg"
+      }
+    },
+    {
       "id": "bb8c98e6-4a54-43e6-9c13-753bcb817a2e",
       "title": "Fi de curs al Blasco.mp3 · 10:23",
       "category": "6a",
@@ -666,6 +709,53 @@
       },
       "audioMeta": {
         "name": "Fi de curs al Blasco.mp3",
+        "type": "audio/mpeg"
+      }
+    },
+    {
+      "id": "c4a4b606-19b3-4550-9784-0ac7b356ce46",
+      "title": "Títol: Un lloc, un record",
+      "category": "4a",
+      "categoryTitle": "4A",
+      "audioUrl": "audio/4A2_ Un lloc, un record.mp3",
+      "lyricsOriginal": "Títol: Un lloc, un record\n\nVers 1\nComença el dia amb música a tot volum,\nsom com la sèrie Rivales, pura llum.\nEntre partides de Fornite sense por,\ni encanteris de Harry Potter al corredor.\n\nSi dic esternocleiodomastoideo del tiró,\nja tenim riures per a tota la sessió.\nA Blox Fruits lluitem sense final,\na Roblox Rivals som nivell brutal.\n\nPre-cor\nSix seven, comptem i a jugar,\namb Felipe cridant sense parar.\nSom equip, som energia total,\nclasse mítica, llegenda digital.\n\nEstribillo\nÉs un lugar un recuerdo,\nque no s’esborra mai del cervell.\nEntre FIFA, memes i dracs,\nla nostra història no té fre.\n\nVers 2\nLes beibis brillen com estrelles,\nguardianes de la noche, cent centelles.\nSona estil Biza al pati central,\nritme que puja, ambient espectacular.\n\nAbrahaham diu “anem allà!”,\nmentre Fernan Floo ens fa flipar.\nA Blarwl Star som imparables,\nsomnis enormes, imparables.\n\nPont\n“Sunami for brainots!” algú va cridar,\ni tot el pati va començar a saltar.\nUn T-Rex ballant amb Terry al costat,\nsurrealisme en estat natural.\n\nBridge\nCom Shakira, facturem rialles,\nmoments petits que són detalls.\nSi la vida diu “Supercalifragilisticoespialidoso”,\nnosaltres responem: és meravellós.\n\nEstribillo final\nÉs un lugar un recuerdo,\nque guardarem al cor etern.\nEntre videojocs i amistat,\naquesta classe és immortal.\n\nFinal\nI si algun dia sona “no vol.”,\nsabrem que el viatge continua enlloc.\nPerquè mentre hi haja amistat,\nla partida no s’ha acabat. ✨",
+      "paragraphs": [
+        "Títol: Un lloc, un record",
+        "Vers 1\nComença el dia amb música a tot volum,\nsom com la sèrie Rivales, pura llum.\nEntre partides de Fornite sense por,\ni encanteris de Harry Potter al corredor.",
+        "Si dic esternocleiodomastoideo del tiró,\nja tenim riures per a tota la sessió.\nA Blox Fruits lluitem sense final,\na Roblox Rivals som nivell brutal.",
+        "Pre-cor\nSix seven, comptem i a jugar,\namb Felipe cridant sense parar.\nSom equip, som energia total,\nclasse mítica, llegenda digital.",
+        "Estribillo\nÉs un lugar un recuerdo,\nque no s’esborra mai del cervell.\nEntre FIFA, memes i dracs,\nla nostra història no té fre.",
+        "Vers 2\nLes beibis brillen com estrelles,\nguardianes de la noche, cent centelles.\nSona estil Biza al pati central,\nritme que puja, ambient espectacular.",
+        "Abrahaham diu “anem allà!”,\nmentre Fernan Floo ens fa flipar.\nA Blarwl Star som imparables,\nsomnis enormes, imparables.",
+        "Pont\n“Sunami for brainots!” algú va cridar,\ni tot el pati va començar a saltar.\nUn T-Rex ballant amb Terry al costat,\nsurrealisme en estat natural.",
+        "Bridge\nCom Shakira, facturem rialles,\nmoments petits que són detalls.\nSi la vida diu “Supercalifragilisticoespialidoso”,\nnosaltres responem: és meravellós.",
+        "Estribillo final\nÉs un lugar un recuerdo,\nque guardarem al cor etern.\nEntre videojocs i amistat,\naquesta classe és immortal.",
+        "Final\nI si algun dia sona “no vol.”,\nsabrem que el viatge continua enlloc.\nPerquè mentre hi haja amistat,\nla partida no s’ha acabat. ✨"
+      ],
+      "times": {
+        "auto": [],
+        "calibrated": [
+          10.487999,
+          11.234666,
+          19.533332,
+          29.730666,
+          41.357332,
+          62.274666,
+          71.821332,
+          81.346666,
+          91.821332,
+          103.575999,
+          134.093332
+        ]
+      },
+      "offsetSeconds": 0,
+      "detector": {
+        "threshold": 0.02,
+        "minSilenceMs": 320,
+        "windowMs": 80
+      },
+      "audioMeta": {
+        "name": "4A2_ Un lloc, un record.mp3",
         "type": "audio/mpeg"
       }
     },

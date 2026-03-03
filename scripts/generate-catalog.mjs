@@ -126,6 +126,24 @@ function getSongQualityScore(song) {
   return (paragraphsCount * 1000) + (calibratedCount * 100) + (autoCount * 10) + lyricsLength;
 }
 
+function ensureUniqueSongIds(songs) {
+  const used = new Set();
+
+  return songs.map((song) => {
+    const baseId = sanitizeId(song?.id || song?.title || getAudioIdentity(song) || "song");
+    let nextId = baseId;
+    let counter = 2;
+
+    while (used.has(nextId)) {
+      nextId = `${baseId}-${counter}`;
+      counter += 1;
+    }
+
+    used.add(nextId);
+    return { ...song, id: nextId };
+  });
+}
+
 function normalizeSongFromSync(syncJson, fallback) {
   const explicitAudioUrl = String(syncJson?.audioUrl || syncJson?.audio || "").trim();
   const category = String(syncJson?.category || syncJson?.categoryId || fallback.category || "general").trim() || "general";
@@ -242,22 +260,9 @@ async function main() {
     songs.push(normalizeSongFromSync(syncJson, fallback));
   }
 
-  const dedupedById = new Map();
+  const dedupedByAudio = new Map();
   for (const song of songs) {
     if (!song || !song.audioUrl || !song.title) continue;
-    if (!dedupedById.has(song.id)) {
-      dedupedById.set(song.id, song);
-      continue;
-    }
-
-    const current = dedupedById.get(song.id);
-    if (getSongQualityScore(song) > getSongQualityScore(current)) {
-      dedupedById.set(song.id, song);
-    }
-  }
-
-  const dedupedByAudio = new Map();
-  for (const song of dedupedById.values()) {
     const identity = getAudioIdentity(song);
     if (!identity) continue;
 
@@ -272,7 +277,7 @@ async function main() {
     }
   }
 
-  const finalSongs = Array.from(dedupedByAudio.values());
+  const finalSongs = ensureUniqueSongIds(Array.from(dedupedByAudio.values()));
 
   finalSongs.sort((a, b) => a.title.localeCompare(b.title, "es"));
 
