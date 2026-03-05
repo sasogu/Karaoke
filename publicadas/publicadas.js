@@ -40,6 +40,7 @@
       share_success: "Listo para compartir",
       share_copied: "Enlace copiado",
       share_manual_copy: "Copia este enlace para compartir:",
+      share_select_song: "Selecciona una canción para compartir",
       catalog_invalid: "Formato de catálogo inválido",
       catalog_load_error: "No se pudo cargar el catálogo: {error}"
     },
@@ -77,6 +78,7 @@
       share_success: "Llest per a compartir",
       share_copied: "Enllaç copiat",
       share_manual_copy: "Copia este enllaç per a compartir:",
+      share_select_song: "Selecciona una cançó per a compartir",
       catalog_invalid: "Format de catàleg invàlid",
       catalog_load_error: "No s'ha pogut carregar el catàleg: {error}"
     },
@@ -114,6 +116,7 @@
       share_success: "Ready to share",
       share_copied: "Link copied",
       share_manual_copy: "Copy this link to share:",
+      share_select_song: "Select a song to share",
       catalog_invalid: "Invalid catalog format",
       catalog_load_error: "Could not load catalog: {error}"
     }
@@ -123,6 +126,7 @@
 
   const refs = {
     reloadBtn: document.getElementById("reloadBtn"),
+    shareBtn: document.getElementById("shareBtn"),
     status: document.getElementById("status"),
     catalogFilter: document.getElementById("catalogFilter"),
     catalogView: document.getElementById("catalogView"),
@@ -239,6 +243,12 @@
 
   function updateNowTitle() {
     refs.nowTitle.textContent = state.currentSong?.title || t("now_title_default");
+    updateShareButtonState();
+  }
+
+  function updateShareButtonState() {
+    if (!refs.shareBtn) return;
+    refs.shareBtn.disabled = !Boolean(state.currentSong?.id);
   }
 
   function formatTime(seconds) {
@@ -455,7 +465,6 @@
               <div class="remote-song-actions">
                 <button class="secondary" data-action="load" data-id="${song.id}">${t("btn_load")}</button>
                 <button data-action="play" data-id="${song.id}">${t("btn_load_play")}</button>
-                <button class="secondary" data-action="share" data-id="${song.id}">${t("btn_share")}</button>
               </div>
             `;
             refs.catalogView.appendChild(item);
@@ -730,10 +739,15 @@
         await loadSongById(id, true);
         return;
       }
+    });
 
-      if (action === "share") {
-        await shareSongById(id);
+    refs.shareBtn?.addEventListener("click", async () => {
+      const songId = state.currentSong?.id;
+      if (!songId) {
+        flashStatus(t("share_select_song"));
+        return;
       }
+      await shareSongById(songId);
     });
 
     refs.playBtn?.addEventListener("click", async () => {

@@ -68,9 +68,9 @@ Esta página carga solo el catálogo publicado y no muestra herramientas de edic
 
 ### Compartir canción en pantalla completa
 
-En la vista `/publicadas/`, cada canción incluye botón **Compartir**.
+En la vista `/publicadas/`, tienes botón **Compartir** en la barra superior (junto a **Recargar catálogo**).
 
-El enlace generado apunta a la misma vista pública pero forzando:
+El enlace generado comparte la canción actualmente seleccionada y apunta a la misma vista pública forzando:
 
 - canción seleccionada,
 - modo pantalla completa,
