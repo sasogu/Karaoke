@@ -66,6 +66,28 @@ En GitHub Pages normalmente quedará como:
 
 Esta página carga solo el catálogo publicado y no muestra herramientas de edición.
 
+### Compartir canción en pantalla completa
+
+En la vista `/publicadas/`, cada canción incluye botón **Compartir**.
+
+El enlace generado apunta a la misma vista pública pero forzando:
+
+- canción seleccionada,
+- modo pantalla completa,
+- intento de reproducción automática.
+
+Formato de ejemplo:
+
+- `/publicadas/?song=mi-cancion-1&fullscreen=1&autoplay=1`
+
+Parámetros:
+
+- `song`: ID de canción del catálogo (`id` en `catalog/canciones.json`).
+- `fullscreen=1`: abre directamente la vista de karaoke ampliada.
+- `autoplay=1`: intenta iniciar la reproducción automáticamente al cargar.
+
+> Nota: algunos navegadores pueden bloquear autoplay con audio hasta interacción del usuario.
+
 ### Formato del catálogo
 
 Puedes usar:

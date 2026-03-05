@@ -36,6 +36,10 @@
       sync_no: "sin sincronizar",
       btn_load: "Cargar",
       btn_load_play: "Cargar y reproducir",
+      btn_share: "Compartir",
+      share_success: "Listo para compartir",
+      share_copied: "Enlace copiado",
+      share_manual_copy: "Copia este enlace para compartir:",
       catalog_invalid: "Formato de catálogo inválido",
       catalog_load_error: "No se pudo cargar el catálogo: {error}"
     },
@@ -69,6 +73,10 @@
       sync_no: "sense sincronitzar",
       btn_load: "Carregar",
       btn_load_play: "Carregar i reproduir",
+      btn_share: "Compartir",
+      share_success: "Llest per a compartir",
+      share_copied: "Enllaç copiat",
+      share_manual_copy: "Copia este enllaç per a compartir:",
       catalog_invalid: "Format de catàleg invàlid",
       catalog_load_error: "No s'ha pogut carregar el catàleg: {error}"
     },
@@ -102,6 +110,10 @@
       sync_no: "not synced",
       btn_load: "Load",
       btn_load_play: "Load & play",
+      btn_share: "Share",
+      share_success: "Ready to share",
+      share_copied: "Link copied",
+      share_manual_copy: "Copy this link to share:",
       catalog_invalid: "Invalid catalog format",
       catalog_load_error: "Could not load catalog: {error}"
     }
@@ -141,7 +153,9 @@
     songs: [],
     currentSong: null,
     activeParagraphIndex: -1,
-    selectedCategoryId: ""
+    selectedCategoryId: "",
+    statusMessageTimer: 0,
+    startupRequest: null
   };
 
   const parseParagraphs = (text) => String(text || "")
@@ -159,6 +173,27 @@
     const stored = String(localStorage.getItem(LS_LANG_KEY) || "").trim().toLowerCase();
     if (stored === "es" || stored === "val" || stored === "en") return stored;
     return "es";
+  }
+
+  function parseBooleanParam(value) {
+    const normalized = String(value || "").trim().toLowerCase();
+    return normalized === "1" || normalized === "true" || normalized === "yes";
+  }
+
+  function getStartupRequestFromUrl() {
+    const params = new URLSearchParams(window.location.search);
+    const songId = String(params.get("song") || params.get("id") || "").trim();
+    if (!songId) return null;
+
+    const fullscreen = parseBooleanParam(params.get("fullscreen")) || parseBooleanParam(params.get("fs"));
+    const hasAutoplayParam = params.has("autoplay");
+    const autoplay = hasAutoplayParam ? parseBooleanParam(params.get("autoplay")) : fullscreen;
+
+    return {
+      songId,
+      fullscreen,
+      autoplay
+    };
   }
 
   function setLanguage(lang) {
@@ -283,6 +318,66 @@
     refs.status.textContent = text;
   }
 
+  function getReadyStatusText() {
+    return state.songs.length ? t("status_ready", { count: state.songs.length }) : t("status_loading");
+  }
+
+  function flashStatus(text, delayMs = 2400) {
+    updateStatus(text);
+    if (state.statusMessageTimer) {
+      window.clearTimeout(state.statusMessageTimer);
+      state.statusMessageTimer = 0;
+    }
+
+    state.statusMessageTimer = window.setTimeout(() => {
+      updateStatus(getReadyStatusText());
+      state.statusMessageTimer = 0;
+    }, delayMs);
+  }
+
+  function buildShareUrl(songId) {
+    const url = new URL(window.location.href);
+    url.searchParams.set("song", songId);
+    url.searchParams.set("fullscreen", "1");
+    url.searchParams.set("autoplay", "1");
+    url.hash = "";
+    return url.toString();
+  }
+
+  async function shareSongById(songId) {
+    const song = state.songs.find((entry) => entry.id === songId);
+    if (!song) return;
+
+    const shareUrl = buildShareUrl(song.id);
+    const shareData = {
+      title: song.title,
+      text: song.title,
+      url: shareUrl
+    };
+
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+        flashStatus(t("share_success"));
+        return;
+      } catch (error) {
+        if (error?.name === "AbortError") return;
+      }
+    }
+
+    if (navigator.clipboard?.writeText) {
+      try {
+        await navigator.clipboard.writeText(shareUrl);
+        flashStatus(t("share_copied"));
+        return;
+      } catch {
+        // no-op
+      }
+    }
+
+    window.prompt(t("share_manual_copy"), shareUrl);
+  }
+
   function renderCatalogFilter() {
     if (!refs.catalogFilter) return;
 
@@ -360,6 +455,7 @@
               <div class="remote-song-actions">
                 <button class="secondary" data-action="load" data-id="${song.id}">${t("btn_load")}</button>
                 <button data-action="play" data-id="${song.id}">${t("btn_load_play")}</button>
+                <button class="secondary" data-action="share" data-id="${song.id}">${t("btn_share")}</button>
               </div>
             `;
             refs.catalogView.appendChild(item);
@@ -510,6 +606,20 @@
     refs.timeDisplay.textContent = `${formatTime(refs.audio.currentTime)} / ${formatTime(refs.audio.duration)}`;
   }
 
+  async function tryAutoplayAudio() {
+    try {
+      await refs.audio.play();
+      return true;
+    } catch {
+      const retry = () => {
+        refs.audio.play().catch(() => {});
+      };
+      refs.audio.addEventListener("canplay", retry, { once: true });
+      refs.audio.addEventListener("loadeddata", retry, { once: true });
+      return false;
+    }
+  }
+
   async function loadSongById(id, autoplay) {
     const song = state.songs.find((entry) => entry.id === id);
     if (!song) return;
@@ -517,6 +627,7 @@
     state.currentSong = song;
     updateNowTitle();
     refs.audio.src = song.audioUrl;
+    refs.audio.autoplay = Boolean(autoplay);
     refs.audioName.textContent = song.audioMeta?.name || inferAudioNameFromUrl(song.audioUrl);
     refs.audioCategory.textContent = song.categoryTitle;
 
@@ -525,12 +636,27 @@
     renderFullscreenParagraph();
 
     if (autoplay) {
-      try {
-        await refs.audio.play();
-      } catch {
-        // no-op
-      }
+      await tryAutoplayAudio();
     }
+  }
+
+  async function handleStartupRequest() {
+    const request = state.startupRequest;
+    if (!request?.songId) return false;
+
+    const targetSong = state.songs.find((song) => song.id === request.songId);
+    state.startupRequest = null;
+    if (!targetSong) return false;
+
+    await loadSongById(targetSong.id, false);
+    if (request.fullscreen) {
+      await openFullscreen();
+    }
+    if (request.autoplay) {
+      await tryAutoplayAudio();
+    }
+
+    return true;
   }
 
   async function loadCatalog() {
@@ -558,6 +684,9 @@
       state.songs = songsRaw.map((raw) => normalizeSong(raw, categoriesMap)).filter(Boolean);
       renderCatalog();
       updateStatus(t("status_ready", { count: state.songs.length }));
+
+      const startupHandled = await handleStartupRequest();
+      if (startupHandled) return;
 
       const firstSong = state.songs[0];
       if (firstSong && !state.currentSong) {
@@ -599,6 +728,11 @@
 
       if (action === "play") {
         await loadSongById(id, true);
+        return;
+      }
+
+      if (action === "share") {
+        await shareSongById(id);
       }
     });
 
@@ -688,6 +822,7 @@
   }
 
   currentLanguage = getInitialLanguage();
+  state.startupRequest = getStartupRequestFromUrl();
   applyI18n();
   updateNowTitle();
 
