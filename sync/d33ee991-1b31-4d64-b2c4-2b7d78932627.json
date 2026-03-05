@@ -1,0 +1,35 @@
+{
+  "id": "d33ee991-1b31-4d64-b2c4-2b7d78932627",
+  "title": "Vidiojocs dylan pau adrian i mark",
+  "category": "5b",
+  "categoryTitle": "5B",
+  "lyricsOriginal": " L’aura brilla,\nDale, dale, dale, no puedes contra mi.\nCom a un Pokémon que salta a l’estrella,\nJugant a futbol, som l’alternativa.\n\nEstribillo\nArigato al profe, perro salchicha,\nTú tens por, però jo vaig fort.\nThe winner es fa veure, sense por,\namb Raning tacos de fons.\n\nVers 2\nEn purpura lluïm, amb els meus panas,\nSom el prime, no parem amb ganes.\nBrawl Stars crida, jugarem precis,\nDylan, Pau, Adrián, Mark, junts en el camí.\n\nEstribillo\nArigato al profe, Samuel amb tot,\nTú tens por, però jo vaig fort.\nThe winner es fa veure, sense por,\nPerro salchicha, el millor en sabor.\n\nPont\nMinicraft creant, el poder és bo,\nJunts amb els amics, mai no param, ho saps!\nRaining tacos, som la revolució,\nAmb un somriure, i plena passió.",
+  "paragraphs": [
+    "L’aura brilla,\nDale, dale, dale, no puedes contra mi.\nCom a un Pokémon que salta a l’estrella,\nJugant a futbol, som l’alternativa.",
+    "Estribillo\nArigato al profe, perro salchicha,\nTú tens por, però jo vaig fort.\nThe winner es fa veure, sense por,\namb Raning tacos de fons.",
+    "Vers 2\nEn purpura lluïm, amb els meus panas,\nSom el prime, no parem amb ganes.\nBrawl Stars crida, jugarem precis,\nDylan, Pau, Adrián, Mark, junts en el camí.",
+    "Estribillo\nArigato al profe, Samuel amb tot,\nTú tens por, però jo vaig fort.\nThe winner es fa veure, sense por,\nPerro salchicha, el millor en sabor.",
+    "Pont\nMinicraft creant, el poder és bo,\nJunts amb els amics, mai no param, ho saps!\nRaining tacos, som la revolució,\nAmb un somriure, i plena passió."
+  ],
+  "times": {
+    "auto": [],
+    "calibrated": [
+      20.149333,
+      20.8,
+      35.690666,
+      65.290666,
+      81.130666
+    ]
+  },
+  "offsetSeconds": 0,
+  "detector": {
+    "threshold": 0.02,
+    "minSilenceMs": 320,
+    "windowMs": 80
+  },
+  "audioMeta": {
+    "name": "5B l’aura brilla,.mp3",
+    "type": "audio/mpeg"
+  },
+  "audioUrl": "audio/5B l’aura brilla,.mp3"
+}

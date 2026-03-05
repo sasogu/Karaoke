@@ -1,0 +1,43 @@
+{
+  "id": "4ee4285f-e1a7-422e-a555-3be8a5024243",
+  "title": "Cançó de VNMA",
+  "category": "5b",
+  "categoryTitle": "5B",
+  "lyricsOriginal": "Cançó de VNMA\n\n(Verso 1)  \nA la ciutat de Hawkins, Dustin és el rei,  \nEn un món de misteris, un viatge com un fi.  \nAmb Steve al seu costat, afrontem el demogorgon,  \nI amb Will, la nostra força, no hi ha por, som super estrelles.\n\n(Estribillo)  \n**I love Will, i love Steve,**  \nAlpha per sempre, en el cor, viurem.  \nNinyo zombi balla, la música sona,  \nShusi poo a la festa, la diversió no s'acaba.\n\n---\n\n(Verso 2)  \nA la llum del cuarto blau, l’esperança brilla,  \nAmb Eleven al costat, la por es desvaneix.  \nVecna no ens atura, la lluita és eterna,  \nHistòria interminable, la màgia ens envolta.\n\n(Estribillo)  \n**I love Will, i love Steve,**  \nAlpha per sempre, en el cor, viurem.  \nNinyo zombi balla, la música sona,  \nShusi poo a la festa, la diversió no s'acaba.\n\n---\n\n(Pont)  \nVNMA, les millors sempre brillen,  \nAmb cada moment, les estrelles no fallen.  \nSu mini mini mini, un món d'encantament,  \nLa màgia ens uneix, fem un gran moment.\n\n(Estribillo)  \n**I love Will, i love Steve,**  \nAlpha per sempre, en el cor, viurem.  \nNinyo zombi balla, la música sona,  \nShusi poo a la festa, la diversió no s'acaba.",
+  "paragraphs": [
+    "Cançó de VNMA",
+    "(Verso 1)  \nA la ciutat de Hawkins, Dustin és el rei,  \nEn un món de misteris, un viatge com un fi.  \nAmb Steve al seu costat, afrontem el demogorgon,  \nI amb Will, la nostra força, no hi ha por, som super estrelles.",
+    "(Estribillo)  \n**I love Will, i love Steve,**  \nAlpha per sempre, en el cor, viurem.  \nNinyo zombi balla, la música sona,  \nShusi poo a la festa, la diversió no s'acaba.",
+    "---",
+    "(Verso 2)  \nA la llum del cuarto blau, l’esperança brilla,  \nAmb Eleven al costat, la por es desvaneix.  \nVecna no ens atura, la lluita és eterna,  \nHistòria interminable, la màgia ens envolta.",
+    "(Estribillo)  \n**I love Will, i love Steve,**  \nAlpha per sempre, en el cor, viurem.  \nNinyo zombi balla, la música sona,  \nShusi poo a la festa, la diversió no s'acaba.",
+    "---",
+    "(Pont)  \nVNMA, les millors sempre brillen,  \nAmb cada moment, les estrelles no fallen.  \nSu mini mini mini, un món d'encantament,  \nLa màgia ens uneix, fem un gran moment.",
+    "(Estribillo)  \n**I love Will, i love Steve,**  \nAlpha per sempre, en el cor, viurem.  \nNinyo zombi balla, la música sona,  \nShusi poo a la festa, la diversió no s'acaba."
+  ],
+  "times": {
+    "auto": [],
+    "calibrated": [
+      1.621333,
+      2.933333,
+      44.096,
+      62.304,
+      69.578666,
+      92.970666,
+      111.776,
+      118.816,
+      149.312
+    ]
+  },
+  "offsetSeconds": 0,
+  "detector": {
+    "threshold": 0.02,
+    "minSilenceMs": 320,
+    "windowMs": 80
+  },
+  "audioMeta": {
+    "name": "5B nvma.mp3",
+    "type": "audio/mpeg"
+  },
+  "audioUrl": "audio/5B nvma.mp3"
+}

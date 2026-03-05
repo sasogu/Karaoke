@@ -1,0 +1,41 @@
+{
+  "id": "e00f044a-7095-4e53-ae44-8092424d5f53",
+  "title": "Camilo, mmm, en la fiesta suena el ritmo",
+  "category": "5b",
+  "categoryTitle": "5B",
+  "lyricsOriginal": "Camilo, mmm, en la fiesta suena el ritmo,  \ncuatro chicas bailando, siempre en el mismo.  \nOlivia, Anna, Ainhoa y Julia,  \njuntas en esta noche, la vida es una melodía.\n\n**Estribillo**  \n¡Una fotito con las girls!  \nBailando hasta el fin del mundo,  \nla amistad es para siempre,  \nse me olvidó todo lo profundo.  \nFiesta, fiesta, fiesta,  \nun like para el video,  \nbailando bachata en nuestro reino,  \nsintiendo el fuego.\n\n---\n\n**Verso 2**  \nOlivia ríe, Anna da un giro,  \nAinhoa y Julia marcan el ritmo.  \nEn la pista, somos una conexión,  \nel amor y la risa, nuestra única misión.\n\n**Estribillo**  \n¡Una fotito con las girls!  \nBailando hasta el fin del mundo,  \nla amistad es para siempre,  \nse me olvidó todo lo profundo.  \nFiesta, fiesta, fiesta,  \nun like para el video,  \nbailando bachata en nuestro reino,  \nsintiendo el fuego.\n\n---\n\n**Puente**  \nLas luces brillan, la noche está viva,  \ncada paso que damos, la energía nos anima.  \nCuatro chicas, un solo corazón,  \nen este baile, la vida es una canción.\n\n**Estribillo Final**  \n¡Una fotito con las girls!  \nBailando hasta el fin del mundo,  \nla amistad es para siempre,  \nse me olvidó todo lo profundo.  \nFiesta, fiesta, fiesta,  \nun like para el video,  \nbailando bachata en nuestro reino,  \nsintiendo el fuego.",
+  "paragraphs": [
+    "Camilo, mmm, en la fiesta suena el ritmo,  \ncuatro chicas bailando, siempre en el mismo.  \nOlivia, Anna, Ainhoa y Julia,  \njuntas en esta noche, la vida es una melodía.",
+    "**Estribillo**  \n¡Una fotito con las girls!  \nBailando hasta el fin del mundo,  \nla amistad es para siempre,  \nse me olvidó todo lo profundo.  \nFiesta, fiesta, fiesta,  \nun like para el video,  \nbailando bachata en nuestro reino,  \nsintiendo el fuego.",
+    "---",
+    "**Verso 2**  \nOlivia ríe, Anna da un giro,  \nAinhoa y Julia marcan el ritmo.  \nEn la pista, somos una conexión,  \nel amor y la risa, nuestra única misión.",
+    "**Estribillo**  \n¡Una fotito con las girls!  \nBailando hasta el fin del mundo,  \nla amistad es para siempre,  \nse me olvidó todo lo profundo.  \nFiesta, fiesta, fiesta,  \nun like para el video,  \nbailando bachata en nuestro reino,  \nsintiendo el fuego.",
+    "---",
+    "**Puente**  \nLas luces brillan, la noche está viva,  \ncada paso que damos, la energía nos anima.  \nCuatro chicas, un solo corazón,  \nen este baile, la vida es una canción.",
+    "**Estribillo Final**  \n¡Una fotito con las girls!  \nBailando hasta el fin del mundo,  \nla amistad es para siempre,  \nse me olvidó todo lo profundo.  \nFiesta, fiesta, fiesta,  \nun like para el video,  \nbailando bachata en nuestro reino,  \nsintiendo el fuego."
+  ],
+  "times": {
+    "auto": [],
+    "calibrated": [
+      2.282666,
+      22.805333,
+      48.522666,
+      56.021333,
+      63.146666,
+      89.002666,
+      96.853333,
+      112.021333
+    ]
+  },
+  "offsetSeconds": 0,
+  "detector": {
+    "threshold": 0.02,
+    "minSilenceMs": 320,
+    "windowMs": 80
+  },
+  "audioMeta": {
+    "name": "5B Camilo, mmm, en la fiesta suena el ritmo.mp3",
+    "type": "audio/mpeg"
+  },
+  "audioUrl": "audio/5B Camilo, mmm, en la fiesta suena el ritmo.mp3"
+}

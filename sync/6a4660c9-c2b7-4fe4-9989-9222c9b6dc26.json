@@ -1,0 +1,31 @@
+{
+  "id": "6a4660c9-c2b7-4fe4-9989-9222c9b6dc26",
+  "title": "Invierno",
+  "category": "2a",
+  "categoryTitle": "2A",
+  "lyricsOriginal": "Sopla que te sopla, llueve que te llueve, montado en el viento, el invierno viene.\n\nSe ríe de todos, el invierno duende, arranca los gorros, empuja a la gente. \n\nNarices y orejas, muy rojas las vuelve. Golpea las puertas y así se divierte.",
+  "paragraphs": [
+    "Sopla que te sopla, llueve que te llueve, montado en el viento, el invierno viene.",
+    "Se ríe de todos, el invierno duende, arranca los gorros, empuja a la gente.",
+    "Narices y orejas, muy rojas las vuelve. Golpea las puertas y así se divierte."
+  ],
+  "times": {
+    "auto": [],
+    "calibrated": [
+      3.029333,
+      8.021333,
+      13.504
+    ]
+  },
+  "offsetSeconds": 0,
+  "detector": {
+    "threshold": 0.02,
+    "minSilenceMs": 320,
+    "windowMs": 80
+  },
+  "audioMeta": {
+    "name": "Sopla que te sopla, llueve que te llueve.mp3",
+    "type": "audio/mpeg"
+  },
+  "audioUrl": "audio/Sopla que te sopla, llueve que te llueve.mp3"
+}
