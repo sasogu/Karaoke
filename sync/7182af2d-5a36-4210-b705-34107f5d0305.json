@@ -1,0 +1,39 @@
+{
+  "id": "7182af2d-5a36-4210-b705-34107f5d0305",
+  "title": "Adios mundo cruel",
+  "category": "5a",
+  "categoryTitle": "5A",
+  "lyricsOriginal": "Adiós, Mundo Cruel\n\n(Verso 1)\nEn un mundo de Minecraft, construyendo sueños,\nUn Enderman me observa, su sombra en mis juegos.\nJugamos al fútbol, soñamos en el campo,\nBalonmano en la esquina, pasamos del llanto.\n\n(Coro)\nOh, adiós mundo cruel,\nCon amigos como Alan, Raúl y David,\nBingo y Roly a mi lado,\nJuntos en este viaje, nunca isola'o.\n\n(Verso 2)\nRisas como Garfield, yo sé que te encanta,\nViviendo Stranger Things, la aventura no falta.\nSaltamos entre mundos, cada paso es leyenda,\nConstruyendo la vida, sin miedo a la ofrenda.\n\n(Coro)\nOh, adiós mundo cruel,\nCon amigos como Alan, Raúl y David,\nBingo y Roly a mi lado,\nJuntos en este viaje, nunca isola'o.\n\n(Puente)\nEn cada juego, en cada risa,\nEl tiempo vuela, pero nunca se desliza.\nLos recuerdos fluyen como el viento en la piel,\nAsí que gritamos fuerte: ¡adiós mundo cruel!\n\n(Coro Final)\nOh, adiós mundo cruel,\nCon amigos como Alan, Raúl y David,\nBingo y Roly a mi lado,\nJuntos en este viaje, nunca isola'o.",
+  "paragraphs": [
+    "Adiós, Mundo Cruel",
+    "(Verso 1)\nEn un mundo de Minecraft, construyendo sueños,\nUn Enderman me observa, su sombra en mis juegos.\nJugamos al fútbol, soñamos en el campo,\nBalonmano en la esquina, pasamos del llanto.",
+    "(Coro)\nOh, adiós mundo cruel,\nCon amigos como Alan, Raúl y David,\nBingo y Roly a mi lado,\nJuntos en este viaje, nunca isola'o.",
+    "(Verso 2)\nRisas como Garfield, yo sé que te encanta,\nViviendo Stranger Things, la aventura no falta.\nSaltamos entre mundos, cada paso es leyenda,\nConstruyendo la vida, sin miedo a la ofrenda.",
+    "(Coro)\nOh, adiós mundo cruel,\nCon amigos como Alan, Raúl y David,\nBingo y Roly a mi lado,\nJuntos en este viaje, nunca isola'o.",
+    "(Puente)\nEn cada juego, en cada risa,\nEl tiempo vuela, pero nunca se desliza.\nLos recuerdos fluyen como el viento en la piel,\nAsí que gritamos fuerte: ¡adiós mundo cruel!",
+    "(Coro Final)\nOh, adiós mundo cruel,\nCon amigos como Alan, Raúl y David,\nBingo y Roly a mi lado,\nJuntos en este viaje, nunca isola'o."
+  ],
+  "times": {
+    "auto": [],
+    "calibrated": [
+      2.794666,
+      6.144,
+      34.72,
+      51.136,
+      73.408,
+      95.658666,
+      110.773333
+    ]
+  },
+  "offsetSeconds": 0,
+  "detector": {
+    "threshold": 0.02,
+    "minSilenceMs": 320,
+    "windowMs": 80
+  },
+  "audioMeta": {
+    "name": "5A_Adiós, Mundo Cruel_funk.mp3",
+    "type": "audio/mpeg"
+  },
+  "audioUrl": "audio/5A_Adiós, Mundo Cruel_funk.mp3"
+}

@@ -1,0 +1,39 @@
+{
+  "id": "7584090b-7455-4687-834a-b440255533fd",
+  "title": "5A solecito en la playita",
+  "category": "5a",
+  "categoryTitle": "5A",
+  "lyricsOriginal": "Les girls a la playita, like like sota el sol,\nÍngrid, Maria, Abril, Jimena fent un gran control.\nFoto foto girls mini mini, riures sense fi,\nLas drawing for ever, dibuixant així.\n\nPer la sorra passa un perro salchicha,\nmirant el mar amb cara feliç i eixerida.\nLes olas de la playa fan “six seven” al compàs,\ni el solezito brilla mentre tot el món fa pas.\n\n(Pre-cor)\nSamuel crida fort: “quesoooo!”\nAitana diu: “per sempre, jo!”\nI tots rient a la vora del mar,\ncantant sense parar.\n\n(Cor)\nSolezito en la playita, like like sense parar,\njamoooooon i macaroneeeeeeeeeeees per a celebrar.\nAguacate, melon, uva al costat del mar blau,\ntots diuen: pollito amb allioli, que està molt més que guau.\nSolezito en la playita, rient amb el vent,\nles girls per sempre, festa al moment.\n\n(Vers 2)\nLas cuchillas vs pepinillos, quin combat tan estrany,\ntomate i pepinooooooo mirant des del bany.\nArigat al profe, cridem amb emoció,\nperquè l’estiu ens porta la millor cançó.\n\nAmb sandàlies corrent per la vora del mar,\nfoto foto girls mini mini tornant a saltar.\nÍngrid, Maria, Abril i Jimena al sol brillant,\nles girls per sempre, la festa continuant.\n\n(Cor)\nSolezito en la playita, like like sense parar,\njamoooooon i macaroneeeeeeeeeeees per a celebrar.\nAguacate, melon, uva al costat del mar blau,\ntots diuen: pollito amb allioli, que està molt més que guau.\nSolezito en la playita, rient amb el vent,\nles girls per sempre, festa al moment. 🎶🌴",
+  "paragraphs": [
+    "Les girls a la playita, like like sota el sol,\nÍngrid, Maria, Abril, Jimena fent un gran control.\nFoto foto girls mini mini, riures sense fi,\nLas drawing for ever, dibuixant així.",
+    "Per la sorra passa un perro salchicha,\nmirant el mar amb cara feliç i eixerida.\nLes olas de la playa fan “six seven” al compàs,\ni el solezito brilla mentre tot el món fa pas.",
+    "(Pre-cor)\nSamuel crida fort: “quesoooo!”\nAitana diu: “per sempre, jo!”\nI tots rient a la vora del mar,\ncantant sense parar.",
+    "(Cor)\nSolezito en la playita, like like sense parar,\njamoooooon i macaroneeeeeeeeeeees per a celebrar.\nAguacate, melon, uva al costat del mar blau,\ntots diuen: pollito amb allioli, que està molt més que guau.\nSolezito en la playita, rient amb el vent,\nles girls per sempre, festa al moment.",
+    "(Vers 2)\nLas cuchillas vs pepinillos, quin combat tan estrany,\ntomate i pepinooooooo mirant des del bany.\nArigat al profe, cridem amb emoció,\nperquè l’estiu ens porta la millor cançó.",
+    "Amb sandàlies corrent per la vora del mar,\nfoto foto girls mini mini tornant a saltar.\nÍngrid, Maria, Abril i Jimena al sol brillant,\nles girls per sempre, la festa continuant.",
+    "(Cor)\nSolezito en la playita, like like sense parar,\njamoooooon i macaroneeeeeeeeeeees per a celebrar.\nAguacate, melon, uva al costat del mar blau,\ntots diuen: pollito amb allioli, que està molt més que guau.\nSolezito en la playita, rient amb el vent,\nles girls per sempre, festa al moment. 🎶🌴"
+  ],
+  "times": {
+    "auto": [],
+    "calibrated": [
+      7.136,
+      13.141333,
+      24.757333,
+      35.754666,
+      54.165333,
+      65.536,
+      78.4
+    ]
+  },
+  "offsetSeconds": 0,
+  "detector": {
+    "threshold": 0.02,
+    "minSilenceMs": 320,
+    "windowMs": 80
+  },
+  "audioMeta": {
+    "name": "solecito2.mp3",
+    "type": "audio/mpeg"
+  },
+  "audioUrl": "audio/solecito2.mp3"
+}

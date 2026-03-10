@@ -1,0 +1,39 @@
+{
+  "id": "0002f7f6-a6e9-4d5e-b777-a35030997c69",
+  "title": "Duérmete en el Mundo Raro”",
+  "category": "4b",
+  "categoryTitle": "4B",
+  "lyricsOriginal": " “Duérmete en el Mundo Raro” \n\n(Verso 1)\nEstá Pepa Pig saltando en el barro,\nmientras suena la tele en un mundo bizarro,\n“duérmete niño, duérmete ya”,\nque si no viene el coco y te va a perrear.\nEn la esquina suena “six seven” otra vez,\nnadie sabe por qué, pero suena al revés,\ny un strawberry elephant rosa neón\nbaila despacio sobre el sillón.\n\n(Pre-Coro)\nMacaco grita desde GTA,\ncorriendo en Los Santos sin mirar atrás,\ncomo en Grand Theft Auto V todo puede pasar,\nhasta que el coco se ponga a rapear.\n\n(Coro)\nDuérmete niño, duérmete ya,\nque el coco viene y te va a perrear,\nsix, seven, suena el compás,\nstrawberry elephant gira sin más.\nEntre risas, sustos y caca al final,\neste mundo es raro pero suena brutal.\n\n(Verso 2)\nEn luces rojas vibra la habitación,\ncomo en Stranger Things otra dimensión,\nMacaco salta, no quiere parar,\ndice que en GTA va a conquistar.\nPeppa mira y empieza a cantar,\n“duérmete niño” sin desafinar,\npero el coco ya llegó a la pista,\nperreando creepy como en revista.\n\n(Puente)\nSix, seven… cuenta otra vez,\nel elefante fresa cae de pie,\nsi no te duermes antes de las diez,\nel coco baila y lo vuelves a ver.\n\n(Coro Final)\nDuérmete niño, duérmete ya,\nque el coco viene y te va a perrear,\nstrawberry elephant, ritmo tropical,\nMacaco en GTA, final digital.\nPepa se ríe, todo está bien,\naunque suene extraño… ¡cántalo otra vez! 🎶",
+  "paragraphs": [
+    "“Duérmete en el Mundo Raro”",
+    "(Verso 1)\nEstá Pepa Pig saltando en el barro,\nmientras suena la tele en un mundo bizarro,\n“duérmete niño, duérmete ya”,\nque si no viene el coco y te va a perrear.\nEn la esquina suena “six seven” otra vez,\nnadie sabe por qué, pero suena al revés,\ny un strawberry elephant rosa neón\nbaila despacio sobre el sillón.",
+    "(Pre-Coro)\nMacaco grita desde GTA,\ncorriendo en Los Santos sin mirar atrás,\ncomo en Grand Theft Auto V todo puede pasar,\nhasta que el coco se ponga a rapear.",
+    "(Coro)\nDuérmete niño, duérmete ya,\nque el coco viene y te va a perrear,\nsix, seven, suena el compás,\nstrawberry elephant gira sin más.\nEntre risas, sustos y caca al final,\neste mundo es raro pero suena brutal.",
+    "(Verso 2)\nEn luces rojas vibra la habitación,\ncomo en Stranger Things otra dimensión,\nMacaco salta, no quiere parar,\ndice que en GTA va a conquistar.\nPeppa mira y empieza a cantar,\n“duérmete niño” sin desafinar,\npero el coco ya llegó a la pista,\nperreando creepy como en revista.",
+    "(Puente)\nSix, seven… cuenta otra vez,\nel elefante fresa cae de pie,\nsi no te duermes antes de las diez,\nel coco baila y lo vuelves a ver.",
+    "(Coro Final)\nDuérmete niño, duérmete ya,\nque el coco viene y te va a perrear,\nstrawberry elephant, ritmo tropical,\nMacaco en GTA, final digital.\nPepa se ríe, todo está bien,\naunque suene extraño… ¡cántalo otra vez! 🎶"
+  ],
+  "times": {
+    "auto": [],
+    "calibrated": [
+      5.706666,
+      6.901333,
+      30.026666,
+      39.84,
+      55.2,
+      86.165333,
+      96.010666
+    ]
+  },
+  "offsetSeconds": 0,
+  "detector": {
+    "threshold": 0.02,
+    "minSilenceMs": 320,
+    "windowMs": 80
+  },
+  "audioMeta": {
+    "name": "4B_Duérmete en el Mundo Raro.mp3",
+    "type": "audio/mpeg"
+  },
+  "audioUrl": "audio/4B_Duérmete en el Mundo Raro.mp3"
+}

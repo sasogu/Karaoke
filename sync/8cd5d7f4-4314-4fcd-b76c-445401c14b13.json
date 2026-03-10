@@ -1,0 +1,37 @@
+{
+  "id": "8cd5d7f4-4314-4fcd-b76c-445401c14b13",
+  "title": "Las divinas",
+  "category": "5a",
+  "categoryTitle": "5A",
+  "lyricsOriginal": "Aitana por siempre, nuestra melodía,  \nEn un mundo de **Stranger Things**, pura fantasía,  \nPum catapum pum pam, el ritmo no cesa,  \nVamos, vamos, vamos, la fiesta empieza.  \n\n### Estribillo:\n**Irene, Nora, Mar, Lucía,**  \n**Que no pare, estrellas, noche fría,**  \n**Alpha en el cuarto azul brillando,**  \n**Six seven, todos bailando.**  \n**Con música en el alma, ritmo sincero,**  \n**Unicornio unicornilius, mágico y entero.**  \n\n### Verso 2:\nOdiamos las avichuelas, no van con nuestro flow,  \nI love gymnastics, saltando como en un show,  \nPralalala, el eco de nuestra risa,  \nSolo nosotras en la pista, ocupando la brisa.  \n\n### Estribillo:\n**Irene, Nora, Mar, Lucía,**  \n**Que no pare, estrellas, noche fría,**  \n**Alpha en el cuarto azul brillando,**  \n**Six seven, todos bailando.**  \n**Con música en el alma, ritmo sincero,**  \n**Unicornio unicornilius, mágico y entero.**  \n\n### Puente:\nBro, cuando nos ven, todos dicen wow,  \nBrillamos como estrellas, siempre en el show,  \nSomos divinas, el mundo es nuestro,  \nBailando juntas, llenas de sueños.\n\n### Estribillo:\n**Irene, Nora, Mar, Lucía,**  \n**Que no pare, estrellas, noche fría,**  \n**Alpha en el cuarto azul brillando,**  \n**Six seven, todos bailando.**  \n**Con música en el alma, ritmo sincero,**  \n**Unicornio unicornilius, mágico y entero.**  ",
+  "paragraphs": [
+    "Aitana por siempre, nuestra melodía,  \nEn un mundo de **Stranger Things**, pura fantasía,  \nPum catapum pum pam, el ritmo no cesa,  \nVamos, vamos, vamos, la fiesta empieza.",
+    "### Estribillo:\n**Irene, Nora, Mar, Lucía,**  \n**Que no pare, estrellas, noche fría,**  \n**Alpha en el cuarto azul brillando,**  \n**Six seven, todos bailando.**  \n**Con música en el alma, ritmo sincero,**  \n**Unicornio unicornilius, mágico y entero.**",
+    "### Verso 2:\nOdiamos las avichuelas, no van con nuestro flow,  \nI love gymnastics, saltando como en un show,  \nPralalala, el eco de nuestra risa,  \nSolo nosotras en la pista, ocupando la brisa.",
+    "### Estribillo:\n**Irene, Nora, Mar, Lucía,**  \n**Que no pare, estrellas, noche fría,**  \n**Alpha en el cuarto azul brillando,**  \n**Six seven, todos bailando.**  \n**Con música en el alma, ritmo sincero,**  \n**Unicornio unicornilius, mágico y entero.**",
+    "### Puente:\nBro, cuando nos ven, todos dicen wow,  \nBrillamos como estrellas, siempre en el show,  \nSomos divinas, el mundo es nuestro,  \nBailando juntas, llenas de sueños.",
+    "### Estribillo:\n**Irene, Nora, Mar, Lucía,**  \n**Que no pare, estrellas, noche fría,**  \n**Alpha en el cuarto azul brillando,**  \n**Six seven, todos bailando.**  \n**Con música en el alma, ritmo sincero,**  \n**Unicornio unicornilius, mágico y entero.**"
+  ],
+  "times": {
+    "auto": [],
+    "calibrated": [
+      3.456,
+      23.637333,
+      44.533333,
+      60.885333,
+      81.792,
+      98.026666
+    ]
+  },
+  "offsetSeconds": 0,
+  "detector": {
+    "threshold": 0.02,
+    "minSilenceMs": 320,
+    "windowMs": 80
+  },
+  "audioMeta": {
+    "name": "5A_las_divinas.mp3",
+    "type": "audio/mpeg"
+  },
+  "audioUrl": "audio/5A_las_divinas.mp3"
+}
