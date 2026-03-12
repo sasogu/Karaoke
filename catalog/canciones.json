@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-03-12T12:07:37.233Z",
+  "generatedAt": "2026-03-12T12:28:49.895Z",
   "source": {
     "audioDir": "audio",
     "syncDir": "sync"
@@ -426,6 +426,7 @@
       "title": "5A solecito en la playita",
       "category": "5a",
       "categoryTitle": "5A",
+      "audioUrl": "audio/solecito2.mp3",
       "lyricsOriginal": "Les girls a la playita, like like sota el sol,\nÍngrid, Maria, Abril, Jimena fent un gran control.\nFoto foto girls mini mini, riures sense fi,\nLas drawing for ever, dibuixant així.\n\nPer la sorra passa un perro salchicha,\nmirant el mar amb cara feliç i eixerida.\nLes olas de la playa fan “six seven” al compàs,\ni el solezito brilla mentre tot el món fa pas.\n\n(Pre-cor)\nSamuel crida fort: “quesoooo!”\nAitana diu: “per sempre, jo!”\nI tots rient a la vora del mar,\ncantant sense parar.\n\n(Cor)\nSolezito en la playita, like like sense parar,\njamoooooon i macaroneeeeeeeeeeees per a celebrar.\nAguacate, melon, uva al costat del mar blau,\ntots diuen: pollito amb allioli, que està molt més que guau.\nSolezito en la playita, rient amb el vent,\nles girls per sempre, festa al moment.\n\n(Vers 2)\nLas cuchillas vs pepinillos, quin combat tan estrany,\ntomate i pepinooooooo mirant des del bany.\nArigat al profe, cridem amb emoció,\nperquè l’estiu ens porta la millor cançó.\n\nAmb sandàlies corrent per la vora del mar,\nfoto foto girls mini mini tornant a saltar.\nÍngrid, Maria, Abril i Jimena al sol brillant,\nles girls per sempre, la festa continuant.\n\n(Cor)\nSolezito en la playita, like like sense parar,\njamoooooon i macaroneeeeeeeeeeees per a celebrar.\nAguacate, melon, uva al costat del mar blau,\ntots diuen: pollito amb allioli, que està molt més que guau.\nSolezito en la playita, rient amb el vent,\nles girls per sempre, festa al moment. 🎶🌴",
       "paragraphs": [
         "Les girls a la playita, like like sota el sol,\nÍngrid, Maria, Abril, Jimena fent un gran control.\nFoto foto girls mini mini, riures sense fi,\nLas drawing for ever, dibuixant així.",
@@ -457,14 +458,14 @@
       "audioMeta": {
         "name": "solecito2.mp3",
         "type": "audio/mpeg"
-      },
-      "audioUrl": "audio/solecito2.mp3"
+      }
     },
     {
       "id": "51e070a6-4715-43bf-ab94-2a5049bc2342",
       "title": "5B Aitana, Sophia, Nowa y Adriana",
       "category": "5b",
       "categoryTitle": "5B",
+      "audioUrl": "audio/5B_Indiana.mp3",
       "lyricsOriginal": "\n\n(Verso 1)\nEn Hawkins, Indiana, donde el miedo se hace real,\nStranger Things nos atrapa, con su aura sobrenatural.\nEl Upside Down acecha, una amenaza constante,\nPero Holly la mejor, en nuestros corazones, brillante.\n\n(Estribillo)\nOh, i love Steve, i love Will, valientes sin igual,\nAitana por siempre, su voz celestial.\nSophia, Nowa Aitana y Adriana, un equipo fenomenal,\nSu storyyyyyyyyyyyyy ahahahahahahahhahahaha, es pura magia, sin igual.\n\n(Verso 2)\nMax corre con fuerza, al ritmo de \"Running Up That Hill\",\n001 y 011, poderes que nos hacen sentir.\nAlpha, la primera, un misterio que desvelar,\nCarlos y Will son guapísimos, ¡qué más se puede pedir!\n\n(Estribillo)\nOh, i love Steve, i love Will, valientes sin igual,\nAitana por siempre, su voz celestial.\nSophia, Nowa Aitana y Adriana, un equipo fenomenal,\nSu storyyyyyyyyyyyyy ahahahahahahahhahahaha, es pura magia, sin igual.\n\n(Puente)\nSteve \"Pelazo\" Harrington, con su bate y su valor,\nDustin \"Boom\", su ingenio, nos saca de cualquier dolor.\nZuzi Poo, su ternura, un rayo de sol,\nEddi descanse en paz, su rock and roll, en nuestro corazón.\n\n(Outro)\nRockin' Robin, la música que nos hace vibrar,\nEn Hawkins, Indiana, siempre vamos a recordar.\nStranger Things, la aventura que no tiene final,\nCon Aitana, Sophia, Nowa y Adriana, ¡un canto sin igual!\n",
       "paragraphs": [
         "(Verso 1)\nEn Hawkins, Indiana, donde el miedo se hace real,\nStranger Things nos atrapa, con su aura sobrenatural.\nEl Upside Down acecha, una amenaza constante,\nPero Holly la mejor, en nuestros corazones, brillante.",
@@ -494,8 +495,7 @@
       "audioMeta": {
         "name": "5B_Indiana.mp3",
         "type": "audio/mpeg"
-      },
-      "audioUrl": "audio/5B_Indiana.mp3"
+      }
     },
     {
       "id": "2c961112-e45a-414b-a1c9-0a65cca13358",
@@ -586,6 +586,7 @@
       "title": "Adios mundo cruel",
       "category": "5a",
       "categoryTitle": "5A",
+      "audioUrl": "audio/5A_Adiós, Mundo Cruel_funk.mp3",
       "lyricsOriginal": "Adiós, Mundo Cruel\n\n(Verso 1)\nEn un mundo de Minecraft, construyendo sueños,\nUn Enderman me observa, su sombra en mis juegos.\nJugamos al fútbol, soñamos en el campo,\nBalonmano en la esquina, pasamos del llanto.\n\n(Coro)\nOh, adiós mundo cruel,\nCon amigos como Alan, Raúl y David,\nBingo y Roly a mi lado,\nJuntos en este viaje, nunca isola'o.\n\n(Verso 2)\nRisas como Garfield, yo sé que te encanta,\nViviendo Stranger Things, la aventura no falta.\nSaltamos entre mundos, cada paso es leyenda,\nConstruyendo la vida, sin miedo a la ofrenda.\n\n(Coro)\nOh, adiós mundo cruel,\nCon amigos como Alan, Raúl y David,\nBingo y Roly a mi lado,\nJuntos en este viaje, nunca isola'o.\n\n(Puente)\nEn cada juego, en cada risa,\nEl tiempo vuela, pero nunca se desliza.\nLos recuerdos fluyen como el viento en la piel,\nAsí que gritamos fuerte: ¡adiós mundo cruel!\n\n(Coro Final)\nOh, adiós mundo cruel,\nCon amigos como Alan, Raúl y David,\nBingo y Roly a mi lado,\nJuntos en este viaje, nunca isola'o.",
       "paragraphs": [
         "Adiós, Mundo Cruel",
@@ -617,8 +618,7 @@
       "audioMeta": {
         "name": "5A_Adiós, Mundo Cruel_funk.mp3",
         "type": "audio/mpeg"
-      },
-      "audioUrl": "audio/5A_Adiós, Mundo Cruel_funk.mp3"
+      }
     },
     {
       "id": "e00f044a-7095-4e53-ae44-8092424d5f53",
@@ -709,6 +709,7 @@
       "title": "Chispas y secretos",
       "category": "5b",
       "categoryTitle": "5B",
+      "audioUrl": "audio/5B __Dale, Dale (Fiesta Colombiana)__.mp3",
       "lyricsOriginal": "### **Dale, Dale (Fiesta Colombiana)**\n\n**Coro:**  \nDale, dale, si te quieres divertir,  \nEn Colombia, la fiesta va a comenzar.  \nSuper estrella, brillando para ti,  \nBombón, bombón, déjate llevar.\n\n**Verso 1:**  \nSu mini, mini, mini, a mí me hipnotizó,  \nAlpha en el ritmo, ¡qué buena sensación!  \nMaría José y Daniela más Will,  \nBailando juntos, ¡que no se acabe el festín!\n\n**Coro:**  \nDale, dale, si te quieres divertir,  \nEn Colombia, la fiesta va a comenzar.  \nSuper estrella, brillando para ti,  \nBombón, bombón, déjate llevar.\n\n**Verso 2:**  \nChoricitos en la mesa, todos a disfrutar,  \nUn secreto ardiente que no hay que ocultar.  \nBaila, canta, siente la vibración,  \nLaia con Apolo, ¡es pura emoción!\n\n**Coro:**  \nDale, dale, si te quieres divertir,  \nEn Colombia, la fiesta va a comenzar.  \nSuper estrella, brillando para ti,  \nBombón, bombón, déjate llevar.",
       "paragraphs": [
         "### **Dale, Dale (Fiesta Colombiana)**",
@@ -738,8 +739,7 @@
       "audioMeta": {
         "name": "5B __Dale, Dale (Fiesta Colombiana)__.mp3",
         "type": "audio/mpeg"
-      },
-      "audioUrl": "audio/5B __Dale, Dale (Fiesta Colombiana)__.mp3"
+      }
     },
     {
       "id": "b627c32d-0e4b-4be2-9751-6dfcbc34e2e7",
@@ -836,6 +836,7 @@
       "title": "Duérmete en el Mundo Raro”",
       "category": "4b",
       "categoryTitle": "4B",
+      "audioUrl": "audio/4B_Duérmete en el Mundo Raro.mp3",
       "lyricsOriginal": " “Duérmete en el Mundo Raro” \n\n(Verso 1)\nEstá Pepa Pig saltando en el barro,\nmientras suena la tele en un mundo bizarro,\n“duérmete niño, duérmete ya”,\nque si no viene el coco y te va a perrear.\nEn la esquina suena “six seven” otra vez,\nnadie sabe por qué, pero suena al revés,\ny un strawberry elephant rosa neón\nbaila despacio sobre el sillón.\n\n(Pre-Coro)\nMacaco grita desde GTA,\ncorriendo en Los Santos sin mirar atrás,\ncomo en Grand Theft Auto V todo puede pasar,\nhasta que el coco se ponga a rapear.\n\n(Coro)\nDuérmete niño, duérmete ya,\nque el coco viene y te va a perrear,\nsix, seven, suena el compás,\nstrawberry elephant gira sin más.\nEntre risas, sustos y caca al final,\neste mundo es raro pero suena brutal.\n\n(Verso 2)\nEn luces rojas vibra la habitación,\ncomo en Stranger Things otra dimensión,\nMacaco salta, no quiere parar,\ndice que en GTA va a conquistar.\nPeppa mira y empieza a cantar,\n“duérmete niño” sin desafinar,\npero el coco ya llegó a la pista,\nperreando creepy como en revista.\n\n(Puente)\nSix, seven… cuenta otra vez,\nel elefante fresa cae de pie,\nsi no te duermes antes de las diez,\nel coco baila y lo vuelves a ver.\n\n(Coro Final)\nDuérmete niño, duérmete ya,\nque el coco viene y te va a perrear,\nstrawberry elephant, ritmo tropical,\nMacaco en GTA, final digital.\nPepa se ríe, todo está bien,\naunque suene extraño… ¡cántalo otra vez! 🎶",
       "paragraphs": [
         "“Duérmete en el Mundo Raro”",
@@ -867,8 +868,7 @@
       "audioMeta": {
         "name": "4B_Duérmete en el Mundo Raro.mp3",
         "type": "audio/mpeg"
-      },
-      "audioUrl": "audio/4B_Duérmete en el Mundo Raro.mp3"
+      }
     },
     {
       "id": "65ca1d86-0d19-4dbc-95b0-15fe4d1a3e04",
@@ -1037,6 +1037,7 @@
       "title": "Imperio esmeralda",
       "category": "5b",
       "categoryTitle": "5B",
+      "audioUrl": "audio/5B_ Imperio Esmeralda.mp3",
       "lyricsOriginal": "Título: Imperio Esmeralda\n\n(Intro)\nEsmeralda naranja…\nComando patata en la casa…\nDale dale dale…\n\n(Verso 1)\nEsmeralda naranja brillando en la pista,\nbocadillo de tortilla, energía lista,\ndurum con salsa cayendo despacio,\nlos mataos de 5e B dominando el espacio.\n\nMi tío Alfredo prende la parrilla,\nmorcilla dorada que al alma le brilla,\ncalamardo serio dibujando el plan,\npero aquí mandamos nosotros, clan.\n\nAña retumba como un trueno lejano,\ndogo vigilando como guardián urbano,\nay mi gatito maúlla en el tejado,\nmientras Roblox carga el mundo cuadrado.\n\n(Pre-Coro)\nComando patata toma el control,\nnivel secreto, misión boss final,\npizza en la mesa, refresco helado,\nesto parece viernes sagrado.\n\n(Coro)\nDale dale dale, que empiece el show,\nesmeralda naranja glow glow glow,\ndale dale dale, súbelo más,\nlos mataos de 5e B nunca miran atrás.\nDale dale dale, grita “aña” fuerte,\ndurum y morcilla desafiando la suerte.\n\n(Verso 2)\nBocadillo de tortilla en cámara lenta,\nmi tío Alfredo la historia aumenta,\ncalamardo intenta no sonreír,\npero con este ritmo se pone a seguir.\n\nDogo salta sobre el sofá,\nay mi gatito no quiere bajar,\nRoblox build battle, mapa espacial,\ncomando patata estilo legendario total.\n\nAñadimos luces, humo y confeti,\nzapatillas nuevas, ritmo reggaetti,\nhambre infinita, segunda ronda,\nmorcilla y durum, combo que ronda.\n\n(Puente)\nAña en el cielo escrito en neón,\nesmeralda naranja en el corazón,\nlos mataos de 5e B ya son historia,\nde patio pequeño a la gloria.\n\n(Coro Final)\nDale dale dale sin parar,\nque esta fiesta no va a acabar,\ndale dale dale hasta el amanecer,\ncon mi tío Alfredo volviendo a encender.\nDale dale dale, grita conmigo:\n¡Comando patata domina el juego, amigo!",
       "paragraphs": [
         "Título: Imperio Esmeralda",
@@ -1078,8 +1079,7 @@
       "audioMeta": {
         "name": "5B_ Imperio Esmeralda.mp3",
         "type": "audio/mpeg"
-      },
-      "audioUrl": "audio/5B_ Imperio Esmeralda.mp3"
+      }
     },
     {
       "id": "6a4660c9-c2b7-4fe4-9989-9222c9b6dc26",
@@ -1117,6 +1117,7 @@
       "title": "Las divinas",
       "category": "5a",
       "categoryTitle": "5A",
+      "audioUrl": "audio/5A_las_divinas.mp3",
       "lyricsOriginal": "Aitana por siempre, nuestra melodía,  \nEn un mundo de **Stranger Things**, pura fantasía,  \nPum catapum pum pam, el ritmo no cesa,  \nVamos, vamos, vamos, la fiesta empieza.  \n\n### Estribillo:\n**Irene, Nora, Mar, Lucía,**  \n**Que no pare, estrellas, noche fría,**  \n**Alpha en el cuarto azul brillando,**  \n**Six seven, todos bailando.**  \n**Con música en el alma, ritmo sincero,**  \n**Unicornio unicornilius, mágico y entero.**  \n\n### Verso 2:\nOdiamos las avichuelas, no van con nuestro flow,  \nI love gymnastics, saltando como en un show,  \nPralalala, el eco de nuestra risa,  \nSolo nosotras en la pista, ocupando la brisa.  \n\n### Estribillo:\n**Irene, Nora, Mar, Lucía,**  \n**Que no pare, estrellas, noche fría,**  \n**Alpha en el cuarto azul brillando,**  \n**Six seven, todos bailando.**  \n**Con música en el alma, ritmo sincero,**  \n**Unicornio unicornilius, mágico y entero.**  \n\n### Puente:\nBro, cuando nos ven, todos dicen wow,  \nBrillamos como estrellas, siempre en el show,  \nSomos divinas, el mundo es nuestro,  \nBailando juntas, llenas de sueños.\n\n### Estribillo:\n**Irene, Nora, Mar, Lucía,**  \n**Que no pare, estrellas, noche fría,**  \n**Alpha en el cuarto azul brillando,**  \n**Six seven, todos bailando.**  \n**Con música en el alma, ritmo sincero,**  \n**Unicornio unicornilius, mágico y entero.**  ",
       "paragraphs": [
         "Aitana por siempre, nuestra melodía,  \nEn un mundo de **Stranger Things**, pura fantasía,  \nPum catapum pum pam, el ritmo no cesa,  \nVamos, vamos, vamos, la fiesta empieza.",
@@ -1146,8 +1147,7 @@
       "audioMeta": {
         "name": "5A_las_divinas.mp3",
         "type": "audio/mpeg"
-      },
-      "audioUrl": "audio/5A_las_divinas.mp3"
+      }
     },
     {
       "id": "c4a4b606-19b3-4550-9784-0ac7b356ce46",
