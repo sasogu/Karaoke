@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-03-10T09:41:20.644Z",
+  "generatedAt": "2026-03-12T12:07:37.233Z",
   "source": {
     "audioDir": "audio",
     "syncDir": "sync"
@@ -461,6 +461,43 @@
       "audioUrl": "audio/solecito2.mp3"
     },
     {
+      "id": "51e070a6-4715-43bf-ab94-2a5049bc2342",
+      "title": "5B Aitana, Sophia, Nowa y Adriana",
+      "category": "5b",
+      "categoryTitle": "5B",
+      "lyricsOriginal": "\n\n(Verso 1)\nEn Hawkins, Indiana, donde el miedo se hace real,\nStranger Things nos atrapa, con su aura sobrenatural.\nEl Upside Down acecha, una amenaza constante,\nPero Holly la mejor, en nuestros corazones, brillante.\n\n(Estribillo)\nOh, i love Steve, i love Will, valientes sin igual,\nAitana por siempre, su voz celestial.\nSophia, Nowa Aitana y Adriana, un equipo fenomenal,\nSu storyyyyyyyyyyyyy ahahahahahahahhahahaha, es pura magia, sin igual.\n\n(Verso 2)\nMax corre con fuerza, al ritmo de \"Running Up That Hill\",\n001 y 011, poderes que nos hacen sentir.\nAlpha, la primera, un misterio que desvelar,\nCarlos y Will son guapísimos, ¡qué más se puede pedir!\n\n(Estribillo)\nOh, i love Steve, i love Will, valientes sin igual,\nAitana por siempre, su voz celestial.\nSophia, Nowa Aitana y Adriana, un equipo fenomenal,\nSu storyyyyyyyyyyyyy ahahahahahahahhahahaha, es pura magia, sin igual.\n\n(Puente)\nSteve \"Pelazo\" Harrington, con su bate y su valor,\nDustin \"Boom\", su ingenio, nos saca de cualquier dolor.\nZuzi Poo, su ternura, un rayo de sol,\nEddi descanse en paz, su rock and roll, en nuestro corazón.\n\n(Outro)\nRockin' Robin, la música que nos hace vibrar,\nEn Hawkins, Indiana, siempre vamos a recordar.\nStranger Things, la aventura que no tiene final,\nCon Aitana, Sophia, Nowa y Adriana, ¡un canto sin igual!\n",
+      "paragraphs": [
+        "(Verso 1)\nEn Hawkins, Indiana, donde el miedo se hace real,\nStranger Things nos atrapa, con su aura sobrenatural.\nEl Upside Down acecha, una amenaza constante,\nPero Holly la mejor, en nuestros corazones, brillante.",
+        "(Estribillo)\nOh, i love Steve, i love Will, valientes sin igual,\nAitana por siempre, su voz celestial.\nSophia, Nowa Aitana y Adriana, un equipo fenomenal,\nSu storyyyyyyyyyyyyy ahahahahahahahhahahaha, es pura magia, sin igual.",
+        "(Verso 2)\nMax corre con fuerza, al ritmo de \"Running Up That Hill\",\n001 y 011, poderes que nos hacen sentir.\nAlpha, la primera, un misterio que desvelar,\nCarlos y Will son guapísimos, ¡qué más se puede pedir!",
+        "(Estribillo)\nOh, i love Steve, i love Will, valientes sin igual,\nAitana por siempre, su voz celestial.\nSophia, Nowa Aitana y Adriana, un equipo fenomenal,\nSu storyyyyyyyyyyyyy ahahahahahahahhahahaha, es pura magia, sin igual.",
+        "(Puente)\nSteve \"Pelazo\" Harrington, con su bate y su valor,\nDustin \"Boom\", su ingenio, nos saca de cualquier dolor.\nZuzi Poo, su ternura, un rayo de sol,\nEddi descanse en paz, su rock and roll, en nuestro corazón.",
+        "(Outro)\nRockin' Robin, la música que nos hace vibrar,\nEn Hawkins, Indiana, siempre vamos a recordar.\nStranger Things, la aventura que no tiene final,\nCon Aitana, Sophia, Nowa y Adriana, ¡un canto sin igual!"
+      ],
+      "times": {
+        "auto": [],
+        "calibrated": [
+          1.504,
+          35.658666,
+          73.418666,
+          111.936,
+          146.890666,
+          178.805333
+        ]
+      },
+      "offsetSeconds": 0,
+      "detector": {
+        "threshold": 0.02,
+        "minSilenceMs": 320,
+        "windowMs": 80
+      },
+      "audioMeta": {
+        "name": "5B_Indiana.mp3",
+        "type": "audio/mpeg"
+      },
+      "audioUrl": "audio/5B_Indiana.mp3"
+    },
+    {
       "id": "2c961112-e45a-414b-a1c9-0a65cca13358",
       "title": "5B Dale dale",
       "category": "5b",
@@ -666,6 +703,43 @@
         "name": "5B nvma.mp3",
         "type": "audio/mpeg"
       }
+    },
+    {
+      "id": "73f67041-59be-4372-b00b-07d13b95587e",
+      "title": "Chispas y secretos",
+      "category": "5b",
+      "categoryTitle": "5B",
+      "lyricsOriginal": "### **Dale, Dale (Fiesta Colombiana)**\n\n**Coro:**  \nDale, dale, si te quieres divertir,  \nEn Colombia, la fiesta va a comenzar.  \nSuper estrella, brillando para ti,  \nBombón, bombón, déjate llevar.\n\n**Verso 1:**  \nSu mini, mini, mini, a mí me hipnotizó,  \nAlpha en el ritmo, ¡qué buena sensación!  \nMaría José y Daniela más Will,  \nBailando juntos, ¡que no se acabe el festín!\n\n**Coro:**  \nDale, dale, si te quieres divertir,  \nEn Colombia, la fiesta va a comenzar.  \nSuper estrella, brillando para ti,  \nBombón, bombón, déjate llevar.\n\n**Verso 2:**  \nChoricitos en la mesa, todos a disfrutar,  \nUn secreto ardiente que no hay que ocultar.  \nBaila, canta, siente la vibración,  \nLaia con Apolo, ¡es pura emoción!\n\n**Coro:**  \nDale, dale, si te quieres divertir,  \nEn Colombia, la fiesta va a comenzar.  \nSuper estrella, brillando para ti,  \nBombón, bombón, déjate llevar.",
+      "paragraphs": [
+        "### **Dale, Dale (Fiesta Colombiana)**",
+        "**Coro:**  \nDale, dale, si te quieres divertir,  \nEn Colombia, la fiesta va a comenzar.  \nSuper estrella, brillando para ti,  \nBombón, bombón, déjate llevar.",
+        "**Verso 1:**  \nSu mini, mini, mini, a mí me hipnotizó,  \nAlpha en el ritmo, ¡qué buena sensación!  \nMaría José y Daniela más Will,  \nBailando juntos, ¡que no se acabe el festín!",
+        "**Coro:**  \nDale, dale, si te quieres divertir,  \nEn Colombia, la fiesta va a comenzar.  \nSuper estrella, brillando para ti,  \nBombón, bombón, déjate llevar.",
+        "**Verso 2:**  \nChoricitos en la mesa, todos a disfrutar,  \nUn secreto ardiente que no hay que ocultar.  \nBaila, canta, siente la vibración,  \nLaia con Apolo, ¡es pura emoción!",
+        "**Coro:**  \nDale, dale, si te quieres divertir,  \nEn Colombia, la fiesta va a comenzar.  \nSuper estrella, brillando para ti,  \nBombón, bombón, déjate llevar."
+      ],
+      "times": {
+        "auto": [],
+        "calibrated": [
+          0.437333,
+          1.333333,
+          15.296,
+          34.805333,
+          50.336,
+          69.909333
+        ]
+      },
+      "offsetSeconds": 0,
+      "detector": {
+        "threshold": 0.02,
+        "minSilenceMs": 320,
+        "windowMs": 80
+      },
+      "audioMeta": {
+        "name": "5B __Dale, Dale (Fiesta Colombiana)__.mp3",
+        "type": "audio/mpeg"
+      },
+      "audioUrl": "audio/5B __Dale, Dale (Fiesta Colombiana)__.mp3"
     },
     {
       "id": "b627c32d-0e4b-4be2-9751-6dfcbc34e2e7",
@@ -957,6 +1031,55 @@
         "name": "Fi de curs al Blasco.mp3",
         "type": "audio/mpeg"
       }
+    },
+    {
+      "id": "ae944a95-ed6e-4f95-bb95-80102d295d42",
+      "title": "Imperio esmeralda",
+      "category": "5b",
+      "categoryTitle": "5B",
+      "lyricsOriginal": "Título: Imperio Esmeralda\n\n(Intro)\nEsmeralda naranja…\nComando patata en la casa…\nDale dale dale…\n\n(Verso 1)\nEsmeralda naranja brillando en la pista,\nbocadillo de tortilla, energía lista,\ndurum con salsa cayendo despacio,\nlos mataos de 5e B dominando el espacio.\n\nMi tío Alfredo prende la parrilla,\nmorcilla dorada que al alma le brilla,\ncalamardo serio dibujando el plan,\npero aquí mandamos nosotros, clan.\n\nAña retumba como un trueno lejano,\ndogo vigilando como guardián urbano,\nay mi gatito maúlla en el tejado,\nmientras Roblox carga el mundo cuadrado.\n\n(Pre-Coro)\nComando patata toma el control,\nnivel secreto, misión boss final,\npizza en la mesa, refresco helado,\nesto parece viernes sagrado.\n\n(Coro)\nDale dale dale, que empiece el show,\nesmeralda naranja glow glow glow,\ndale dale dale, súbelo más,\nlos mataos de 5e B nunca miran atrás.\nDale dale dale, grita “aña” fuerte,\ndurum y morcilla desafiando la suerte.\n\n(Verso 2)\nBocadillo de tortilla en cámara lenta,\nmi tío Alfredo la historia aumenta,\ncalamardo intenta no sonreír,\npero con este ritmo se pone a seguir.\n\nDogo salta sobre el sofá,\nay mi gatito no quiere bajar,\nRoblox build battle, mapa espacial,\ncomando patata estilo legendario total.\n\nAñadimos luces, humo y confeti,\nzapatillas nuevas, ritmo reggaetti,\nhambre infinita, segunda ronda,\nmorcilla y durum, combo que ronda.\n\n(Puente)\nAña en el cielo escrito en neón,\nesmeralda naranja en el corazón,\nlos mataos de 5e B ya son historia,\nde patio pequeño a la gloria.\n\n(Coro Final)\nDale dale dale sin parar,\nque esta fiesta no va a acabar,\ndale dale dale hasta el amanecer,\ncon mi tío Alfredo volviendo a encender.\nDale dale dale, grita conmigo:\n¡Comando patata domina el juego, amigo!",
+      "paragraphs": [
+        "Título: Imperio Esmeralda",
+        "(Intro)\nEsmeralda naranja…\nComando patata en la casa…\nDale dale dale…",
+        "(Verso 1)\nEsmeralda naranja brillando en la pista,\nbocadillo de tortilla, energía lista,\ndurum con salsa cayendo despacio,\nlos mataos de 5e B dominando el espacio.",
+        "Mi tío Alfredo prende la parrilla,\nmorcilla dorada que al alma le brilla,\ncalamardo serio dibujando el plan,\npero aquí mandamos nosotros, clan.",
+        "Aña retumba como un trueno lejano,\ndogo vigilando como guardián urbano,\nay mi gatito maúlla en el tejado,\nmientras Roblox carga el mundo cuadrado.",
+        "(Pre-Coro)\nComando patata toma el control,\nnivel secreto, misión boss final,\npizza en la mesa, refresco helado,\nesto parece viernes sagrado.",
+        "(Coro)\nDale dale dale, que empiece el show,\nesmeralda naranja glow glow glow,\ndale dale dale, súbelo más,\nlos mataos de 5e B nunca miran atrás.\nDale dale dale, grita “aña” fuerte,\ndurum y morcilla desafiando la suerte.",
+        "(Verso 2)\nBocadillo de tortilla en cámara lenta,\nmi tío Alfredo la historia aumenta,\ncalamardo intenta no sonreír,\npero con este ritmo se pone a seguir.",
+        "Dogo salta sobre el sofá,\nay mi gatito no quiere bajar,\nRoblox build battle, mapa espacial,\ncomando patata estilo legendario total.",
+        "Añadimos luces, humo y confeti,\nzapatillas nuevas, ritmo reggaetti,\nhambre infinita, segunda ronda,\nmorcilla y durum, combo que ronda.",
+        "(Puente)\nAña en el cielo escrito en neón,\nesmeralda naranja en el corazón,\nlos mataos de 5e B ya son historia,\nde patio pequeño a la gloria.",
+        "(Coro Final)\nDale dale dale sin parar,\nque esta fiesta no va a acabar,\ndale dale dale hasta el amanecer,\ncon mi tío Alfredo volviendo a encender.\nDale dale dale, grita conmigo:\n¡Comando patata domina el juego, amigo!"
+      ],
+      "times": {
+        "auto": [],
+        "calibrated": [
+          2.624,
+          4.096,
+          10.677333,
+          20.789333,
+          30.976,
+          41.578666,
+          52.096,
+          67.829333,
+          83.082666,
+          93.653333,
+          102.816,
+          105.941333
+        ]
+      },
+      "offsetSeconds": 0,
+      "detector": {
+        "threshold": 0.02,
+        "minSilenceMs": 320,
+        "windowMs": 80
+      },
+      "audioMeta": {
+        "name": "5B_ Imperio Esmeralda.mp3",
+        "type": "audio/mpeg"
+      },
+      "audioUrl": "audio/5B_ Imperio Esmeralda.mp3"
     },
     {
       "id": "6a4660c9-c2b7-4fe4-9989-9222c9b6dc26",

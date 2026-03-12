@@ -1,0 +1,37 @@
+{
+  "id": "51e070a6-4715-43bf-ab94-2a5049bc2342",
+  "title": "5B Aitana, Sophia, Nowa y Adriana",
+  "category": "5b",
+  "categoryTitle": "5B",
+  "lyricsOriginal": "\n\n(Verso 1)\nEn Hawkins, Indiana, donde el miedo se hace real,\nStranger Things nos atrapa, con su aura sobrenatural.\nEl Upside Down acecha, una amenaza constante,\nPero Holly la mejor, en nuestros corazones, brillante.\n\n(Estribillo)\nOh, i love Steve, i love Will, valientes sin igual,\nAitana por siempre, su voz celestial.\nSophia, Nowa Aitana y Adriana, un equipo fenomenal,\nSu storyyyyyyyyyyyyy ahahahahahahahhahahaha, es pura magia, sin igual.\n\n(Verso 2)\nMax corre con fuerza, al ritmo de \"Running Up That Hill\",\n001 y 011, poderes que nos hacen sentir.\nAlpha, la primera, un misterio que desvelar,\nCarlos y Will son guapísimos, ¡qué más se puede pedir!\n\n(Estribillo)\nOh, i love Steve, i love Will, valientes sin igual,\nAitana por siempre, su voz celestial.\nSophia, Nowa Aitana y Adriana, un equipo fenomenal,\nSu storyyyyyyyyyyyyy ahahahahahahahhahahaha, es pura magia, sin igual.\n\n(Puente)\nSteve \"Pelazo\" Harrington, con su bate y su valor,\nDustin \"Boom\", su ingenio, nos saca de cualquier dolor.\nZuzi Poo, su ternura, un rayo de sol,\nEddi descanse en paz, su rock and roll, en nuestro corazón.\n\n(Outro)\nRockin' Robin, la música que nos hace vibrar,\nEn Hawkins, Indiana, siempre vamos a recordar.\nStranger Things, la aventura que no tiene final,\nCon Aitana, Sophia, Nowa y Adriana, ¡un canto sin igual!\n",
+  "paragraphs": [
+    "(Verso 1)\nEn Hawkins, Indiana, donde el miedo se hace real,\nStranger Things nos atrapa, con su aura sobrenatural.\nEl Upside Down acecha, una amenaza constante,\nPero Holly la mejor, en nuestros corazones, brillante.",
+    "(Estribillo)\nOh, i love Steve, i love Will, valientes sin igual,\nAitana por siempre, su voz celestial.\nSophia, Nowa Aitana y Adriana, un equipo fenomenal,\nSu storyyyyyyyyyyyyy ahahahahahahahhahahaha, es pura magia, sin igual.",
+    "(Verso 2)\nMax corre con fuerza, al ritmo de \"Running Up That Hill\",\n001 y 011, poderes que nos hacen sentir.\nAlpha, la primera, un misterio que desvelar,\nCarlos y Will son guapísimos, ¡qué más se puede pedir!",
+    "(Estribillo)\nOh, i love Steve, i love Will, valientes sin igual,\nAitana por siempre, su voz celestial.\nSophia, Nowa Aitana y Adriana, un equipo fenomenal,\nSu storyyyyyyyyyyyyy ahahahahahahahhahahaha, es pura magia, sin igual.",
+    "(Puente)\nSteve \"Pelazo\" Harrington, con su bate y su valor,\nDustin \"Boom\", su ingenio, nos saca de cualquier dolor.\nZuzi Poo, su ternura, un rayo de sol,\nEddi descanse en paz, su rock and roll, en nuestro corazón.",
+    "(Outro)\nRockin' Robin, la música que nos hace vibrar,\nEn Hawkins, Indiana, siempre vamos a recordar.\nStranger Things, la aventura que no tiene final,\nCon Aitana, Sophia, Nowa y Adriana, ¡un canto sin igual!"
+  ],
+  "times": {
+    "auto": [],
+    "calibrated": [
+      1.504,
+      35.658666,
+      73.418666,
+      111.936,
+      146.890666,
+      178.805333
+    ]
+  },
+  "offsetSeconds": 0,
+  "detector": {
+    "threshold": 0.02,
+    "minSilenceMs": 320,
+    "windowMs": 80
+  },
+  "audioMeta": {
+    "name": "5B_Indiana.mp3",
+    "type": "audio/mpeg"
+  },
+  "audioUrl": "audio/5B_Indiana.mp3"
+}

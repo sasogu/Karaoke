@@ -1,0 +1,37 @@
+{
+  "id": "73f67041-59be-4372-b00b-07d13b95587e",
+  "title": "Chispas y secretos",
+  "category": "5b",
+  "categoryTitle": "5B",
+  "lyricsOriginal": "### **Dale, Dale (Fiesta Colombiana)**\n\n**Coro:**  \nDale, dale, si te quieres divertir,  \nEn Colombia, la fiesta va a comenzar.  \nSuper estrella, brillando para ti,  \nBombón, bombón, déjate llevar.\n\n**Verso 1:**  \nSu mini, mini, mini, a mí me hipnotizó,  \nAlpha en el ritmo, ¡qué buena sensación!  \nMaría José y Daniela más Will,  \nBailando juntos, ¡que no se acabe el festín!\n\n**Coro:**  \nDale, dale, si te quieres divertir,  \nEn Colombia, la fiesta va a comenzar.  \nSuper estrella, brillando para ti,  \nBombón, bombón, déjate llevar.\n\n**Verso 2:**  \nChoricitos en la mesa, todos a disfrutar,  \nUn secreto ardiente que no hay que ocultar.  \nBaila, canta, siente la vibración,  \nLaia con Apolo, ¡es pura emoción!\n\n**Coro:**  \nDale, dale, si te quieres divertir,  \nEn Colombia, la fiesta va a comenzar.  \nSuper estrella, brillando para ti,  \nBombón, bombón, déjate llevar.",
+  "paragraphs": [
+    "### **Dale, Dale (Fiesta Colombiana)**",
+    "**Coro:**  \nDale, dale, si te quieres divertir,  \nEn Colombia, la fiesta va a comenzar.  \nSuper estrella, brillando para ti,  \nBombón, bombón, déjate llevar.",
+    "**Verso 1:**  \nSu mini, mini, mini, a mí me hipnotizó,  \nAlpha en el ritmo, ¡qué buena sensación!  \nMaría José y Daniela más Will,  \nBailando juntos, ¡que no se acabe el festín!",
+    "**Coro:**  \nDale, dale, si te quieres divertir,  \nEn Colombia, la fiesta va a comenzar.  \nSuper estrella, brillando para ti,  \nBombón, bombón, déjate llevar.",
+    "**Verso 2:**  \nChoricitos en la mesa, todos a disfrutar,  \nUn secreto ardiente que no hay que ocultar.  \nBaila, canta, siente la vibración,  \nLaia con Apolo, ¡es pura emoción!",
+    "**Coro:**  \nDale, dale, si te quieres divertir,  \nEn Colombia, la fiesta va a comenzar.  \nSuper estrella, brillando para ti,  \nBombón, bombón, déjate llevar."
+  ],
+  "times": {
+    "auto": [],
+    "calibrated": [
+      0.437333,
+      1.333333,
+      15.296,
+      34.805333,
+      50.336,
+      69.909333
+    ]
+  },
+  "offsetSeconds": 0,
+  "detector": {
+    "threshold": 0.02,
+    "minSilenceMs": 320,
+    "windowMs": 80
+  },
+  "audioMeta": {
+    "name": "5B __Dale, Dale (Fiesta Colombiana)__.mp3",
+    "type": "audio/mpeg"
+  },
+  "audioUrl": "audio/5B __Dale, Dale (Fiesta Colombiana)__.mp3"
+}
