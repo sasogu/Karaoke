@@ -200,6 +200,7 @@
       btn_load: "Cargar",
       btn_load_play: "Cargar y reproducir",
       btn_rename_track: "Renombrar tema",
+      btn_replace_track: "Reemplazar",
       btn_delete: "Eliminar",
       msg_update_available: "Nueva versión disponible. Recarga para aplicar la actualización.",
       msg_updated_cache: "Aplicación actualizada a la nueva versión de caché.",
@@ -212,6 +213,8 @@
       msg_track_added_playlist: "Tema añadido a la playlist.",
       msg_track_deleted_playlist: "Tema eliminado de la playlist.",
       msg_track_renamed: "Tema renombrado.",
+      msg_track_replaced: "Tema reemplazado en la playlist.",
+      confirm_replace_track: "¿Reemplazar \"{title}\" con la canción actual?",
       msg_playlist_empty_already: "La playlist ya está vacía.",
       msg_playlist_cleared: "Playlist vaciada.",
       err_select_playlist_to_rename: "Selecciona una playlist para renombrar.",
@@ -358,6 +361,7 @@
       btn_load: "Carregar",
       btn_load_play: "Carregar i reproduir",
       btn_rename_track: "Canviar nom del tema",
+      btn_replace_track: "Reemplaçar",
       btn_delete: "Eliminar",
       msg_update_available: "Nova versió disponible. Recarrega per a aplicar l'actualització.",
       msg_updated_cache: "Aplicació actualitzada a la nova versió de caché.",
@@ -370,6 +374,8 @@
       msg_track_added_playlist: "Tema afegit a la llista.",
       msg_track_deleted_playlist: "Tema eliminat de la llista.",
       msg_track_renamed: "Tema reanomenat.",
+      msg_track_replaced: "Tema reemplaçat en la llista.",
+      confirm_replace_track: "Vols reemplaçar \"{title}\" per la cançó actual?",
       msg_playlist_empty_already: "La llista ja està buida.",
       msg_playlist_cleared: "Llista buidada.",
       err_select_playlist_to_rename: "Selecciona una llista per a canviar-li el nom.",
@@ -504,6 +510,7 @@
       btn_load: "Load",
       btn_load_play: "Load and play",
       btn_rename_track: "Rename track",
+      btn_replace_track: "Replace",
       btn_delete: "Delete",
       msg_update_available: "New version available. Reload to apply the update.",
       msg_updated_cache: "Application updated to the new cache version.",
@@ -516,6 +523,8 @@
       msg_track_added_playlist: "Track added to playlist.",
       msg_track_deleted_playlist: "Track removed from playlist.",
       msg_track_renamed: "Track renamed.",
+      msg_track_replaced: "Track replaced in playlist.",
+      confirm_replace_track: "Replace \"{title}\" with the current song?",
       msg_playlist_empty_already: "Playlist is already empty.",
       msg_playlist_cleared: "Playlist cleared.",
       err_select_playlist_to_rename: "Select a playlist to rename.",
@@ -1352,6 +1361,7 @@
               <button class="secondary" data-action="load" data-id="${item.id}">${t("btn_load")}</button>
               <button data-action="play" data-id="${item.id}">${t("btn_load_play")}</button>
               <button class="secondary" data-action="rename" data-id="${item.id}">${t("btn_rename_track")}</button>
+              <button class="secondary" data-action="replace" data-id="${item.id}">${t("btn_replace_track")}</button>
               <button class="danger" data-action="delete" data-id="${item.id}">${t("btn_delete")}</button>
             </div>
           </div>
@@ -1592,13 +1602,7 @@
       return showMessage(t("err_playlist_ui_unavailable"), true);
     }
 
-    if (!state.audioMeta) return showMessage(t("err_select_audio_first"), true);
-    if (!state.paragraphs.length) return showMessage(t("err_add_lyrics_first"), true);
-
-    const times = getEffectiveTimes();
-    if (!times.length) {
-      return showMessage(t("err_sync_first"), true);
-    }
+    if (!canSaveCurrentTrackSnapshot()) return;
 
     const selectedPlaylist = refs.playlistSelect.value;
     let playlist = state.playlist.find((entry) => entry.id === selectedPlaylist);
@@ -1614,9 +1618,42 @@
       state.playlist.push(playlist);
     }
 
-    const snapshot = {
+    const snapshot = createCurrentTrackSnapshot(trackTitle);
+
+    playlist.items.unshift(snapshot);
+    saveStateToLocalStorage();
+    renderPlaylist();
+    refs.playlistSelect.value = playlist.id;
+    renderPlaylist();
+    refs.playlistTitleInput.value = "";
+    syncPlaylistNameInputFromSelection();
+    showMessage(t("msg_track_added_playlist"));
+  }
+
+  function canSaveCurrentTrackSnapshot() {
+    if (!state.audioMeta) {
+      showMessage(t("err_select_audio_first"), true);
+      return false;
+    }
+
+    if (!state.paragraphs.length) {
+      showMessage(t("err_add_lyrics_first"), true);
+      return false;
+    }
+
+    const times = getEffectiveTimes();
+    if (!times.length) {
+      showMessage(t("err_sync_first"), true);
+      return false;
+    }
+
+    return true;
+  }
+
+  function createCurrentTrackSnapshot(trackTitle) {
+    return {
       id: generateId(),
-      title: trackTitle,
+      title: String(trackTitle || "").trim() || buildDefaultPlaylistTitle(),
       createdAt: Date.now(),
       audioMeta: state.audioMeta ? { ...state.audioMeta } : null,
       audioUrl: state.audioSourceUrl || null,
@@ -1627,15 +1664,6 @@
       detector: { ...state.detector },
       offsetSeconds: state.offsetSeconds
     };
-
-    playlist.items.unshift(snapshot);
-    saveStateToLocalStorage();
-    renderPlaylist();
-    refs.playlistSelect.value = playlist.id;
-    renderPlaylist();
-    refs.playlistTitleInput.value = "";
-    syncPlaylistNameInputFromSelection();
-    showMessage(t("msg_track_added_playlist"));
   }
 
   function renameSelectedPlaylist() {
@@ -1708,6 +1736,32 @@
     saveStateToLocalStorage();
     renderPlaylist();
     showMessage(t("msg_track_renamed"));
+  }
+
+  function replacePlaylistItem(id) {
+    const found = findPlaylistItemById(id);
+    if (!found?.item) {
+      showMessage(t("err_playlist_item_not_found"), true);
+      return;
+    }
+
+    const currentTitle = String(found.item.title || "").trim() || t("track_default_name");
+    const shouldReplace = window.confirm(t("confirm_replace_track", { title: currentTitle }));
+    if (!shouldReplace) return;
+
+    if (!canSaveCurrentTrackSnapshot()) return;
+
+    const nextTitle = refs.playlistTitleInput?.value.trim() || found.item.title || buildDefaultPlaylistTitle();
+    const replacement = createCurrentTrackSnapshot(nextTitle);
+
+    replacement.id = found.item.id;
+    replacement.createdAt = found.item.createdAt || replacement.createdAt;
+    Object.assign(found.item, replacement);
+
+    saveStateToLocalStorage();
+    renderPlaylist();
+    if (refs.playlistTitleInput) refs.playlistTitleInput.value = "";
+    showMessage(t("msg_track_replaced"));
   }
 
   function clearPlaylist() {
@@ -2775,6 +2829,11 @@
 
         if (action === "rename") {
           renamePlaylistItem(id);
+          return;
+        }
+
+        if (action === "replace") {
+          replacePlaylistItem(id);
         }
       });
     }
