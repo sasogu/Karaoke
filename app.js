@@ -200,6 +200,8 @@
       btn_load: "Cargar",
       btn_load_play: "Cargar y reproducir",
       btn_rename_track: "Renombrar tema",
+      btn_move_track: "Mover",
+      btn_confirm: "Confirmar",
       btn_replace_track: "Reemplazar",
       btn_delete: "Eliminar",
       msg_update_available: "Nueva versión disponible. Recarga para aplicar la actualización.",
@@ -213,6 +215,7 @@
       msg_track_added_playlist: "Tema añadido a la playlist.",
       msg_track_deleted_playlist: "Tema eliminado de la playlist.",
       msg_track_renamed: "Tema renombrado.",
+      msg_track_moved: "Tema movido a: {playlist}",
       msg_track_replaced: "Tema reemplazado en la playlist.",
       confirm_replace_track: "¿Reemplazar \"{title}\" con la canción actual?",
       msg_playlist_empty_already: "La playlist ya está vacía.",
@@ -220,8 +223,11 @@
       err_select_playlist_to_rename: "Selecciona una playlist para renombrar.",
       err_playlist_name_required: "Escribe un nombre para la playlist.",
       err_track_name_required: "Escribe un nombre para el tema.",
+      err_move_same_playlist: "El tema ya está en esa playlist.",
+      move_target_label: "Lista destino",
       msg_playlist_renamed: "Playlist renombrada.",
       prompt_track_name: "Nuevo nombre del tema",
+      prompt_move_track_playlist: "Mover tema a la playlist (nombre)",
       err_fullscreen_browser: "No se pudo activar fullscreen del navegador. Se abrió modo ampliado.",
       err_no_audio_file_selected: "No se seleccionó ningún archivo de audio.",
       msg_audio_saved_indexeddb: "Audio cargado y guardado en IndexedDB.",
@@ -361,6 +367,8 @@
       btn_load: "Carregar",
       btn_load_play: "Carregar i reproduir",
       btn_rename_track: "Canviar nom del tema",
+      btn_move_track: "Moure",
+      btn_confirm: "Confirmar",
       btn_replace_track: "Reemplaçar",
       btn_delete: "Eliminar",
       msg_update_available: "Nova versió disponible. Recarrega per a aplicar l'actualització.",
@@ -374,6 +382,7 @@
       msg_track_added_playlist: "Tema afegit a la llista.",
       msg_track_deleted_playlist: "Tema eliminat de la llista.",
       msg_track_renamed: "Tema reanomenat.",
+      msg_track_moved: "Tema mogut a: {playlist}",
       msg_track_replaced: "Tema reemplaçat en la llista.",
       confirm_replace_track: "Vols reemplaçar \"{title}\" per la cançó actual?",
       msg_playlist_empty_already: "La llista ja està buida.",
@@ -381,8 +390,11 @@
       err_select_playlist_to_rename: "Selecciona una llista per a canviar-li el nom.",
       err_playlist_name_required: "Escriu un nom per a la llista.",
       err_track_name_required: "Escriu un nom per al tema.",
+      err_move_same_playlist: "El tema ja està en eixa llista.",
+      move_target_label: "Llista destí",
       msg_playlist_renamed: "Llista reanomenada.",
       prompt_track_name: "Nou nom del tema",
+      prompt_move_track_playlist: "Moure tema a la llista (nom)",
       err_fullscreen_browser: "No s'ha pogut activar la pantalla completa del navegador. S'ha obert el mode ampliat.",
       err_no_audio_file_selected: "No s'ha seleccionat cap arxiu d'àudio.",
       msg_audio_saved_indexeddb: "Àudio carregat i guardat en IndexedDB.",
@@ -510,6 +522,8 @@
       btn_load: "Load",
       btn_load_play: "Load and play",
       btn_rename_track: "Rename track",
+      btn_move_track: "Move",
+      btn_confirm: "Confirm",
       btn_replace_track: "Replace",
       btn_delete: "Delete",
       msg_update_available: "New version available. Reload to apply the update.",
@@ -523,6 +537,7 @@
       msg_track_added_playlist: "Track added to playlist.",
       msg_track_deleted_playlist: "Track removed from playlist.",
       msg_track_renamed: "Track renamed.",
+      msg_track_moved: "Track moved to: {playlist}",
       msg_track_replaced: "Track replaced in playlist.",
       confirm_replace_track: "Replace \"{title}\" with the current song?",
       msg_playlist_empty_already: "Playlist is already empty.",
@@ -530,8 +545,11 @@
       err_select_playlist_to_rename: "Select a playlist to rename.",
       err_playlist_name_required: "Enter a playlist name.",
       err_track_name_required: "Enter a track name.",
+      err_move_same_playlist: "Track is already in that playlist.",
+      move_target_label: "Destination playlist",
       msg_playlist_renamed: "Playlist renamed.",
       prompt_track_name: "New track name",
+      prompt_move_track_playlist: "Move track to playlist (name)",
       err_fullscreen_browser: "Could not enable browser fullscreen. Expanded mode was opened.",
       err_no_audio_file_selected: "No audio file was selected.",
       msg_audio_saved_indexeddb: "Audio loaded and saved to IndexedDB.",
@@ -593,6 +611,7 @@
   let analysisTimer = null;
   let currentAudioObjectUrl = null;
   let activeParagraphIndex = -1;
+  let pendingMoveItemId = null;
   let shouldPersistMigratedState = false;
   let lastFocusedElementBeforeToolsModal = null;
   let currentLanguage = "es";
@@ -1289,6 +1308,9 @@
     if (!refs.playlistView || !refs.playlistCount || !refs.playlistSelect) return;
     const previousSelected = refs.playlistSelect.value;
     const locale = DATE_LOCALES[currentLanguage] || "es-ES";
+    if (pendingMoveItemId && !findPlaylistItemById(pendingMoveItemId)) {
+      pendingMoveItemId = null;
+    }
     const sortedPlaylists = [...state.playlist].sort((a, b) => {
       const titleA = String(a?.title || "");
       const titleB = String(b?.title || "");
@@ -1347,6 +1369,7 @@
       playlist.items.forEach((item) => {
         const wrapper = document.createElement("article");
         wrapper.className = "playlist-item";
+        wrapper.dataset.trackId = item.id;
 
         const date = new Date(item.createdAt || Date.now());
         const hasTimes = (item.calibratedTimes?.length || item.autoTimes?.length || 0) > 0;
@@ -1361,17 +1384,92 @@
               <button class="secondary" data-action="load" data-id="${item.id}">${t("btn_load")}</button>
               <button data-action="play" data-id="${item.id}">${t("btn_load_play")}</button>
               <button class="secondary" data-action="rename" data-id="${item.id}">${t("btn_rename_track")}</button>
+              <button class="secondary" data-action="move" data-id="${item.id}">${t("btn_move_track")}</button>
               <button class="secondary" data-action="replace" data-id="${item.id}">${t("btn_replace_track")}</button>
               <button class="danger" data-action="delete" data-id="${item.id}">${t("btn_delete")}</button>
             </div>
           </div>
         `;
 
+        if (pendingMoveItemId === item.id) {
+          const controls = document.createElement("div");
+          controls.className = "playlist-move-controls";
+          controls.dataset.id = item.id;
+
+          const label = document.createElement("span");
+          label.className = "playlist-item-meta";
+          label.textContent = t("move_target_label");
+
+          const destinationSelect = document.createElement("select");
+          destinationSelect.className = "playlist-move-select";
+          destinationSelect.dataset.role = "move-select";
+          destinationSelect.dataset.id = item.id;
+
+          const destinationPlaylists = sortedPlaylists.filter((entry) => entry.id !== playlist.id);
+          destinationPlaylists.forEach((entry) => {
+            const option = document.createElement("option");
+            option.value = entry.title;
+            option.textContent = entry.title;
+            destinationSelect.appendChild(option);
+          });
+
+          const createOption = document.createElement("option");
+          createOption.value = "__new__";
+          createOption.textContent = t("new_playlist");
+          destinationSelect.appendChild(createOption);
+
+          if (!destinationPlaylists.length) {
+            destinationSelect.value = "__new__";
+          }
+
+          const newPlaylistInput = document.createElement("input");
+          newPlaylistInput.type = "text";
+          newPlaylistInput.className = "playlist-move-new-name";
+          newPlaylistInput.dataset.role = "move-new-name";
+          newPlaylistInput.dataset.id = item.id;
+          newPlaylistInput.placeholder = t("playlist_name_placeholder");
+          if (destinationSelect.value !== "__new__") {
+            newPlaylistInput.hidden = true;
+          }
+
+          destinationSelect.addEventListener("change", () => {
+            newPlaylistInput.hidden = destinationSelect.value !== "__new__";
+          });
+
+          const confirmButton = document.createElement("button");
+          confirmButton.type = "button";
+          confirmButton.textContent = t("btn_confirm");
+          confirmButton.dataset.action = "move-confirm";
+          confirmButton.dataset.id = item.id;
+
+          const cancelButton = document.createElement("button");
+          cancelButton.type = "button";
+          cancelButton.className = "secondary";
+          cancelButton.textContent = t("close");
+          cancelButton.dataset.action = "move-cancel";
+          cancelButton.dataset.id = item.id;
+
+          controls.appendChild(label);
+          controls.appendChild(destinationSelect);
+          controls.appendChild(newPlaylistInput);
+          controls.appendChild(confirmButton);
+          controls.appendChild(cancelButton);
+          wrapper.appendChild(controls);
+        }
+
         refs.playlistView.appendChild(wrapper);
       });
     });
 
     syncPlaylistNameInputFromSelection();
+  }
+
+  function focusPlaylistItem(id) {
+    if (!refs.playlistView || !id) return;
+    const selector = `.playlist-item[data-track-id="${id}"]`;
+    const item = refs.playlistView.querySelector(selector);
+    if (!(item instanceof HTMLElement)) return;
+    item.scrollIntoView({ behavior: "smooth", block: "center" });
   }
 
   function normalizeRemoteSong(raw, categoryMap = new Map()) {
@@ -1762,6 +1860,86 @@
     renderPlaylist();
     if (refs.playlistTitleInput) refs.playlistTitleInput.value = "";
     showMessage(t("msg_track_replaced"));
+  }
+
+  function movePlaylistItem(id) {
+    const found = findPlaylistItemById(id);
+    if (!found?.item || !found?.playlist) {
+      showMessage(t("err_playlist_item_not_found"), true);
+      return;
+    }
+
+    pendingMoveItemId = pendingMoveItemId === id ? null : id;
+    renderPlaylist();
+  }
+
+  function movePlaylistItemToName(id, destinationNameRaw) {
+    const found = findPlaylistItemById(id);
+    if (!found?.item || !found?.playlist) {
+      showMessage(t("err_playlist_item_not_found"), true);
+      return;
+    }
+
+    const destinationName = destinationNameRaw.trim();
+    if (!destinationName) {
+      showMessage(t("err_playlist_name_required"), true);
+      return;
+    }
+
+    const sourcePlaylist = found.playlist;
+    const sourceTitle = String(sourcePlaylist.title || "").trim();
+    if (sourceTitle.localeCompare(destinationName, undefined, { sensitivity: "base" }) === 0) {
+      showMessage(t("err_move_same_playlist"), true);
+      return;
+    }
+
+    let destinationPlaylist = state.playlist.find((playlist) => {
+      const title = String(playlist?.title || "").trim();
+      return title.localeCompare(destinationName, undefined, { sensitivity: "base" }) === 0;
+    });
+
+    if (!destinationPlaylist) {
+      destinationPlaylist = {
+        id: generateId(),
+        title: destinationName,
+        items: []
+      };
+      state.playlist.push(destinationPlaylist);
+    }
+
+    sourcePlaylist.items = sourcePlaylist.items.filter((entry) => entry.id !== found.item.id);
+    destinationPlaylist.items.unshift(found.item);
+
+    pendingMoveItemId = null;
+    saveStateToLocalStorage();
+    if (refs.playlistNameInput) refs.playlistNameInput.value = destinationPlaylist.title;
+    renderPlaylist();
+    if (refs.playlistSelect) {
+      refs.playlistSelect.value = destinationPlaylist.id;
+      renderPlaylist();
+    }
+    requestAnimationFrame(() => focusPlaylistItem(found.item.id));
+    showMessage(t("msg_track_moved", { playlist: destinationPlaylist.title }));
+  }
+
+  function confirmMovePlaylistItem(id, controlsHost) {
+    if (!controlsHost) return;
+
+    const destinationSelect = controlsHost.querySelector('[data-role="move-select"]');
+    const newPlaylistInput = controlsHost.querySelector('[data-role="move-new-name"]');
+    if (!(destinationSelect instanceof HTMLSelectElement)) return;
+
+    const destinationName = destinationSelect.value === "__new__"
+      ? String(newPlaylistInput instanceof HTMLInputElement ? newPlaylistInput.value : "")
+      : destinationSelect.value;
+
+    movePlaylistItemToName(id, destinationName);
+  }
+
+  function cancelMovePlaylistItem() {
+    if (!pendingMoveItemId) return;
+    pendingMoveItemId = null;
+    renderPlaylist();
   }
 
   function clearPlaylist() {
@@ -2829,6 +3007,22 @@
 
         if (action === "rename") {
           renamePlaylistItem(id);
+          return;
+        }
+
+        if (action === "move") {
+          movePlaylistItem(id);
+          return;
+        }
+
+        if (action === "move-confirm") {
+          const controlsHost = target.closest(".playlist-move-controls");
+          confirmMovePlaylistItem(id, controlsHost);
+          return;
+        }
+
+        if (action === "move-cancel") {
+          cancelMovePlaylistItem();
           return;
         }
 
