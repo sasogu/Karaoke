@@ -1,0 +1,45 @@
+{
+  "id": "8806a4d5-7e88-4ca8-b73f-7418f658e75b",
+  "title": "Roba Un Brainrot",
+  "category": "6b",
+  "categoryTitle": "6B",
+  "lyricsOriginal": "\n\nTítulo: \"Roba Un Brainrot\"\n\n(Intro)\nYeah, ajá,\nEsto es un brainrot,\n¡Róbalo, siente el fuego en la cabeza!\n\n(Verso 1)\nRoba un brainrot, toma mi mente,\nCae en la trampa, el cerebro está en fuente,\nLo que pienso ya no tiene sentido,\nPerdí el control, ¡ya no soy el mismo!\nDías oscuros, noches de paranoia,\nA veces soy yo, a veces soy la boya,\nPensando en cosas que no tienen razón,\nEs el brainrot que me consume el corazón.\n\n(Estribillo)\nRoba un brainrot, ven y toma mi alma,\nEste fuego en la cabeza, nadie me calma,\nEs un caos en mi mente, un torrente de maldad,\nMe pierdo en el ritmo, ¡sin posibilidad de paz!\n\n(Verso 2)\nEn cada esquina, la voz me llama,\nSe me nubla la vista, ¿quién me reclama?\nOigo murmullos, susurros en mi oído,\nEs el brainrot, siento el ruido,\nAdicción mental, no hay cura en mi ser,\nEl reloj se detiene, ya no sé qué creer,\nTodo lo que miro se distorsiona,\nEs el brainrot que me perfora.\n\n(Estribillo)\nRoba un brainrot, ven y toma mi alma,\nEste fuego en la cabeza, nadie me calma,\nEs un caos en mi mente, un torrente de maldad,\nMe pierdo en el ritmo, ¡sin posibilidad de paz!\n\n(Puente)\nEs como un virus, pero mental,\nUn loop que gira, me vuelve animal,\nLa mente se estira, se enciende en espiral,\nRoba un brainrot, y es el final.\n\n(Verso 3)\nPerdí la batalla, pero sigo en pie,\nEl brainrot me consume, no sé qué hacer,\nEs como un fuego que arde sin cesar,\n¿Quién puede salvarme de esta oscuridad?\nBusco respuestas, pero todo es mentira,\nLo único real es mi propia ira,\nCada verso es un grito de ansiedad,\nEs el brainrot, perdiendo la verdad.\n\n(Estribillo)\nRoba un brainrot, ven y toma mi alma,\nEste fuego en la cabeza, nadie me calma,\nEs un caos en mi mente, un torrente de maldad,\nMe pierdo en el ritmo, ¡sin posibilidad de paz!\n\n(Outro)\nSí, esto es el brainrot,\nY no hay forma de escapar…\nRóbalo… si te atreves.\n",
+  "paragraphs": [
+    "Título: \"Roba Un Brainrot\"",
+    "(Intro)\nYeah, ajá,\nEsto es un brainrot,\n¡Róbalo, siente el fuego en la cabeza!",
+    "(Verso 1)\nRoba un brainrot, toma mi mente,\nCae en la trampa, el cerebro está en fuente,\nLo que pienso ya no tiene sentido,\nPerdí el control, ¡ya no soy el mismo!\nDías oscuros, noches de paranoia,\nA veces soy yo, a veces soy la boya,\nPensando en cosas que no tienen razón,\nEs el brainrot que me consume el corazón.",
+    "(Estribillo)\nRoba un brainrot, ven y toma mi alma,\nEste fuego en la cabeza, nadie me calma,\nEs un caos en mi mente, un torrente de maldad,\nMe pierdo en el ritmo, ¡sin posibilidad de paz!",
+    "(Verso 2)\nEn cada esquina, la voz me llama,\nSe me nubla la vista, ¿quién me reclama?\nOigo murmullos, susurros en mi oído,\nEs el brainrot, siento el ruido,\nAdicción mental, no hay cura en mi ser,\nEl reloj se detiene, ya no sé qué creer,\nTodo lo que miro se distorsiona,\nEs el brainrot que me perfora.",
+    "(Estribillo)\nRoba un brainrot, ven y toma mi alma,\nEste fuego en la cabeza, nadie me calma,\nEs un caos en mi mente, un torrente de maldad,\nMe pierdo en el ritmo, ¡sin posibilidad de paz!",
+    "(Puente)\nEs como un virus, pero mental,\nUn loop que gira, me vuelve animal,\nLa mente se estira, se enciende en espiral,\nRoba un brainrot, y es el final.",
+    "(Verso 3)\nPerdí la batalla, pero sigo en pie,\nEl brainrot me consume, no sé qué hacer,\nEs como un fuego que arde sin cesar,\n¿Quién puede salvarme de esta oscuridad?\nBusco respuestas, pero todo es mentira,\nLo único real es mi propia ira,\nCada verso es un grito de ansiedad,\nEs el brainrot, perdiendo la verdad.",
+    "(Estribillo)\nRoba un brainrot, ven y toma mi alma,\nEste fuego en la cabeza, nadie me calma,\nEs un caos en mi mente, un torrente de maldad,\nMe pierdo en el ritmo, ¡sin posibilidad de paz!",
+    "(Outro)\nSí, esto es el brainrot,\nY no hay forma de escapar…\nRóbalo… si te atreves."
+  ],
+  "times": {
+    "auto": [],
+    "calibrated": [
+      4.032,
+      4.544,
+      9.472,
+      29.813333,
+      39.893333,
+      58.901333,
+      69.589333,
+      78.485333,
+      91.829333,
+      108.544
+    ]
+  },
+  "offsetSeconds": 0,
+  "detector": {
+    "threshold": 0.02,
+    "minSilenceMs": 320,
+    "windowMs": 80
+  },
+  "audioMeta": {
+    "name": "Título_ _Roba Un Brainrot_.mp3",
+    "type": "audio/mpeg"
+  },
+  "audioUrl": "audio/Título_ _Roba Un Brainrot_.mp3"
+}

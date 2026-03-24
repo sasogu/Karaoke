@@ -1,0 +1,47 @@
+{
+  "id": "79230e2f-8613-46a7-be0d-f432e13ecd60",
+  "title": "Six Seven (El Mejor Trío)",
+  "category": "6b",
+  "categoryTitle": "6B",
+  "lyricsOriginal": "Six Seven (El Mejor Trío)\n\n(Verso 1)\nSix seven, el mejor trío de sexto B,\nAlejandra, Julia y Raquel, míranos brillar, ok.\nLas fanáticas de Roblox, construyendo sin fin,\nOMG, somos therians, ruge el team.\n\nRaquel poni salvaje corriendo al amanecer,\nJulia ácaro tiny pero difícil de vencer,\nAlejandra agaporni volando con poder,\n¿qué haces Juan? ¡ven y ponte a bailar también!\n\n(Pre-Coro)\nDame un grrrrr, que se escuche en el salón,\nEnrrique mira raro… ¡invocamos al demogorgon!\nFuet en la mochila, secreto sin revelar,\nme comí una salchipapa antes de ensayar.\n\n(Coro)\nSix seven, brillando otra vez,\ncomo labubu de 24 quilates de oro, ¿lo ves?\nChocolate de Dubái derritiéndose al sol,\nsomos fuego en tomatinas llenas de color.\n\nHips don’t lie, lo bailamos sin parar,\nen la clase de música empezamos a saltar,\nAntonio Lobato narrando nuestra misión,\nacelera el corazón, ¡somos sensación!\n\n(Verso 2)\nOMG, que locura de amistad,\nentre risas infinitas y pura creatividad.\nRaquel relincha fuerte, Julia lista ya,\nAlejandra canta alto: ¡nadie nos frenará!\n\nEl demogorgon tiembla cuando oye el grito,\n“Six seven” suena épico y bonito.\nFuet party, salchipapa vibe,\nen Roblox construimos nuestro tribe.\n\n(Puente)\n¿Qué haces Juan? ¡ven pa’cá!\nDame un grrrrr una vez más.\nDe sexto B para el mundo entero,\neste trío siempre va primero.\n\n(Coro Final)\nSix seven, el mejor trío ya,\nbrillando más que oro de 24 quilates, ah-ah.\nChocolate de Dubái, dulce conexión,\ntomatinas rojas pintan el corazón.\n\nHips don’t lie, recuerdo especial,\nen música empezó nuestro festival.\nSix seven por siempre será,\nAlejandra, Julia y Raquel — ¡amistad total! 🎤✨",
+  "paragraphs": [
+    "Six Seven (El Mejor Trío)",
+    "(Verso 1)\nSix seven, el mejor trío de sexto B,\nAlejandra, Julia y Raquel, míranos brillar, ok.\nLas fanáticas de Roblox, construyendo sin fin,\nOMG, somos therians, ruge el team.",
+    "Raquel poni salvaje corriendo al amanecer,\nJulia ácaro tiny pero difícil de vencer,\nAlejandra agaporni volando con poder,\n¿qué haces Juan? ¡ven y ponte a bailar también!",
+    "(Pre-Coro)\nDame un grrrrr, que se escuche en el salón,\nEnrrique mira raro… ¡invocamos al demogorgon!\nFuet en la mochila, secreto sin revelar,\nme comí una salchipapa antes de ensayar.",
+    "(Coro)\nSix seven, brillando otra vez,\ncomo labubu de 24 quilates de oro, ¿lo ves?\nChocolate de Dubái derritiéndose al sol,\nsomos fuego en tomatinas llenas de color.",
+    "Hips don’t lie, lo bailamos sin parar,\nen la clase de música empezamos a saltar,\nAntonio Lobato narrando nuestra misión,\nacelera el corazón, ¡somos sensación!",
+    "(Verso 2)\nOMG, que locura de amistad,\nentre risas infinitas y pura creatividad.\nRaquel relincha fuerte, Julia lista ya,\nAlejandra canta alto: ¡nadie nos frenará!",
+    "El demogorgon tiembla cuando oye el grito,\n“Six seven” suena épico y bonito.\nFuet party, salchipapa vibe,\nen Roblox construimos nuestro tribe.",
+    "(Puente)\n¿Qué haces Juan? ¡ven pa’cá!\nDame un grrrrr una vez más.\nDe sexto B para el mundo entero,\neste trío siempre va primero.",
+    "(Coro Final)\nSix seven, el mejor trío ya,\nbrillando más que oro de 24 quilates, ah-ah.\nChocolate de Dubái, dulce conexión,\ntomatinas rojas pintan el corazón.",
+    "Hips don’t lie, recuerdo especial,\nen música empezó nuestro festival.\nSix seven por siempre será,\nAlejandra, Julia y Raquel — ¡amistad total! 🎤✨"
+  ],
+  "times": {
+    "auto": [],
+    "calibrated": [
+      2.869333,
+      3.413333,
+      31.136,
+      45.632,
+      60.618666,
+      76.32,
+      90.154666,
+      99.072,
+      105.781333,
+      120.16,
+      135.232
+    ]
+  },
+  "offsetSeconds": 0,
+  "detector": {
+    "threshold": 0.02,
+    "minSilenceMs": 320,
+    "windowMs": 80
+  },
+  "audioMeta": {
+    "name": "Título_ Six Seven (El Mejor Trío).mp3",
+    "type": "audio/mpeg"
+  },
+  "audioUrl": "audio/Título_ Six Seven (El Mejor Trío).mp3"
+}

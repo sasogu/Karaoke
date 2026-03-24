@@ -1,0 +1,39 @@
+{
+  "id": "5f01a484-fd29-4394-bc6d-42b7feb078b0",
+  "title": "Six seven, ya es martes de taco",
+  "category": "6b",
+  "categoryTitle": "6B",
+  "lyricsOriginal": "\n\nSix seven, ya es martes de taco,\nLa cucaracha baila con su ritmo zapato.\nCamina el cartero Paco, siempre tan cierto,\nApaga la vela, ¡que inicie el concierto!\n\nEstribillo\n¡Pam pam pero, la locura llegó!\nBanderillas y chocolate, ¡todos a gozar!\nMinions en la fiesta, ¡vamos a brincar!\nEl patito Juan nos dice, \"Let’s go a cantar!\"\n\nVerso 2\nLa rana Gustavo canta su canción,\nY la vaca Lola hace muuuuu, ¿qué emoción?\n1, 2, 1, 2, ¡acción a bailar!\nLabiubiu y anchoa, ¡no puede faltar!\n\nEstribillo\n¡Pam pam pero, la locura llegó!\nBanderillas y chocolate, ¡todos a gozar!\nMinions en la fiesta, ¡vamos a brincar!\nEl patito Juan nos dice, \"Let’s go a cantar!\"\n\nPuente\nRamen en la mesa, chat y Saturno,\nImpostor en la sala, mejor un poco diurno.\nLa racha que seguimos, juntos sin parar,\nFiesta desbordante, ¡no hay tiempo que esperar!\n\nEstribillo\n¡Pam pam pero, la locura llegó!\nBanderillas y chocolate, ¡todos a gozar!\nMinions en la fiesta, ¡vamos a brincar!\nEl patito Juan nos dice, \"Let’s go a cantar!\"\n\nCierre\nAsí con alegría y un poco de sabor,\nDisfrutando la vida, ¡cantemos con amor!\nLa locura nos une en esta celebración,\nEste martes de taco, ¡una gran emoción!\n",
+  "paragraphs": [
+    "Six seven, ya es martes de taco,\nLa cucaracha baila con su ritmo zapato.\nCamina el cartero Paco, siempre tan cierto,\nApaga la vela, ¡que inicie el concierto!",
+    "Estribillo\n¡Pam pam pero, la locura llegó!\nBanderillas y chocolate, ¡todos a gozar!\nMinions en la fiesta, ¡vamos a brincar!\nEl patito Juan nos dice, \"Let’s go a cantar!\"",
+    "Verso 2\nLa rana Gustavo canta su canción,\nY la vaca Lola hace muuuuu, ¿qué emoción?\n1, 2, 1, 2, ¡acción a bailar!\nLabiubiu y anchoa, ¡no puede faltar!",
+    "Estribillo\n¡Pam pam pero, la locura llegó!\nBanderillas y chocolate, ¡todos a gozar!\nMinions en la fiesta, ¡vamos a brincar!\nEl patito Juan nos dice, \"Let’s go a cantar!\"",
+    "Puente\nRamen en la mesa, chat y Saturno,\nImpostor en la sala, mejor un poco diurno.\nLa racha que seguimos, juntos sin parar,\nFiesta desbordante, ¡no hay tiempo que esperar!",
+    "Estribillo\n¡Pam pam pero, la locura llegó!\nBanderillas y chocolate, ¡todos a gozar!\nMinions en la fiesta, ¡vamos a brincar!\nEl patito Juan nos dice, \"Let’s go a cantar!\"",
+    "Cierre\nAsí con alegría y un poco de sabor,\nDisfrutando la vida, ¡cantemos con amor!\nLa locura nos une en esta celebración,\nEste martes de taco, ¡una gran emoción!"
+  ],
+  "times": {
+    "auto": [],
+    "calibrated": [
+      31.84,
+      32.458666,
+      49.717333,
+      60.853333,
+      78.645333,
+      90.613333,
+      107.893333
+    ]
+  },
+  "offsetSeconds": 0,
+  "detector": {
+    "threshold": 0.02,
+    "minSilenceMs": 320,
+    "windowMs": 80
+  },
+  "audioMeta": {
+    "name": "Título_ Six seven.mp3",
+    "type": "audio/mpeg"
+  },
+  "audioUrl": "audio/Título_ Six seven.mp3"
+}

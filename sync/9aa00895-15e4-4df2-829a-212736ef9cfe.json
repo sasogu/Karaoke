@@ -1,0 +1,40 @@
+{
+  "id": "9aa00895-15e4-4df2-829a-212736ef9cfe",
+  "title": "Saminamina en el Supermercado",
+  "category": "6b",
+  "categoryTitle": "6B",
+  "lyricsOriginal": "\n\n🎵 “Saminamina en el Supermercado” 🎵\n\n(Verso 1)\nVaca Lola baila con un violonchelo,\nmientras suena el piano bajo el cielo.\nAtún con uva en el cajón,\nborrador Milan marcando el son.\nEnriqueta grita “¡bro, arigato!”,\nchicken banana cayendo en el plato.\n\n(Pre-Coro)\nApaga la vela, que empieza el show,\nWindows y Android dicen hello.\nSix seven pasos con tambor,\ncalcetines girando alrededor.\n\n(Coro)\nSaminamina eh eh,\nchocolata pa’ usted.\nTernera a la brasa al amanecer,\nbolis Bic escribiendo el ayer.\nSaminamina eh eh,\nmúsica por doquier,\nSpiderman salta sin red,\nminetest al atardecer.\n\n(Verso 2)\nPuma corre por edumusic,\nun pitufo canta algo acoustic.\nMinion ríe con Pitufina,\nconvers blancas, minimini rutina.\nPata de pollo en gelatina,\nMercadona vibra en la esquina.\nPetisuis frío para el therian,\nque toca el cajón como un guardián.\n\n(Puente)\nSamuel graba el podcast de Edurne,\nsecador suena en la nube nocturne.\nTambor y piano en combinación,\nmúsica loca sin explicación.\n\n(Coro Final)\nSaminamina eh eh,\nsix seven otra vez.\nChocolata, bro, arigato,\nchicken banana en el relato.\nVaca Lola dice “okey”,\nSpiderman responde “hey”.\nMinion, pitufo y Puma también,\ncantando juntos: saminamina eh eh.\n\nEstilo Rock, Rap\n",
+  "paragraphs": [
+    "🎵 “Saminamina en el Supermercado” 🎵",
+    "(Verso 1)\nVaca Lola baila con un violonchelo,\nmientras suena el piano bajo el cielo.\nAtún con uva en el cajón,\nborrador Milan marcando el son.\nEnriqueta grita “¡bro, arigato!”,\nchicken banana cayendo en el plato.",
+    "(Pre-Coro)\nApaga la vela, que empieza el show,\nWindows y Android dicen hello.\nSix seven pasos con tambor,\ncalcetines girando alrededor.",
+    "(Coro)\nSaminamina eh eh,\nchocolata pa’ usted.\nTernera a la brasa al amanecer,\nbolis Bic escribiendo el ayer.\nSaminamina eh eh,\nmúsica por doquier,\nSpiderman salta sin red,\nminetest al atardecer.",
+    "(Verso 2)\nPuma corre por edumusic,\nun pitufo canta algo acoustic.\nMinion ríe con Pitufina,\nconvers blancas, minimini rutina.\nPata de pollo en gelatina,\nMercadona vibra en la esquina.\nPetisuis frío para el therian,\nque toca el cajón como un guardián.",
+    "(Puente)\nSamuel graba el podcast de Edurne,\nsecador suena en la nube nocturne.\nTambor y piano en combinación,\nmúsica loca sin explicación.",
+    "(Coro Final)\nSaminamina eh eh,\nsix seven otra vez.\nChocolata, bro, arigato,\nchicken banana en el relato.\nVaca Lola dice “okey”,\nSpiderman responde “hey”.\nMinion, pitufo y Puma también,\ncantando juntos: saminamina eh eh.",
+    "Estilo Rock, Rap"
+  ],
+  "times": {
+    "auto": [],
+    "calibrated": [
+      6.421333,
+      7.530666,
+      24.149333,
+      34.453333,
+      57.141333,
+      90.016,
+      97.92
+    ]
+  },
+  "offsetSeconds": 0,
+  "detector": {
+    "threshold": 0.02,
+    "minSilenceMs": 320,
+    "windowMs": 80
+  },
+  "audioMeta": {
+    "name": "6b supermercado.mp3",
+    "type": "audio/mpeg"
+  },
+  "audioUrl": "audio/6b supermercado.mp3"
+}

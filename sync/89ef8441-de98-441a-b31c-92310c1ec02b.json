@@ -1,0 +1,37 @@
+{
+  "id": "89ef8441-de98-441a-b31c-92310c1ec02b",
+  "title": "Six seven, en la aren",
+  "category": "6b",
+  "categoryTitle": "6B",
+  "lyricsOriginal": "Six seven, en la arena,\nFranco tirador, apunta y frena,\nDagas brillando, suena el canto,\nCon cada golpe, tú ya te espanto.\n\n(Verso 1)\nLanza llamas, fuego en el aire,\nLanza cohetes, nunca te pares,\nBomba de humo, escapa veloz,\nOoooooo, se siente la voz.\n\n(Estribillo)\nSix seven, en duelos,\n1vs1, enfrentando los cielos,\n4vs4, la guerra no cesa,\nCuchillo en mano, la vida es sorpresa.\n\n(Verso 2)\nKatana afilada, corta como el viento,\nGranada lista, no hay tiempo de lamento,\nGuadaña en la sombra, acechando el final,\nEn salpicadura, el poder es real.\n\n(Estribillo)\nSix seven, luchando unidos,\nCon 4000 llaves, sueños perdidos,\nCada batalla, un reto feroz,\nRivales en juego, forjando su voz.\n\n(Cierre)\nAsí es la vida, en este universo,\nCazando victorias, nunca hay retroceso,\nSix seven, siempre a la espera,\nEn este duelo, la gloria se aferra.",
+  "paragraphs": [
+    "Six seven, en la arena,\nFranco tirador, apunta y frena,\nDagas brillando, suena el canto,\nCon cada golpe, tú ya te espanto.",
+    "(Verso 1)\nLanza llamas, fuego en el aire,\nLanza cohetes, nunca te pares,\nBomba de humo, escapa veloz,\nOoooooo, se siente la voz.",
+    "(Estribillo)\nSix seven, en duelos,\n1vs1, enfrentando los cielos,\n4vs4, la guerra no cesa,\nCuchillo en mano, la vida es sorpresa.",
+    "(Verso 2)\nKatana afilada, corta como el viento,\nGranada lista, no hay tiempo de lamento,\nGuadaña en la sombra, acechando el final,\nEn salpicadura, el poder es real.",
+    "(Estribillo)\nSix seven, luchando unidos,\nCon 4000 llaves, sueños perdidos,\nCada batalla, un reto feroz,\nRivales en juego, forjando su voz.",
+    "(Cierre)\nAsí es la vida, en este universo,\nCazando victorias, nunca hay retroceso,\nSix seven, siempre a la espera,\nEn este duelo, la gloria se aferra."
+  ],
+  "times": {
+    "auto": [],
+    "calibrated": [
+      29.386666,
+      30.122666,
+      42.645333,
+      60.117333,
+      73.354666,
+      90.709333
+    ]
+  },
+  "offsetSeconds": 0,
+  "detector": {
+    "threshold": 0.02,
+    "minSilenceMs": 320,
+    "windowMs": 80
+  },
+  "audioMeta": {
+    "name": "Título_ Rivales.mp3",
+    "type": "audio/mpeg"
+  },
+  "audioUrl": "audio/Título_ Rivales.mp3"
+}

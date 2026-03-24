@@ -1,0 +1,43 @@
+{
+  "id": "ccaa98f8-7f3a-4979-bf76-bbb139b01bab",
+  "title": "Etiqueta en el Corazó",
+  "category": "6b",
+  "categoryTitle": "6B",
+  "lyricsOriginal": "\n\n🎵 “Etiqueta en el Corazón” 🎵\n\n(Verso 1)\nEn un libro viejo encontré una palabra,\ndibujada junto a un árbol que todo lo guarda.\nUna salchicha caliente empezó a cantar,\nmientras la señora aceituna salía a pasear.\n\nCon chancla en un pie y zapato en el otro,\nun capibara soñaba con ser piloto.\nLuchan las horas marcando el compás,\n67 vueltas y no miran atrás.\n\n(Pre-Coro)\nAuriculares puestos, suena la música,\nadidas brillando, escena fantástica.\nStikers pegados sin explicación,\nformando un prototipo de revolución.\n\n(Coro)\nLate fuerte, late el corazón,\nentre trasto y risas nace la canción.\nCocinar tortitas al amanecer,\ntodo es posible si quieres creer.\nDesde la cocina hasta la NASA va,\nla imaginación nunca se quedará.\n\n(Verso 2)\nUn chupacups gira bajo el sol,\ncon etiqueta roja marcando el rol.\nLa señora aceituna empieza a contar\n67 sueños por despegar.\n\nEl capibara mira el cielo azul,\nla música sube, el aire es cool.\nBajo el árbol vuelve a escribir\notra palabra lista para vivir.\n\n(Puente)\nEntre chancla y zapato hay conexión,\nadidas salta con decisión.\nComo relato vibrante en la transmisión\nde Antonio Lobato narrando la emoción.\n\n(Coro Final)\nLate fuerte, vibra la canción,\nsalchicha caliente y pura pasión.\nDel libro al espacio sin condición,\ntodo cabe dentro del corazón. 🎶\n",
+  "paragraphs": [
+    "🎵 “Etiqueta en el Corazón” 🎵",
+    "(Verso 1)\nEn un libro viejo encontré una palabra,\ndibujada junto a un árbol que todo lo guarda.\nUna salchicha caliente empezó a cantar,\nmientras la señora aceituna salía a pasear.",
+    "Con chancla en un pie y zapato en el otro,\nun capibara soñaba con ser piloto.\nLuchan las horas marcando el compás,\n67 vueltas y no miran atrás.",
+    "(Pre-Coro)\nAuriculares puestos, suena la música,\nadidas brillando, escena fantástica.\nStikers pegados sin explicación,\nformando un prototipo de revolución.",
+    "(Coro)\nLate fuerte, late el corazón,\nentre trasto y risas nace la canción.\nCocinar tortitas al amanecer,\ntodo es posible si quieres creer.\nDesde la cocina hasta la NASA va,\nla imaginación nunca se quedará.",
+    "(Verso 2)\nUn chupacups gira bajo el sol,\ncon etiqueta roja marcando el rol.\nLa señora aceituna empieza a contar\n67 sueños por despegar.",
+    "El capibara mira el cielo azul,\nla música sube, el aire es cool.\nBajo el árbol vuelve a escribir\notra palabra lista para vivir.",
+    "(Puente)\nEntre chancla y zapato hay conexión,\nadidas salta con decisión.\nComo relato vibrante en la transmisión\nde Antonio Lobato narrando la emoción.",
+    "(Coro Final)\nLate fuerte, vibra la canción,\nsalchicha caliente y pura pasión.\nDel libro al espacio sin condición,\ntodo cabe dentro del corazón. 🎶"
+  ],
+  "times": {
+    "auto": [],
+    "calibrated": [
+      11.333333,
+      12.517333,
+      21.637333,
+      32.048,
+      45.072,
+      65.904,
+      79.525333,
+      91.184,
+      103.258666
+    ]
+  },
+  "offsetSeconds": 0,
+  "detector": {
+    "threshold": 0.02,
+    "minSilenceMs": 320,
+    "windowMs": 80
+  },
+  "audioMeta": {
+    "name": "Título_ Etiqueta en el Corazón .mp3",
+    "type": "audio/mpeg"
+  },
+  "audioUrl": "audio/Título_ Etiqueta en el Corazón .mp3"
+}
