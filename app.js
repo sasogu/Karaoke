@@ -122,8 +122,8 @@
       meta_type: "Tipo:",
       meta_time: "Tiempo:",
       lyrics_title: "Letra",
-      lyrics_hint: "Separa párrafos dejando una línea en blanco entre bloques.",
-      lyrics_placeholder: "Pega aquí la letra...\n\nPárrafo 1\n\nPárrafo 2",
+      lyrics_hint: "Acepta Markdown. Separa párrafos dejando una línea en blanco entre bloques.",
+      lyrics_placeholder: "# Título\n\n**Estribillo**\nPrimera línea\nSegunda línea\n\n- Verso 1\n- Verso 2",
       apply_lyrics: "Aplicar letra",
       paragraph_count: "{count} párrafo(s)",
       playlist_title: "Playlist",
@@ -306,8 +306,8 @@
       meta_type: "Tipus:",
       meta_time: "Temps:",
       lyrics_title: "Lletra",
-      lyrics_hint: "Separa paràgrafs deixant una línia en blanc entre blocs.",
-      lyrics_placeholder: "Apega ací la lletra...\n\nParàgraf 1\n\nParàgraf 2",
+      lyrics_hint: "Admet Markdown. Separa paràgrafs deixant una línia en blanc entre blocs.",
+      lyrics_placeholder: "# Títol\n\n**Estribillo**\nPrimera línia\nSegona línia\n\n- Vers 1\n- Vers 2",
       apply_lyrics: "Aplicar lletra",
       paragraph_count: "{count} paràgraf(s)",
       playlist_title: "Llista",
@@ -461,8 +461,8 @@
       meta_type: "Type:",
       meta_time: "Time:",
       lyrics_title: "Lyrics",
-      lyrics_hint: "Separate paragraphs with one blank line between blocks.",
-      lyrics_placeholder: "Paste lyrics here...\n\nParagraph 1\n\nParagraph 2",
+      lyrics_hint: "Markdown is supported. Separate paragraphs with one blank line between blocks.",
+      lyrics_placeholder: "# Title\n\n**Chorus**\nFirst line\nSecond line\n\n- Verse 1\n- Verse 2",
       apply_lyrics: "Apply lyrics",
       paragraph_count: "{count} paragraph(s)",
       playlist_title: "Playlist",
@@ -1038,11 +1038,85 @@
     return `${mm}:${ss}`;
   }
 
+  function markdownToPlainText(text) {
+    const source = String(text || "").replace(/\r\n?/g, "\n");
+    const lines = source.split("\n");
+    let inCodeFence = false;
+
+    return lines
+      .map((rawLine) => {
+        if (/^\s*```/.test(rawLine)) {
+          inCodeFence = !inCodeFence;
+          return "";
+        }
+
+        let line = rawLine.trimEnd();
+        if (!line.trim()) return "";
+        if (/^\s{0,3}([-*_])(?:\s*\1){2,}\s*$/.test(line)) return "";
+
+        if (!inCodeFence) {
+          line = line
+            .replace(/^\s{0,3}(?:>\s*)+/, "")
+            .replace(/^\s{0,3}#{1,6}\s+/, "")
+            .replace(/^\s{0,3}(?:[-+*]|\d+[.)])\s+(?:\[[ xX]\]\s+)?/, "")
+            .replace(/!\[([^\]]*)\]\([^)]+\)/g, "$1")
+            .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+            .replace(/`([^`]+)`/g, "$1")
+            .replace(/(\*\*|__)(.*?)\1/g, "$2")
+            .replace(/(\*|_)(.*?)\1/g, "$2")
+            .replace(/~~(.*?)~~/g, "$1")
+            .replace(/\\([\\`*_{}\[\]()#+\-.!>~|])/g, "$1");
+        }
+
+        return line.trim();
+      })
+      .join("\n");
+  }
+
   function parseParagraphs(text) {
-    return text
+    return markdownToPlainText(text)
       .split(/\n\s*\n/g)
       .map((p) => p.trim())
       .filter(Boolean);
+  }
+
+  function looksLikeLegacyMarkdownParagraphs(paragraphs, lyricsOriginal) {
+    if (!Array.isArray(paragraphs) || !paragraphs.length) return false;
+    const original = String(lyricsOriginal || "");
+    if (!original.trim()) return false;
+
+    const joinedParagraphs = paragraphs.map((p) => String(p || "")).join("\n\n");
+    const markdownPattern = /(^|\n)\s{0,3}(#{1,6}\s|>\s|[-+*]\s|\d+[.)]\s)|(\*\*|__|~~|`)|!?\[[^\]]+\]\([^)]+\)/m;
+    if (!markdownPattern.test(joinedParagraphs)) return false;
+
+    const reparsed = parseParagraphs(original);
+    if (!reparsed.length) return false;
+    return reparsed.join("\n\n") !== joinedParagraphs.trim();
+  }
+
+  function getNormalizedParagraphs(paragraphs, lyricsOriginal) {
+    const rawParagraphs = Array.isArray(paragraphs)
+      ? paragraphs.map((p) => String(p || "")).filter(Boolean)
+      : [];
+
+    if (looksLikeLegacyMarkdownParagraphs(rawParagraphs, lyricsOriginal)) {
+      return {
+        paragraphs: parseParagraphs(lyricsOriginal),
+        migrated: true
+      };
+    }
+
+    if (rawParagraphs.length) {
+      return {
+        paragraphs: rawParagraphs,
+        migrated: false
+      };
+    }
+
+    return {
+      paragraphs: parseParagraphs(lyricsOriginal),
+      migrated: false
+    };
   }
 
   function sanitizeFileName(name) {
@@ -1110,9 +1184,8 @@
 
     const id = String(raw.id || "").trim() || generateId();
     const lyricsOriginal = String(raw.lyricsOriginal || "");
-    const paragraphs = Array.isArray(raw.paragraphs) && raw.paragraphs.length
-      ? raw.paragraphs
-      : parseParagraphs(lyricsOriginal);
+    const normalizedParagraphs = getNormalizedParagraphs(raw.paragraphs, lyricsOriginal);
+    if (normalizedParagraphs.migrated) shouldPersistMigratedState = true;
     return {
       id,
       title: String(raw.title || t("track_default_name")),
@@ -1120,7 +1193,7 @@
       audioMeta: raw.audioMeta || null,
       audioUrl: typeof raw.audioUrl === "string" ? raw.audioUrl : null,
       lyricsOriginal,
-      paragraphs,
+      paragraphs: normalizedParagraphs.paragraphs,
       autoTimes: Array.isArray(raw.autoTimes) ? raw.autoTimes : [],
       calibratedTimes: Array.isArray(raw.calibratedTimes) ? raw.calibratedTimes : [],
       detector: {
@@ -1179,9 +1252,9 @@
     try {
       const data = JSON.parse(raw);
       state.lyricsOriginal = data.lyricsOriginal || "";
-      state.paragraphs = Array.isArray(data.paragraphs) && data.paragraphs.length
-        ? data.paragraphs
-        : parseParagraphs(state.lyricsOriginal);
+      const normalizedParagraphs = getNormalizedParagraphs(data.paragraphs, state.lyricsOriginal);
+      state.paragraphs = normalizedParagraphs.paragraphs;
+      if (normalizedParagraphs.migrated) shouldPersistMigratedState = true;
       state.autoTimes = Array.isArray(data.autoTimes) ? data.autoTimes : [];
       state.calibratedTimes = Array.isArray(data.calibratedTimes) ? data.calibratedTimes : [];
       if (Array.isArray(data.playlist)) {
@@ -1189,7 +1262,7 @@
         const hadLegacyShape = data.playlist.some((entry) => !Array.isArray(entry?.items));
         const hadDroppedEntries = normalizedPlaylist.length !== data.playlist.length;
         state.playlist = normalizedPlaylist;
-        shouldPersistMigratedState = hadLegacyShape || hadDroppedEntries;
+        shouldPersistMigratedState = shouldPersistMigratedState || hadLegacyShape || hadDroppedEntries;
       } else {
         state.playlist = [];
       }
@@ -1484,9 +1557,7 @@
     const categoryTitle = String(raw.categoryTitle || categoryFromMap?.title || t("remote_category_default")).trim() || t("remote_category_default");
 
     const lyricsOriginal = String(raw.lyricsOriginal || raw.lyrics || "");
-    const paragraphs = Array.isArray(raw.paragraphs) && raw.paragraphs.length
-      ? raw.paragraphs.map((p) => String(p || "")).filter(Boolean)
-      : parseParagraphs(lyricsOriginal);
+    const normalizedParagraphs = getNormalizedParagraphs(raw.paragraphs, lyricsOriginal);
 
     const timesAuto = Array.isArray(raw.times?.auto)
       ? raw.times.auto
@@ -1502,7 +1573,7 @@
       categoryId,
       categoryTitle,
       lyricsOriginal,
-      paragraphs,
+      paragraphs: normalizedParagraphs.paragraphs,
       autoTimes: timesAuto,
       calibratedTimes: timesCalibrated,
       detector: {
@@ -2623,7 +2694,9 @@
 
   function applyImportedProjectData(data) {
     state.lyricsOriginal = String(data.lyricsOriginal || "");
-    state.paragraphs = Array.isArray(data.paragraphs) ? data.paragraphs : parseParagraphs(state.lyricsOriginal);
+    const normalizedParagraphs = getNormalizedParagraphs(data.paragraphs, state.lyricsOriginal);
+    state.paragraphs = normalizedParagraphs.paragraphs;
+    if (normalizedParagraphs.migrated) shouldPersistMigratedState = true;
     state.autoTimes = Array.isArray(data.times?.auto) ? data.times.auto : [];
     state.calibratedTimes = Array.isArray(data.times?.calibrated) ? data.times.calibrated : [];
     state.detector = {
