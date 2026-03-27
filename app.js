@@ -1,6 +1,8 @@
 (() => {
   "use strict";
 
+  const shared = window.KaraokeShared;
+
   const LS_KEY = "karaokeProjectStateV1";
   const DB_NAME = "karaokeDB";
   const DB_VERSION = 1;
@@ -1055,94 +1057,9 @@
     }
   }
 
-  function formatTime(seconds) {
-    if (!Number.isFinite(seconds)) return "00:00";
-    const s = Math.max(0, Math.floor(seconds));
-    const mm = String(Math.floor(s / 60)).padStart(2, "0");
-    const ss = String(s % 60).padStart(2, "0");
-    return `${mm}:${ss}`;
-  }
-
-  function markdownToPlainText(text) {
-    const source = String(text || "").replace(/\r\n?/g, "\n");
-    const lines = source.split("\n");
-    let inCodeFence = false;
-
-    return lines
-      .map((rawLine) => {
-        if (/^\s*```/.test(rawLine)) {
-          inCodeFence = !inCodeFence;
-          return "";
-        }
-
-        let line = rawLine.trimEnd();
-        if (!line.trim()) return "";
-        if (/^\s{0,3}([-*_])(?:\s*\1){2,}\s*$/.test(line)) return "";
-
-        if (!inCodeFence) {
-          line = line
-            .replace(/^\s{0,3}(?:>\s*)+/, "")
-            .replace(/^\s{0,3}#{1,6}\s+/, "")
-            .replace(/^\s{0,3}(?:[-+*]|\d+[.)])\s+(?:\[[ xX]\]\s+)?/, "")
-            .replace(/!\[([^\]]*)\]\([^)]+\)/g, "$1")
-            .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
-            .replace(/`([^`]+)`/g, "$1")
-            .replace(/(\*\*|__)(.*?)\1/g, "$2")
-            .replace(/(\*|_)(.*?)\1/g, "$2")
-            .replace(/~~(.*?)~~/g, "$1")
-            .replace(/\\([\\`*_{}\[\]()#+\-.!>~|])/g, "$1");
-        }
-
-        return line.trim();
-      })
-      .join("\n");
-  }
-
-  function parseParagraphs(text) {
-    return markdownToPlainText(text)
-      .split(/\n\s*\n/g)
-      .map((p) => p.trim())
-      .filter(Boolean);
-  }
-
-  function looksLikeLegacyMarkdownParagraphs(paragraphs, lyricsOriginal) {
-    if (!Array.isArray(paragraphs) || !paragraphs.length) return false;
-    const original = String(lyricsOriginal || "");
-    if (!original.trim()) return false;
-
-    const joinedParagraphs = paragraphs.map((p) => String(p || "")).join("\n\n");
-    const markdownPattern = /(^|\n)\s{0,3}(#{1,6}\s|>\s|[-+*]\s|\d+[.)]\s)|(\*\*|__|~~|`)|!?\[[^\]]+\]\([^)]+\)/m;
-    if (!markdownPattern.test(joinedParagraphs)) return false;
-
-    const reparsed = parseParagraphs(original);
-    if (!reparsed.length) return false;
-    return reparsed.join("\n\n") !== joinedParagraphs.trim();
-  }
-
-  function getNormalizedParagraphs(paragraphs, lyricsOriginal) {
-    const rawParagraphs = Array.isArray(paragraphs)
-      ? paragraphs.map((p) => String(p || "")).filter(Boolean)
-      : [];
-
-    if (looksLikeLegacyMarkdownParagraphs(rawParagraphs, lyricsOriginal)) {
-      return {
-        paragraphs: parseParagraphs(lyricsOriginal),
-        migrated: true
-      };
-    }
-
-    if (rawParagraphs.length) {
-      return {
-        paragraphs: rawParagraphs,
-        migrated: false
-      };
-    }
-
-    return {
-      paragraphs: parseParagraphs(lyricsOriginal),
-      migrated: false
-    };
-  }
+  const formatTime = shared.formatTime;
+  const parseParagraphs = shared.parseParagraphs;
+  const getNormalizedParagraphs = shared.getNormalizedParagraphs;
 
   function sanitizeFileName(name) {
     const base = String(name || "audio-importado")
@@ -1593,44 +1510,12 @@
   }
 
   function normalizeRemoteSong(raw, categoryMap = new Map()) {
-    if (!raw || typeof raw !== "object") return null;
-
-    const title = String(raw.title || "").trim();
-    const audioUrl = String(raw.audioUrl || raw.audio || "").trim();
-    if (!title || !audioUrl) return null;
-
-    const categoryId = String(raw.category || raw.categoryId || "").trim() || "general";
-    const categoryFromMap = categoryMap.get(categoryId);
-    const categoryTitle = String(raw.categoryTitle || categoryFromMap?.title || t("remote_category_default")).trim() || t("remote_category_default");
-
-    const lyricsOriginal = String(raw.lyricsOriginal || raw.lyrics || "");
-    const normalizedParagraphs = getNormalizedParagraphs(raw.paragraphs, lyricsOriginal);
-
-    const timesAuto = Array.isArray(raw.times?.auto)
-      ? raw.times.auto
-      : (Array.isArray(raw.autoTimes) ? raw.autoTimes : []);
-    const timesCalibrated = Array.isArray(raw.times?.calibrated)
-      ? raw.times.calibrated
-      : (Array.isArray(raw.calibratedTimes) ? raw.calibratedTimes : []);
-
-    return {
-      id: String(raw.id || "").trim() || generateId(),
-      title,
-      audioUrl,
-      categoryId,
-      categoryTitle,
-      lyricsOriginal,
-      paragraphs: normalizedParagraphs.paragraphs,
-      autoTimes: timesAuto,
-      calibratedTimes: timesCalibrated,
-      detector: {
-        threshold: Number(raw.detector?.threshold ?? 0.02),
-        minSilenceMs: Number(raw.detector?.minSilenceMs ?? 320),
-        windowMs: Number(raw.detector?.windowMs ?? 80)
-      },
-      offsetSeconds: Number(raw.offsetSeconds ?? 0),
-      audioMeta: raw.audioMeta || null
-    };
+    return shared.normalizeCatalogSong(raw, {
+      categoriesMap: categoryMap,
+      categoryFallbackTitle: t("remote_category_default"),
+      idFactory: generateId,
+      resolveAudio: (value) => String(value || "").trim()
+    });
   }
 
   function resolveUrlFromCatalog(rawUrl, catalogUrl) {
@@ -2315,13 +2200,7 @@
   }
 
   function inferAudioNameFromUrl(url) {
-    try {
-      const parsed = new URL(url, window.location.href);
-      const last = parsed.pathname.split("/").pop() || "audio-remoto.mp3";
-      return sanitizeFileName(decodeURIComponent(last));
-    } catch {
-      return "audio-remoto.mp3";
-    }
+    return sanitizeFileName(shared.inferAudioNameFromUrl(url));
   }
 
   function setAudioFromBlob(blob, meta) {

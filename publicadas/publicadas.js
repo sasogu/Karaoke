@@ -4,6 +4,7 @@
   const CATALOG_URL = "../catalog/canciones.json";
   const APP_BASE_URL = new URL("../", window.location.href);
   const LS_LANG_KEY = "karaokeLanguageV1";
+  const shared = window.KaraokeShared;
 
   const I18N = {
     es: {
@@ -162,11 +163,6 @@
     startupRequest: null
   };
 
-  const parseParagraphs = (text) => String(text || "")
-    .split(/\n\s*\n/g)
-    .map((p) => p.trim())
-    .filter(Boolean);
-
   const clearElement = (element) => {
     if (!element) return;
     while (element.firstChild) {
@@ -276,72 +272,16 @@
     refs.shareBtn.disabled = !Boolean(state.currentSong?.id);
   }
 
-  function formatTime(seconds) {
-    if (!Number.isFinite(seconds)) return "00:00";
-    const s = Math.max(0, Math.floor(seconds));
-    const mm = String(Math.floor(s / 60)).padStart(2, "0");
-    const ss = String(s % 60).padStart(2, "0");
-    return `${mm}:${ss}`;
-  }
-
-  function inferAudioNameFromUrl(url) {
-    try {
-      const parsed = new URL(url, window.location.href);
-      const last = parsed.pathname.split("/").pop();
-      return decodeURIComponent(last || "audio-remoto.mp3");
-    } catch {
-      return "audio-remoto.mp3";
-    }
-  }
-
-  function resolveAudioUrl(url) {
-    const raw = String(url || "").trim();
-    if (!raw) return "";
-
-    if (/^[a-zA-Z][a-zA-Z\d+.-]*:/.test(raw) || raw.startsWith("//")) {
-      return raw;
-    }
-
-    if (raw.startsWith("/")) {
-      return new URL(raw, window.location.origin).href;
-    }
-
-    if (raw.startsWith("./") || raw.startsWith("../")) {
-      return new URL(raw, window.location.href).href;
-    }
-
-    return new URL(raw, APP_BASE_URL).href;
-  }
+  const formatTime = shared.formatTime;
+  const inferAudioNameFromUrl = shared.inferAudioNameFromUrl;
 
   function normalizeSong(raw, categoriesMap) {
-    if (!raw || typeof raw !== "object") return null;
-    const title = String(raw.title || "").trim();
-    const audioUrlRaw = String(raw.audioUrl || raw.audio || "").trim();
-    const audioUrl = resolveAudioUrl(audioUrlRaw);
-    if (!title || !audioUrl) return null;
-
-    const lyricsOriginal = String(raw.lyricsOriginal || raw.lyrics || "");
-    const paragraphs = Array.isArray(raw.paragraphs) && raw.paragraphs.length
-      ? raw.paragraphs.map((p) => String(p || "")).filter(Boolean)
-      : parseParagraphs(lyricsOriginal);
-
-    const autoTimes = Array.isArray(raw.times?.auto) ? raw.times.auto : (Array.isArray(raw.autoTimes) ? raw.autoTimes : []);
-    const calibratedTimes = Array.isArray(raw.times?.calibrated) ? raw.times.calibrated : (Array.isArray(raw.calibratedTimes) ? raw.calibratedTimes : []);
-
-    const categoryId = String(raw.category || raw.categoryId || "").trim() || "general";
-    const categoryTitle = String(raw.categoryTitle || categoriesMap.get(categoryId)?.title || "General").trim() || "General";
-
-    return {
-      id: String(raw.id || "").trim() || crypto.randomUUID(),
-      title,
-      audioUrl,
-      paragraphs,
-      autoTimes,
-      calibratedTimes,
-      categoryId,
-      categoryTitle,
-      audioMeta: raw.audioMeta || null
-    };
+    return shared.normalizeCatalogSong(raw, {
+      categoriesMap,
+      categoryFallbackTitle: "General",
+      idFactory: () => crypto.randomUUID(),
+      resolveAudio: (value) => shared.resolveAudioUrl(value, { baseUrl: APP_BASE_URL })
+    });
   }
 
   function getEffectiveTimes(song) {
