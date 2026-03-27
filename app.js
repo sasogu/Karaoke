@@ -2,6 +2,7 @@
   "use strict";
 
   const shared = window.KaraokeShared;
+  const storage = window.KaraokeStorage;
 
   const LS_KEY = "karaokeProjectStateV1";
   const DB_NAME = "karaokeDB";
@@ -888,84 +889,28 @@
     });
   }
 
-  // ==================== IndexedDB ====================
-  // 1) open + onupgradeneeded
   function openDB() {
-    return new Promise((resolve, reject) => {
-      const request = indexedDB.open(DB_NAME, DB_VERSION);
-
-      request.onupgradeneeded = (event) => {
-        const database = event.target.result;
-        if (!database.objectStoreNames.contains(STORE_AUDIOS)) {
-          database.createObjectStore(STORE_AUDIOS, { keyPath: "id" });
-        }
-      };
-
-      request.onsuccess = () => {
-        db = request.result;
-        resolve(db);
-      };
-
-      request.onerror = () => reject(request.error || new Error(t("err_db_open")));
+    return storage.openAudioDB({
+      dbName: DB_NAME,
+      dbVersion: DB_VERSION,
+      storeName: STORE_AUDIOS,
+      openErrorMessage: t("err_db_open")
+    }).then((database) => {
+      db = database;
+      return db;
     });
   }
 
-  function audioKey(meta) {
-    return meta ? `${meta.name}::${meta.size}` : null;
-  }
-
-  // 2) transactions readwrite/readonly
   function saveAudioBlob(meta, blob) {
-    return new Promise((resolve, reject) => {
-      if (!db) return reject(new Error("DB no inicializada"));
-      const id = audioKey(meta);
-      if (!id) return reject(new Error("Metadatos de audio inválidos"));
-
-      const tx = db.transaction([STORE_AUDIOS], "readwrite");
-      const store = tx.objectStore(STORE_AUDIOS);
-
-      store.put({
-        id,
-        name: meta.name,
-        type: meta.type,
-        size: meta.size,
-        duration: meta.duration || 0,
-        blob,
-        savedAt: Date.now()
-      });
-
-      tx.oncomplete = () => resolve();
-      tx.onerror = () => reject(tx.error || new Error("Error al guardar audio"));
-    });
+    return storage.saveAudioBlob(db, STORE_AUDIOS, meta, blob);
   }
 
   function getAudioBlob(meta) {
-    return new Promise((resolve, reject) => {
-      if (!db) return reject(new Error("DB no inicializada"));
-      const id = audioKey(meta);
-      if (!id) return resolve(null);
-
-      const tx = db.transaction([STORE_AUDIOS], "readonly");
-      const store = tx.objectStore(STORE_AUDIOS);
-      const req = store.get(id);
-
-      req.onsuccess = () => resolve(req.result || null);
-      req.onerror = () => reject(req.error || new Error("Error al leer audio"));
-    });
+    return storage.getAudioBlob(db, STORE_AUDIOS, meta);
   }
 
   function deleteAudioBlob(meta) {
-    return new Promise((resolve, reject) => {
-      if (!db) return reject(new Error("DB no inicializada"));
-      const id = audioKey(meta);
-      if (!id) return resolve();
-
-      const tx = db.transaction([STORE_AUDIOS], "readwrite");
-      tx.objectStore(STORE_AUDIOS).delete(id);
-
-      tx.oncomplete = () => resolve();
-      tx.onerror = () => reject(tx.error || new Error(t("err_db_delete_audio")));
-    });
+    return storage.deleteAudioBlob(db, STORE_AUDIOS, meta, t("err_db_delete_audio"));
   }
 
   function displayNotification(message, isError = false) {

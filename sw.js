@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-globals */
 
-const APP_CACHE_VERSION = "1.1.18";
+const APP_CACHE_VERSION = "1.1.19";
 const CACHE_PREFIX = "karaoke-pwa";
 const STATIC_CACHE = `${CACHE_PREFIX}-static-${APP_CACHE_VERSION}`;
 const RUNTIME_CACHE = `${CACHE_PREFIX}-runtime-${APP_CACHE_VERSION}`;
@@ -14,6 +14,7 @@ const APP_SHELL = [
   "./publicadas/publicadas.js",
   "./style.css",
   "./shared.js",
+  "./app-storage.js",
   "./app.js",
   "./manifest.webmanifest",
   "./catalog/canciones.json",
