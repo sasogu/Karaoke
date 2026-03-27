@@ -167,6 +167,31 @@
     .map((p) => p.trim())
     .filter(Boolean);
 
+  const clearElement = (element) => {
+    if (!element) return;
+    while (element.firstChild) {
+      element.removeChild(element.firstChild);
+    }
+  };
+
+  function createEmptyMessage(text) {
+    const node = document.createElement("p");
+    node.className = "empty";
+    node.textContent = text;
+    return node;
+  }
+
+  function createButton(label, options = {}) {
+    const { className = "", action = "", id = "" } = options;
+    const button = document.createElement("button");
+    button.type = "button";
+    button.textContent = label;
+    if (className) button.className = className;
+    if (action) button.dataset.action = action;
+    if (id) button.dataset.id = id;
+    return button;
+  }
+
   function t(key, params = {}) {
     const bundle = I18N[currentLanguage] || I18N.es;
     const template = bundle[key] || I18N.es[key] || key;
@@ -400,8 +425,8 @@
       if (!categories.has(id)) categories.set(id, title);
     });
 
-    refs.catalogFilter.innerHTML = '<option value="">Todas</option>';
-    refs.catalogFilter.innerHTML = `<option value="">${t("filter_all")}</option>`;
+    clearElement(refs.catalogFilter);
+    refs.catalogFilter.appendChild(new Option(t("filter_all"), ""));
 
     Array.from(categories.entries())
       .sort((a, b) => a[1].localeCompare(b[1], "es"))
@@ -418,8 +443,12 @@
 
   function renderCatalog() {
     if (!state.songs.length) {
-      refs.catalogView.innerHTML = `<p class="empty">${t("catalog_empty")}</p>`;
-      if (refs.catalogFilter) refs.catalogFilter.innerHTML = `<option value="">${t("filter_all")}</option>`;
+      clearElement(refs.catalogView);
+      refs.catalogView.appendChild(createEmptyMessage(t("catalog_empty")));
+      if (refs.catalogFilter) {
+        clearElement(refs.catalogFilter);
+        refs.catalogFilter.appendChild(new Option(t("filter_all"), ""));
+      }
       return;
     }
 
@@ -430,11 +459,12 @@
       : state.songs;
 
     if (!visibleSongs.length) {
-      refs.catalogView.innerHTML = `<p class="empty">${t("catalog_filtered_empty")}</p>`;
+      clearElement(refs.catalogView);
+      refs.catalogView.appendChild(createEmptyMessage(t("catalog_filtered_empty")));
       return;
     }
 
-    refs.catalogView.innerHTML = "";
+    clearElement(refs.catalogView);
     const grouped = new Map();
 
     visibleSongs.forEach((song) => {
@@ -457,16 +487,27 @@
             const hasTimes = getEffectiveTimes(song).length > 0;
             const item = document.createElement("article");
             item.className = "remote-song-item";
-            item.innerHTML = `
-              <div>
-                <div class="playlist-item-title">${song.title}</div>
-                <div class="playlist-item-meta">${inferAudioNameFromUrl(song.audioUrl)} · ${t("paragraph_count", { count: song.paragraphs.length })} · ${hasTimes ? t("sync_yes") : t("sync_no")}</div>
-              </div>
-              <div class="remote-song-actions">
-                <button class="secondary" data-action="load" data-id="${song.id}">${t("btn_load")}</button>
-                <button data-action="play" data-id="${song.id}">${t("btn_load_play")}</button>
-              </div>
-            `;
+
+            const summary = document.createElement("div");
+
+            const songTitle = document.createElement("div");
+            songTitle.className = "playlist-item-title";
+            songTitle.textContent = song.title;
+
+            const meta = document.createElement("div");
+            meta.className = "playlist-item-meta";
+            meta.textContent = `${inferAudioNameFromUrl(song.audioUrl)} · ${t("paragraph_count", { count: song.paragraphs.length })} · ${hasTimes ? t("sync_yes") : t("sync_no")}`;
+
+            summary.appendChild(songTitle);
+            summary.appendChild(meta);
+
+            const actions = document.createElement("div");
+            actions.className = "remote-song-actions";
+            actions.appendChild(createButton(t("btn_load"), { className: "secondary", action: "load", id: song.id }));
+            actions.appendChild(createButton(t("btn_load_play"), { action: "play", id: song.id }));
+
+            item.appendChild(summary);
+            item.appendChild(actions);
             refs.catalogView.appendChild(item);
           });
       });
@@ -475,13 +516,14 @@
   function buildLyrics() {
     const song = state.currentSong;
     if (!song || !song.paragraphs.length) {
-      refs.lyricsView.innerHTML = `<p class="empty">${t("lyrics_empty")}</p>`;
+      clearElement(refs.lyricsView);
+      refs.lyricsView.appendChild(createEmptyMessage(t("lyrics_empty")));
       refs.progress.textContent = "0/0";
       state.activeParagraphIndex = -1;
       return;
     }
 
-    refs.lyricsView.innerHTML = "";
+    clearElement(refs.lyricsView);
     song.paragraphs.forEach((text) => {
       const p = document.createElement("p");
       p.className = "paragraph";
@@ -704,7 +746,8 @@
     } catch (error) {
       updateStatus(t("status_error"));
       if (!state.songs.length) {
-        refs.catalogView.innerHTML = `<p class="empty">${t("catalog_load_error", { error: error.message })}</p>`;
+        clearElement(refs.catalogView);
+        refs.catalogView.appendChild(createEmptyMessage(t("catalog_load_error", { error: error.message })));
       }
     }
   }

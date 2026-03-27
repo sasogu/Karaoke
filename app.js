@@ -32,6 +32,31 @@
 
   const $ = (id) => document.getElementById(id);
 
+  const clearElement = (element) => {
+    if (!element) return;
+    while (element.firstChild) {
+      element.removeChild(element.firstChild);
+    }
+  };
+
+  function createEmptyMessage(text) {
+    const message = document.createElement("p");
+    message.className = "empty";
+    message.textContent = text;
+    return message;
+  }
+
+  function createButton(label, options = {}) {
+    const { className = "", action = "", id = "", type = "button" } = options;
+    const button = document.createElement("button");
+    button.type = type;
+    button.textContent = label;
+    if (className) button.className = className;
+    if (action) button.dataset.action = action;
+    if (id) button.dataset.id = id;
+    return button;
+  }
+
   const refs = {
     audioFile: $("audioFile"),
     audio: $("audio"),
@@ -1298,7 +1323,7 @@
   }
 
   function buildKaraokeParagraphs() {
-    refs.karaokeView.innerHTML = "";
+    clearElement(refs.karaokeView);
     state.paragraphs.forEach((text) => {
       const p = document.createElement("p");
       p.className = "paragraph";
@@ -1331,7 +1356,8 @@
 
   function displayEmptyKaraokeMessage() {
     if (!refs.karaokeView.querySelector(".empty")) {
-      refs.karaokeView.innerHTML = `<p class="empty">${t("no_paragraphs")}</p>`;
+      clearElement(refs.karaokeView);
+      refs.karaokeView.appendChild(createEmptyMessage(t("no_paragraphs")));
     }
     refs.progressIndicator.textContent = "0/0";
     activeParagraphIndex = -1;
@@ -1397,14 +1423,17 @@
     refs.playlistCount.textContent = t("playlist_count", { count: totalTracks });
 
     if (!state.playlist.length) {
-      refs.playlistView.innerHTML = `<p class="empty">${t("no_playlists_saved")}</p>`;
-      refs.playlistSelect.innerHTML = `<option value="">${t("new_playlist")}</option>`;
+      clearElement(refs.playlistView);
+      refs.playlistView.appendChild(createEmptyMessage(t("no_playlists_saved")));
+      clearElement(refs.playlistSelect);
+      refs.playlistSelect.appendChild(new Option(t("new_playlist"), ""));
       syncPlaylistNameInputFromSelection();
       return;
     }
 
-    refs.playlistView.innerHTML = "";
-    refs.playlistSelect.innerHTML = `<option value="">${t("new_playlist")}</option>`;
+    clearElement(refs.playlistView);
+    clearElement(refs.playlistSelect);
+    refs.playlistSelect.appendChild(new Option(t("new_playlist"), ""));
 
     sortedPlaylists.forEach((playlist) => {
       const option = document.createElement("option");
@@ -1425,13 +1454,15 @@
       : sortedPlaylists.filter((playlist) => Array.isArray(playlist.items) && playlist.items.length);
 
     if (selectedPlaylist && (!Array.isArray(selectedPlaylist.items) || !selectedPlaylist.items.length)) {
-      refs.playlistView.innerHTML = `<p class="empty">${t("no_tracks_saved")}</p>`;
+      clearElement(refs.playlistView);
+      refs.playlistView.appendChild(createEmptyMessage(t("no_tracks_saved")));
       syncPlaylistNameInputFromSelection();
       return;
     }
 
     if (!visiblePlaylists.length) {
-      refs.playlistView.innerHTML = `<p class="empty">${t("no_tracks_saved")}</p>`;
+      clearElement(refs.playlistView);
+      refs.playlistView.appendChild(createEmptyMessage(t("no_tracks_saved")));
       syncPlaylistNameInputFromSelection();
       return;
     }
@@ -1446,23 +1477,39 @@
 
         const date = new Date(item.createdAt || Date.now());
         const hasTimes = (item.calibratedTimes?.length || item.autoTimes?.length || 0) > 0;
-        wrapper.innerHTML = `
-          <div class="playlist-item-main">
-            <div>
-              <div class="playlist-item-title">${item.title}</div>
-              <div class="playlist-item-meta">${item.audioMeta?.name || t("playlist_no_audio")} · ${t("paragraph_count", { count: item.paragraphs.length })} · ${hasTimes ? t("playlist_sync_yes") : t("playlist_sync_no")}</div>
-              <div class="playlist-item-meta">${date.toLocaleString(locale)}</div>
-            </div>
-            <div class="playlist-item-actions">
-              <button class="secondary" data-action="load" data-id="${item.id}">${t("btn_load")}</button>
-              <button data-action="play" data-id="${item.id}">${t("btn_load_play")}</button>
-              <button class="secondary" data-action="rename" data-id="${item.id}">${t("btn_rename_track")}</button>
-              <button class="secondary" data-action="move" data-id="${item.id}">${t("btn_move_track")}</button>
-              <button class="secondary" data-action="replace" data-id="${item.id}">${t("btn_replace_track")}</button>
-              <button class="danger" data-action="delete" data-id="${item.id}">${t("btn_delete")}</button>
-            </div>
-          </div>
-        `;
+        const main = document.createElement("div");
+        main.className = "playlist-item-main";
+
+        const summary = document.createElement("div");
+
+        const title = document.createElement("div");
+        title.className = "playlist-item-title";
+        title.textContent = item.title;
+
+        const meta = document.createElement("div");
+        meta.className = "playlist-item-meta";
+        meta.textContent = `${item.audioMeta?.name || t("playlist_no_audio")} · ${t("paragraph_count", { count: item.paragraphs.length })} · ${hasTimes ? t("playlist_sync_yes") : t("playlist_sync_no")}`;
+
+        const dateMeta = document.createElement("div");
+        dateMeta.className = "playlist-item-meta";
+        dateMeta.textContent = date.toLocaleString(locale);
+
+        summary.appendChild(title);
+        summary.appendChild(meta);
+        summary.appendChild(dateMeta);
+
+        const actions = document.createElement("div");
+        actions.className = "playlist-item-actions";
+        actions.appendChild(createButton(t("btn_load"), { className: "secondary", action: "load", id: item.id }));
+        actions.appendChild(createButton(t("btn_load_play"), { action: "play", id: item.id }));
+        actions.appendChild(createButton(t("btn_rename_track"), { className: "secondary", action: "rename", id: item.id }));
+        actions.appendChild(createButton(t("btn_move_track"), { className: "secondary", action: "move", id: item.id }));
+        actions.appendChild(createButton(t("btn_replace_track"), { className: "secondary", action: "replace", id: item.id }));
+        actions.appendChild(createButton(t("btn_delete"), { className: "danger", action: "delete", id: item.id }));
+
+        main.appendChild(summary);
+        main.appendChild(actions);
+        wrapper.appendChild(main);
 
         if (pendingMoveItemId === item.id) {
           const controls = document.createElement("div");
@@ -1607,11 +1654,12 @@
     refs.remoteCatalogStatus.textContent = t("remote_status_ready", { count: state.remoteSongs.length });
 
     if (!state.remoteSongs.length) {
-      refs.remoteSongsView.innerHTML = `<p class="empty">${t("remote_songs_empty")}</p>`;
+      clearElement(refs.remoteSongsView);
+      refs.remoteSongsView.appendChild(createEmptyMessage(t("remote_songs_empty")));
       return;
     }
 
-    refs.remoteSongsView.innerHTML = "";
+    clearElement(refs.remoteSongsView);
     const grouped = new Map();
     state.remoteSongs.forEach((song) => {
       const key = `${song.categoryId}::${song.categoryTitle}`;
@@ -1642,18 +1690,31 @@
             const hasTimes = (song.calibratedTimes?.length || song.autoTimes?.length || 0) > 0;
             const wrapper = document.createElement("article");
             wrapper.className = "playlist-item";
-            wrapper.innerHTML = `
-              <div class="playlist-item-main">
-                <div>
-                  <div class="playlist-item-title">${song.title}</div>
-                  <div class="playlist-item-meta">${inferAudioNameFromUrl(song.audioUrl)} · ${t("paragraph_count", { count: song.paragraphs.length })} · ${hasTimes ? t("playlist_sync_yes") : t("playlist_sync_no")}</div>
-                </div>
-                <div class="playlist-item-actions">
-                  <button class="secondary" data-action="remote-load" data-id="${song.id}">${t("btn_load")}</button>
-                  <button data-action="remote-play" data-id="${song.id}">${t("btn_load_play")}</button>
-                </div>
-              </div>
-            `;
+
+            const main = document.createElement("div");
+            main.className = "playlist-item-main";
+
+            const summary = document.createElement("div");
+
+            const songTitle = document.createElement("div");
+            songTitle.className = "playlist-item-title";
+            songTitle.textContent = song.title;
+
+            const songMeta = document.createElement("div");
+            songMeta.className = "playlist-item-meta";
+            songMeta.textContent = `${inferAudioNameFromUrl(song.audioUrl)} · ${t("paragraph_count", { count: song.paragraphs.length })} · ${hasTimes ? t("playlist_sync_yes") : t("playlist_sync_no")}`;
+
+            summary.appendChild(songTitle);
+            summary.appendChild(songMeta);
+
+            const actions = document.createElement("div");
+            actions.className = "playlist-item-actions";
+            actions.appendChild(createButton(t("btn_load"), { className: "secondary", action: "remote-load", id: song.id }));
+            actions.appendChild(createButton(t("btn_load_play"), { action: "remote-play", id: song.id }));
+
+            main.appendChild(summary);
+            main.appendChild(actions);
+            wrapper.appendChild(main);
             section.appendChild(wrapper);
           });
 

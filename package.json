@@ -1,0 +1,11 @@
+{
+  "name": "edukaraoke",
+  "private": true,
+  "version": "1.0.0",
+  "description": "PWA estática para crear y publicar karaokes por párrafos",
+  "scripts": {
+    "check": "node --check app.js && node --check publicadas/publicadas.js && node --check sw.js && node scripts/generate-catalog.mjs --help > /dev/null",
+    "build:catalog": "node scripts/generate-catalog.mjs",
+    "lint": "npm run check"
+  }
+}

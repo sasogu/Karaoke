@@ -24,6 +24,30 @@ body {
   line-height: 1.6;
 }
 
+.container {
+  width: min(100% - 24px, 1100px);
+  margin: 0 auto;
+}
+
+.py-3 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.g-3 {
+  gap: 1rem;
+}
+
+.col-12 {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
 .app {
   max-width: 1100px;
 }
@@ -238,6 +262,10 @@ button.danger:hover {
   color: var(--muted);
   margin: 8px 0 0;
   font-size: 0.88rem;
+}
+
+.empty {
+  margin: 0;
 }
 
 .karaoke-card {

@@ -2,7 +2,7 @@
 
 Proyecto sin frameworks ni backend, compatible con GitHub Pages y ejecución local abriendo `index.html`.
 
-[https://sasogu.github.io/Karaoke/](https://)
+[https://sasogu.github.io/Karaoke/](https://sasogu.github.io/Karaoke/)
 
 Archivos
 
@@ -25,8 +25,11 @@ Este proyecto se distribuye bajo licencia **MIT**. Revisa el archivo `LICENSE`.
 1. Sirve la carpeta con HTTP local (por ejemplo `python -m http.server 8080`).
 2. Abre `http://localhost:8080` en un navegador moderno.
 3. (Opcional) Instala la app como PWA desde el navegador.
+4. (Opcional) Ejecuta `npm run check` para validación básica del proyecto.
 
 > Nota: el service worker no funciona en `file://`; para PWA necesitas `http://localhost` o HTTPS.
+>
+> La UI principal ya no depende de Bootstrap remoto, así que el modo offline visual es más consistente. La exportación/importación ZIP sigue dependiendo de `JSZip` cargado por CDN.
 
 ## PWA (Versions and Cache Cleaning)
 

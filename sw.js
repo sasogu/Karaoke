@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-globals */
 
-const APP_CACHE_VERSION = "1.1.16";
+const APP_CACHE_VERSION = "1.1.17";
 const CACHE_PREFIX = "karaoke-pwa";
 const STATIC_CACHE = `${CACHE_PREFIX}-static-${APP_CACHE_VERSION}`;
 const RUNTIME_CACHE = `${CACHE_PREFIX}-runtime-${APP_CACHE_VERSION}`;
@@ -58,7 +58,7 @@ self.addEventListener("fetch", (event) => {
   if (url.origin !== self.location.origin) return;
 
   if (request.mode === "navigate") {
-    event.respondWith(networkFirst(request, "./index.html"));
+    event.respondWith(networkFirst(request, getNavigationFallback(url)));
     return;
   }
 
@@ -112,6 +112,10 @@ async function staleWhileRevalidate(request) {
   if (networkResponse) return networkResponse;
 
   return fetch(request);
+}
+
+function getNavigationFallback(url) {
+  return url.pathname.includes("/publicadas/") ? "./publicadas/index.html" : "./index.html";
 }
 
 function isCacheableResponse(response) {
