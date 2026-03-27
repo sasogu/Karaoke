@@ -45,3 +45,20 @@ Campos recomendados:
 - `categoryTitle` (nombre visible)
 
 Si un campo no está en este JSON, el generador intenta inferirlo.
+
+## Validación
+
+Antes de publicar o hacer push, conviene ejecutar:
+
+```bash
+npm run validate:catalog
+```
+
+La validación revisa:
+
+- JSON válido
+- `title` correcto
+- `audioUrl` o audio local identificable
+- párrafos no vacíos
+- tiempos numéricos y ordenados
+- estructura básica del catálogo generado

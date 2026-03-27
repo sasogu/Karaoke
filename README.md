@@ -171,6 +171,18 @@ Opciones útiles:
 
 Detalles del formato de los JSON de sincronización en `sync/README.md`.
 
+Validación recomendada antes de publicar:
+
+```bash
+npm run validate:catalog
+```
+
+Comprobación rápida de todo el proyecto:
+
+```bash
+npm run check
+```
+
 ### GitHub Actions (autogeneración en cada push)
 
 Se incluye el workflow [`.github/workflows/update-catalog.yml`](.github/workflows/update-catalog.yml) para regenerar `catalog/canciones.json` automáticamente cuando cambien `audio/`, `sync/` o el script generador.
@@ -179,7 +191,8 @@ Flujo:
 
 1. Haces push a `main`.
 2. Action ejecuta `scripts/generate-catalog.mjs`.
-3. Si hay cambios, hace commit automático del catálogo.
+3. Action valida `sync/` y `catalog/canciones.json`.
+4. Si hay cambios, hace commit automático del catálogo.
 
 ### Exportar tema publicable desde la app
 
