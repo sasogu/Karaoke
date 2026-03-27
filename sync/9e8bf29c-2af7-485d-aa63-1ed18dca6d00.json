@@ -1,0 +1,41 @@
+{
+  "id": "9e8bf29c-2af7-485d-aa63-1ed18dca6d00",
+  "title": "6è el millor",
+  "category": "6a",
+  "categoryTitle": "6A",
+  "lyricsOriginal": "\n\n(Intro)\nYeah yeah…\nSix seven a la casa…\nEl Blasco represent…\nWachin-wachan!\n\n(Vers 1)\n6è el millor, això ja ho sabem,\na la classe del Blasco sempre ho petem.\nSix seven crew, fent soroll pel passadís,\nwachin-wachan quan sona el beat.\n\nLes mates aburrides, mirant el rellotge lent,\nperò amb els amics la classe passa diferent.\nEl profe explica mentre el cap se’n va volant,\npensant en el pati i en sortir a jugar.\n\n(Estribillo)\n6è el millor, que ho senti tot el món,\nsix seven al beat i pujant el volum.\nWachin-wachan quan comença la cançó,\nfin de curs arribant, festa al cor. 🎶\n\n(Vers 2)\nJulio el millor, això queda clar,\namb els bollitos sempre vol compartir i menjar.\nRiem a la classe, records per guardar,\nquan arribi el fin de curs ho anirem a celebrar.\n\nEl Blasco al mapa, la classe un equip,\nsix seven units amb el flow ben viu.\nEncara que les mates siguin aburrides de debò,\namb aquesta crew tot sona millor.\n\n(Estribillo)\n6è el millor, que ho senti tot el món,\nsix seven al beat i pujant el volum.\nWachin-wachan quan comença la cançó,\nfin de curs arribant, festa al cor.\n\n(Outro)\nYeah…\n6è el millor…\nEl Blasco…\nSix seven…\nWachin-wachan…\nI no oblidem… bollitos! 😎🥐\n",
+  "paragraphs": [
+    "(Intro)\nYeah yeah…\nSix seven a la casa…\nEl Blasco represent…\nWachin-wachan!",
+    "(Vers 1)\n6è el millor, això ja ho sabem,\na la classe del Blasco sempre ho petem.\nSix seven crew, fent soroll pel passadís,\nwachin-wachan quan sona el beat.",
+    "Les mates aburrides, mirant el rellotge lent,\nperò amb els amics la classe passa diferent.\nEl profe explica mentre el cap se’n va volant,\npensant en el pati i en sortir a jugar.",
+    "(Estribillo)\n6è el millor, que ho senti tot el món,\nsix seven al beat i pujant el volum.\nWachin-wachan quan comença la cançó,\nfin de curs arribant, festa al cor. 🎶",
+    "(Vers 2)\nJulio el millor, això queda clar,\namb els bollitos sempre vol compartir i menjar.\nRiem a la classe, records per guardar,\nquan arribi el fin de curs ho anirem a celebrar.",
+    "El Blasco al mapa, la classe un equip,\nsix seven units amb el flow ben viu.\nEncara que les mates siguin aburrides de debò,\namb aquesta crew tot sona millor.",
+    "(Estribillo)\n6è el millor, que ho senti tot el món,\nsix seven al beat i pujant el volum.\nWachin-wachan quan comença la cançó,\nfin de curs arribant, festa al cor.",
+    "(Outro)\nYeah…\n6è el millor…\nEl Blasco…\nSix seven…\nWachin-wachan…\nI no oblidem… bollitos! 😎🥐"
+  ],
+  "times": {
+    "auto": [],
+    "calibrated": [
+      1.888,
+      9.962666,
+      19.84,
+      29.44,
+      39.466666,
+      60.469333,
+      70.069333,
+      90.058666
+    ]
+  },
+  "offsetSeconds": 0,
+  "detector": {
+    "threshold": 0.02,
+    "minSilenceMs": 320,
+    "windowMs": 80
+  },
+  "audioMeta": {
+    "name": "6A_ 6è el millor.mp3",
+    "type": "audio/mpeg"
+  },
+  "audioUrl": "audio/6A_ 6è el millor.mp3"
+}

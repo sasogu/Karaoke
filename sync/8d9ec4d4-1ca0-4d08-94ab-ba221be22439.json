@@ -1,0 +1,49 @@
+{
+  "id": "8d9ec4d4-1ca0-4d08-94ab-ba221be22439",
+  "title": "🎶 “Al pati el millor” 🎶",
+  "category": "4a",
+  "categoryTitle": "4A",
+  "lyricsOriginal": "🎶 “Al pati el millor” 🎶\n\n(Intro)\nPalmes, palmes…\nGuitarra que sona al pati…\nOlé… go viu a la teua manera…\n\n(Vers 1)\nAl pati el millor, guitarra i quatre cançons,\namb ChatGPT escrivint versos i mil il·lusions.\nRobert Lewandowski xutant dins del meu cap,\ni Hugo Duro crida: “vine, que açò està que fa clap!”\n\nDe costa city fins a Elx sporting al sol,\nsix seven sonant fort, perdent el control.\nQuart el millor, diuen tots els companys,\namb música en la sang i la vida entre mans.\n\n(Pre-coro)\nI si la nit ens crida… anem sense pensar,\n99 nits en el bosc, ningú ens pot parar…\namistat que vibra, com cordes al tocar…\n\n(Coro)\nGo viu a la teua manera,\nque la vida és una foguera!\nSevilla sona, la lluna ens espera,\ni ballem junts fins que el cos no respon ja.\n\nCançons que portem dins del cor,\namb la guitarra fent calor…\nal pati el millor, al pati el millor,\nriure i viure sense por!\n\n(Vers 2)\nUn criper apareix, però no fa por hui,\namb un kitsune ballant com si fos d’aquí.\nNix maulant a la nit, misteri i compàs,\ni el xocas cridant “poppy play time 5” sense descans.\n\nBlox fruits a la tarda, fruta tirex al mar,\nPascua arriba i tot torna a començar.\nSomnis que giren com roda de color,\nentre rialles i ritme que surt del cor.\n\n(Pont)\nEh… companys, no s’acabe encara,\nque la nit és nostra i mai no s’atura…\npalmes que curen, guitarra que parla…\ni la vida que balla, que balla…\n\n(Coro final)\nGo viu a la teua manera,\nque la vida és una foguera!\nSevilla crema dins la primavera,\ni el món és nostre quan ningú ens espera.\n\nAl pati el millor, sempre millor,\namb amistat i amb amor…\ncançons que no s’obliden mai,\nolé la vida que ens porta lluny!",
+  "paragraphs": [
+    "🎶 “Al pati el millor” 🎶",
+    "(Intro)\nPalmes, palmes…\nGuitarra que sona al pati…\nOlé… go viu a la teua manera…",
+    "(Vers 1)\nAl pati el millor, guitarra i quatre cançons,\namb ChatGPT escrivint versos i mil il·lusions.\nRobert Lewandowski xutant dins del meu cap,\ni Hugo Duro crida: “vine, que açò està que fa clap!”",
+    "De costa city fins a Elx sporting al sol,\nsix seven sonant fort, perdent el control.\nQuart el millor, diuen tots els companys,\namb música en la sang i la vida entre mans.",
+    "(Pre-coro)\nI si la nit ens crida… anem sense pensar,\n99 nits en el bosc, ningú ens pot parar…\namistat que vibra, com cordes al tocar…",
+    "(Coro)\nGo viu a la teua manera,\nque la vida és una foguera!\nSevilla sona, la lluna ens espera,\ni ballem junts fins que el cos no respon ja.",
+    "Cançons que portem dins del cor,\namb la guitarra fent calor…\nal pati el millor, al pati el millor,\nriure i viure sense por!",
+    "(Vers 2)\nUn criper apareix, però no fa por hui,\namb un kitsune ballant com si fos d’aquí.\nNix maulant a la nit, misteri i compàs,\ni el xocas cridant “poppy play time 5” sense descans.",
+    "Blox fruits a la tarda, fruta tirex al mar,\nPascua arriba i tot torna a començar.\nSomnis que giren com roda de color,\nentre rialles i ritme que surt del cor.",
+    "(Pont)\nEh… companys, no s’acabe encara,\nque la nit és nostra i mai no s’atura…\npalmes que curen, guitarra que parla…\ni la vida que balla, que balla…",
+    "(Coro final)\nGo viu a la teua manera,\nque la vida és una foguera!\nSevilla crema dins la primavera,\ni el món és nostre quan ningú ens espera.",
+    "Al pati el millor, sempre millor,\namb amistat i amb amor…\ncançons que no s’obliden mai,\nolé la vida que ens porta lluny!"
+  ],
+  "times": {
+    "auto": [],
+    "calibrated": [
+      8.810666,
+      10.421333,
+      18.645333,
+      41.173333,
+      45.429333,
+      53.888,
+      55.434666,
+      72.757333,
+      93.248,
+      104.906666,
+      117.941333,
+      129.173333
+    ]
+  },
+  "offsetSeconds": 0,
+  "detector": {
+    "threshold": 0.02,
+    "minSilenceMs": 320,
+    "windowMs": 80
+  },
+  "audioMeta": {
+    "name": "🎶 “Al pati el millor” 🎶.mp3",
+    "type": "audio/mpeg"
+  },
+  "audioUrl": "audio/🎶 “Al pati el millor” 🎶.mp3"
+}

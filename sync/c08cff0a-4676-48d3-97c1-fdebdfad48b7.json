@@ -1,0 +1,47 @@
+{
+  "id": "c08cff0a-4676-48d3-97c1-fdebdfad48b7",
+  "title": "Chachi Piruli Show",
+  "category": "3a",
+  "categoryTitle": "3A",
+  "lyricsOriginal": "Títol: Chachi Piruli Show\n\nVers 1\nSona el piano i comença la funció,\nla banda de tercer A ja té revolució.\nMúsica a tope, ningú vol estudiar,\nentre videojocs només volem jugar.\n\nUn mocarrón vola com si fora un avió,\nchachunga vibes dins de l’aula en explosió.\nAmb choricitos i unos chetos per dinar,\naixò és el Titanic… però sense enfonsar.\n\nPre-coro\nSix seven, six seven, tots a cridar,\nanti six seven… ningú sap què passarà.\nUna mosca balla damunt del radiador,\ni el profe flipa: “açò què és, per favor?”\n\nCoro\nÉs el show del profe, chachi piruli total,\ncantar i ballar com si fora un festival.\nTots sóm amics, ningú es quedarà arrere,\nken y barbie ballant a la primera.\n\nVers 2\nUn llangardaix corre per la pissarra,\nmentre una calva brilla com una guitarra.\nRumi medita entre llibres i caos,\ni Vicente Blasco Ibáñez escriu nous relats.\n\nAmb my hero academy dins del cor,\ni stranger things donant-nos més color.\nVecna apareix però es posa a riure,\nperquè en esta classe tot és possible.\n\nPont\nDisney style, tot sembla un musical,\nla realitat es torna irreal.\nEl món gira dins d’un videojoc,\ni ningú sap si és veritat o no.\n\nBreak\nChachunga, chachunga, sona el compàs,\nla mosca fa beatbox i no para mai més.\nSix seven criden, anti six seven també,\ni el profe es rendeix… “jo ja no sé què fer”.\n\nCoro final\nÉs el show del profe, chachi piruli total,\ncantar i ballar com si fora un festival.\nTots sóm amics, rient sense parar,\nen esta bogeria que no acabarà.\n\nOutro\nSona el piano… i tot torna a començar,\nla banda de tercer A mai deixarà de sonar.",
+  "paragraphs": [
+    "Títol: Chachi Piruli Show",
+    "Vers 1\nSona el piano i comença la funció,\nla banda de tercer A ja té revolució.\nMúsica a tope, ningú vol estudiar,\nentre videojocs només volem jugar.",
+    "Un mocarrón vola com si fora un avió,\nchachunga vibes dins de l’aula en explosió.\nAmb choricitos i unos chetos per dinar,\naixò és el Titanic… però sense enfonsar.",
+    "Pre-coro\nSix seven, six seven, tots a cridar,\nanti six seven… ningú sap què passarà.\nUna mosca balla damunt del radiador,\ni el profe flipa: “açò què és, per favor?”",
+    "Coro\nÉs el show del profe, chachi piruli total,\ncantar i ballar com si fora un festival.\nTots sóm amics, ningú es quedarà arrere,\nken y barbie ballant a la primera.",
+    "Vers 2\nUn llangardaix corre per la pissarra,\nmentre una calva brilla com una guitarra.\nRumi medita entre llibres i caos,\ni Vicente Blasco Ibáñez escriu nous relats.",
+    "Amb my hero academy dins del cor,\ni stranger things donant-nos més color.\nVecna apareix però es posa a riure,\nperquè en esta classe tot és possible.",
+    "Pont\nDisney style, tot sembla un musical,\nla realitat es torna irreal.\nEl món gira dins d’un videojoc,\ni ningú sap si és veritat o no.",
+    "Break\nChachunga, chachunga, sona el compàs,\nla mosca fa beatbox i no para mai més.\nSix seven criden, anti six seven també,\ni el profe es rendeix… “jo ja no sé què fer”.",
+    "Coro final\nÉs el show del profe, chachi piruli total,\ncantar i ballar com si fora un festival.\nTots sóm amics, rient sense parar,\nen esta bogeria que no acabarà.",
+    "Outro\nSona el piano… i tot torna a començar,\nla banda de tercer A mai deixarà de sonar."
+  ],
+  "times": {
+    "auto": [],
+    "calibrated": [
+      3.693333,
+      4.738666,
+      21.272,
+      31.746666,
+      41.592,
+      52.024,
+      73.666666,
+      82.904,
+      92.706666,
+      103.650666,
+      114.584
+    ]
+  },
+  "offsetSeconds": 0,
+  "detector": {
+    "threshold": 0.02,
+    "minSilenceMs": 320,
+    "windowMs": 80
+  },
+  "audioMeta": {
+    "name": "Títol_ Chachi Piruli Show.mp3",
+    "type": "audio/mpeg"
+  },
+  "audioUrl": "audio/Títol_ Chachi Piruli Show.mp3"
+}

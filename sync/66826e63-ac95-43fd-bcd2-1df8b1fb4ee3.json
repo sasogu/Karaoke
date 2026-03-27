@@ -1,0 +1,47 @@
+{
+  "id": "66826e63-ac95-43fd-bcd2-1df8b1fb4ee3",
+  "title": "Olé la vida que sona",
+  "category": "4b",
+  "categoryTitle": "4B",
+  "lyricsOriginal": "🎶 “Olé la vida que sona” 🎶\n\n(Intro)\nOlé… olé…\nAmunt Espanya, que sona el tambor…\nAmb els companys… ay…\n\n(Vers 1)\nA Sevilla vaig arribar, amb la lluna de testimoni,\nuna cobaya em mirava, com si sabés tot el conte.\nMarco i Héctor al carrer, fent palmes amb els tambors,\ni Quevedo cantant fort, encenent tots els racons.\n\n(Pre-coro)\nI no sé què va passar,\nque la nit es va encendre…\nentre viatges i rialles,\nningú volia perdre…\n\n(Coro)\nOlé, olé, flamenc a la sang,\nballar fins que surti el sol!\nAmb tortilla de patata i un crit de cor:\n—Amunt Espanya, que avui hi ha flow!\n\nLa reina del flow, Charly flow també,\ncantant “supercalifragilisticoespialidoso”!\nI ta mare dient: “fill, porta’t bé”,\nperò la festa no té reposo!\n\n(Vers 2)\nEl presidente va passar, saludant des del balcó,\nmentre algú jugava a Minecraft amb un compàs flamencó.\nTorrente rient pel fons, amb una copa a la mà,\ni Luffy buscant tresors que mai no volen acabar.\n\nStranger Things a la tele, però ningú la vol mirar,\nperquè la vida aquí fora és la sèrie de veritat.\n\n(Pont)\nAy… companys… no marxeu encara,\nque la nit és jove i clara…\ni el cor batega amb palmes,\ncom guitarra que no para…\n\n(Coro final)\nOlé, olé, flamenc a la sang,\nballar fins que surti el sol!\nSevilla crema amb cada compàs,\ni la vida canta amb passió!\n\nLa reina del flow, Charly flow també,\ni el món girant sense control…\nEntre rialles, viatges i un “no sé”,\naixò sí que és viure, olé!",
+  "paragraphs": [
+    "🎶 “Olé la vida que sona” 🎶",
+    "(Intro)\nOlé… olé…\nAmunt Espanya, que sona el tambor…\nAmb els companys… ay…",
+    "(Vers 1)\nA Sevilla vaig arribar, amb la lluna de testimoni,\nuna cobaya em mirava, com si sabés tot el conte.\nMarco i Héctor al carrer, fent palmes amb els tambors,\ni Quevedo cantant fort, encenent tots els racons.",
+    "(Pre-coro)\nI no sé què va passar,\nque la nit es va encendre…\nentre viatges i rialles,\nningú volia perdre…",
+    "(Coro)\nOlé, olé, flamenc a la sang,\nballar fins que surti el sol!\nAmb tortilla de patata i un crit de cor:\n—Amunt Espanya, que avui hi ha flow!",
+    "La reina del flow, Charly flow també,\ncantant “supercalifragilisticoespialidoso”!\nI ta mare dient: “fill, porta’t bé”,\nperò la festa no té reposo!",
+    "(Vers 2)\nEl presidente va passar, saludant des del balcó,\nmentre algú jugava a Minecraft amb un compàs flamencó.\nTorrente rient pel fons, amb una copa a la mà,\ni Luffy buscant tresors que mai no volen acabar.",
+    "Stranger Things a la tele, però ningú la vol mirar,\nperquè la vida aquí fora és la sèrie de veritat.",
+    "(Pont)\nAy… companys… no marxeu encara,\nque la nit és jove i clara…\ni el cor batega amb palmes,\ncom guitarra que no para…",
+    "(Coro final)\nOlé, olé, flamenc a la sang,\nballar fins que surti el sol!\nSevilla crema amb cada compàs,\ni la vida canta amb passió!",
+    "La reina del flow, Charly flow també,\ni el món girant sense control…\nEntre rialles, viatges i un “no sé”,\naixò sí que és viure, olé!"
+  ],
+  "times": {
+    "auto": [],
+    "calibrated": [
+      4.224,
+      5.514666,
+      28.864,
+      43.904,
+      59.786666,
+      70.346666,
+      86.805333,
+      107.989333,
+      112.725333,
+      127.018666,
+      136.757333
+    ]
+  },
+  "offsetSeconds": 0,
+  "detector": {
+    "threshold": 0.02,
+    "minSilenceMs": 320,
+    "windowMs": 80
+  },
+  "audioMeta": {
+    "name": "🎶 “Olé la vida que sona” 🎶.mp3",
+    "type": "audio/mpeg"
+  },
+  "audioUrl": "audio/🎶 “Olé la vida que sona” 🎶.mp3"
+}

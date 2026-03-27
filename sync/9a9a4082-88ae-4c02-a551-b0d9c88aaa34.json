@@ -1,0 +1,41 @@
+{
+  "id": "9a9a4082-88ae-4c02-a551-b0d9c88aaa34",
+  "title": "Estiu que Comença",
+  "category": "6a",
+  "categoryTitle": "6A",
+  "lyricsOriginal": "🎶 Bachata: “Estiu que Comença” 🎶\n\nVers 1\nAquest any del col·legi ja ens n’anem,\nels records al cor sempre tindrem.\nComença l’estiu i el sol ens crida,\ndies llargs plens de llum i de vida.\n\nPre-Cor\nRiem junts sense mirar el rellotge,\nel temps vola quan estem així.\n\nCor\nComença l’estiu i ens banyem ben prompte,\na la piscina o a la mar sense parar.\nSense deixar de nadar, riure i cantar,\namb família i amics, què bé estem tots.\n\nVers 2\nMatins clars amb olor de sal,\npeus descalços tocant la sorra suau.\nEntre ones i esquitxos d’aigua fresca,\nl’estiu pinta records que mai s’esborren.\n\nPre-Cor\nSonen rialles dins del vent suau,\ni el cor balla amb la mar.\n\nCor\nComença l’estiu i ens banyem ben prompte,\na la piscina o a la mar sense parar.\nSense deixar de nadar, riure i cantar,\namb família i amics, què bé estem tots.\n\nFinal\nAquest any del col·legi ens acomiadem,\nperò l’estiu junts el celebrarem.\nEntre la piscina i la mar blava,\namb família i amics… la vida és més clara. 💃🌊☀️",
+  "paragraphs": [
+    "🎶 Bachata: “Estiu que Comença” 🎶",
+    "Vers 1\nAquest any del col·legi ja ens n’anem,\nels records al cor sempre tindrem.\nComença l’estiu i el sol ens crida,\ndies llargs plens de llum i de vida.",
+    "Pre-Cor\nRiem junts sense mirar el rellotge,\nel temps vola quan estem així.",
+    "Cor\nComença l’estiu i ens banyem ben prompte,\na la piscina o a la mar sense parar.\nSense deixar de nadar, riure i cantar,\namb família i amics, què bé estem tots.",
+    "Vers 2\nMatins clars amb olor de sal,\npeus descalços tocant la sorra suau.\nEntre ones i esquitxos d’aigua fresca,\nl’estiu pinta records que mai s’esborren.",
+    "Pre-Cor\nSonen rialles dins del vent suau,\ni el cor balla amb la mar.",
+    "Cor\nComença l’estiu i ens banyem ben prompte,\na la piscina o a la mar sense parar.\nSense deixar de nadar, riure i cantar,\namb família i amics, què bé estem tots.",
+    "Final\nAquest any del col·legi ens acomiadem,\nperò l’estiu junts el celebrarem.\nEntre la piscina i la mar blava,\namb família i amics… la vida és més clara. 💃🌊☀️"
+  ],
+  "times": {
+    "auto": [],
+    "calibrated": [
+      3.413333,
+      5.322666,
+      29.952,
+      44.789333,
+      72.192,
+      102.112,
+      116.981333,
+      141.930666
+    ]
+  },
+  "offsetSeconds": 0,
+  "detector": {
+    "threshold": 0.02,
+    "minSilenceMs": 320,
+    "windowMs": 80
+  },
+  "audioMeta": {
+    "name": "6A_Estiu que Comença.mp3",
+    "type": "audio/mpeg"
+  },
+  "audioUrl": "audio/6A_Estiu que Comença.mp3"
+}
