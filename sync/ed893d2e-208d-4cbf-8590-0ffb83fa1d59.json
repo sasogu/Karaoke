@@ -1,0 +1,37 @@
+{
+  "id": "ed893d2e-208d-4cbf-8590-0ffb83fa1d59",
+  "title": "La Fiesta del 5A",
+  "category": "5a",
+  "categoryTitle": "5A",
+  "lyricsOriginal": "## **\"La Fiesta del 5A\" (Versión Pegajosa)**\n\n**(Estribillo)**  \nEn el equipo sándwich, ¡ven a bailar!  \n**Vaya por Dios**, ¡qué alegría!  \n**Pollito con alioli**, todos a disfrutar,  \n**Nos partimos el culo**, ¡fiesta de energía!\n\n**(Verso)**  \n**Merequetengue** suena, ¡y no hay más!  \nCon **patatoe** y **jamón**, ¡a gozar sin parar!  \n**Sarandonga** vibra, ¡que suene el compás!  \n**María**, **Alex**, **Eidan**, ¡fiesta sin igual!\n\n**(Estribillo)**  \n**Fuera, fuera depresión**, ¡la fiesta empieza ya!  \n**Dale, dale, dale**, ¿quién se puede resistir?  \n**Cocacolastic** y un brindis, ¡salud!  \nCon mis **mejores amigos**, ¡bailamos en esta juventud!\n\n**(Puente)**  \n**Arigato al profe**, ¡te queremos expresar!  \n**Asta que la muerte nos separe**, ¡vamos a brillar!  \n**Viva Elcheeeeeeeee**, canta con pasión,  \n**Cloe** y **Alma** ríen, ¡fiesta en el corazón!\n\n**(Estribillo)**  \nEn el equipo sándwich, ¡ven a bailar!  \n**Pollito con alioli**, un festín sin igual,  \nLa fiesta del 5A, siempre a triunfar,  \n¡Estamos listos para gozar!",
+  "paragraphs": [
+    "\"La Fiesta del 5A\" (Versión Pegajosa)",
+    "(Estribillo)\nEn el equipo sándwich, ¡ven a bailar!\nVaya por Dios, ¡qué alegría!\nPollito con alioli, todos a disfrutar,\nNos partimos el culo, ¡fiesta de energía!",
+    "(Verso)\nMerequetengue suena, ¡y no hay más!\nCon patatoe y jamón, ¡a gozar sin parar!\nSarandonga vibra, ¡que suene el compás!\nMaría, Alex, Eidan, ¡fiesta sin igual!",
+    "(Estribillo)\nFuera, fuera depresión, ¡la fiesta empieza ya!\nDale, dale, dale, ¿quién se puede resistir?\nCocacolastic y un brindis, ¡salud!\nCon mis mejores amigos, ¡bailamos en esta juventud!",
+    "(Puente)\nArigato al profe, ¡te queremos expresar!\nAsta que la muerte nos separe, ¡vamos a brillar!\nViva Elcheeeeeeeee, canta con pasión,\nCloe y Alma ríen, ¡fiesta en el corazón!",
+    "(Estribillo)\nEn el equipo sándwich, ¡ven a bailar!\nPollito con alioli, un festín sin igual,\nLa fiesta del 5A, siempre a triunfar,\n¡Estamos listos para gozar!"
+  ],
+  "times": {
+    "auto": [],
+    "calibrated": [
+      0.192,
+      1.013333,
+      18.421333,
+      40.149333,
+      59.84,
+      81.184
+    ]
+  },
+  "offsetSeconds": 0,
+  "detector": {
+    "threshold": 0.02,
+    "minSilenceMs": 320,
+    "windowMs": 80
+  },
+  "audioMeta": {
+    "name": "5A_La Fiesta del 5A_ (Versión Pegajos.mp3",
+    "type": "audio/mpeg"
+  },
+  "audioUrl": "audio/5A_La Fiesta del 5A_ (Versión Pegajos.mp3"
+}

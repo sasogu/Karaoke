@@ -1,0 +1,45 @@
+{
+  "id": "9fd62b30-ee40-41b6-8cfd-c394f189c1fe",
+  "title": "No pueden hablar",
+  "category": "6a",
+  "categoryTitle": "6A",
+  "lyricsOriginal": "\n\n“No pueden hablar”\n\nVerso 1\nEn la calle tiembla un perro bajo la lluvia gris,\nnadie escucha su silencio, nadie mira allí.\nSus ojos cuentan historias que no quiere oír la ciudad,\ngolpes, hambre y abandono… pura crueldad.\n\nPre-Coro\nY aunque no puedan gritar lo que sienten por dentro,\nsu dolor pesa más que todo el silencio.\n\nCoro\nNo pueden hablar, pero sienten igual,\ncada herida, cada golpe, cada forma de mal.\nNo pueden pedir ayuda ni decir “basta ya”,\npero sus ojos suplican un poco de humanidad.\nSi tuvieran voz, el mundo temblaría hoy,\nporque el amor no se pega, el amor se da.\n\nVerso 2\nUn gato escondido entre sombras de metal,\naprendió demasiado pronto lo que es escapar.\nDel miedo, de las manos que no saben cuidar,\nde un mundo que a veces olvida amar.\n\nPre-Coro\nPero hay manos que curan, que saben abrazar,\ny corazones valientes que quieren cambiar.\n\nCoro\nNo pueden hablar, pero sienten igual,\ncada herida, cada golpe, cada forma de mal.\nNo pueden pedir ayuda ni decir “basta ya”,\npero sus ojos suplican un poco de humanidad.\nSi tuvieran voz, el mundo temblaría hoy,\nporque el amor no se pega, el amor se da.\n\nPuente\nSi ves dolor, no mires al suelo,\nsé la voz de quien no puede hacerlo.\nUn gesto pequeño puede salvar,\nuna vida que solo quiere amar.\n\nCoro final\nNo pueden hablar, pero sienten igual,\ny su vida también merece dignidad.\nNo más golpes, no más crueldad,\nsolo respeto y libertad.\n\nFinal\nPorque un mundo mejor empieza hoy,\ncuando aprendemos a proteger su voz. 🐾",
+  "paragraphs": [
+    "“No pueden hablar”",
+    "Verso 1\nEn la calle tiembla un perro bajo la lluvia gris,\nnadie escucha su silencio, nadie mira allí.\nSus ojos cuentan historias que no quiere oír la ciudad,\ngolpes, hambre y abandono… pura crueldad.",
+    "Pre-Coro\nY aunque no puedan gritar lo que sienten por dentro,\nsu dolor pesa más que todo el silencio.",
+    "Coro\nNo pueden hablar, pero sienten igual,\ncada herida, cada golpe, cada forma de mal.\nNo pueden pedir ayuda ni decir “basta ya”,\npero sus ojos suplican un poco de humanidad.\nSi tuvieran voz, el mundo temblaría hoy,\nporque el amor no se pega, el amor se da.",
+    "Verso 2\nUn gato escondido entre sombras de metal,\naprendió demasiado pronto lo que es escapar.\nDel miedo, de las manos que no saben cuidar,\nde un mundo que a veces olvida amar.",
+    "Pre-Coro\nPero hay manos que curan, que saben abrazar,\ny corazones valientes que quieren cambiar.",
+    "Coro\nNo pueden hablar, pero sienten igual,\ncada herida, cada golpe, cada forma de mal.\nNo pueden pedir ayuda ni decir “basta ya”,\npero sus ojos suplican un poco de humanidad.\nSi tuvieran voz, el mundo temblaría hoy,\nporque el amor no se pega, el amor se da.",
+    "Puente\nSi ves dolor, no mires al suelo,\nsé la voz de quien no puede hacerlo.\nUn gesto pequeño puede salvar,\nuna vida que solo quiere amar.",
+    "Coro final\nNo pueden hablar, pero sienten igual,\ny su vida también merece dignidad.\nNo más golpes, no más crueldad,\nsolo respeto y libertad.",
+    "Final\nPorque un mundo mejor empieza hoy,\ncuando aprendemos a proteger su voz. 🐾"
+  ],
+  "times": {
+    "auto": [],
+    "calibrated": [
+      4.906666,
+      6.442666,
+      42.944,
+      59.04,
+      97.418666,
+      125.909333,
+      142.709333,
+      180.448,
+      203.328,
+      215.786666
+    ]
+  },
+  "offsetSeconds": 0,
+  "detector": {
+    "threshold": 0.02,
+    "minSilenceMs": 320,
+    "windowMs": 80
+  },
+  "audioMeta": {
+    "name": "6A_No pueden hablar.mp3",
+    "type": "audio/mpeg"
+  },
+  "audioUrl": "audio/6A_No pueden hablar.mp3"
+}

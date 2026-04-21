@@ -1,0 +1,51 @@
+{
+  "id": "9c4dc546-afd7-478a-8506-190b7e2d5096",
+  "title": "Bravas & Heartbeat",
+  "category": "6a",
+  "categoryTitle": "6A",
+  "lyricsOriginal": "Títol: “Bravas & Heartbeat” (K-pop style) 🎶\n\n[Intro]\nBro, bro, yeah\nLate night vibes, let's go\nTWICE in my playlist, shining like a show ✨\n\n[Vers 1]\nEn la cuina sona el Thermomix, remix del cor\nFem un bocadillo mentre puja el calor\nA la pantalla Kimetsu no Yaiba en acció\nDemon slayer vibes dins del meu flow\n\nCamino amb estil, bro, no hi ha dubte\nRient amb patatas bravas, moment absolut\nSi el cor accelera és pura emoció\nCridant al món: amo a Jeongyeon! 💙\n\n[Pre-Chorus]\nQuan ballo sento el beat a dins\nFins l’esternocleidomastoideo vibra així\nGirant el cap al ritme del pop\nNo podem parar, no, never stop\n\n[Chorus]\nBro, bro, balla amb mi\nAmb TWICE sonant aquí\nEntre bravas i un bocadillo\nEl meu cor fa boom senzill\n\nOh-oh, crido al cel avui\n“Amo a Jeongyeon”, sí, només tu\nLa nit brilla com un idol show\nBro, this is our K-pop flow\n\n[Vers 2]\nDaniela Avanzini riu al meu costat\nLa ciutat vibra, tot està connectat\nSi canto massa potser faré un gall\nI acabaré a l’otorrinolaringòleg… però val!\n\nSeguim el ritme sense por\nAnime eyes i neó color\nSaltant com si fos un opening final\nLa nostra vibe és internacional 🌙\n\n[Rap Bridge]\nYeah, bro, listen up\nThermomix spinning, beat going up\nBocadillo power, midnight snack\nKimetsu style, demon attack\n\nGir del coll — múscul activat\nEsternocleidomastoideo preparat\nTWICE in my heart, lights in the sky\nJeongyeon energy, we fly high\n\n[Final Chorus]\nBro, bro, canta amb mi\nSota els llums d’aquesta nit\nEntre bravas i amistat\nEl K-pop ens ha unit\n\nOh-oh, crido fort avui\n“Amo a Jeongyeon”, sempre tu\nAmb somriures i aquest flow\nBro… this is our K-pop show 🎤✨",
+  "paragraphs": [
+    "Títol: “Bravas & Heartbeat” (K-pop style) 🎶",
+    "[Intro]\nBro, bro, yeah\nLate night vibes, let's go\nTWICE in my playlist, shining like a show ✨",
+    "[Vers 1]\nEn la cuina sona el Thermomix, remix del cor\nFem un bocadillo mentre puja el calor\nA la pantalla Kimetsu no Yaiba en acció\nDemon slayer vibes dins del meu flow",
+    "Camino amb estil, bro, no hi ha dubte\nRient amb patatas bravas, moment absolut\nSi el cor accelera és pura emoció\nCridant al món: amo a Jeongyeon! 💙",
+    "[Pre-Chorus]\nQuan ballo sento el beat a dins\nFins l’esternocleidomastoideo vibra així\nGirant el cap al ritme del pop\nNo podem parar, no, never stop",
+    "[Chorus]\nBro, bro, balla amb mi\nAmb TWICE sonant aquí\nEntre bravas i un bocadillo\nEl meu cor fa boom senzill",
+    "Oh-oh, crido al cel avui\n“Amo a Jeongyeon”, sí, només tu\nLa nit brilla com un idol show\nBro, this is our K-pop flow",
+    "[Vers 2]\nDaniela Avanzini riu al meu costat\nLa ciutat vibra, tot està connectat\nSi canto massa potser faré un gall\nI acabaré a l’otorrinolaringòleg… però val!",
+    "Seguim el ritme sense por\nAnime eyes i neó color\nSaltant com si fos un opening final\nLa nostra vibe és internacional 🌙",
+    "[Rap Bridge]\nYeah, bro, listen up\nThermomix spinning, beat going up\nBocadillo power, midnight snack\nKimetsu style, demon attack",
+    "Gir del coll — múscul activat\nEsternocleidomastoideo preparat\nTWICE in my heart, lights in the sky\nJeongyeon energy, we fly high",
+    "[Final Chorus]\nBro, bro, canta amb mi\nSota els llums d’aquesta nit\nEntre bravas i amistat\nEl K-pop ens ha unit",
+    "Oh-oh, crido fort avui\n“Amo a Jeongyeon”, sempre tu\nAmb somriures i aquest flow\nBro… this is our K-pop show 🎤✨"
+  ],
+  "times": {
+    "auto": [],
+    "calibrated": [
+      9.125333,
+      9.328,
+      15.248,
+      24.528,
+      32.154666,
+      38.8,
+      47.578666,
+      55.429333,
+      65.050666,
+      71.578666,
+      79.632,
+      87.216,
+      95.109333
+    ]
+  },
+  "offsetSeconds": 0,
+  "detector": {
+    "threshold": 0.02,
+    "minSilenceMs": 320,
+    "windowMs": 80
+  },
+  "audioMeta": {
+    "name": "6A_ “Bravas & Heartbeat” .mp3",
+    "type": "audio/mpeg"
+  },
+  "audioUrl": "audio/6A_ “Bravas & Heartbeat” .mp3"
+}

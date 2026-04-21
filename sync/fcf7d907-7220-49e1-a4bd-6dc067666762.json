@@ -1,0 +1,39 @@
+{
+  "id": "fcf7d907-7220-49e1-a4bd-6dc067666762",
+  "title": "Unidos en el Infinito",
+  "category": "5a",
+  "categoryTitle": "5A",
+  "lyricsOriginal": "## Canción: Unidos en el Infinito\n\n### Estribillo:\n**Pablo y Thiago, for ever,  \nSheyla y Lola, hasta el infinito,  \nEn el upside down, todo es divertido,  \nLa Vaca Lola, un canto bendito.**\n\n---\n\n### Verso 1:\nEn el campo suena una melodía,  \n**Pollito con papas, eso es lo que me gusta a mí,  \nY con un poco de alioli,  \nQue sabroso es, ven a compartir.**\n\n---\n\n### Estribillo:  \n**Pablo y Thiago, for ever,  \nSheyla y Lola, hasta el infinito,  \nEn el upside down, todo es divertido,  \nLa Vaca Lola, un canto bendito.**\n\n---\n\n### Verso 2:\nToca la campana, Wil y Mike,  \nCon risas y juegos, todo es un hype,  \nBailamos juntos, ¡qué gran celebración!  \nLa amistad brilla en cada ocasión.\n\n---\n\n### Estribillo:  \n**Pablo y Thiago, for ever,  \nSheyla y Lola, hasta el infinito,  \nEn el upside down, todo es divertido,  \nLa Vaca Lola, un canto bendito.**\n\n---\n\n### Final:\nVenga, ven, no hay que esperar,  \nCon los amigos, y mucho que amar,  \nPollito en fiesta, no puedes faltar,  \nBailamos todos, ¡vamos a disfrutar!",
+  "paragraphs": [
+    "Canción: Unidos en el Infinito",
+    "Estribillo:\nPablo y Thiago, for ever,\nSheyla y Lola, hasta el infinito,\nEn el upside down, todo es divertido,\nLa Vaca Lola, un canto bendito.",
+    "Verso 1:\nEn el campo suena una melodía,\nPollito con papas, eso es lo que me gusta a mí,\nY con un poco de alioli,\nQue sabroso es, ven a compartir.",
+    "Estribillo:\nPablo y Thiago, for ever,\nSheyla y Lola, hasta el infinito,\nEn el upside down, todo es divertido,\nLa Vaca Lola, un canto bendito.",
+    "Verso 2:\nToca la campana, Wil y Mike,\nCon risas y juegos, todo es un hype,\nBailamos juntos, ¡qué gran celebración!\nLa amistad brilla en cada ocasión.",
+    "Estribillo:\nPablo y Thiago, for ever,\nSheyla y Lola, hasta el infinito,\nEn el upside down, todo es divertido,\nLa Vaca Lola, un canto bendito.",
+    "Final:\nVenga, ven, no hay que esperar,\nCon los amigos, y mucho que amar,\nPollito en fiesta, no puedes faltar,\nBailamos todos, ¡vamos a disfrutar!"
+  ],
+  "times": {
+    "auto": [],
+    "calibrated": [
+      1.92,
+      2.848,
+      27.338666,
+      50.794666,
+      67.754666,
+      94.24,
+      120.789333
+    ]
+  },
+  "offsetSeconds": 0,
+  "detector": {
+    "threshold": 0.02,
+    "minSilenceMs": 320,
+    "windowMs": 80
+  },
+  "audioMeta": {
+    "name": "## Canción_ Unidos en el Infinito.mp3",
+    "type": "audio/mpeg"
+  },
+  "audioUrl": "audio/## Canción_ Unidos en el Infinito.mp3"
+}

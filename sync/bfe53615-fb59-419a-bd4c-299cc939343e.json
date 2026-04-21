@@ -1,0 +1,47 @@
+{
+  "id": "bfe53615-fb59-419a-bd4c-299cc939343e",
+  "title": "Aula de ritmes",
+  "category": "6a",
+  "categoryTitle": "6A",
+  "lyricsOriginal": "Six seven, ella jura,\nAmb els somnis al cap, no hi ha qui ho duri.\nOk mañana, no hi ha pressa,\nBlasco el millor, sempre amb la seva destresa.\n\nVers 1:\n\nA l’aula, brillen les idees,\n6A el millor curs, no hi ha més que dir.\nFent matemàtiques amb Julio tot el dia,\nResolent problemes amb alegría!\n\nVers 2:\n\nPedro y el lobo, sona la música,\nCada nota, una aventura mítica.\nElla jura que la salsa no para,\nAmb cada pas, la vida és una guitarra.\n\nEstribillo:\n\nSix seven, ella jura,\nAmb els somnis al cap, no hi ha qui ho duri.\nOk mañana, no hi ha pressa,\nBlasco el millor, sempre amb la seva destresa.\n\nVers 3:\n\nDins la classe, ritmes a mil,\nAmb els amics, un pla idíl·lic.\nEl sol brilla, la vida fa festa,\n6A, la millor, aquesta és la nostra gesta!\n\nFinal:\n\nSix seven, ella jura,\nAmb un somriure, l’amor ens apura.\nOk mañana, el futur és aquí,\nAmb la salsa i el rap, sempre a punt per viure així!",
+  "paragraphs": [
+    "Six seven, ella jura,\nAmb els somnis al cap, no hi ha qui ho duri.\nOk mañana, no hi ha pressa,\nBlasco el millor, sempre amb la seva destresa.",
+    "Vers 1:",
+    "A l’aula, brillen les idees,\n6A el millor curs, no hi ha més que dir.\nFent matemàtiques amb Julio tot el dia,\nResolent problemes amb alegría!",
+    "Vers 2:",
+    "Pedro y el lobo, sona la música,\nCada nota, una aventura mítica.\nElla jura que la salsa no para,\nAmb cada pas, la vida és una guitarra.",
+    "Estribillo:",
+    "Six seven, ella jura,\nAmb els somnis al cap, no hi ha qui ho duri.\nOk mañana, no hi ha pressa,\nBlasco el millor, sempre amb la seva destresa.",
+    "Vers 3:",
+    "Dins la classe, ritmes a mil,\nAmb els amics, un pla idíl·lic.\nEl sol brilla, la vida fa festa,\n6A, la millor, aquesta és la nostra gesta!",
+    "Final:",
+    "Six seven, ella jura,\nAmb un somriure, l’amor ens apura.\nOk mañana, el futur és aquí,\nAmb la salsa i el rap, sempre a punt per viure així!"
+  ],
+  "times": {
+    "auto": [],
+    "calibrated": [
+      29.194666,
+      29.354666,
+      29.813333,
+      40.405333,
+      41.098666,
+      48.309333,
+      48.629333,
+      69.589333,
+      69.834666,
+      80.128,
+      80.618666
+    ]
+  },
+  "offsetSeconds": 0,
+  "detector": {
+    "threshold": 0.02,
+    "minSilenceMs": 320,
+    "windowMs": 80
+  },
+  "audioMeta": {
+    "name": "6A_ Aula de ritmes. .mp3",
+    "type": "audio/mpeg"
+  },
+  "audioUrl": "audio/6A_ Aula de ritmes. .mp3"
+}
