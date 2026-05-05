@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-21T14:36:57.240Z",
+  "generatedAt": "2026-05-05T08:47:35.097Z",
   "source": {
     "audioDir": "audio",
     "syncDir": "sync"
@@ -1418,6 +1418,55 @@
         "type": "audio/mpeg"
       },
       "audioUrl": "audio/5A_La Fiesta del 5A_ (Versión Pegajos.mp3"
+    },
+    {
+      "id": "9c31e0ce-7fa7-4e52-a870-7b0c4a4a3062",
+      "title": "La nostra classe és un món",
+      "category": "3a",
+      "categoryTitle": "3A",
+      "lyricsOriginal": "🎵 “La nostra classe és un món” 🎵\n\n(Vers 1)\nPel matí café, arribem sense pressa,\nHarry Potter a la motxilla, màgia en la taula expressa.\nEstà és la nostra classe, cridem tots alhora,\namics i amigues rient des de primera hora.\n\nPeppa Pig sona baixet, algú diu “he he”,\nschool of rock en vena, ningú pot parar el peu.\nEl Blasco el millor, això està clar,\ni si no t’agrada… pasa palabra i a rodar.\n\n(Pre-coro)\nSense resposta, però amb il·lusió,\nel pin de la nostra cançó marca la direcció.\n\n(Estribillo)\nLa classe és la millor, no hi ha comparació,\nCLUB FUEGO INFERNAL dins del cor!\nTe quiero mi amor, cride sense por,\nquiero ser millonaria, però amb humor.\n\nIceberg d’idees dins del nostre món,\nmon de pedra, però amb ritme de fons.\nNo sóc una xica, sóc pura emoció,\nkakoi vibes en cada cançó!\n\n(Vers 2)\nPer la vesprada torró, compartim al pati,\nensalada pa tu casa si no portes entrepà gratis.\nTeto riu fort, ningú sap per què,\nperò la classe vibra i això està molt bé.\n\nEl timbre sona, però volem més,\nsense resposta a l’últim test.\nEntre llibres i bromes tot passa millor,\nsom una història sense traductor.\n\n(Pre-coro)\nSense resposta, però amb connexió,\nel pin de la nostra cançó és revolució.\n\n(Estribillo)\nLa classe és la millor, no hi ha comparació,\nCLUB FUEGO INFERNAL dins del cor!\nTe quiero mi amor, cride sense por,\nquiero ser millonaria, però amb humor.\n\nIceberg d’idees dins del nostre món,\nmon de pedra, però amb ritme de fons.\nNo sóc una xica, sóc pura emoció,\nkakoi vibes en cada cançó!\n\n(Final)\nHarry Potter tanca el llibre al final,\nperò la nostra classe… és llegenda total.\nAmics i amigues, sempre en connexió,\naçò no és una classe… és una cançó 🎶",
+      "paragraphs": [
+        "🎵 “La nostra classe és un món” 🎵",
+        "(Vers 1)\nPel matí café, arribem sense pressa,\nHarry Potter a la motxilla, màgia en la taula expressa.\nEstà és la nostra classe, cridem tots alhora,\namics i amigues rient des de primera hora.",
+        "Peppa Pig sona baixet, algú diu “he he”,\nschool of rock en vena, ningú pot parar el peu.\nEl Blasco el millor, això està clar,\ni si no t’agrada… pasa palabra i a rodar.",
+        "(Pre-coro)\nSense resposta, però amb il·lusió,\nel pin de la nostra cançó marca la direcció.",
+        "(Estribillo)\nLa classe és la millor, no hi ha comparació,\nCLUB FUEGO INFERNAL dins del cor!\nTe quiero mi amor, cride sense por,\nquiero ser millonaria, però amb humor.",
+        "Iceberg d’idees dins del nostre món,\nmon de pedra, però amb ritme de fons.\nNo sóc una xica, sóc pura emoció,\nkakoi vibes en cada cançó!",
+        "(Vers 2)\nPer la vesprada torró, compartim al pati,\nensalada pa tu casa si no portes entrepà gratis.\nTeto riu fort, ningú sap per què,\nperò la classe vibra i això està molt bé.",
+        "El timbre sona, però volem més,\nsense resposta a l’últim test.\nEntre llibres i bromes tot passa millor,\nsom una història sense traductor.",
+        "(Pre-coro)\nSense resposta, però amb connexió,\nel pin de la nostra cançó és revolució.",
+        "(Estribillo)\nLa classe és la millor, no hi ha comparació,\nCLUB FUEGO INFERNAL dins del cor!\nTe quiero mi amor, cride sense por,\nquiero ser millonaria, però amb humor.",
+        "Iceberg d’idees dins del nostre món,\nmon de pedra, però amb ritme de fons.\nNo sóc una xica, sóc pura emoció,\nkakoi vibes en cada cançó!",
+        "(Final)\nHarry Potter tanca el llibre al final,\nperò la nostra classe… és llegenda total.\nAmics i amigues, sempre en connexió,\naçò no és una classe… és una cançó 🎶"
+      ],
+      "times": {
+        "auto": [],
+        "calibrated": [
+          4.349333,
+          5.117333,
+          20.456,
+          30.642666,
+          36.552,
+          51.197333,
+          61.949333,
+          83.314666,
+          93.618666,
+          98.962666,
+          114.024,
+          125.170666
+        ]
+      },
+      "offsetSeconds": 0,
+      "detector": {
+        "threshold": 0.02,
+        "minSilenceMs": 320,
+        "windowMs": 80
+      },
+      "audioMeta": {
+        "name": "lanostraclasseesunmon.mp3",
+        "type": "audio/mpeg"
+      },
+      "audioUrl": "audio/lanostraclasseesunmon.mp3"
     },
     {
       "id": "8cd5d7f4-4314-4fcd-b76c-445401c14b13",
